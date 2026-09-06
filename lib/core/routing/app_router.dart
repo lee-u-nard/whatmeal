@@ -8,6 +8,8 @@ import '../../features/pantry/pages/pantry_page.dart';
 import '../../features/grocery/pages/grocery_page.dart';
 import '../../features/profile/pages/profile_page.dart';
 
+import '../../features/meal/pages/meal_detail_page.dart';
+
 final appRouter = GoRouter(
   initialLocation: '/home',
   routes: [
@@ -30,7 +32,13 @@ final appRouter = GoRouter(
         StatefulShellBranch(routes: [
           GoRoute(path: '/profile', builder: (context, state) => const ProfilePage()),
         ]),
-      ]
+      ],
+    ),
+    GoRoute(
+      path: '/meal/:mealId',
+      builder: (context, state) => MealDetailPage(
+        mealId: state.pathParameters['mealId']!,
+      ),
     ),
   ],
 );
