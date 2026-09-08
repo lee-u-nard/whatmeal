@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/pantry/data/pantry_repository.dart';
+import '../../features/pantry/widgets/add_pantry_item_sheet.dart';
+
 class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
 
-  static const _titles = ['Home', 'Meal Plan', 'Pantry','Grocery', 'Profile'];
+  static const _titles = ['Home', 'Meal Plan', 'Pantry', 'Grocery', 'Profile'];
+
+  static Widget? _fabForTab(int index, BuildContext context) {
+    if (index != 2) return null;
+    return FloatingActionButton(
+      backgroundColor: Colors.green,
+      onPressed: () async {
+        final result = await showModalBottomSheet<NewPantryItem>(
+          context: context,
+          isScrollControlled: true,
+          builder: (_) => const AddPantryItemSheet(),
+        );
+        if (result != null) {
+          PantryRepository.instance.addItem(result.category, result.item);
+        }
+      },
+      child: const Icon(Icons.add),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +41,7 @@ class AppShell extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: _fabForTab(navigationShell.currentIndex, context),
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
@@ -29,10 +51,16 @@ class AppShell extends StatelessWidget {
         ),
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.restaurant_menu), label: 'Meal Plan'),
+          NavigationDestination(
+            icon: Icon(Icons.restaurant_menu),
+            label: 'Meal Plan',
+          ),
           NavigationDestination(icon: Icon(Icons.kitchen), label: 'Pantry'),
-          NavigationDestination(icon: Icon(Icons.shopping_cart), label: 'Grocery'),
-          NavigationDestination(icon: Icon(Icons.person), label: 'Profile')
+          NavigationDestination(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Grocery',
+          ),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );
