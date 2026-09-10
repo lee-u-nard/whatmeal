@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../widgets/app_shell.dart';
 import '../../features/home/pages/home_page.dart';
 import '../../features/meal_plan/pages/meal_plan_page.dart';
+import '../../features/meal_plan/pages/saved_meal_plans_page.dart';
 import '../../features/pantry/pages/pantry_page.dart';
 import '../../features/grocery/pages/grocery_page.dart';
 import '../../features/profile/pages/profile_page.dart';
-
 import '../../features/meal/pages/meal_detail_page.dart';
 
 final appRouter = GoRouter(
@@ -33,6 +32,10 @@ final appRouter = GoRouter(
           GoRoute(path: '/profile', builder: (context, state) => const ProfilePage()),
         ]),
       ],
+    ),
+    GoRoute(
+      path: '/saved-meal-plans',
+      builder: (context, state) => const SavedMealPlansPage(),
     ),
     GoRoute(
       path: '/meal/:mealId',

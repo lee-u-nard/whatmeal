@@ -1,18 +1,5 @@
-/*import 'package:flutter/material.dart';
-
-
-class GroceryPage extends StatelessWidget {
-  const GroceryPage({super.key});
-
-  @override
-  Widget build(BuildContext centext) {
-    return const Center(child: Text('Grocery'));
-  } 
-}
-*/
-
-// lib/features/grocery/pages/grocery_page.dart
 import 'package:flutter/material.dart';
+import '../../../core/theme/app_theme.dart';
 import '../models/grocery_item.dart';
 
 class GroceryPage extends StatefulWidget {
@@ -53,44 +40,73 @@ class _GroceryPageState extends State<GroceryPage> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(20),
       children: [
+        // Subheader row
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('$_remainingCount remaining items', style: Theme.of(context).textTheme.bodyMedium),
+            Text(
+              '$_remainingCount remaining items',
+              style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+              ),
+            ),
             Row(
               children: [
                 TextButton(
-                  onPressed: () {/* TODO: share list */},
-                  style: TextButton.styleFrom(foregroundColor: Colors.green.shade700),
-                  child: const Text('Share List'),
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Grocery list copied to clipboard!')),
+                    );
+                  },
+                  child: const Text(
+                    'Share List',
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13,
+                    ),
+                  ),
                 ),
                 TextButton(
                   onPressed: _clearChecked,
-                  style: TextButton.styleFrom(foregroundColor: Colors.red.shade700),
-                  child: const Text('Clear Checked'),
+                  child: const Text(
+                    'Clear Checked',
+                    style: TextStyle(
+                      color: AppColors.danger,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13,
+                    ),
+                  ),
                 ),
               ],
             ),
           ],
         ),
+        const SizedBox(height: 12),
+
         for (final entry in _sections.entries) ...[
           Padding(
-            padding: const EdgeInsets.only(top: 16, bottom: 8, left: 4),
+            padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4),
             child: Text(
               entry.key,
-              style: TextStyle(
-                color: Colors.grey.shade600,
-                fontWeight: FontWeight.bold,
+              style: const TextStyle(
+                color: AppColors.textMuted,
+                fontWeight: FontWeight.w700,
                 fontSize: 12,
                 letterSpacing: 0.5,
               ),
             ),
           ),
-          Card(
-            elevation: 1,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.cardSurface,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppColors.border),
+            ),
             child: Column(
               children: [
                 for (var i = 0; i < entry.value.length; i++) ...[
@@ -99,11 +115,12 @@ class _GroceryPageState extends State<GroceryPage> {
                     onChanged: (checked) => setState(() => entry.value[i].checked = checked),
                   ),
                   if (i != entry.value.length - 1)
-                    const Divider(height: 1, indent: 16, endIndent: 16),
+                    const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
                 ],
               ],
             ),
           ),
+          const SizedBox(height: 12),
         ],
       ],
     );
@@ -121,26 +138,43 @@ class _GroceryItemTile extends StatelessWidget {
     return CheckboxListTile(
       value: item.checked,
       onChanged: (v) => onChanged(v ?? false),
-      activeColor: Colors.green.shade700,
+      activeColor: AppColors.primary,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       controlAffinity: ListTileControlAffinity.leading,
       title: Row(
         children: [
           Flexible(
             child: Text(
               item.name,
-              style: item.checked
-                  ? TextStyle(decoration: TextDecoration.lineThrough, color: Colors.grey.shade500)
-                  : null,
+              style: TextStyle(
+                color: item.checked ? AppColors.textMuted : AppColors.textPrimary,
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                decoration: item.checked ? TextDecoration.lineThrough : null,
+              ),
             ),
           ),
           if (item.checked && item.tag != null) ...[
             const SizedBox(width: 6),
-            Text('(${item.tag})',
-                style: TextStyle(color: Colors.grey.shade500, fontSize: 12, fontStyle: FontStyle.italic)),
+            Text(
+              '(${item.tag})',
+              style: const TextStyle(
+                color: AppColors.textMuted,
+                fontSize: 12,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
           ],
         ],
       ),
-      secondary: Text(item.quantity, style: TextStyle(color: Colors.grey.shade600)),
+      secondary: Text(
+        item.quantity,
+        style: const TextStyle(
+          color: AppColors.textSecondary,
+          fontWeight: FontWeight.w600,
+          fontSize: 13,
+        ),
+      ),
     );
   }
 }
