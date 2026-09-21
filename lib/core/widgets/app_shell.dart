@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../../features/pantry/data/pantry_repository.dart';
+import '../../features/pantry/models/pantry_item.dart';
 import '../../features/pantry/widgets/add_pantry_item_sheet.dart';
 
 class AppShell extends StatelessWidget {
@@ -18,13 +20,13 @@ class AppShell extends StatelessWidget {
       shape: const CircleBorder(),
       elevation: 4,
       onPressed: () async {
-        final result = await showModalBottomSheet<NewPantryItem>(
+        final result = await showModalBottomSheet<PantryItem>(
           context: context,
           isScrollControlled: true,
           builder: (_) => const AddPantryItemSheet(),
         );
-        if (result != null) {
-          PantryRepository.instance.addItem(result.category, result.item);
+        if (result != null && context.mounted) {
+          context.read<PantryRepository>().addItem(result);
         }
       },
       child: const Icon(Icons.add, color: Colors.white),

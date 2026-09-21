@@ -1,128 +1,227 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
+import '../data/grocery_repository.dart';
 import '../models/grocery_item.dart';
 
-class GroceryPage extends StatefulWidget {
+class GroceryPage extends StatelessWidget {
   const GroceryPage({super.key});
 
-  @override
-  State<GroceryPage> createState() => _GroceryPageState();
-}
+  void _showAddItemDialog(BuildContext context) {
+    final nameController = TextEditingController();
+    final quantityController = TextEditingController();
+    String category = 'Produce';
+    const categories = ['Produce', 'Meat & Seafood', 'Dairy & Eggs', 'Pantry Staples', 'Frozen', 'Bakery', 'Other'];
 
-class _GroceryPageState extends State<GroceryPage> {
-  final _sections = <String, List<GroceryItem>>{
-    'PRODUCE AISLE': [
-      GroceryItem(name: 'Asparagus bundle', quantity: '1 unit'),
-      GroceryItem(name: 'Lemons', quantity: '3 units'),
-      GroceryItem(name: 'Avocados', quantity: '2 units', checked: true, tag: 'In Pantry'),
-    ],
-    'MEAT & SEAFOOD': [
-      GroceryItem(name: 'Fresh Atlantic Salmon', quantity: '500g'),
-      GroceryItem(name: 'Chicken Breast', quantity: '1.2 kg'),
-    ],
-    'PANTRY STAPLES': [
-      GroceryItem(name: 'Organic Honey', quantity: '1 jar'),
-      GroceryItem(name: 'Almond Flour', quantity: '400g'),
-    ],
-  };
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setState) => AlertDialog(
+          title: const Text('Add Grocery Item'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Item Name', hintText: 'e.g. Olive Oil'),
+                autofocus: true,
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: quantityController,
+                decoration: const InputDecoration(labelText: 'Quantity', hintText: 'e.g. 1 bottle, 500g'),
+              ),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                initialValue: category,
+                decoration: const InputDecoration(labelText: 'Category'),
+                items: categories.map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
+                onChanged: (v) => setState(() => category = v!),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+            FilledButton(
+              style: FilledButton.styleFrom(backgroundColor: AppColors.primary),
+              onPressed: () {
+                final name = nameController.text.trim();
+                final qty = quantityController.text.trim();
+                if (name.isNotEmpty) {
+                  context.read<GroceryRepository>().addItem(
+                        GroceryItem(
+                          name: name,
+                          quantity: qty.isEmpty ? '1 unit' : qty,
+                          category: category,
+                        ),
+                      );
+                  Navigator.pop(ctx);
+                }
+              },
+              child: const Text('Add'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-  int get _remainingCount =>
-      _sections.values.expand((items) => items).where((i) => !i.checked).length;
-
-  void _clearChecked() {
-    setState(() {
-      for (final items in _sections.values) {
-        items.removeWhere((i) => i.checked);
+  void _shareList(BuildContext context, Map<String, List<GroceryItem>> sections) {
+    final buffer = StringBuffer('🛒 WhatMeal Grocery List:\n\n');
+    for (final entry in sections.entries) {
+      buffer.writeln('${entry.key}:');
+      for (final item in entry.value) {
+        final check = item.checked ? '✅' : '⬜';
+        buffer.writeln('  $check ${item.name} (${item.quantity})');
       }
-    });
+      buffer.writeln();
+    }
+    Clipboard.setData(ClipboardData(text: buffer.toString()));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Grocery list copied to clipboard!')),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(20),
-      children: [
-        // Subheader row
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '$_remainingCount remaining items',
-              style: const TextStyle(
-                color: AppColors.textPrimary,
-                fontWeight: FontWeight.w600,
-                fontSize: 14,
-              ),
-            ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Grocery list copied to clipboard!')),
-                    );
-                  },
-                  child: const Text(
-                    'Share List',
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: _clearChecked,
-                  child: const Text(
-                    'Clear Checked',
-                    style: TextStyle(
-                      color: AppColors.danger,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
+    return Consumer<GroceryRepository>(
+      builder: (context, repo, _) {
+        final sections = repo.sections;
+        final totalItems = sections.values.expand((items) => items).toList();
+        final remainingCount = totalItems.where((i) => !i.checked).length;
 
-        for (final entry in _sections.entries) ...[
-          Padding(
-            padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4),
-            child: Text(
-              entry.key,
-              style: const TextStyle(
-                color: AppColors.textMuted,
-                fontWeight: FontWeight.w700,
-                fontSize: 12,
-                letterSpacing: 0.5,
-              ),
-            ),
+        return Scaffold(
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: AppColors.primary,
+            shape: const CircleBorder(),
+            elevation: 4,
+            onPressed: () => _showAddItemDialog(context),
+            child: const Icon(Icons.add, color: Colors.white),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.cardSurface,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: AppColors.border),
-            ),
-            child: Column(
-              children: [
-                for (var i = 0; i < entry.value.length; i++) ...[
-                  _GroceryItemTile(
-                    item: entry.value[i],
-                    onChanged: (checked) => setState(() => entry.value[i].checked = checked),
+          body: ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              // Subheader row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '$remainingCount remaining items',
+                    style: const TextStyle(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                    ),
                   ),
-                  if (i != entry.value.length - 1)
-                    const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: totalItems.isEmpty ? null : () => _shareList(context, sections),
+                        child: const Text(
+                          'Share List',
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: totalItems.any((i) => i.checked)
+                            ? () => repo.clearChecked()
+                            : null,
+                        child: const Text(
+                          'Clear Checked',
+                          style: TextStyle(
+                            color: AppColors.danger,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
-              ],
-            ),
+              ),
+              const SizedBox(height: 12),
+
+              if (sections.isEmpty)
+                Container(
+                  padding: const EdgeInsets.all(32),
+                  margin: const EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                    color: AppColors.cardSurface,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: AppColors.border),
+                  ),
+                  child: Column(
+                    children: [
+                      const Icon(Icons.shopping_basket_outlined, size: 48, color: AppColors.textMuted),
+                      const SizedBox(height: 12),
+                      const Text(
+                        'Your Grocery List is Empty',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                      ),
+                      const SizedBox(height: 6),
+                      const Text(
+                        'Tap the + button to add items, or generate a meal plan to auto-populate your groceries!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                      ),
+                      const SizedBox(height: 16),
+                      FilledButton.icon(
+                        onPressed: () => _showAddItemDialog(context),
+                        icon: const Icon(Icons.add, size: 18),
+                        label: const Text('Add First Item'),
+                        style: FilledButton.styleFrom(backgroundColor: AppColors.primary),
+                      ),
+                    ],
+                  ),
+                )
+              else
+                for (final entry in sections.entries) ...[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4),
+                    child: Text(
+                      entry.key.toUpperCase(),
+                      style: const TextStyle(
+                        color: AppColors.textMuted,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.cardSurface,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: AppColors.border),
+                    ),
+                    child: Column(
+                      children: [
+                        for (var i = 0; i < entry.value.length; i++) ...[
+                          _GroceryItemTile(
+                            item: entry.value[i],
+                            onChanged: (checked) {
+                              if (entry.value[i].id != null) {
+                                repo.toggleChecked(entry.value[i].id!, checked);
+                              }
+                            },
+                          ),
+                          if (i != entry.value.length - 1)
+                            const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
+                        ],
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+            ],
           ),
-          const SizedBox(height: 12),
-        ],
-      ],
+        );
+      },
     );
   }
 }

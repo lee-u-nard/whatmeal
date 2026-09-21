@@ -40,15 +40,20 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
   }
 
   void _submit() {
-    if (!_formKey.currentState!.validate() || _expirationDate == null) return;
-    final daysLeft = _expirationDate!.difference(DateTime.now()).inDays;
+    if (!_formKey.currentState!.validate()) return;
+    if (_expirationDate == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select an expiration date')),
+      );
+      return;
+    }
     final newItem = PantryItem(
-      name: _nameController.text,
-      quantity: _quantityController.text,
-      expiresInDays: daysLeft,
-      isExpiringSoon: daysLeft <= 5,
+      name: _nameController.text.trim(),
+      quantity: _quantityController.text.trim(),
+      category: _category,
+      expirationDate: _expirationDate!,
     );
-    Navigator.pop(context, NewPantryItem(category: _category, item: newItem));
+    Navigator.pop(context, newItem);
   }
 
   @override

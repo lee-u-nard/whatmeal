@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
+import '../data/meal_plan_repository.dart';
+import '../models/meal_plan.dart';
 
 class SavedMealPlansPage extends StatelessWidget {
   const SavedMealPlansPage({super.key});
@@ -36,84 +39,83 @@ class SavedMealPlansPage extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none, color: AppColors.textPrimary),
-            onPressed: () {},
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundColor: AppColors.primaryLight,
-              child: Icon(Icons.person, size: 20, color: AppColors.primary),
-            ),
-          ),
-        ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          const Text(
-            'Reload and schedule previous generated plans your family loved.',
-            style: TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 15,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildSavedPlanCard(
-            context: context,
-            title: 'Winter Cozy Warmers',
-            dates: 'Oct 1 - Oct 7',
-            mealsCount: 15,
-            estCost: '\$112.50',
-            familyMembers: ['Dad', 'Mom', 'Leo', 'Emma'],
-          ),
-          const SizedBox(height: 16),
-          _buildSavedPlanCard(
-            context: context,
-            title: 'Eco Pantry Cleanout',
-            dates: 'Sep 24 - Sep 30',
-            mealsCount: 12,
-            estCost: '\$84.20',
-            familyMembers: ['Dad', 'Mom', 'Leo'],
-          ),
-          const SizedBox(height: 16),
-          _buildSavedPlanCard(
-            context: context,
-            title: 'High-Protein Strength Week',
-            dates: 'Sep 15 - Sep 21',
-            mealsCount: 14,
-            estCost: '\$145.00',
-            familyMembers: ['Dad', 'Mom'],
-          ),
-        ],
+      body: Consumer<MealPlanRepository>(
+        builder: (context, repo, _) {
+          final plans = repo.savedPlans;
+
+          if (plans.isEmpty) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.bookmark_border, size: 56, color: AppColors.textMuted),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'No Saved Meal Plans Yet',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: AppColors.textPrimary),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Generate a custom meal plan using our AI planner to save and reuse meals for your family.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                    ),
+                    const SizedBox(height: 20),
+                    FilledButton.icon(
+                      onPressed: () => context.go('/meal-plan'),
+                      icon: const Icon(Icons.auto_awesome, size: 18),
+                      label: const Text('Create Meal Plan'),
+                      style: FilledButton.styleFrom(backgroundColor: AppColors.primary),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
+          return ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              const Text(
+                'Reload and schedule previous generated plans your family loved.',
+                style: TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: 15,
+                ),
+              ),
+              const SizedBox(height: 16),
+              for (final plan in plans) ...[
+                _buildSavedPlanCard(context: context, plan: plan, repo: repo),
+                const SizedBox(height: 16),
+              ],
+            ],
+          );
+        },
       ),
     );
   }
 
   Widget _buildSavedPlanCard({
     required BuildContext context,
-    required String title,
-    required String dates,
-    required int mealsCount,
-    required String estCost,
-    required List<String> familyMembers,
+    required MealPlan plan,
+    required MealPlanRepository repo,
   }) {
+    final startStr = plan.startDate != null
+        ? '${plan.startDate!.month}/${plan.startDate!.day}'
+        : 'Day 1';
+    final endStr = plan.endDate != null
+        ? '${plan.endDate!.month}/${plan.endDate!.day}'
+        : 'Day ${plan.numberOfDays}';
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.cardSurface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.border),
-        boxShadow: const [
-          BoxShadow(
-            color: Color.fromRGBO(27, 42, 30, 0.05),
-            blurRadius: 16,
-            offset: Offset(0, 4),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,126 +123,87 @@ class SavedMealPlansPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                    ),
+              Expanded(
+                child: Text(
+                  plan.title,
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    dates,
-                    style: const TextStyle(
-                      color: AppColors.textMuted,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
+                ),
               ),
+              IconButton(
+                icon: const Icon(Icons.delete_outline, color: AppColors.danger, size: 20),
+                onPressed: () => _confirmDelete(context, repo, plan),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            '$startStr - $endStr • ${plan.numberOfDays} Days',
+            style: const TextStyle(color: AppColors.textMuted, fontSize: 12),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
               Container(
-                width: 32,
-                height: 32,
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: AppColors.primaryLight,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(Icons.bookmark_outline, color: AppColors.primary, size: 16),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Row(
-                children: [
-                  const Icon(Icons.restaurant, size: 14, color: AppColors.textSecondary),
-                  const SizedBox(width: 4),
-                  Text(
-                    '$mealsCount meals planned',
-                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                child: Text(
+                  plan.estimatedCost ?? '\$85.00 est.',
+                  style: const TextStyle(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 12,
                   ),
-                ],
+                ),
               ),
-              const SizedBox(width: 16),
-              Row(
-                children: [
-                  const Icon(Icons.attach_money, size: 14, color: AppColors.textSecondary),
-                  const SizedBox(width: 4),
-                  Text(
-                    'Est. $estCost',
-                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
-                  ),
-                ],
+              const SizedBox(width: 8),
+              Text(
+                plan.mealTypes.join(', '),
+                style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              const Text('For: ', style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
-              const SizedBox(width: 4),
-              Wrap(
-                spacing: 6,
-                children: familyMembers.map((member) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: AppColors.background,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      member,
-                      style: const TextStyle(
-                        color: AppColors.textSecondary,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 11,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
+          const SizedBox(height: 14),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton.tonal(
+              onPressed: () async {
+                final meals = await repo.getMealsForPlan(plan.id);
+                if (meals.isNotEmpty && context.mounted) {
+                  context.push('/meal/${meals.first.id}?planId=${plan.id}');
+                } else if (context.mounted) {
+                  context.push('/meal/sample_1?planId=${plan.id}');
+                }
+              },
+              child: const Text('View Plan Meals'),
+            ),
           ),
-          const SizedBox(height: 12),
-          const Divider(color: AppColors.border, height: 1),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton.icon(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Deleted $title')),
-                  );
-                },
-                icon: const Icon(Icons.delete_outline, color: AppColors.danger, size: 16),
-                label: const Text(
-                  'Delete',
-                  style: TextStyle(color: AppColors.danger, fontWeight: FontWeight.w700, fontSize: 13),
-                ),
-              ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  context.push('/meal/1');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  elevation: 0,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                ),
-                icon: const Icon(Icons.folder_open, color: Colors.white, size: 14),
-                label: const Text(
-                  'Load Plan',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 13),
-                ),
-              ),
-            ],
+        ],
+      ),
+    );
+  }
+
+  void _confirmDelete(BuildContext context, MealPlanRepository repo, MealPlan plan) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Delete Meal Plan?'),
+        content: Text('Are you sure you want to delete "${plan.title}"?'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+          FilledButton(
+            style: FilledButton.styleFrom(backgroundColor: AppColors.danger),
+            onPressed: () {
+              Navigator.pop(ctx);
+              repo.deletePlan(plan.id);
+            },
+            child: const Text('Delete'),
           ),
         ],
       ),

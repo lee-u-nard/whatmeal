@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
 import '../data/pantry_repository.dart';
 import '../models/pantry_item.dart';
@@ -15,9 +16,9 @@ class _PantryPageState extends State<PantryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Map<String, List<PantryItem>>>(
-      valueListenable: PantryRepository.instance,
-      builder: (context, categories, _) {
+    return Consumer<PantryRepository>(
+      builder: (context, pantryRepo, _) {
+        final categories = pantryRepo.items;
         return ListView(
           padding: const EdgeInsets.all(20),
           children: [

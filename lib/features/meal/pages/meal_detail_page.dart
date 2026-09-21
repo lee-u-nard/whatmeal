@@ -1,21 +1,162 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/services/llm_service.dart';
+import '../../../core/services/auth_service.dart';
+import '../../meal_plan/data/meal_plan_repository.dart';
+import '../models/meal.dart';
 
 class MealDetailPage extends StatefulWidget {
-  const MealDetailPage({super.key, required this.mealId});
+  const MealDetailPage({super.key, required this.mealId, this.planId});
 
   final String mealId;
+  final String? planId;
 
   @override
   State<MealDetailPage> createState() => _MealDetailPageState();
 }
 
 class _MealDetailPageState extends State<MealDetailPage> {
+  Meal? _meal;
+  bool _isLoading = false;
+  bool _isReplacing = false;
   bool _isFavorite = false;
+  bool _isAccepted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMeal();
+  }
+
+  Future<void> _loadMeal() async {
+    if (widget.planId != null) {
+      setState(() => _isLoading = true);
+      try {
+        final meal = await context
+            .read<MealPlanRepository>()
+            .getMeal(widget.planId!, widget.mealId);
+        if (meal != null && mounted) {
+          setState(() {
+            _meal = meal;
+            _isFavorite = meal.isFavorite;
+            _isAccepted = meal.accepted;
+          });
+        }
+      } catch (e) {
+        debugPrint('Error loading meal: $e');
+      } finally {
+        if (mounted) setState(() => _isLoading = false);
+      }
+    }
+  }
+
+  Future<void> _toggleFavorite() async {
+    setState(() => _isFavorite = !_isFavorite);
+    if (widget.planId != null) {
+      await context
+          .read<MealPlanRepository>()
+          .toggleFavorite(widget.planId!, widget.mealId, _isFavorite);
+    }
+  }
+
+  Future<void> _acceptMeal() async {
+    setState(() => _isAccepted = true);
+    if (widget.planId != null) {
+      await context
+          .read<MealPlanRepository>()
+          .toggleAccepted(widget.planId!, widget.mealId, true);
+    }
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Meal accepted for your weekly schedule!')),
+      );
+    }
+  }
+
+  Future<void> _replaceWithAi() async {
+    final uid = context.read<AuthService>().uid;
+    if (uid == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please log in first.')),
+      );
+      return;
+    }
+
+    setState(() => _isReplacing = true);
+    final llmService = context.read<LlmService>();
+    final mealPlanRepo = context.read<MealPlanRepository>();
+
+    try {
+      final current = _meal ?? _sampleMeal;
+      final result = await llmService.replaceMeal(
+        uid: uid,
+        currentMeal: current,
+      );
+      final replacement = result.data;
+      if (widget.planId != null) {
+        await mealPlanRepo.updateMeal(widget.planId!, widget.mealId, replacement);
+      }
+      if (mounted) {
+        setState(() => _meal = replacement);
+        if (result.usedFallback) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Using free built-in AI (your custom key had an issue).'),
+              duration: Duration(seconds: 3),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Replaced with ${replacement.title}!')),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('AI Replacement: $e')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isReplacing = false);
+    }
+  }
+
+  Meal get _sampleMeal => Meal(
+        id: widget.mealId,
+        title: 'Honey Garlic Pan Seared Salmon',
+        subtitle: 'Mediterranean • 25m prep & cook',
+        badgeText: 'Dinner Special',
+        calories: '450 kcal',
+        prepTime: '10 min',
+        cookTime: '15 min',
+        servings: '4 servings',
+        protein: '38g',
+        carbs: '12g',
+        fats: '18g',
+        imageUrl:
+            'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80',
+        ingredients: const [
+          Ingredient(name: 'Salmon Fillets', amount: '4 pieces'),
+          Ingredient(name: 'Garlic Cloves', amount: '4 minced'),
+          Ingredient(name: 'Raw Honey', amount: '3 tbsp'),
+          Ingredient(name: 'Low-Sodium Soy Sauce', amount: '2 tbsp'),
+          Ingredient(name: 'Olive Oil', amount: '1 tbsp'),
+        ],
+      );
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    final meal = _meal ?? _sampleMeal;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -51,7 +192,7 @@ class _MealDetailPageState extends State<MealDetailPage> {
                   color: _isFavorite ? AppColors.danger : AppColors.textPrimary,
                   size: 20,
                 ),
-                onPressed: () => setState(() => _isFavorite = !_isFavorite),
+                onPressed: _toggleFavorite,
               ),
             ),
           ),
@@ -68,102 +209,118 @@ class _MealDetailPageState extends State<MealDetailPage> {
                   margin: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                       image: NetworkImage(
-                        'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80',
+                        meal.imageUrl ??
+                            'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80',
                       ),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Stack(
                     children: [
-                      Positioned(
-                        left: 16,
-                        bottom: 16,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.7),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const Text(
-                            'Dinner Special',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12,
+                      if (meal.badgeText != null)
+                        Positioned(
+                          left: 16,
+                          bottom: 16,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withValues(alpha: 0.7),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              meal.badgeText!,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),
 
+                // Title and basic metadata
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Title & Subtitle
-                      const Text(
-                        'Honey Garlic Pan Seared Salmon',
-                        style: TextStyle(
+                      Text(
+                        meal.title,
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontWeight: FontWeight.w800,
-                          fontSize: 22,
+                          fontSize: 20,
                         ),
                       ),
                       const SizedBox(height: 4),
-                      const Text(
-                        'Mediterranean • Prepared 4 times this month',
-                        style: TextStyle(
+                      Text(
+                        meal.subtitle ?? 'Delicious home-cooked meal',
+                        style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 13,
                         ),
                       ),
                       const SizedBox(height: 16),
 
-                      // Quick Specs Row
+                      // Four-column specs row
                       Row(
                         children: [
-                          Expanded(child: _buildSpecCard('Prep Time', '10m')),
+                          Expanded(child: _buildSpecCard('Prep Time', meal.prepTime ?? '10m')),
                           const SizedBox(width: 8),
-                          Expanded(child: _buildSpecCard('Cook Time', '15m')),
+                          Expanded(child: _buildSpecCard('Cook Time', meal.cookTime ?? '15m')),
                           const SizedBox(width: 8),
-                          Expanded(child: _buildSpecCard('Servings', '4 Persons')),
+                          Expanded(child: _buildSpecCard('Servings', meal.servings ?? '4')),
+                          const SizedBox(width: 8),
+                          Expanded(child: _buildSpecCard('Calories', meal.calories ?? '450')),
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 16),
 
-                      // Macro Breakdown
-                      const Text(
-                        'Calorie & Macro Breakdown',
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 13,
+                      // Macronutrients
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: AppColors.cardSurface,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: AppColors.border),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Macronutrients per serving',
+                              style: TextStyle(
+                                color: AppColors.textPrimary,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                _buildMacroChip('Protein: ${meal.protein ?? "35g"}', AppColors.primaryLight, AppColors.primary),
+                                _buildMacroChip('Carbs: ${meal.carbs ?? "15g"}', AppColors.infoLight, AppColors.info),
+                                _buildMacroChip('Fats: ${meal.fats ?? "18g"}', AppColors.warningLight, AppColors.warning),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          _buildMacroChip('42g Protein', AppColors.infoLight, AppColors.info),
-                          const SizedBox(width: 8),
-                          _buildMacroChip('8g Carbs', AppColors.dangerLight, AppColors.danger),
-                          const SizedBox(width: 8),
-                          _buildMacroChip('18g Fats', AppColors.warningLight, AppColors.warning),
-                        ],
-                      ),
                       const SizedBox(height: 20),
 
-                      // Ingredients Card
+                      // Ingredients List
                       const Text(
-                        'Required Ingredients',
+                        'Ingredients',
                         style: TextStyle(
-                          color: AppColors.textSecondary,
+                          color: AppColors.textPrimary,
                           fontWeight: FontWeight.w700,
-                          fontSize: 13,
+                          fontSize: 16,
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -175,19 +332,15 @@ class _MealDetailPageState extends State<MealDetailPage> {
                         ),
                         child: Column(
                           children: [
-                            _buildIngredientRow('Fresh Salmon Fillet', '500g'),
-                            const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
-                            _buildIngredientRow('Asparagus spears', '1 bunch'),
-                            const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
-                            _buildIngredientRow('Lemon slices', '1 pc'),
-                            const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
-                            _buildIngredientRow('Olive oil', '2 tbsp'),
-                            const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
-                            _buildIngredientRow('Fresh Dill & Garlic', 'To taste'),
+                            for (var i = 0; i < meal.ingredients.length; i++) ...[
+                              _buildIngredientRow(meal.ingredients[i].name, meal.ingredients[i].amount),
+                              if (i != meal.ingredients.length - 1)
+                                const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
+                            ],
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 24),
                     ],
                   ),
                 ),
@@ -195,7 +348,7 @@ class _MealDetailPageState extends State<MealDetailPage> {
             ),
           ),
 
-          // Bottom Action Bar
+          // Bottom Action Buttons
           Container(
             padding: const EdgeInsets.all(16),
             decoration: const BoxDecoration(
@@ -206,39 +359,32 @@ class _MealDetailPageState extends State<MealDetailPage> {
               children: [
                 Expanded(
                   child: OutlinedButton.icon(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Finding AI replacement...')),
-                      );
-                    },
+                    onPressed: _isReplacing ? null : _replaceWithAi,
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.primary,
-                      side: const BorderSide(color: AppColors.primary, width: 2),
+                      side: const BorderSide(color: AppColors.primary),
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
-                    icon: const Icon(Icons.refresh, size: 18),
+                    icon: _isReplacing
+                        ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                        : const Icon(Icons.auto_awesome, size: 18),
                     label: const Text('Replace with AI', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Meal accepted and added to plan!')),
-                      );
-                      context.pop();
-                    },
+                    onPressed: _acceptMeal,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
+                      backgroundColor: _isAccepted ? AppColors.textMuted : AppColors.primary,
                       foregroundColor: Colors.white,
-                      elevation: 0,
                       padding: const EdgeInsets.symmetric(vertical: 14),
+                      elevation: 0,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
-                    icon: const Icon(Icons.check, size: 18),
-                    label: const Text('Accept Meal', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
+                    icon: Icon(_isAccepted ? Icons.check_circle : Icons.check, size: 18),
+                    label: Text(_isAccepted ? 'Accepted' : 'Accept Meal', style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
                   ),
                 ),
               ],
@@ -251,7 +397,7 @@ class _MealDetailPageState extends State<MealDetailPage> {
 
   Widget _buildSpecCard(String label, String value) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       decoration: BoxDecoration(
         color: AppColors.cardSurface,
         borderRadius: BorderRadius.circular(12),
@@ -260,14 +406,14 @@ class _MealDetailPageState extends State<MealDetailPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(color: AppColors.textMuted, fontSize: 11)),
+          Text(label, style: const TextStyle(color: AppColors.textMuted, fontSize: 10)),
           const SizedBox(height: 2),
           Text(
             value,
             style: const TextStyle(
               color: AppColors.textPrimary,
               fontWeight: FontWeight.w700,
-              fontSize: 13,
+              fontSize: 12,
             ),
           ),
         ],

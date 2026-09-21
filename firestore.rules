@@ -1,0 +1,84 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function isFamilyMember(familyId) {
+      return isAuthenticated() && 
+        request.auth.uid in get(/databases/$(database)/documents/families/$(familyId)).data.memberUids;
+    }
+
+    // User document rules
+    match /users/{uid} {
+      allow read, write: if isOwner(uid);
+
+      // LLM Secrets & Config subcollection (only the user can access)
+      match /secrets/{secretId} {
+        allow read, write: if isOwner(uid);
+      }
+
+      // Daily usage quota counters (owner read/write — advisory, not security-critical)
+      match /usageCounters/{counterId} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // Family group rules
+    match /families/{familyId} {
+      // Any authenticated user can create a family or look up by invite code
+      allow create: if isAuthenticated();
+      allow get: if isAuthenticated();
+      allow list: if isAuthenticated();
+
+      // Only family members can update the family document
+      allow update: if isAuthenticated() && 
+        (request.auth.uid in resource.data.memberUids || 
+         request.resource.data.memberUids.hasAny([request.auth.uid]));
+
+      // Only the creator/owner can delete the entire family
+      allow delete: if isAuthenticated() && resource.data.createdBy == request.auth.uid;
+
+      // Family members subcollection (roles, display names)
+      match /members/{memberUid} {
+        allow read, write: if isFamilyMember(familyId) || request.auth.uid == memberUid;
+      }
+
+      // Family member profiles (dietary preferences, allergies)
+      match /familyMembers/{memberId} {
+        allow read, write: if isFamilyMember(familyId);
+      }
+
+      // Pantry items
+      match /pantryItems/{itemId} {
+        allow read, write: if isFamilyMember(familyId);
+      }
+
+      // Grocery lists and nested grocery items
+      match /groceryLists/{listId} {
+        allow read, write: if isFamilyMember(familyId);
+
+        match /items/{itemId} {
+          allow read, write: if isFamilyMember(familyId);
+        }
+      }
+
+      // Meal plans and nested meals
+      match /mealPlans/{planId} {
+        allow read, write: if isFamilyMember(familyId);
+
+        match /meals/{mealId} {
+          allow read, write: if isFamilyMember(familyId);
+        }
+      }
+    }
+  }
+}
