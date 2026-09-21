@@ -23,6 +23,99 @@ class _MealPlanPageState extends State<MealPlanPage> {
   final _cuisines = ['Italian', 'Asian', 'Mexican', 'Mediterranean', 'American', 'Indian'];
   final _selectedCuisines = <String>{'Italian', 'Asian', 'Mexican'};
 
+  void _generateMealPlan() {
+    if (_selectedFamily.isEmpty) {
+      _showErrorDialog(
+        title: 'Selection Required',
+        message: 'Please select at least one family member to plan meals for.',
+      );
+      return;
+    }
+    if (_selectedMealTypes.isEmpty) {
+      _showErrorDialog(
+        title: 'Selection Required',
+        message: 'Please select at least one meal type (Breakfast, Lunch, or Dinner).',
+      );
+      return;
+    }
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) {
+        Future.delayed(const Duration(milliseconds: 1400), () {
+          if (ctx.mounted && mounted) {
+            Navigator.pop(ctx);
+            context.push('/generated-plan');
+          }
+        });
+
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(
+                  width: 48,
+                  height: 48,
+                  child: CircularProgressIndicator(color: AppColors.primary, strokeWidth: 3),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Generating AI Meal Plan',
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Analyzing expiring pantry items & allergy preferences for ${_selectedFamily.join(", ")}...',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showErrorDialog({required String title, required String message}) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            const Icon(Icons.warning_amber_rounded, color: AppColors.danger),
+            const SizedBox(width: 8),
+            Text(title),
+          ],
+        ),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel', style: TextStyle(color: AppColors.textSecondary)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _generateMealPlan();
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
+            child: const Text('Retry', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -305,7 +398,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
         SizedBox(
           height: 52,
           child: ElevatedButton.icon(
-            onPressed: () => context.push('/meal/1'),
+            onPressed: _generateMealPlan,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,
