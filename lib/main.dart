@@ -19,12 +19,22 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    // Firebase AI Logic requires App Check tokens on every generate call.
+    // Firebase AI Logic requires App Check on every generate call.
+    // DEBUG providers only. Before a real release build, switch to:
+    //   androidProvider: AndroidProvider.playIntegrity
+    //   appleProvider: AppleProvider.appAttest
+    //   webProvider: ReCaptchaV3Provider('<real reCAPTCHA v3 site key>')
     await FirebaseAppCheck.instance.activate(
       webProvider: ReCaptchaV3Provider('debug'),
       androidProvider: AndroidProvider.debug,
       appleProvider: AppleProvider.debug,
     );
+    try {
+      final token = await FirebaseAppCheck.instance.getToken(true);
+      debugPrint('[APP-CHECK-DEBUG-TOKEN] $token');
+    } catch (e) {
+      debugPrint('[APP-CHECK-DEBUG-TOKEN] failed to fetch token: $e');
+    }
     final firestoreService = FirestoreService();
     await firestoreService.enablePersistence();
   } catch (e) {
