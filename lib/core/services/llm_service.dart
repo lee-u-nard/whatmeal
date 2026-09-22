@@ -479,6 +479,12 @@ Set dayIndex from 0 to ${numberOfDays - 1}.
           .replaceAll(RegExp(r'```\s*'), '')
           .trim();
 
+      final arrayStart = content.indexOf('[');
+      final arrayEnd = content.lastIndexOf(']');
+      if (arrayStart >= 0 && arrayEnd > arrayStart) {
+        content = content.substring(arrayStart, arrayEnd + 1);
+      }
+
       final dynamic decoded = jsonDecode(content);
       final List<dynamic> mealsJson = decoded is List ? decoded : [decoded];
 

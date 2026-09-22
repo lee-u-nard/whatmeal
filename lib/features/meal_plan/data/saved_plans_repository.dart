@@ -54,6 +54,7 @@ class SavedPlansRepository extends ValueNotifier<List<SavedMealPlan>> {
         'Carbs': meal.carbs ?? '0g',
         'Fats': meal.fats ?? '0g',
       },
+      dayIndex: meal.dayIndex,
     );
   }
 

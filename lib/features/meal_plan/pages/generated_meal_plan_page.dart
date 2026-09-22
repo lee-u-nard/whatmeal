@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/services/llm_service.dart';
+import '../../auth/data/auth_repository.dart';
 import '../data/saved_plans_repository.dart';
 import '../models/saved_meal_plan.dart';
 import '../../grocery/data/grocery_repository.dart';
 import '../../grocery/models/grocery_item.dart';
 
 class GeneratedMealPlanPage extends StatefulWidget {
-  const GeneratedMealPlanPage({super.key});
+  const GeneratedMealPlanPage({super.key, this.draft});
+
+  final GeneratedPlanDraft? draft;
 
   @override
   State<GeneratedMealPlanPage> createState() => _GeneratedMealPlanPageState();
@@ -15,48 +20,25 @@ class GeneratedMealPlanPage extends StatefulWidget {
 
 class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
   int _selectedDayIndex = 0;
-  final _saveTitleController = TextEditingController(text: 'My Family Meal Plan');
+  late final TextEditingController _saveTitleController;
+  late List<GeneratedMeal> _allMeals;
+  late int _numberOfDays;
+  late List<String> _familyMembers;
 
-  late List<GeneratedMeal> _dayMeals;
+  List<GeneratedMeal> get _dayMeals =>
+      _allMeals.where((m) => m.dayIndex == _selectedDayIndex).toList();
 
   @override
   void initState() {
     super.initState();
-    _dayMeals = [
-      const GeneratedMeal(
-        id: '1',
-        title: 'Avocado Toast with Poached Eggs',
-        type: 'Breakfast',
-        prepTime: '15m',
-        calories: '340 kcal',
-        badgeText: 'Kid Friendly',
-        imageUrl: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80',
-        ingredients: ['Avocado', 'Whole Wheat Bread', 'Organic Eggs', 'Olive oil'],
-        macros: {'Protein': '14g', 'Carbs': '24g', 'Fats': '18g'},
-      ),
-      const GeneratedMeal(
-        id: '2',
-        title: 'Avocado & Spinach Salad',
-        type: 'Lunch',
-        prepTime: '10m',
-        calories: '320 kcal',
-        badgeText: 'Pantry Cleanout',
-        imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
-        ingredients: ['Spinach', 'Avocado', 'Cherry Tomatoes', 'Cucumber'],
-        macros: {'Protein': '12g', 'Carbs': '14g', 'Fats': '22g'},
-      ),
-      const GeneratedMeal(
-        id: '3',
-        title: 'Honey Garlic Pan Seared Salmon',
-        type: 'Dinner',
-        prepTime: '25m',
-        calories: '450 kcal',
-        badgeText: 'Dinner Special',
-        imageUrl: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80',
-        ingredients: ['Fresh Salmon Fillet', 'Asparagus spears', 'Lemon slices', 'Honey', 'Garlic'],
-        macros: {'Protein': '42g', 'Carbs': '8g', 'Fats': '18g'},
-      ),
-    ];
+    final draft = widget.draft;
+    _allMeals = List<GeneratedMeal>.from(draft?.meals ?? const []);
+    _numberOfDays = draft?.numberOfDays ?? 5;
+    if (_numberOfDays < 1) _numberOfDays = 1;
+    _familyMembers = List<String>.from(draft?.familyMembers ?? const []);
+    _saveTitleController = TextEditingController(
+      text: draft?.title ?? 'My Family Meal Plan',
+    );
   }
 
   @override
@@ -98,11 +80,11 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
                   title: _saveTitleController.text.trim().isEmpty
                       ? 'Family Meal Plan'
                       : _saveTitleController.text.trim(),
-                  dates: 'Day 1 - Day 5',
-                  mealsCount: 15,
-                  estCost: '\$98.40',
-                  familyMembers: ['Dad', 'Mom', 'Leo', 'Emma'],
-                  meals: _dayMeals,
+                  dates: 'Day 1 - Day $_numberOfDays',
+                  mealsCount: _allMeals.length,
+                  estCost: '\$0.00',
+                  familyMembers: _familyMembers,
+                  meals: _allMeals,
                   createdAt: DateTime.now(),
                 );
                 try {
@@ -140,66 +122,67 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
     );
   }
 
-  void _generateGroceryList() {
-    final newItems = <GroceryItem>[
-      GroceryItem(id: 'g_gen1', name: 'Fresh Atlantic Salmon', quantity: '500g', section: 'MEAT & SEAFOOD'),
-      GroceryItem(id: 'g_gen2', name: 'Asparagus bundle', quantity: '1 unit', section: 'PRODUCE AISLE'),
-      GroceryItem(id: 'g_gen3', name: 'Whole Wheat Bread', quantity: '1 loaf', section: 'PANTRY STAPLES'),
-      GroceryItem(id: 'g_gen4', name: 'Organic Honey', quantity: '1 jar', section: 'PANTRY STAPLES'),
-    ];
-    GroceryRepository.instance.addMultipleItems(newItems);
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Row(
-          children: [
-            Icon(Icons.shopping_cart_checkout, color: Colors.white, size: 18),
-            SizedBox(width: 8),
-            Text('Exported 4 missing ingredients to Grocery List!'),
-          ],
+  Future<void> _generateGroceryList() async {
+    final newItems = <GroceryItem>[];
+    for (final meal in _allMeals) {
+      for (final ingredient in meal.ingredients) {
+        if (ingredient.isEmpty) continue;
+        newItems.add(
+          GroceryItem(
+            name: ingredient,
+            quantity: '1',
+            section: 'PANTRY STAPLES',
+          ),
+        );
+      }
+    }
+    if (newItems.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No ingredients to export.')),
+      );
+      return;
+    }
+    try {
+      await GroceryRepository.instance.addMultipleItems(newItems);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Exported ${newItems.length} ingredients to Grocery List!'),
+          backgroundColor: AppColors.primary,
+          action: SnackBarAction(
+            label: 'View List',
+            textColor: Colors.white,
+            onPressed: () => context.go('/grocery'),
+          ),
         ),
-        backgroundColor: AppColors.primary,
-        action: SnackBarAction(
-          label: 'View List',
-          textColor: Colors.white,
-          onPressed: () => context.go('/grocery'),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not export grocery list: $e'),
+          backgroundColor: Colors.red,
         ),
-      ),
-    );
+      );
+    }
   }
 
-  void _replaceMealWithAi(int index) {
+  Future<void> _replaceMealWithAi(int index) async {
+    final visible = _dayMeals;
+    if (index < 0 || index >= visible.length) return;
+    final current = visible[index];
+    final uid = AuthRepository.instance.currentUser?.uid;
+    if (uid == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Sign in to replace a meal.')),
+      );
+      return;
+    }
+
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (ctx) {
-        Future.delayed(const Duration(milliseconds: 1000), () {
-          if (ctx.mounted) {
-            Navigator.pop(ctx);
-          }
-          if (mounted) {
-            setState(() {
-              _dayMeals[index] = const GeneratedMeal(
-                id: 'replaced_1',
-                title: 'Mediterranean Lemon Herb Chicken',
-                type: 'Dinner',
-                prepTime: '20m',
-                calories: '490 kcal',
-                badgeText: 'AI Replacement',
-                imageUrl: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80',
-                ingredients: ['Chicken Breast', 'Fresh Rosemary', 'Lemon', 'Olive oil'],
-                macros: {'Protein': '46g', 'Carbs': '6g', 'Fats': '16g'},
-              );
-            });
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Meal replaced with AI recommendation!'),
-                backgroundColor: AppColors.primary,
-              ),
-            );
-          }
-        });
-
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           content: const Row(
@@ -208,7 +191,7 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
               SizedBox(width: 20),
               Expanded(
                 child: Text(
-                  'Consulting AI Engine for alternative recipe...',
+                  'Asking Gemini for an alternative recipe...',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
                 ),
               ),
@@ -217,6 +200,42 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
         );
       },
     );
+
+    try {
+      final result = await context.read<LlmService>().replaceMeal(
+            uid: uid,
+            currentMeal: current.toCore(),
+          );
+      if (!mounted) return;
+      Navigator.of(context, rootNavigator: true).pop();
+      final replacement = GeneratedMeal.fromCore(result.data, fallbackIndex: index);
+      setState(() {
+        final allIndex = _allMeals.indexWhere((m) => m.id == current.id);
+        if (allIndex >= 0) {
+          _allMeals[allIndex] = GeneratedMeal(
+            id: replacement.id,
+            title: replacement.title,
+            type: current.type,
+            prepTime: replacement.prepTime,
+            calories: replacement.calories,
+            badgeText: replacement.badgeText.isEmpty ? 'AI Replacement' : replacement.badgeText,
+            imageUrl: replacement.imageUrl,
+            ingredients: replacement.ingredients,
+            macros: replacement.macros,
+            dayIndex: current.dayIndex,
+          );
+        }
+      });
+    } catch (e) {
+      if (!mounted) return;
+      Navigator.of(context, rootNavigator: true).pop();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not replace meal: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
@@ -246,7 +265,7 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
         children: [
           // Day selector tabs
           Row(
-            children: List.generate(5, (index) {
+            children: List.generate(_numberOfDays, (index) {
               final dayNum = index + 1;
               final isSelected = _selectedDayIndex == index;
               return Expanded(
@@ -299,9 +318,9 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
                   color: AppColors.primaryLight,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Text(
-                  '1,110 Total kcal',
-                  style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700, fontSize: 12),
+                child: Text(
+                  '${_dayMeals.length} meals',
+                  style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700, fontSize: 12),
                 ),
               ),
             ],
@@ -313,6 +332,15 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
             _buildGeneratedMealCard(context, _dayMeals[i], i),
             const SizedBox(height: 14),
           ],
+          if (_dayMeals.isEmpty)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 24),
+              child: Text(
+                'No meals for this day. Generate a plan from the Meal Plan tab.',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
+              ),
+            ),
 
           const SizedBox(height: 12),
 
@@ -373,7 +401,9 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
                 color: AppColors.primaryLight,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Image.network(
+              child: meal.imageUrl.isEmpty
+                  ? const Icon(Icons.restaurant, color: AppColors.primary, size: 24)
+                  : Image.network(
                 meal.imageUrl,
                 fit: BoxFit.cover,
                 loadingBuilder: (context, child, loadingProgress) {
