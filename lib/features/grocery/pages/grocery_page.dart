@@ -121,14 +121,14 @@ class _GroceryPageState extends State<GroceryPage> {
                       );
                       if (!ctx.mounted) return;
                       Navigator.pop(ctx);
-                      if (!context.mounted) return;
+                      if (!mounted) return;
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Added ${item.name} to grocery list.'),
                         ),
                       );
                     } catch (e) {
-                      if (!context.mounted) return;
+                      if (!mounted) return;
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Could not save grocery item: $e'),

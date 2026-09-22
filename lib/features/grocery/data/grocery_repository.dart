@@ -130,8 +130,13 @@ class GroceryRepository extends ValueNotifier<Map<String, List<GroceryItem>>> {
           .doc(_activeList!.id)
           .collection('items')
           .add(itemToSave.toFirestore());
+      // TEMPORARY: remove after persistence is confirmed on device.
+      debugPrint(
+        '[SAVE-DEBUG] grocery add success uid=$_uid list=${_activeList!.id} name=${itemToSave.name}',
+      );
       error = null;
     } catch (e) {
+      debugPrint('[SAVE-DEBUG] grocery add FAILED uid=$_uid list=${_activeList?.id} error=$e');
       error = 'Failed to save grocery item: $e';
       notifyListeners();
       rethrow;

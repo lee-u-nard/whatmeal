@@ -121,9 +121,13 @@ class MealPlanRepository extends ChangeNotifier {
       }
 
       await batch.commit();
+      // TEMPORARY: remove after persistence is confirmed on device.
+      debugPrint(
+        '[SAVE-DEBUG] meal plan save success path=${col.path} id=${planRef.id} meals=${meals.length}',
+      );
       return planRef.id;
     } catch (e) {
-      debugPrint('MealPlanRepository.savePlan failed: $e');
+      debugPrint('[SAVE-DEBUG] meal plan save FAILED uid=$_uid familyId=$_familyId error=$e');
       rethrow;
     }
   }

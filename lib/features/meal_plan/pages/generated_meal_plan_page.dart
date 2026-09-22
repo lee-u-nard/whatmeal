@@ -109,7 +109,7 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
                   await SavedPlansRepository.instance.savePlan(plan);
                   if (!ctx.mounted) return;
                   Navigator.pop(ctx);
-                  if (!context.mounted) return;
+                  if (!mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Saved "${plan.title}" to Saved Plans!'),
@@ -122,7 +122,7 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
                     ),
                   );
                 } catch (e) {
-                  if (!context.mounted) return;
+                  if (!mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Could not save meal plan: $e'),
