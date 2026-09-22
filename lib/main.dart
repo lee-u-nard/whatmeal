@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
+
 import 'package:provider/provider.dart';
 import 'app.dart';
 import 'firebase_options.dart';
-import 'core/services/auth_service.dart';
+import 'features/meal_plan/data/meal_plan_repository.dart';
 import 'core/services/user_service.dart';
 import 'core/services/family_service.dart';
 import 'core/services/llm_service.dart';
 import 'core/services/firestore_service.dart';
-import 'features/pantry/data/pantry_repository.dart';
-import 'features/grocery/data/grocery_repository.dart';
-import 'features/profile/data/family_member_repository.dart';
-import 'features/meal_plan/data/meal_plan_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,38 +19,14 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    // Firebase AI Logic requires App Check tokens on every generate call.
+    await FirebaseAppCheck.instance.activate(
+      webProvider: ReCaptchaV3Provider('debug'),
+      androidProvider: AndroidProvider.debug,
+      appleProvider: AppleProvider.debug,
+    );
     final firestoreService = FirestoreService();
     await firestoreService.enablePersistence();
-
-    // DELIBERATE TEST WRITE
-    try {
-      await FirebaseFirestore.instance.collection('debug_test').add({
-        'timestamp': FieldValue.serverTimestamp(),
-        'message': 'Hello from WhatMeal startup test!',
-      });
-      debugPrint('FIRESTORE_TEST_WRITE_SUCCESSFUL');
-    } catch (e) {
-      debugPrint('FIRESTORE_TEST_WRITE_FAILED: $e');
-    }
-
-    // DELIBERATE MEAL GEN TEST
-    try {
-      debugPrint('TEST_MEAL_GEN_STARTING...');
-      final llmService = LlmService();
-      // Use fake UID and generic prompt
-      final res = await llmService.generateMealPlan(
-        uid: 'test_uid',
-        familyMemberNames: ['Alice', 'Bob'],
-        numberOfDays: 1,
-        mealTypes: ['Dinner'],
-        cuisinePreferences: ['Italian'],
-        prioritizePantry: false,
-      );
-      debugPrint('TEST_MEAL_GEN_SUCCESSFUL: \${res.data.length} meals generated.');
-    } catch (e, stack) {
-      debugPrint('TEST_MEAL_GEN_FAILED: $e');
-      debugPrint('$stack');
-    }
   } catch (e) {
     debugPrint('Firebase initialization notice: $e');
   }
@@ -61,14 +34,10 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthService()),
         Provider(create: (_) => UserService()),
         Provider(create: (_) => FamilyService()),
         Provider(create: (_) => LlmService()),
         Provider(create: (_) => FirestoreService()),
-        ChangeNotifierProvider(create: (_) => PantryRepository()),
-        ChangeNotifierProvider(create: (_) => GroceryRepository()),
-        ChangeNotifierProvider(create: (_) => FamilyMemberRepository()),
         ChangeNotifierProvider(create: (_) => MealPlanRepository()),
       ],
       child: const WhatMealApp(),

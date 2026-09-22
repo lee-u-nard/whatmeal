@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:firebase_ai/firebase_ai.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
@@ -346,18 +347,25 @@ Return ONLY a JSON object with these fields:
   // ---------------------------------------------------------------------------
 
   GenerativeModel _getGeminiModel() {
-    final googleAI = FirebaseAI.googleAI(auth: FirebaseAuth.instance);
-    return googleAI.generativeModel(model: 'gemini-flash-latest');
+    final googleAI = FirebaseAI.googleAI(
+      auth: FirebaseAuth.instance,
+      appCheck: FirebaseAppCheck.instance,
+    );
+    return googleAI.generativeModel(model: 'gemini-2.5-flash');
   }
 
   Future<String> _generateWithFirebaseAI(String prompt) async {
-    final model = _getGeminiModel();
-    final response = await model.generateContent([Content.text(prompt)]);
-    final text = response.text;
-    if (text == null || text.isEmpty) {
-      throw Exception('Firebase AI returned an empty response.');
+    try {
+      final model = _getGeminiModel();
+      final response = await model.generateContent([Content.text(prompt)]);
+      final text = response.text;
+      if (text == null || text.isEmpty) {
+        throw Exception('Firebase AI returned an empty response.');
+      }
+      return text;
+    } catch (e) {
+      throw _mapFirebaseAiError(e);
     }
-    return text;
   }
 
   // ---------------------------------------------------------------------------
@@ -538,6 +546,26 @@ Set dayIndex from 0 to ${numberOfDays - 1}.
 class QuotaExceededException implements Exception {
   @override
   String toString() => 'QuotaExceededException';
+}
+
+/// Thrown when Firebase AI Logic is off, deactivated, or App Check is missing.
+class FirebaseAiNotEnabledException implements Exception {
+  @override
+  String toString() =>
+      "AI service isn't enabled for this project yet — check Firebase Console";
+}
+
+Exception _mapFirebaseAiError(Object e) {
+  final message = e.toString().toLowerCase();
+  if (message.contains('deactivated') ||
+      message.contains('app check') ||
+      message.contains('firebase ai logic') ||
+      message.contains('permission_denied') ||
+      message.contains('permission denied')) {
+    return FirebaseAiNotEnabledException();
+  }
+  if (e is Exception) return e;
+  return Exception(e.toString());
 }
 
 
