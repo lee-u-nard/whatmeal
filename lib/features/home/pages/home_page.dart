@@ -1,185 +1,216 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../core/services/auth_service.dart';
+import '../../family/data/family_repository.dart';
 import '../../pantry/data/pantry_repository.dart';
-import '../../meal_plan/data/meal_plan_repository.dart';
+import '../../meal_plan/data/saved_plans_repository.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final authService = context.watch<AuthService>();
-    final user = authService.currentUser;
+    return ListView(
+      padding: const EdgeInsets.all(20),
+      children: [
+        // Shared Family Banner Indicator
+        ValueListenableBuilder(
+          valueListenable: FamilyRepository.instance,
+          builder: (context, space, _) {
+            if (space == null) return const SizedBox.shrink();
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryLight,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.groups, color: AppColors.primary, size: 20),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        'Active Family Space: ${space.name} (${space.members.length} members)',
+                        style: const TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => context.push('/family-space'),
+                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(50, 30)),
+                      child: const Text('Manage', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w800, fontSize: 12)),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
 
-    return Consumer2<PantryRepository, MealPlanRepository>(
-      builder: (context, pantryRepo, mealPlanRepo, _) {
-        final expiringCount = pantryRepo.expiringCount;
-        final savedCount = mealPlanRepo.savedPlanCount;
-
-        return ListView(
+        // AI Meal Planner Banner Card
+        Container(
           padding: const EdgeInsets.all(20),
-          children: [
-            // AI Meal Planner Banner Card
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(27, 42, 30, 0.1),
-                    blurRadius: 16,
-                    offset: Offset(0, 4),
-                  ),
-                ],
+          decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Color.fromRGBO(27, 42, 30, 0.1),
+                blurRadius: 16,
+                offset: Offset(0, 4),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          user?.displayName != null
-                              ? 'Hi, ${user!.displayName}!'
-                              : 'Smart Family Planner',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'Generate a customized 5-day meal plan based on your family preferences and expiring pantry items.',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 13,
-                      height: 1.4,
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(12),
                     ),
+                    child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
                   ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: () => context.go('/meal-plan'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: AppColors.primary,
-                        elevation: 0,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      ),
-                      icon: const Icon(Icons.auto_awesome, size: 18),
-                      label: const Text(
-                        'Generate AI Plan',
-                        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-                      ),
+                  const SizedBox(width: 12),
+                  const Text(
+                    'Smart Family Planner',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18,
                     ),
                   ),
                 ],
               ),
-            ),
+              const SizedBox(height: 12),
+              const Text(
+                'Generate a customized 5-day meal plan based on your family preferences and expiring pantry items.',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 13,
+                  height: 1.4,
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () => context.go('/meal-plan'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: AppColors.primary,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                  icon: const Icon(Icons.auto_awesome, size: 18),
+                  label: const Text(
+                    'Generate AI Plan',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
 
-            const SizedBox(height: 24),
+        const SizedBox(height: 24),
 
-            // Quick Actions Row
-            Row(
-              children: [
-                Expanded(
-                  child: _buildQuickActionCard(
+        // Quick Actions Row
+        Row(
+          children: [
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: PantryRepository.instance,
+                builder: (context, pantryMap, _) {
+                  final expiringCount = pantryMap.values
+                      .expand((items) => items)
+                      .where((item) => item.isExpiringSoon)
+                      .length;
+                  return _buildQuickActionCard(
                     context,
                     title: 'View Pantry',
-                    subtitle: expiringCount > 0
-                        ? '$expiringCount items expiring'
-                        : 'Pantry is fresh',
+                    subtitle: '$expiringCount items expiring soon',
                     icon: Icons.kitchen,
                     color: AppColors.primaryLight,
                     iconColor: AppColors.primary,
                     onTap: () => context.go('/pantry'),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildQuickActionCard(
+                  );
+                },
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: SavedPlansRepository.instance,
+                builder: (context, savedPlans, _) {
+                  return _buildQuickActionCard(
                     context,
                     title: 'Saved Plans',
-                    subtitle: savedCount > 0
-                        ? '$savedCount plans saved'
-                        : 'No saved plans yet',
+                    subtitle: '${savedPlans.length} plans saved',
                     icon: Icons.bookmarks_outlined,
                     color: AppColors.infoLight,
                     iconColor: AppColors.info,
                     onTap: () => context.push('/saved-meal-plans'),
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 24),
-
-            // Recommended Meals Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Recommended for Today',
-                  style: TextStyle(
-                    color: AppColors.textPrimary,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 18,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => context.push('/saved-meal-plans'),
-                  child: const Text(
-                    'See Plans',
-                    style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-
-            _buildMealCard(
-              context,
-              id: '1',
-              title: 'Honey Garlic Pan Seared Salmon',
-              subtitle: 'Mediterranean • 25m prep & cook',
-              calories: '450 kcal',
-              badgeText: 'Dinner Special',
-              imageUrl:
-                  'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80',
-            ),
-            const SizedBox(height: 12),
-            _buildMealCard(
-              context,
-              id: '2',
-              title: 'Avocado & Spinach Salad',
-              subtitle: 'Vegetarian • 10m prep',
-              calories: '320 kcal',
-              badgeText: 'Pantry Cleanout',
-              imageUrl:
-                  'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+                  );
+                },
+              ),
             ),
           ],
-        );
-      },
+        ),
+
+        const SizedBox(height: 24),
+
+        // Recommended Meals Section
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Recommended for Today',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w800,
+                fontSize: 18,
+              ),
+            ),
+            TextButton(
+              onPressed: () => context.push('/generated-plan'),
+              child: const Text(
+                'See All',
+                style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+
+        _buildMealCard(
+          context,
+          id: '1',
+          title: 'Honey Garlic Pan Seared Salmon',
+          subtitle: 'Mediterranean • 25m prep & cook',
+          calories: '450 kcal',
+          badgeText: 'Dinner Special',
+        ),
+        const SizedBox(height: 12),
+        _buildMealCard(
+          context,
+          id: '2',
+          title: 'Avocado & Spinach Salad',
+          subtitle: 'Vegetarian • 10m prep',
+          calories: '320 kcal',
+          badgeText: 'Pantry Cleanout',
+        ),
+      ],
     );
   }
 
@@ -206,12 +237,12 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: color,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(icon, color: iconColor, size: 24),
+              child: Icon(icon, color: iconColor, size: 20),
             ),
             const SizedBox(height: 12),
             Text(
@@ -219,7 +250,7 @@ class HomePage extends StatelessWidget {
               style: const TextStyle(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.w700,
-                fontSize: 15,
+                fontSize: 14,
               ),
             ),
             const SizedBox(height: 2),
@@ -227,7 +258,7 @@ class HomePage extends StatelessWidget {
               subtitle,
               style: const TextStyle(
                 color: AppColors.textMuted,
-                fontSize: 12,
+                fontSize: 11,
               ),
             ),
           ],
@@ -243,88 +274,70 @@ class HomePage extends StatelessWidget {
     required String subtitle,
     required String calories,
     required String badgeText,
-    required String imageUrl,
   }) {
-    return InkWell(
-      onTap: () => context.push('/meal/$id'),
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: AppColors.cardSurface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.border),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.cardSurface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromRGBO(27, 42, 30, 0.04),
+            blurRadius: 12,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(12),
+        leading: Container(
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            color: AppColors.primaryLight,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Icon(Icons.restaurant, color: AppColors.primary, size: 28),
         ),
-        child: Row(
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.w700,
+            fontSize: 14,
+          ),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                imageUrl,
-                width: 72,
-                height: 72,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Container(
-                  width: 72,
-                  height: 72,
-                  color: AppColors.primaryLight,
-                  child: const Icon(Icons.restaurant, color: AppColors.primary),
+            const SizedBox(height: 4),
+            Text(subtitle, style: const TextStyle(color: AppColors.textMuted, fontSize: 11)),
+            const SizedBox(height: 6),
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryLight,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    badgeText,
+                    style: const TextStyle(
+                      color: AppColors.primary,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryLight,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      badgeText,
-                      style: const TextStyle(
-                        color: AppColors.primary,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    style: const TextStyle(
-                      color: AppColors.textMuted,
-                      fontSize: 11,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              calories,
-              style: const TextStyle(
-                color: AppColors.primary,
-                fontWeight: FontWeight.w700,
-                fontSize: 12,
-              ),
+                const SizedBox(width: 8),
+                Text(calories, style: const TextStyle(color: AppColors.textSecondary, fontSize: 11)),
+              ],
             ),
           ],
         ),
+        trailing: const Icon(Icons.chevron_right, color: AppColors.textMuted),
+        onTap: () => context.push('/meal/$id'),
       ),
     );
   }

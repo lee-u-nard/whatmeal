@@ -34,9 +34,10 @@
 </head>
 <body>
   <script>
-    // Local Chrome App Check debug token. Register the printed UUID in
-    // Firebase Console > App Check > Apps > Manage debug tokens.
-    self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+    // Pinned debug UUID so Chrome `flutter run` (fresh profile) does not mint
+    // a new token every launch. Register this exact value in Firebase Console
+    // → App Check → Apps → Web app → Manage debug tokens.
+    self.FIREBASE_APPCHECK_DEBUG_TOKEN = 'd8142a89-b1f4-4053-b5b1-665a4c739607';
   </script>
   <!--
     You can customize the "flutter_bootstrap.js" script.

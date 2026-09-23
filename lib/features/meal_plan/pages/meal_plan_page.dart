@@ -141,11 +141,14 @@ class _MealPlanPageState extends State<MealPlanPage> {
             'Built-in Gemini generations for today are used up. Try again tomorrow, or add an OpenAI/Claude key in AI Settings.',
       );
     } catch (e) {
+      debugPrint('[SAVE-DEBUG] meal plan generate failed: $e');
       if (!mounted) return;
       Navigator.of(context, rootNavigator: true).pop();
       _showErrorDialog(
         title: 'Generation failed',
-        message: e.toString(),
+        message: e is FirebaseAiNotEnabledException
+            ? e.toString()
+            : "Couldn't generate a plan right now, please try again",
       );
     }
   }

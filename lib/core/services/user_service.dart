@@ -27,11 +27,11 @@ class UserService {
 
   /// Update specific fields on the user document.
   Future<void> updateUser(String uid, Map<String, dynamic> data) async {
-    await _usersCol.doc(uid).update(data);
+    await _usersCol.doc(uid).set(data, SetOptions(merge: true));
   }
 
   /// Set the user's active family ID.
   Future<void> setFamilyId(String uid, String? familyId) async {
-    await _usersCol.doc(uid).update({'familyId': familyId});
+    await _usersCol.doc(uid).set({'familyId': familyId}, SetOptions(merge: true));
   }
 }

@@ -23,6 +23,11 @@ class FamilyService {
     });
   }
 
+  /// Stream the members collection for a given [familyId].
+  Stream<QuerySnapshot<Map<String, dynamic>>> membersStream(String familyId) {
+    return _familiesCol.doc(familyId).collection('members').snapshots();
+  }
+
   /// Create a new family group with a generated 6-character invite code.
   /// Returns the created [Family].
   Future<Family> createFamily({
@@ -100,7 +105,7 @@ class FamilyService {
     });
 
     // Update user's familyId
-    batch.update(_usersCol.doc(uid), {'familyId': familyId});
+    batch.set(_usersCol.doc(uid), {'familyId': familyId}, SetOptions(merge: true));
 
     await batch.commit();
 
@@ -125,7 +130,7 @@ class FamilyService {
     batch.delete(_familiesCol.doc(familyId).collection('members').doc(uid));
 
     // Clear user's familyId
-    batch.update(_usersCol.doc(uid), {'familyId': null});
+    batch.set(_usersCol.doc(uid), {'familyId': null}, SetOptions(merge: true));
 
     await batch.commit();
   }
@@ -141,7 +146,7 @@ class FamilyService {
 
     // Clear familyId for all members
     for (final uid in memberUids) {
-      batch.update(_usersCol.doc(uid), {'familyId': null});
+      batch.set(_usersCol.doc(uid), {'familyId': null}, SetOptions(merge: true));
     }
 
     // Delete the family document (Cloud Function handles subcollection cleanup)

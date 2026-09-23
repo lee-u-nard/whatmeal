@@ -29,12 +29,10 @@ void main() async {
       androidProvider: AndroidProvider.debug,
       appleProvider: AppleProvider.debug,
     );
-    try {
-      final token = await FirebaseAppCheck.instance.getToken(true);
-      debugPrint('[APP-CHECK-DEBUG-TOKEN] $token');
-    } catch (e) {
-      debugPrint('[APP-CHECK-DEBUG-TOKEN] failed to fetch token: $e');
-    }
+    debugPrint(
+      '[APP-CHECK-DEBUG-TOKEN] web UUID d8142a89-b1f4-4053-b5b1-665a4c739607 '
+      '(must be allowlisted on the Web app in Firebase Console)',
+    );
     final firestoreService = FirestoreService();
     await firestoreService.enablePersistence();
   } catch (e) {

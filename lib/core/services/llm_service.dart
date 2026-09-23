@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import '../models/llm_config.dart';
 import '../../features/meal/models/meal.dart';
+import 'package:flutter/foundation.dart';
 
 // ---------------------------------------------------------------------------
 // Result wrapper
@@ -364,6 +365,7 @@ Return ONLY a JSON object with these fields:
       }
       return text;
     } catch (e) {
+      debugPrint('[SAVE-DEBUG] Firebase AI / App Check error: $e');
       throw _mapFirebaseAiError(e);
     }
   }
@@ -552,13 +554,15 @@ class QuotaExceededException implements Exception {
 class FirebaseAiNotEnabledException implements Exception {
   @override
   String toString() =>
-      "AI service isn't enabled for this project yet — check Firebase Console";
+      "Couldn't generate a plan right now, please try again";
 }
 
 Exception _mapFirebaseAiError(Object e) {
   final message = e.toString().toLowerCase();
   if (message.contains('deactivated') ||
       message.contains('app check') ||
+      message.contains('app-check') ||
+      message.contains('fetch-status-error') ||
       message.contains('firebase ai logic') ||
       message.contains('permission_denied') ||
       message.contains('permission denied')) {
