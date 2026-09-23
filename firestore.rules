@@ -1,0 +1,56 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function isFamilyMember(familyId) {
+      return isAuthenticated() &&
+        request.auth.uid in get(/databases/$(database)/documents/families/$(familyId)).data.memberUids;
+    }
+
+    // User doc + personal subcollections actually used by the app:
+    // pantryItems, groceryLists/{id}/items, familyMembers, mealPlans/{id}/meals,
+    // secrets/llmConfig, usageCounters/daily
+    match /users/{uid} {
+      allow read, write: if isOwner(uid);
+
+      match /{document=**} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // Family membership field is `memberUids` (see FamilyService).
+    // Nested {document=**} does not match the family document itself, so the
+    // parent match stays explicit. Create/get/list stay open to signed-in users
+    // so invite-code lookup and family create/join still work. Join writes the
+    // members/{uid} subdoc before the joiner is in memberUids, so that path
+    // also allows the caller to write their own memberUid.
+    match /families/{familyId} {
+      allow create: if isAuthenticated();
+      allow get, list: if isAuthenticated();
+
+      allow update: if isAuthenticated() &&
+        (request.auth.uid in resource.data.memberUids ||
+         request.resource.data.memberUids.hasAny([request.auth.uid]));
+
+      allow delete: if isAuthenticated() &&
+        resource.data.createdBy == request.auth.uid;
+
+      match /members/{memberUid} {
+        allow read, write: if isFamilyMember(familyId) || request.auth.uid == memberUid;
+      }
+
+      match /{document=**} {
+        allow read, write: if isFamilyMember(familyId);
+      }
+    }
+  }
+}

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../../features/pantry/data/pantry_repository.dart';
+import '../../features/pantry/models/pantry_item.dart';
 import '../../features/pantry/widgets/add_pantry_item_sheet.dart';
+import '../../features/family/data/family_repository.dart';
 
 class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.navigationShell});
@@ -23,7 +26,7 @@ class AppShell extends StatelessWidget {
           isScrollControlled: true,
           builder: (_) => const AddPantryItemSheet(),
         );
-        if (result != null) {
+        if (result != null && context.mounted) {
           PantryRepository.instance.addItem(result.category, result.item);
         }
       },
@@ -65,16 +68,40 @@ class AppShell extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_none, color: AppColors.textPrimary),
-            onPressed: () {},
+            onPressed: () => context.push('/notifications'),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: GestureDetector(
               onTap: () => navigationShell.goBranch(4),
-              child: const CircleAvatar(
-                radius: 16,
-                backgroundColor: AppColors.primaryLight,
-                child: Icon(Icons.person, size: 20, color: AppColors.primary),
+              child: ValueListenableBuilder(
+                valueListenable: FamilyRepository.instance,
+                builder: (context, space, _) {
+                  final hasSpace = space != null;
+                  return Stack(
+                    children: [
+                      const CircleAvatar(
+                        radius: 16,
+                        backgroundColor: AppColors.primaryLight,
+                        child: Icon(Icons.person, size: 20, color: AppColors.primary),
+                      ),
+                      if (hasSpace)
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: Container(
+                            width: 10,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              color: AppColors.primary,
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.white, width: 1.5),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
               ),
             ),
           ),

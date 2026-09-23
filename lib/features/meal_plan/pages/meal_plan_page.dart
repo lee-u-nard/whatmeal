@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/services/llm_service.dart';
+import '../../auth/data/auth_repository.dart';
+import '../../pantry/data/pantry_repository.dart';
+import '../../profile/data/family_member_repository.dart';
+import '../models/saved_meal_plan.dart';
 
 class MealPlanPage extends StatefulWidget {
   const MealPlanPage({super.key});
@@ -22,6 +28,161 @@ class _MealPlanPageState extends State<MealPlanPage> {
 
   final _cuisines = ['Italian', 'Asian', 'Mexican', 'Mediterranean', 'American', 'Indian'];
   final _selectedCuisines = <String>{'Italian', 'Asian', 'Mexican'};
+
+  Future<void> _generateMealPlan() async {
+    if (_selectedFamily.isEmpty) {
+      _showErrorDialog(
+        title: 'Selection Required',
+        message: 'Please select at least one family member to plan meals for.',
+      );
+      return;
+    }
+    if (_selectedMealTypes.isEmpty) {
+      _showErrorDialog(
+        title: 'Selection Required',
+        message: 'Please select at least one meal type (Breakfast, Lunch, or Dinner).',
+      );
+      return;
+    }
+
+    final uid = AuthRepository.instance.currentUser?.uid;
+    if (uid == null) {
+      _showErrorDialog(
+        title: 'Sign in required',
+        message: 'Sign in to generate a meal plan with Gemini.',
+      );
+      return;
+    }
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(
+                  width: 48,
+                  height: 48,
+                  child: CircularProgressIndicator(color: AppColors.primary, strokeWidth: 3),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Generating AI Meal Plan',
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Using built-in Gemini for ${_selectedFamily.join(", ")}...',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    try {
+      final pantryNames = PantryRepository.instance.items.values
+          .expand((list) => list)
+          .map((item) => item.name)
+          .where((name) => name.isNotEmpty)
+          .toList();
+      final selectedNames = _selectedFamily.toList();
+      final restrictions = FamilyMemberRepository.instance.members
+          .where((m) => selectedNames.contains(m.name) || selectedNames.contains(m.displayName))
+          .expand((m) => m.restrictions)
+          .toSet()
+          .toList();
+
+      final result = await context.read<LlmService>().generateMealPlan(
+            uid: uid,
+            familyMemberNames: selectedNames,
+            numberOfDays: _selectedDays,
+            mealTypes: _selectedMealTypes.toList(),
+            cuisinePreferences: _selectedCuisines.toList(),
+            prioritizePantry: _prioritizePantry,
+            pantryItems: pantryNames,
+            restrictions: restrictions,
+          );
+
+      if (!mounted) return;
+      Navigator.of(context, rootNavigator: true).pop();
+
+      final meals = <GeneratedMeal>[];
+      for (var i = 0; i < result.data.length; i++) {
+        meals.add(GeneratedMeal.fromCore(result.data[i], fallbackIndex: i));
+      }
+
+      context.push(
+        '/generated-plan',
+        extra: GeneratedPlanDraft(
+          meals: meals,
+          familyMembers: selectedNames,
+          numberOfDays: _selectedDays,
+        ),
+      );
+    } on QuotaExceededException {
+      if (!mounted) return;
+      Navigator.of(context, rootNavigator: true).pop();
+      _showErrorDialog(
+        title: 'Daily limit reached',
+        message:
+            'Built-in Gemini generations for today are used up. Try again tomorrow, or add an OpenAI/Claude key in AI Settings.',
+      );
+    } catch (e) {
+      debugPrint('[SAVE-DEBUG] meal plan generate failed: $e');
+      if (!mounted) return;
+      Navigator.of(context, rootNavigator: true).pop();
+      _showErrorDialog(
+        title: 'Generation failed',
+        message: e is FirebaseAiNotEnabledException
+            ? e.toString()
+            : "Couldn't generate a plan right now, please try again",
+      );
+    }
+  }
+
+  void _showErrorDialog({required String title, required String message}) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            const Icon(Icons.warning_amber_rounded, color: AppColors.danger),
+            const SizedBox(width: 8),
+            Text(title),
+          ],
+        ),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel', style: TextStyle(color: AppColors.textSecondary)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _generateMealPlan();
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
+            child: const Text('Retry', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -305,7 +466,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
         SizedBox(
           height: 52,
           child: ElevatedButton.icon(
-            onPressed: () => context.push('/meal/1'),
+            onPressed: _generateMealPlan,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,

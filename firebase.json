@@ -1,0 +1,40 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "auth": {
+    "providers": {
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "WhatMeal",
+        "supportEmail": "tamponleonard@gmail.com"
+      }
+    },
+    "authorizedDomains": [
+      "localhost",
+      "whatmeal-101.firebaseapp.com",
+      "whatmeal-101.web.app"
+    ]
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "whatmeal-101",
+          "appId": "1:321735824503:android:9a4bf975671f2b46e42272",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "whatmeal-101",
+          "configurations": {
+            "android": "1:321735824503:android:9a4bf975671f2b46e42272",
+            "ios": "1:321735824503:ios:ccf8cb4894e26dade42272",
+            "web": "1:321735824503:web:d8a72c9c67c85a39e42272"
+          }
+        }
+      }
+    }
+  }
+}

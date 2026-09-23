@@ -1,105 +1,147 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
+import '../data/saved_plans_repository.dart';
+import '../models/saved_meal_plan.dart';
 
 class SavedMealPlansPage extends StatelessWidget {
   const SavedMealPlansPage({super.key});
 
+  void _confirmDeletePlan(BuildContext context, SavedMealPlan plan) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          title: Text('Delete "${plan.title}"?'),
+          content: const Text(
+            'Are you sure you want to delete this saved meal plan? This action cannot be undone.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Cancel', style: TextStyle(color: AppColors.textSecondary)),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                SavedPlansRepository.instance.deletePlan(plan.id);
+                Navigator.pop(ctx);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Deleted "${plan.title}"')),
+                );
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
+              child: const Text('Delete Plan', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => context.pop(),
-        ),
-        title: Row(
-          children: [
-            Container(
-              width: 28,
-              height: 28,
-              decoration: BoxDecoration(
-                color: AppColors.primary,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(Icons.eco, color: Colors.white, size: 16),
+    return ValueListenableBuilder<List<SavedMealPlan>>(
+      valueListenable: SavedPlansRepository.instance,
+      builder: (context, plans, _) {
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+              onPressed: () => context.pop(),
             ),
-            const SizedBox(width: 8),
+            title: Row(
+              children: [
+                Container(
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.eco, color: Colors.white, size: 16),
+                ),
+                const SizedBox(width: 8),
+                const Text(
+                  'Saved Meal Plans',
+                  style: TextStyle(
+                    color: AppColors.primary,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 20,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          body: plans.isEmpty
+              ? _buildEmptyState(context)
+              : ListView(
+                  padding: const EdgeInsets.all(20),
+                  children: [
+                    const Text(
+                      'Reload and schedule previous generated plans your family loved.',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    for (final plan in plans) ...[
+                      _buildSavedPlanCard(context: context, plan: plan),
+                      const SizedBox(height: 16),
+                    ],
+                  ],
+                ),
+        );
+      },
+    );
+  }
+
+  Widget _buildEmptyState(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.bookmark_outline, size: 64, color: AppColors.textMuted),
+            const SizedBox(height: 16),
             const Text(
-              'Saved Meal Plans',
+              'No Saved Meal Plans',
               style: TextStyle(
-                color: AppColors.primary,
+                color: AppColors.textPrimary,
                 fontWeight: FontWeight.w800,
                 fontSize: 20,
               ),
             ),
+            const SizedBox(height: 8),
+            const Text(
+              'Generate an AI meal plan and tap the bookmark icon to save it here for quick reloading.',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 13, height: 1.4),
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: () => context.go('/meal-plan'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+              icon: const Icon(Icons.auto_awesome, size: 18),
+              label: const Text('Generate Meal Plan', style: TextStyle(fontWeight: FontWeight.w700)),
+            ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none, color: AppColors.textPrimary),
-            onPressed: () {},
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundColor: AppColors.primaryLight,
-              child: Icon(Icons.person, size: 20, color: AppColors.primary),
-            ),
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          const Text(
-            'Reload and schedule previous generated plans your family loved.',
-            style: TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 15,
-            ),
-          ),
-          const SizedBox(height: 16),
-          _buildSavedPlanCard(
-            context: context,
-            title: 'Winter Cozy Warmers',
-            dates: 'Oct 1 - Oct 7',
-            mealsCount: 15,
-            estCost: '\$112.50',
-            familyMembers: ['Dad', 'Mom', 'Leo', 'Emma'],
-          ),
-          const SizedBox(height: 16),
-          _buildSavedPlanCard(
-            context: context,
-            title: 'Eco Pantry Cleanout',
-            dates: 'Sep 24 - Sep 30',
-            mealsCount: 12,
-            estCost: '\$84.20',
-            familyMembers: ['Dad', 'Mom', 'Leo'],
-          ),
-          const SizedBox(height: 16),
-          _buildSavedPlanCard(
-            context: context,
-            title: 'High-Protein Strength Week',
-            dates: 'Sep 15 - Sep 21',
-            mealsCount: 14,
-            estCost: '\$145.00',
-            familyMembers: ['Dad', 'Mom'],
-          ),
-        ],
       ),
     );
   }
 
   Widget _buildSavedPlanCard({
     required BuildContext context,
-    required String title,
-    required String dates,
-    required int mealsCount,
-    required String estCost,
-    required List<String> familyMembers,
+    required SavedMealPlan plan,
   }) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -125,7 +167,7 @@ class SavedMealPlansPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    plan.title,
                     style: const TextStyle(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.w700,
@@ -134,7 +176,7 @@ class SavedMealPlansPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    dates,
+                    plan.dates,
                     style: const TextStyle(
                       color: AppColors.textMuted,
                       fontSize: 12,
@@ -149,7 +191,7 @@ class SavedMealPlansPage extends StatelessWidget {
                   color: AppColors.primaryLight,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(Icons.bookmark_outline, color: AppColors.primary, size: 16),
+                child: const Icon(Icons.bookmark, color: AppColors.primary, size: 16),
               ),
             ],
           ),
@@ -161,7 +203,7 @@ class SavedMealPlansPage extends StatelessWidget {
                   const Icon(Icons.restaurant, size: 14, color: AppColors.textSecondary),
                   const SizedBox(width: 4),
                   Text(
-                    '$mealsCount meals planned',
+                    '${plan.mealsCount} meals planned',
                     style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
                   ),
                 ],
@@ -172,7 +214,7 @@ class SavedMealPlansPage extends StatelessWidget {
                   const Icon(Icons.attach_money, size: 14, color: AppColors.textSecondary),
                   const SizedBox(width: 4),
                   Text(
-                    'Est. $estCost',
+                    'Est. ${plan.estCost}',
                     style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
                   ),
                 ],
@@ -186,7 +228,7 @@ class SavedMealPlansPage extends StatelessWidget {
               const SizedBox(width: 4),
               Wrap(
                 spacing: 6,
-                children: familyMembers.map((member) {
+                children: plan.familyMembers.map((member) {
                   return Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
@@ -213,11 +255,7 @@ class SavedMealPlansPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton.icon(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Deleted $title')),
-                  );
-                },
+                onPressed: () => _confirmDeletePlan(context, plan),
                 icon: const Icon(Icons.delete_outline, color: AppColors.danger, size: 16),
                 label: const Text(
                   'Delete',
@@ -226,7 +264,18 @@ class SavedMealPlansPage extends StatelessWidget {
               ),
               ElevatedButton.icon(
                 onPressed: () {
-                  context.push('/meal/1');
+                  final days = plan.meals.isEmpty
+                      ? 1
+                      : plan.meals.map((m) => m.dayIndex).reduce((a, b) => a > b ? a : b) + 1;
+                  context.push(
+                    '/generated-plan',
+                    extra: GeneratedPlanDraft(
+                      meals: plan.meals,
+                      familyMembers: plan.familyMembers,
+                      numberOfDays: days,
+                      title: plan.title,
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
