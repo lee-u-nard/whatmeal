@@ -7,16 +7,8 @@ class NewPantryItem {
   final PantryItem item;
 }
 
-/// Bottom sheet for adding a new pantry ingredient or editing an existing one (FR-03).
 class AddPantryItemSheet extends StatefulWidget {
-  const AddPantryItemSheet({
-    super.key,
-    this.existingItem,
-    this.existingCategory,
-  });
-
-  final PantryItem? existingItem;
-  final String? existingCategory;
+  const AddPantryItemSheet({super.key});
 
   @override
   State<AddPantryItemSheet> createState() => _AddPantryItemSheetState();
@@ -24,31 +16,12 @@ class AddPantryItemSheet extends StatefulWidget {
 
 class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController _nameController;
-  late final TextEditingController _quantityController;
-  late String _category;
+  final _nameController = TextEditingController();
+  final _quantityController = TextEditingController();
+  String _category = 'Proteins';
   DateTime? _expirationDate;
 
-  static const _categories = ['Proteins', 'Vegetables', 'Dairy', 'Pantry Staples'];
-
-  bool get _isEditing => widget.existingItem != null;
-
-  @override
-  void initState() {
-    super.initState();
-    if (_isEditing) {
-      final item = widget.existingItem!;
-      _nameController = TextEditingController(text: item.name);
-      _quantityController = TextEditingController(text: item.quantity);
-      _category = widget.existingCategory ?? _categories.first;
-      // Reconstruct approximate expiration date from expiresInDays
-      _expirationDate = DateTime.now().add(Duration(days: item.expiresInDays));
-    } else {
-      _nameController = TextEditingController();
-      _quantityController = TextEditingController();
-      _category = _categories.first;
-    }
-  }
+  static const _categories = ['Proteins', 'Vegetables', 'Dairy'];
 
   @override
   void dispose() {
@@ -60,7 +33,6 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
   Future<void> _pickExpirationDate() async {
     final picked = await showDatePicker(
       context: context,
-      initialDate: _expirationDate ?? DateTime.now().add(const Duration(days: 7)),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );
@@ -68,119 +40,65 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
   }
 
   void _submit() {
-    if (!_formKey.currentState!.validate() || _expirationDate == null) {
-      if (_expirationDate == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please select an expiration date.')),
-        );
-      }
-      return;
-    }
+    if (!_formKey.currentState!.validate() || _expirationDate == null) return;
     final daysLeft = _expirationDate!.difference(DateTime.now()).inDays;
-    final item = PantryItem(
-      id: widget.existingItem?.id ?? 'p_${DateTime.now().millisecondsSinceEpoch}',
-      name: _nameController.text.trim(),
-      quantity: _quantityController.text.trim(),
+    final newItem = PantryItem(
+      name: _nameController.text,
+      quantity: _quantityController.text,
       expiresInDays: daysLeft,
       isExpiringSoon: daysLeft <= 5,
-      status: widget.existingItem?.status ?? PantryStatus.available,
     );
-    Navigator.pop(context, NewPantryItem(category: _category, item: item));
+    Navigator.pop(context, NewPantryItem(category: _category, item: newItem));
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: 20,
-        right: 20,
-        top: 20,
-        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+        left: 16, right: 16, top: 16,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 16, // stays above keyboard
       ),
       child: Form(
         key: _formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    _isEditing ? 'Edit Ingredient' : 'Add Ingredient',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(fontWeight: FontWeight.w800),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    tooltip: 'Close',
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Ingredient Name',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (v) =>
-                    (v == null || v.isEmpty) ? 'Required' : null,
-              ),
-              const SizedBox(height: 12),
-              TextFormField(
-                controller: _quantityController,
-                decoration: const InputDecoration(
-                  labelText: 'Quantity (e.g. 1.2 kg, 4 units)',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (v) =>
-                    (v == null || v.isEmpty) ? 'Required' : null,
-              ),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                initialValue: _categories.contains(_category) ? _category : _categories.first,
-                decoration: const InputDecoration(
-                  labelText: 'Category',
-                  border: OutlineInputBorder(),
-                ),
-                items: _categories
-                    .map((c) => DropdownMenuItem(value: c, child: Text(c)))
-                    .toList(),
-                onChanged: (v) => setState(() => _category = v!),
-              ),
-              const SizedBox(height: 12),
-              ListTile(
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                title: Text(
-                  _expirationDate == null
-                      ? 'Select expiration date'
-                      : 'Expires: ${_expirationDate!.toLocal().toString().split(' ')[0]}',
-                ),
-                trailing: const Icon(Icons.calendar_today),
-                onTap: _pickExpirationDate,
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: FilledButton(
-                  onPressed: _submit,
-                  child: Text(
-                    _isEditing ? 'Save Changes' : 'Add to Pantry',
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Add Ingredient', style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 16),
+            TextFormField(
+              controller: _nameController,
+              decoration: const InputDecoration(labelText: 'Name'),
+              validator: (v) => (v == null || v.isEmpty) ? 'Required' : null,
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: _quantityController,
+              decoration: const InputDecoration(labelText: 'Quantity (e.g. 1.2 kg)'),
+              validator: (v) => (v == null || v.isEmpty) ? 'Required' : null,
+            ),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String>(
+              initialValue: _category,
+              decoration: const InputDecoration(labelText: 'Category'),
+              items: _categories.map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
+              onChanged: (v) => setState(() => _category = v!),
+            ),
+            const SizedBox(height: 12),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(_expirationDate == null
+                  ? 'Select expiration date'
+                  : _expirationDate!.toLocal().toString().split(' ')[0]),
+              trailing: const Icon(Icons.calendar_today),
+              onTap: _pickExpirationDate,
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(onPressed: _submit, child: const Text('Add')),
+            ),
+          ],
         ),
       ),
     );

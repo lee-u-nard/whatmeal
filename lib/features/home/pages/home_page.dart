@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../family/data/family_repository.dart';
-import '../../pantry/data/pantry_repository.dart';
-import '../../meal_plan/data/saved_plans_repository.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,46 +10,6 @@ class HomePage extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        // Shared Family Banner Indicator
-        ValueListenableBuilder(
-          valueListenable: FamilyRepository.instance,
-          builder: (context, space, _) {
-            if (space == null) return const SizedBox.shrink();
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryLight,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(Icons.groups, color: AppColors.primary, size: 20),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        'Active Family Space: ${space.name} (${space.members.length} members)',
-                        style: const TextStyle(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => context.push('/family-space'),
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(50, 30)),
-                      child: const Text('Manage', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w800, fontSize: 12)),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-
         // AI Meal Planner Banner Card
         Container(
           padding: const EdgeInsets.all(20),
@@ -129,40 +86,26 @@ class HomePage extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: ValueListenableBuilder(
-                valueListenable: PantryRepository.instance,
-                builder: (context, pantryMap, _) {
-                  final expiringCount = pantryMap.values
-                      .expand((items) => items)
-                      .where((item) => item.isExpiringSoon)
-                      .length;
-                  return _buildQuickActionCard(
-                    context,
-                    title: 'View Pantry',
-                    subtitle: '$expiringCount items expiring soon',
-                    icon: Icons.kitchen,
-                    color: AppColors.primaryLight,
-                    iconColor: AppColors.primary,
-                    onTap: () => context.go('/pantry'),
-                  );
-                },
+              child: _buildQuickActionCard(
+                context,
+                title: 'View Pantry',
+                subtitle: '4 items expiring',
+                icon: Icons.kitchen,
+                color: AppColors.primaryLight,
+                iconColor: AppColors.primary,
+                onTap: () => context.go('/pantry'),
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: ValueListenableBuilder(
-                valueListenable: SavedPlansRepository.instance,
-                builder: (context, savedPlans, _) {
-                  return _buildQuickActionCard(
-                    context,
-                    title: 'Saved Plans',
-                    subtitle: '${savedPlans.length} plans saved',
-                    icon: Icons.bookmarks_outlined,
-                    color: AppColors.infoLight,
-                    iconColor: AppColors.info,
-                    onTap: () => context.push('/saved-meal-plans'),
-                  );
-                },
+              child: _buildQuickActionCard(
+                context,
+                title: 'Saved Plans',
+                subtitle: '3 plans saved',
+                icon: Icons.bookmarks_outlined,
+                color: AppColors.infoLight,
+                iconColor: AppColors.info,
+                onTap: () => context.push('/saved-meal-plans'),
               ),
             ),
           ],
@@ -183,7 +126,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () => context.push('/generated-plan'),
+              onPressed: () => context.push('/meal/1'),
               child: const Text(
                 'See All',
                 style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
