@@ -13,7 +13,8 @@ class GroceryList {
   final String? mealPlanId;
   final DateTime? createdAt;
 
-  factory GroceryList.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+  factory GroceryList.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data()!;
     return GroceryList(
       id: doc.id,
@@ -24,8 +25,10 @@ class GroceryList {
   }
 
   Map<String, dynamic> toFirestore() => {
-    'title': title,
-    'mealPlanId': mealPlanId,
-    'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
-  };
+        'title': title,
+        'mealPlanId': mealPlanId,
+        'createdAt': createdAt != null
+            ? Timestamp.fromDate(createdAt!)
+            : FieldValue.serverTimestamp(),
+      };
 }

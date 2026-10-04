@@ -29,7 +29,12 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
   late String _category;
   DateTime? _expirationDate;
 
-  static const _categories = ['Proteins', 'Vegetables', 'Dairy', 'Pantry Staples'];
+  static const _categories = [
+    'Proteins',
+    'Vegetables',
+    'Dairy',
+    'Pantry Staples'
+  ];
 
   bool get _isEditing => widget.existingItem != null;
 
@@ -60,7 +65,8 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
   Future<void> _pickExpirationDate() async {
     final picked = await showDatePicker(
       context: context,
-      initialDate: _expirationDate ?? DateTime.now().add(const Duration(days: 7)),
+      initialDate:
+          _expirationDate ?? DateTime.now().add(const Duration(days: 7)),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );
@@ -78,7 +84,8 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
     }
     final daysLeft = _expirationDate!.difference(DateTime.now()).inDays;
     final item = PantryItem(
-      id: widget.existingItem?.id ?? 'p_${DateTime.now().millisecondsSinceEpoch}',
+      id: widget.existingItem?.id ??
+          'p_${DateTime.now().millisecondsSinceEpoch}',
       name: _nameController.text.trim(),
       quantity: _quantityController.text.trim(),
       expiresInDays: daysLeft,
@@ -128,8 +135,7 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
                   labelText: 'Ingredient Name',
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) =>
-                    (v == null || v.isEmpty) ? 'Required' : null,
+                validator: (v) => (v == null || v.isEmpty) ? 'Required' : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
@@ -138,12 +144,13 @@ class _AddPantryItemSheetState extends State<AddPantryItemSheet> {
                   labelText: 'Quantity (e.g. 1.2 kg, 4 units)',
                   border: OutlineInputBorder(),
                 ),
-                validator: (v) =>
-                    (v == null || v.isEmpty) ? 'Required' : null,
+                validator: (v) => (v == null || v.isEmpty) ? 'Required' : null,
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
-                initialValue: _categories.contains(_category) ? _category : _categories.first,
+                initialValue: _categories.contains(_category)
+                    ? _category
+                    : _categories.first,
                 decoration: const InputDecoration(
                   labelText: 'Category',
                   border: OutlineInputBorder(),

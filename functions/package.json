@@ -1,0 +1,14 @@
+{
+  "name": "whatmeal-functions",
+  "version": "1.0.0",
+  "description": "WhatMeal Firebase Cloud Functions — sends FCM push notifications when a notification document is written to Firestore.",
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^5.0.0"
+  },
+  "private": true
+}

@@ -32,10 +32,12 @@ class Family {
   }
 
   Map<String, dynamic> toFirestore() => {
-    'name': name,
-    'inviteCode': inviteCode,
-    'createdBy': createdBy,
-    'memberUids': memberUids,
-    'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
-  };
+        'name': name,
+        'inviteCode': inviteCode,
+        'createdBy': createdBy,
+        'memberUids': memberUids,
+        'createdAt': createdAt != null
+            ? Timestamp.fromDate(createdAt!)
+            : FieldValue.serverTimestamp(),
+      };
 }

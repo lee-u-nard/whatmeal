@@ -29,8 +29,5 @@ class FirestoreService {
     String familyId,
     String subcollection,
   ) =>
-      _firestore
-          .collection('families')
-          .doc(familyId)
-          .collection(subcollection);
+      _firestore.collection('families').doc(familyId).collection(subcollection);
 }

@@ -60,7 +60,8 @@ class FamilyService {
     });
 
     // Update user's familyId safely (creates document if it doesn't exist)
-    batch.set(_usersCol.doc(uid), {'familyId': docRef.id}, SetOptions(merge: true));
+    batch.set(
+        _usersCol.doc(uid), {'familyId': docRef.id}, SetOptions(merge: true));
 
     await batch.commit();
     return family;
@@ -84,7 +85,8 @@ class FamilyService {
 
     final familyDoc = query.docs.first;
     final familyId = familyDoc.id;
-    final existingMembers = List<String>.from(familyDoc.data()['memberUids'] ?? []);
+    final existingMembers =
+        List<String>.from(familyDoc.data()['memberUids'] ?? []);
 
     if (existingMembers.contains(uid)) {
       throw Exception('You are already a member of this family group.');
@@ -105,7 +107,8 @@ class FamilyService {
     });
 
     // Update user's familyId
-    batch.set(_usersCol.doc(uid), {'familyId': familyId}, SetOptions(merge: true));
+    batch.set(
+        _usersCol.doc(uid), {'familyId': familyId}, SetOptions(merge: true));
 
     await batch.commit();
 
@@ -135,6 +138,35 @@ class FamilyService {
     await batch.commit();
   }
 
+  /// Update a member's role in the family space.
+  Future<void> updateMemberRole({
+    required String familyId,
+    required String memberUid,
+    required String newRole,
+  }) async {
+    await _familiesCol
+        .doc(familyId)
+        .collection('members')
+        .doc(memberUid)
+        .update({'role': newRole});
+  }
+
+  /// Remove a member from the family group.
+  Future<void> removeMember({
+    required String familyId,
+    required String memberUid,
+  }) async {
+    final batch = _firestore.batch();
+    batch.update(_familiesCol.doc(familyId), {
+      'memberUids': FieldValue.arrayRemove([memberUid]),
+    });
+    batch.delete(
+        _familiesCol.doc(familyId).collection('members').doc(memberUid));
+    batch.set(
+        _usersCol.doc(memberUid), {'familyId': null}, SetOptions(merge: true));
+    await batch.commit();
+  }
+
   /// Delete the entire family group. Only the owner should call this.
   /// Cascade cleanup of subcollections should be handled by a Cloud Function
   /// trigger on `families/{familyId}` deletion.
@@ -146,7 +178,8 @@ class FamilyService {
 
     // Clear familyId for all members
     for (final uid in memberUids) {
-      batch.set(_usersCol.doc(uid), {'familyId': null}, SetOptions(merge: true));
+      batch.set(
+          _usersCol.doc(uid), {'familyId': null}, SetOptions(merge: true));
     }
 
     // Delete the family document (Cloud Function handles subcollection cleanup)
@@ -157,17 +190,20 @@ class FamilyService {
 
   /// Generate a unique 6-character alphanumeric invite code.
   Future<String> _generateUniqueInviteCode() async {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no I/O/0/1 for readability
+    const chars =
+        'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no I/O/0/1 for readability
     final random = Random.secure();
 
     for (int attempt = 0; attempt < 10; attempt++) {
-      final code = List.generate(6, (_) => chars[random.nextInt(chars.length)]).join();
+      final code =
+          List.generate(6, (_) => chars[random.nextInt(chars.length)]).join();
       final existing = await _familiesCol
           .where('inviteCode', isEqualTo: code)
           .limit(1)
           .get();
       if (existing.docs.isEmpty) return code;
     }
-    throw Exception('Unable to generate a unique invite code. Please try again.');
+    throw Exception(
+        'Unable to generate a unique invite code. Please try again.');
   }
 }

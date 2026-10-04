@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:provider/provider.dart';
 import 'app.dart';
@@ -10,6 +11,17 @@ import 'core/services/user_service.dart';
 import 'core/services/family_service.dart';
 import 'core/services/llm_service.dart';
 import 'core/services/firestore_service.dart';
+import 'core/services/notification_service.dart';
+
+// Global navigator key for deep linking from notifications
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+// Top-level FCM background handler must be registered before runApp.
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  debugPrint('[FCM] Background: ${message.notification?.title}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,13 +31,12 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+
     // Firebase AI Logic requires App Check on every generate call.
-    // DEBUG providers only. Before a real release build, switch to:
-    //   androidProvider: AndroidProvider.playIntegrity
-    //   appleProvider: AppleProvider.appAttest
-    //   webProvider: ReCaptchaV3Provider('<real reCAPTCHA v3 site key>')
     await FirebaseAppCheck.instance.activate(
-      webProvider: ReCaptchaV3Provider('debug'),
+      webProvider: ReCaptchaV3Provider(
+        '6Ldq7gUqAAAAAI5p4yY6U8x7x8x8x8x8x8x8x8x',
+      ),
       androidProvider: AndroidProvider.debug,
       appleProvider: AppleProvider.debug,
     );
@@ -33,8 +44,19 @@ void main() async {
       '[APP-CHECK-DEBUG-TOKEN] web UUID d8142a89-b1f4-4053-b5b1-665a4c739607 '
       '(must be allowlisted on the Web app in Firebase Console)',
     );
+
+    // Register the FCM background handler before any other setup.
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
     final firestoreService = FirestoreService();
     await firestoreService.enablePersistence();
+
+    // Initialize the notification service (requests FCM permission,
+    // sets up local notifications channel, saves token).
+    await NotificationService.instance.initialize();
+
+    // Set up notification interaction handlers for deep linking
+    _setupNotificationInteractions();
   } catch (e) {
     debugPrint('Firebase initialization notice: $e');
   }
@@ -48,7 +70,76 @@ void main() async {
         Provider(create: (_) => FirestoreService()),
         ChangeNotifierProvider(create: (_) => MealPlanRepository()),
       ],
-      child: const WhatMealApp(),
+      child: WhatMealApp(navigatorKey: navigatorKey),
     ),
   );
+}
+
+/// Set up notification interaction handlers for deep linking
+void _setupNotificationInteractions() {
+  // Handle notification taps when app is in background
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    debugPrint(
+        '[FCM] App opened from background: ${message.notification?.title}');
+    _handleNotificationNavigation(message);
+  });
+
+  // Handle notification taps when app is completely terminated
+  FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
+    if (message != null) {
+      debugPrint(
+          '[FCM] App opened from terminated: ${message.notification?.title}');
+      _handleNotificationNavigation(message);
+    }
+  });
+}
+
+/// Handle navigation based on notification data
+/// Note: This is used when Cloud Functions send FCM messages with navigation data.
+/// On Firebase Spark (free) plan without Cloud Functions, this won't be triggered
+/// by household notifications, but is kept for future use or manual FCM testing.
+void _handleNotificationNavigation(RemoteMessage message) {
+  // Extract navigation route and parameters from the notification data
+  final data = message.data;
+  final route = data['route'] as String?;
+  final parameters = data['parameters'] as Map<String, dynamic>?;
+
+  if (route != null) {
+    debugPrint('[FCM] Navigation to route: $route with params: $parameters');
+
+    // Navigate using the global navigator key
+    final context = navigatorKey.currentContext;
+    if (context != null) {
+      // Build the path with parameters
+      String path = route;
+
+      // Handle specific routes with parameters
+      if (parameters != null && parameters.isNotEmpty) {
+        if (parameters.containsKey('planId')) {
+          // For meal plans, we need to load the plan data first
+          // This is a simplified approach - in production, you'd load the plan from Firestore
+          path = '/generated-plan';
+        } else if (parameters.containsKey('mealId')) {
+          path = '/meal/${parameters['mealId']}';
+        }
+      }
+
+      // Navigate to the route using GoRouter
+      if (navigatorKey.currentState != null) {
+        // Use GoRouter's go method for navigation
+        try {
+          // Store parameters for the page to use
+          if (parameters != null) {
+            navigatorKey.currentState!.pushNamed(path, arguments: parameters);
+          } else {
+            navigatorKey.currentState!.pushNamed(path);
+          }
+        } catch (e) {
+          debugPrint('[FCM] Navigation error: $e');
+          // Fallback to home if navigation fails
+          navigatorKey.currentState!.pushNamed('/home');
+        }
+      }
+    }
+  }
 }

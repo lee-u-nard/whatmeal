@@ -5,6 +5,7 @@ import '../models/meal_plan.dart';
 import '../../meal/models/meal.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../family/data/family_repository.dart';
+import '../../../core/services/household_notification_service.dart';
 
 /// Repository for meal plans and their nested meals, scoped to a family group.
 class MealPlanRepository extends ChangeNotifier {
@@ -17,7 +18,7 @@ class MealPlanRepository extends ChangeNotifier {
   final _firestore = FirebaseFirestore.instance;
   String? _uid;
   String? _familyId;
-  
+
   StreamSubscription? _personalSub;
   StreamSubscription? _familySub;
 
@@ -46,18 +47,26 @@ class MealPlanRepository extends ChangeNotifier {
   }
 
   CollectionReference<Map<String, dynamic>>? get _personalPlansCol =>
-      _uid != null ? _firestore.collection('users').doc(_uid).collection('mealPlans') : null;
+      _uid != null
+          ? _firestore.collection('users').doc(_uid).collection('mealPlans')
+          : null;
 
-  CollectionReference<Map<String, dynamic>>? get _familyPlansCol =>
-      _familyId != null ? _firestore.collection('families').doc(_familyId).collection('mealPlans') : null;
+  CollectionReference<Map<String, dynamic>>? get _familyPlansCol => _familyId !=
+          null
+      ? _firestore.collection('families').doc(_familyId).collection('mealPlans')
+      : null;
 
   void _listenToPlans() {
     _personalSub?.cancel();
     _familySub?.cancel();
 
     if (_personalPlansCol != null) {
-      _personalSub = _personalPlansCol!.orderBy('createdAt', descending: true).snapshots().listen((snapshot) {
-        _personalPlans = snapshot.docs.map((doc) => MealPlan.fromFirestore(doc)).toList();
+      _personalSub = _personalPlansCol!
+          .orderBy('createdAt', descending: true)
+          .snapshots()
+          .listen((snapshot) {
+        _personalPlans =
+            snapshot.docs.map((doc) => MealPlan.fromFirestore(doc)).toList();
         _mergePlans();
       });
     } else {
@@ -66,8 +75,12 @@ class MealPlanRepository extends ChangeNotifier {
     }
 
     if (_familyPlansCol != null) {
-      _familySub = _familyPlansCol!.orderBy('createdAt', descending: true).snapshots().listen((snapshot) {
-        _familyPlans = snapshot.docs.map((doc) => MealPlan.fromFirestore(doc)).toList();
+      _familySub = _familyPlansCol!
+          .orderBy('createdAt', descending: true)
+          .snapshots()
+          .listen((snapshot) {
+        _familyPlans =
+            snapshot.docs.map((doc) => MealPlan.fromFirestore(doc)).toList();
         _mergePlans();
       });
     } else {
@@ -84,8 +97,9 @@ class MealPlanRepository extends ChangeNotifier {
       unique[p.id] = p;
     }
     _savedPlans = unique.values.toList()
-      ..sort((a, b) => (b.createdAt ?? DateTime.now()).compareTo(a.createdAt ?? DateTime.now()));
-    
+      ..sort((a, b) => (b.createdAt ?? DateTime.now())
+          .compareTo(a.createdAt ?? DateTime.now()));
+
     _activePlan = _savedPlans.where((p) => p.status == 'active').firstOrNull;
     notifyListeners();
   }
@@ -125,9 +139,17 @@ class MealPlanRepository extends ChangeNotifier {
       debugPrint(
         '[SAVE-DEBUG] meal plan save success path=${col.path} id=${planRef.id} meals=${meals.length}',
       );
+
+      // Send household notification
+      HouseholdNotificationService.instance.notifyMealPlanCreated(
+        planId: planRef.id,
+        planTitle: plan.title,
+      );
+
       return planRef.id;
     } catch (e) {
-      debugPrint('[SAVE-DEBUG] meal plan save FAILED uid=$_uid familyId=$_familyId error=$e');
+      debugPrint(
+          '[SAVE-DEBUG] meal plan save FAILED uid=$_uid familyId=$_familyId error=$e');
       rethrow;
     }
   }
@@ -135,7 +157,11 @@ class MealPlanRepository extends ChangeNotifier {
   /// Delete a meal plan and its nested meals.
   Future<void> deletePlan(String planId) async {
     final col = _getColForPlan(planId);
-    
+
+    // Get plan title for notification
+    final planDoc = await col.doc(planId).get();
+    final planTitle = planDoc.data()?['title'] ?? 'Meal Plan';
+
     // Delete nested meals first
     final mealsSnapshot = await col.doc(planId).collection('meals').get();
     final batch = _firestore.batch();
@@ -144,16 +170,19 @@ class MealPlanRepository extends ChangeNotifier {
     }
     batch.delete(col.doc(planId));
     await batch.commit();
+
+    // Send household notification
+    HouseholdNotificationService.instance.notifyMealPlanDeleted(
+      planId: planId,
+      planTitle: planTitle,
+    );
   }
 
   /// Get all meals for a specific plan.
   Future<List<Meal>> getMealsForPlan(String planId) async {
     final col = _getColForPlan(planId);
-    final snapshot = await col
-        .doc(planId)
-        .collection('meals')
-        .orderBy('dayIndex')
-        .get();
+    final snapshot =
+        await col.doc(planId).collection('meals').orderBy('dayIndex').get();
     return snapshot.docs.map((doc) => Meal.fromFirestore(doc)).toList();
   }
 
@@ -168,39 +197,120 @@ class MealPlanRepository extends ChangeNotifier {
   /// Stream a single meal.
   Stream<Meal?> mealStream(String planId, String mealId) {
     final col = _getColForPlan(planId);
-    return col.doc(planId).collection('meals').doc(mealId).snapshots().map((doc) {
+    return col
+        .doc(planId)
+        .collection('meals')
+        .doc(mealId)
+        .snapshots()
+        .map((doc) {
       if (!doc.exists) return null;
       return Meal.fromFirestore(doc);
     });
   }
 
-  /// Toggle a meal's accepted status.
-  Future<void> toggleAccepted(String planId, String mealId, bool accepted) async {
+  /// Update a meal's lifecycle status (Pending, Accepted, Completed, Not Completed, Replaced).
+  Future<void> updateMealStatus(
+      String planId, String mealId, MealStatus status) async {
     final col = _getColForPlan(planId);
-    await col.doc(planId).collection('meals').doc(mealId).update({
-      'accepted': accepted,
+    final batch = _firestore.batch();
+    batch.update(col.doc(planId).collection('meals').doc(mealId), {
+      'status': status.name,
+      'accepted': status == MealStatus.accepted,
     });
+    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
+        SetOptions(merge: true));
+    await batch.commit();
+  }
+
+  /// Replace an existing meal with a newly generated meal.
+  /// The previous meal is marked as replaced, and the new meal is added as the active meal.
+  Future<void> replaceMealInPlan(
+    String planId,
+    String oldMealId,
+    Meal newMeal, {
+    MealStatus newMealStatus = MealStatus.pending,
+  }) async {
+    final col = _getColForPlan(planId);
+    final batch = _firestore.batch();
+
+    // Get old meal for notification
+    final oldMealDoc =
+        await col.doc(planId).collection('meals').doc(oldMealId).get();
+    final oldMealTitle = oldMealDoc.data()?['title'] ?? 'Meal';
+    final mealType = oldMealDoc.data()?['type'] ?? 'Meal';
+
+    // Mark previous meal as replaced
+    final oldDocRef = col.doc(planId).collection('meals').doc(oldMealId);
+    batch.update(oldDocRef, {
+      'status': MealStatus.replaced.name,
+      'accepted': false,
+      'replacedByMealId': newMeal.id,
+    });
+
+    // Add new meal with replacedMealId set
+    final newDocRef = newMeal.id.isNotEmpty
+        ? col.doc(planId).collection('meals').doc(newMeal.id)
+        : col.doc(planId).collection('meals').doc();
+
+    final preparedNewMeal = newMeal.copyWith(
+      status: newMealStatus,
+      replacedMealId: oldMealId,
+    );
+    batch.set(newDocRef, preparedNewMeal.toFirestore());
+    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
+        SetOptions(merge: true));
+
+    await batch.commit();
+
+    // Send household notification
+    HouseholdNotificationService.instance.notifyMealReplaced(
+      planId: planId,
+      mealId: newMeal.id,
+      oldMealTitle: oldMealTitle,
+      newMealTitle: newMeal.title,
+      mealType: mealType,
+    );
+  }
+
+  /// Toggle a meal's accepted status.
+  Future<void> toggleAccepted(
+      String planId, String mealId, bool accepted) async {
+    await updateMealStatus(
+      planId,
+      mealId,
+      accepted ? MealStatus.accepted : MealStatus.pending,
+    );
   }
 
   /// Toggle a meal's favorite status.
-  Future<void> toggleFavorite(String planId, String mealId, bool isFavorite) async {
+  Future<void> toggleFavorite(
+      String planId, String mealId, bool isFavorite) async {
     final col = _getColForPlan(planId);
-    await col.doc(planId).collection('meals').doc(mealId).update({
+    final batch = _firestore.batch();
+    batch.update(col.doc(planId).collection('meals').doc(mealId), {
       'isFavorite': isFavorite,
     });
+    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
+        SetOptions(merge: true));
+    await batch.commit();
   }
 
   /// Update a meal (e.g., after AI replacement).
   Future<void> updateMeal(String planId, String mealId, Meal meal) async {
     final col = _getColForPlan(planId);
-    await col.doc(planId).collection('meals').doc(mealId).update(
+    final batch = _firestore.batch();
+    batch.update(
+      col.doc(planId).collection('meals').doc(mealId),
       meal.toFirestore(),
     );
+    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
+        SetOptions(merge: true));
+    await batch.commit();
   }
 
   /// Count of saved plans.
   int get savedPlanCount => _savedPlans.length;
-  
+
   @override
   void dispose() {
     AuthRepository.instance.removeListener(_onAuthChange);

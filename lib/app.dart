@@ -6,10 +6,11 @@ import 'core/routing/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/services/user_service.dart';
 import 'features/auth/data/auth_repository.dart';
-import 'features/meal_plan/data/meal_plan_repository.dart';
 
 class WhatMealApp extends StatefulWidget {
-  const WhatMealApp({super.key});
+  const WhatMealApp({super.key, this.navigatorKey});
+
+  final GlobalKey<NavigatorState>? navigatorKey;
 
   @override
   State<WhatMealApp> createState() => _WhatMealAppState();
@@ -24,7 +25,8 @@ class _WhatMealAppState extends State<WhatMealApp> {
   @override
   void initState() {
     super.initState();
-    _router = createAppRouter(AuthRepository.instance);
+    _router = createAppRouter(AuthRepository.instance,
+        navigatorKey: widget.navigatorKey);
     AuthRepository.instance.addListener(_onAuthChanged);
     _syncFamilyScope();
   }

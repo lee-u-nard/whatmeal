@@ -32,6 +32,8 @@ class UserService {
 
   /// Set the user's active family ID.
   Future<void> setFamilyId(String uid, String? familyId) async {
-    await _usersCol.doc(uid).set({'familyId': familyId}, SetOptions(merge: true));
+    await _usersCol
+        .doc(uid)
+        .set({'familyId': familyId}, SetOptions(merge: true));
   }
 }

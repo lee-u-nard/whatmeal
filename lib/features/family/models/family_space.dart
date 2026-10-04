@@ -18,6 +18,24 @@ extension FamilyRoleX on FamilyRole {
         return 'View Only';
     }
   }
+
+  bool get isOwner => this == FamilyRole.owner;
+  bool get isAdmin => this == FamilyRole.admin;
+  bool get isAuthorized =>
+      this == FamilyRole.owner ||
+      this == FamilyRole.admin ||
+      this == FamilyRole.member;
+
+  // ── Permission capabilities ───────────────────────────────────────────────
+  bool get canViewMealPlan => true;
+  bool get canAcceptMeal => isAuthorized;
+  bool get canReplaceMeal => isAuthorized;
+  bool get canViewMembers => true;
+  bool get canManagePantry => isAuthorized;
+  bool get canGenerateGroceryList => isAuthorized;
+  bool get canManageMembers =>
+      this == FamilyRole.owner || this == FamilyRole.admin;
+  bool get canDeleteHousehold => this == FamilyRole.owner;
 }
 
 class SharedSpaceMember {
@@ -64,6 +82,22 @@ class FamilySpace {
   final String name;
   final String inviteCode;
   final List<SharedSpaceMember> members;
+
+  SharedSpaceMember? memberForUid(String? uid) {
+    if (uid == null) return null;
+    return members.cast<SharedSpaceMember?>().firstWhere(
+          (m) => m?.id == uid,
+          orElse: () => null,
+        );
+  }
+
+  FamilyRole roleForUid(String? uid) {
+    return memberForUid(uid)?.role ?? FamilyRole.viewOnly;
+  }
+
+  bool isOwner(String? uid) => roleForUid(uid).isOwner;
+  bool canManageMembers(String? uid) => roleForUid(uid).canManageMembers;
+  bool canDeleteHousehold(String? uid) => roleForUid(uid).canDeleteHousehold;
 
   FamilySpace copyWith({
     String? id,

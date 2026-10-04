@@ -9,13 +9,13 @@ class AppColors {
   static const Color textSecondary = Color(0xFF556458);
   static const Color textMuted = Color(0xFF8C9B8F);
   static const Color border = Color(0xFFE0E6E0);
-  
+
   static const Color danger = Color(0xFFC62828);
   static const Color dangerLight = Color(0xFFFFEBEE);
-  
+
   static const Color warning = Color(0xFFFFB300);
   static const Color warningLight = Color(0xFFFFF8E1);
-  
+
   static const Color info = Color(0xFF1E88E5);
   static const Color infoLight = Color(0xFFE3F2FD);
 }

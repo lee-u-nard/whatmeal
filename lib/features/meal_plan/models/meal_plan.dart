@@ -36,7 +36,20 @@ class MealPlan {
   /// Formatted date range string for display (e.g. "Oct 1 - Oct 7")
   String get dateRange {
     if (startDate == null || endDate == null) return '';
-    final months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    final months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
     return '${months[startDate!.month - 1]} ${startDate!.day} - ${months[endDate!.month - 1]} ${endDate!.day}';
   }
 
@@ -61,18 +74,20 @@ class MealPlan {
   }
 
   Map<String, dynamic> toFirestore() => {
-    'title': title,
-    'startDate': startDate != null ? Timestamp.fromDate(startDate!) : null,
-    'endDate': endDate != null ? Timestamp.fromDate(endDate!) : null,
-    'numberOfDays': numberOfDays,
-    'mealTypes': mealTypes,
-    'cuisinePreferences': cuisinePreferences,
-    'prioritizePantry': prioritizePantry,
-    'selectedMemberIds': selectedMemberIds,
-    'estimatedCost': estimatedCost,
-    'groceryListId': groceryListId,
-    'status': status,
-    'createdBy': createdBy,
-    'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
-  };
+        'title': title,
+        'startDate': startDate != null ? Timestamp.fromDate(startDate!) : null,
+        'endDate': endDate != null ? Timestamp.fromDate(endDate!) : null,
+        'numberOfDays': numberOfDays,
+        'mealTypes': mealTypes,
+        'cuisinePreferences': cuisinePreferences,
+        'prioritizePantry': prioritizePantry,
+        'selectedMemberIds': selectedMemberIds,
+        'estimatedCost': estimatedCost,
+        'groceryListId': groceryListId,
+        'status': status,
+        'createdBy': createdBy,
+        'createdAt': createdAt != null
+            ? Timestamp.fromDate(createdAt!)
+            : FieldValue.serverTimestamp(),
+      };
 }

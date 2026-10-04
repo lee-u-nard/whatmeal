@@ -123,7 +123,7 @@ class FamilyRepository extends ValueNotifier<FamilySpace?> {
       notifyListeners();
       return;
     }
-    
+
     error = null;
     isLoading = true;
     notifyListeners();
@@ -171,16 +171,86 @@ class FamilyRepository extends ValueNotifier<FamilySpace?> {
   }
 
   Future<void> updateMemberRole(String memberId, FamilyRole newRole) async {
-    // Only implemented locally for now, since it wasn't requested to connect to backend
+    final currentSpace = value;
+    if (currentSpace == null) return;
+
+    if (!currentSpace.canManageMembers(_uid)) {
+      error =
+          "Permission denied: Only household owners and admins can change roles.";
+      notifyListeners();
+      return;
+    }
+
+    try {
+      await _familyService.updateMemberRole(
+        familyId: currentSpace.id,
+        memberUid: memberId,
+        newRole: newRole.name,
+      );
+    } catch (e) {
+      error = e.toString();
+      notifyListeners();
+    }
   }
 
   Future<void> removeMember(String memberId) async {
-    // Not requested to implement
+    final currentSpace = value;
+    if (currentSpace == null) return;
+
+    if (!currentSpace.canManageMembers(_uid)) {
+      error =
+          "Permission denied: Only household owners and admins can remove members.";
+      notifyListeners();
+      return;
+    }
+
+    try {
+      await _familyService.removeMember(
+        familyId: currentSpace.id,
+        memberUid: memberId,
+      );
+    } catch (e) {
+      error = e.toString();
+      notifyListeners();
+    }
+  }
+
+  /// Delete the family space. Restricted strictly to the household owner.
+  Future<bool> deleteSpace() async {
+    final currentSpace = value;
+    final uid = _uid;
+    if (currentSpace == null || uid == null) return false;
+
+    if (!currentSpace.isOwner(uid)) {
+      error =
+          "Permission denied: Only the household owner can delete this household.";
+      notifyListeners();
+      return false;
+    }
+
+    error = null;
+    isLoading = true;
+    notifyListeners();
+    try {
+      final memberUids = currentSpace.members.map((m) => m.id).toList();
+      await _familyService.deleteFamily(
+        familyId: currentSpace.id,
+        memberUids: memberUids,
+      );
+      value = null;
+      return true;
+    } catch (e) {
+      error = e.toString();
+      return false;
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> leaveSpace() async {
     if (value == null || _uid == null) return;
-    
+
     error = null;
     isLoading = true;
     notifyListeners();
@@ -201,4 +271,3 @@ class FamilyRepository extends ValueNotifier<FamilySpace?> {
     // Not requested to implement
   }
 }
-  

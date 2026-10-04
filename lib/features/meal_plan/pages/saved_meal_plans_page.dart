@@ -12,26 +12,48 @@ class SavedMealPlansPage extends StatelessWidget {
       context: context,
       builder: (ctx) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           title: Text('Delete "${plan.title}"?'),
           content: const Text(
-            'Are you sure you want to delete this saved meal plan? This action cannot be undone.',
+            'Are you sure you want to delete this saved meal plan? '
+            'Its meals and related recommendations will also be removed. '
+            'This action cannot be undone.',
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel', style: TextStyle(color: AppColors.textSecondary)),
+              child: const Text('Cancel',
+                  style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
-              onPressed: () {
-                SavedPlansRepository.instance.deletePlan(plan.id);
+              onPressed: () async {
                 Navigator.pop(ctx);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Deleted "${plan.title}"')),
-                );
+                try {
+                  await SavedPlansRepository.instance.deletePlan(plan.id);
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Deleted "${plan.title}" and its meal recommendations.',
+                      ),
+                    ),
+                  );
+                } catch (e) {
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Could not delete plan: $e'),
+                      backgroundColor: AppColors.danger,
+                    ),
+                  );
+                }
               },
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
-              child: const Text('Delete Plan', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+              style:
+                  ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
+              child: const Text('Delete Plan',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w700)),
             ),
           ],
         );
@@ -105,7 +127,8 @@ class SavedMealPlansPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.bookmark_outline, size: 64, color: AppColors.textMuted),
+            const Icon(Icons.bookmark_outline,
+                size: 64, color: AppColors.textMuted),
             const SizedBox(height: 16),
             const Text(
               'No Saved Meal Plans',
@@ -119,7 +142,8 @@ class SavedMealPlansPage extends StatelessWidget {
             const Text(
               'Generate an AI meal plan and tap the bookmark icon to save it here for quick reloading.',
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textSecondary, fontSize: 13, height: 1.4),
+              style: TextStyle(
+                  color: AppColors.textSecondary, fontSize: 13, height: 1.4),
             ),
             const SizedBox(height: 24),
             ElevatedButton.icon(
@@ -127,11 +151,14 @@ class SavedMealPlansPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
               ),
               icon: const Icon(Icons.auto_awesome, size: 18),
-              label: const Text('Generate Meal Plan', style: TextStyle(fontWeight: FontWeight.w700)),
+              label: const Text('Generate Meal Plan',
+                  style: TextStyle(fontWeight: FontWeight.w700)),
             ),
           ],
         ),
@@ -191,7 +218,8 @@ class SavedMealPlansPage extends StatelessWidget {
                   color: AppColors.primaryLight,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Icon(Icons.bookmark, color: AppColors.primary, size: 16),
+                child: const Icon(Icons.bookmark,
+                    color: AppColors.primary, size: 16),
               ),
             ],
           ),
@@ -200,22 +228,26 @@ class SavedMealPlansPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.restaurant, size: 14, color: AppColors.textSecondary),
+                  const Icon(Icons.restaurant,
+                      size: 14, color: AppColors.textSecondary),
                   const SizedBox(width: 4),
                   Text(
                     '${plan.mealsCount} meals planned',
-                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                    style: const TextStyle(
+                        color: AppColors.textSecondary, fontSize: 12),
                   ),
                 ],
               ),
               const SizedBox(width: 16),
               Row(
                 children: [
-                  const Icon(Icons.attach_money, size: 14, color: AppColors.textSecondary),
+                  const Icon(Icons.attach_money,
+                      size: 14, color: AppColors.textSecondary),
                   const SizedBox(width: 4),
                   Text(
                     'Est. ${plan.estCost}',
-                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                    style: const TextStyle(
+                        color: AppColors.textSecondary, fontSize: 12),
                   ),
                 ],
               ),
@@ -224,13 +256,15 @@ class SavedMealPlansPage extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              const Text('For: ', style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
+              const Text('For: ',
+                  style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
               const SizedBox(width: 4),
               Wrap(
                 spacing: 6,
                 children: plan.familyMembers.map((member) {
                   return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
                       color: AppColors.background,
                       borderRadius: BorderRadius.circular(6),
@@ -256,23 +290,31 @@ class SavedMealPlansPage extends StatelessWidget {
             children: [
               TextButton.icon(
                 onPressed: () => _confirmDeletePlan(context, plan),
-                icon: const Icon(Icons.delete_outline, color: AppColors.danger, size: 16),
+                icon: const Icon(Icons.delete_outline,
+                    color: AppColors.danger, size: 16),
                 label: const Text(
                   'Delete',
-                  style: TextStyle(color: AppColors.danger, fontWeight: FontWeight.w700, fontSize: 13),
+                  style: TextStyle(
+                      color: AppColors.danger,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13),
                 ),
               ),
               ElevatedButton.icon(
                 onPressed: () {
                   final days = plan.meals.isEmpty
-                      ? 1
-                      : plan.meals.map((m) => m.dayIndex).reduce((a, b) => a > b ? a : b) + 1;
+                      ? 7
+                      : plan.meals
+                              .map((m) => m.dayIndex)
+                              .reduce((a, b) => a > b ? a : b) +
+                          1;
                   context.push(
                     '/generated-plan',
                     extra: GeneratedPlanDraft(
                       meals: plan.meals,
                       familyMembers: plan.familyMembers,
-                      numberOfDays: days,
+                      numberOfDays: days.clamp(1, 7),
+                      startDate: plan.weekStart,
                       title: plan.title,
                     ),
                   );
@@ -280,13 +322,19 @@ class SavedMealPlansPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   elevation: 0,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
                 ),
-                icon: const Icon(Icons.folder_open, color: Colors.white, size: 14),
+                icon: const Icon(Icons.folder_open,
+                    color: Colors.white, size: 14),
                 label: const Text(
                   'Load Plan',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 13),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 13),
                 ),
               ),
             ],

@@ -30,24 +30,27 @@ class AppUser {
   }
 
   Map<String, dynamic> toFirestore() => {
-    'email': email,
-    'displayName': displayName,
-    'photoUrl': photoUrl,
-    'familyId': familyId,
-    'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
-  };
+        'email': email,
+        'displayName': displayName,
+        'photoUrl': photoUrl,
+        'familyId': familyId,
+        'createdAt': createdAt != null
+            ? Timestamp.fromDate(createdAt!)
+            : FieldValue.serverTimestamp(),
+      };
 
   AppUser copyWith({
     String? displayName,
     String? photoUrl,
     String? familyId,
     bool clearFamilyId = false,
-  }) => AppUser(
-    id: id,
-    email: email,
-    displayName: displayName ?? this.displayName,
-    photoUrl: photoUrl ?? this.photoUrl,
-    familyId: clearFamilyId ? null : (familyId ?? this.familyId),
-    createdAt: createdAt,
-  );
+  }) =>
+      AppUser(
+        id: id,
+        email: email,
+        displayName: displayName ?? this.displayName,
+        photoUrl: photoUrl ?? this.photoUrl,
+        familyId: clearFamilyId ? null : (familyId ?? this.familyId),
+        createdAt: createdAt,
+      );
 }

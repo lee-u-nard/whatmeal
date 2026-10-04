@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-/// Three-state status for a pantry item (FR-08).
-enum PantryStatus { available, used, needed }
+/// Ingredient availability status for pantry items.
+enum PantryStatus { available, runningLow, used, needed }
 
 class PantryItem {
   PantryItem({
@@ -15,10 +15,10 @@ class PantryItem {
     this.status = PantryStatus.available,
     this.addedBy,
     this.createdAt,
-  }) : expirationDate = expirationDate ?? 
-          (expiresInDays != null 
-              ? DateTime.now().add(Duration(days: expiresInDays)) 
-              : DateTime.now());
+  }) : expirationDate = expirationDate ??
+            (expiresInDays != null
+                ? DateTime.now().add(Duration(days: expiresInDays))
+                : DateTime.now());
 
   final String? id;
   final String name;
@@ -29,11 +29,22 @@ class PantryItem {
   final DateTime? createdAt;
   final PantryStatus status;
 
-  /// Days remaining until expiration, computed live from [expirationDate].
   int get expiresInDays => expirationDate.difference(DateTime.now()).inDays;
 
-  /// True if the item expires within 5 days. Computed live.
   bool get isExpiringSoon => expiresInDays <= 5;
+
+  String get statusLabel {
+    switch (status) {
+      case PantryStatus.available:
+        return 'Available';
+      case PantryStatus.runningLow:
+        return 'Running Low';
+      case PantryStatus.used:
+        return 'Used';
+      case PantryStatus.needed:
+        return 'Needed';
+    }
+  }
 
   PantryItem copyWith({
     String? id,
@@ -44,6 +55,7 @@ class PantryItem {
     int? expiresInDays,
     bool? isExpiringSoon,
     PantryStatus? status,
+    String? addedBy,
   }) {
     return PantryItem(
       id: id ?? this.id,
@@ -52,9 +64,24 @@ class PantryItem {
       category: category ?? this.category,
       expirationDate: expirationDate ?? this.expirationDate,
       status: status ?? this.status,
-      addedBy: addedBy,
+      addedBy: addedBy ?? this.addedBy,
       createdAt: createdAt,
     );
+  }
+
+  static PantryStatus _parseStatus(String? raw) {
+    switch ((raw ?? '').toLowerCase()) {
+      case 'runninglow':
+      case 'running_low':
+      case 'low':
+        return PantryStatus.runningLow;
+      case 'used':
+        return PantryStatus.used;
+      case 'needed':
+        return PantryStatus.needed;
+      default:
+        return PantryStatus.available;
+    }
   }
 
   factory PantryItem.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
@@ -64,19 +91,23 @@ class PantryItem {
       name: data['name'] ?? '',
       quantity: data['quantity'] ?? '',
       category: data['category'] ?? 'Other',
-      expirationDate: (data['expirationDate'] as Timestamp).toDate(),
+      expirationDate:
+          (data['expirationDate'] as Timestamp?)?.toDate() ?? DateTime.now(),
       addedBy: data['addedBy'],
       createdAt: (data['createdAt'] as Timestamp?)?.toDate(),
-      status: PantryStatus.available, // Deferred (not persisted)
+      status: _parseStatus(data['status'] as String?),
     );
   }
 
   Map<String, dynamic> toFirestore() => {
-    'name': name,
-    'quantity': quantity,
-    'category': category,
-    'expirationDate': Timestamp.fromDate(expirationDate),
-    'addedBy': addedBy,
-    'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
-  };
+        'name': name,
+        'quantity': quantity,
+        'category': category,
+        'expirationDate': Timestamp.fromDate(expirationDate),
+        'status': status.name,
+        'addedBy': addedBy,
+        'createdAt': createdAt != null
+            ? Timestamp.fromDate(createdAt!)
+            : FieldValue.serverTimestamp(),
+      };
 }

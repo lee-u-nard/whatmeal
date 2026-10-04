@@ -32,7 +32,9 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> _handleRegister() async {
     if (!_agreeToTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please accept the Terms & Privacy Policy to continue.')),
+        const SnackBar(
+            content:
+                Text('Please accept the Terms & Privacy Policy to continue.')),
       );
       return;
     }
@@ -80,7 +82,10 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         title: const Text(
           'Create Account',
-          style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w700, fontSize: 16),
+          style: TextStyle(
+              color: AppColors.textPrimary,
+              fontWeight: FontWeight.w700,
+              fontSize: 16),
         ),
       ),
       body: SafeArea(
@@ -102,10 +107,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 6),
                 const Text(
                   'Create your account to start planning family meals and managing smart pantry inventory.',
-                  style: TextStyle(color: AppColors.textSecondary, fontSize: 13, height: 1.4),
+                  style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 13,
+                      height: 1.4),
                 ),
                 const SizedBox(height: 24),
-
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
@@ -120,10 +127,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         controller: _nameController,
                         decoration: InputDecoration(
                           labelText: 'Full Name',
-                          prefixIcon: const Icon(Icons.person_outline, color: AppColors.textMuted),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.person_outline,
+                              color: AppColors.textMuted),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
                         ),
-                        validator: (v) => (v == null || v.isEmpty) ? 'Please enter your full name' : null,
+                        validator: (v) => (v == null || v.isEmpty)
+                            ? 'Please enter your full name'
+                            : null,
                       ),
                       const SizedBox(height: 16),
 
@@ -133,12 +144,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           labelText: 'Email Address',
-                          prefixIcon: const Icon(Icons.email_outlined, color: AppColors.textMuted),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.email_outlined,
+                              color: AppColors.textMuted),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
                         ),
                         validator: (v) {
-                          if (v == null || v.isEmpty) return 'Please enter an email';
-                          if (!v.contains('@')) return 'Enter a valid email address';
+                          if (v == null || v.isEmpty)
+                            return 'Please enter an email';
+                          if (!v.contains('@'))
+                            return 'Enter a valid email address';
                           return null;
                         },
                       ),
@@ -150,17 +165,24 @@ class _RegisterPageState extends State<RegisterPage> {
                         obscureText: _obscurePassword,
                         decoration: InputDecoration(
                           labelText: 'Password',
-                          prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
+                          prefixIcon: const Icon(Icons.lock_outline,
+                              color: AppColors.textMuted),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                              _obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                               color: AppColors.textMuted,
                             ),
-                            onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                            onPressed: () => setState(
+                                () => _obscurePassword = !_obscurePassword),
                           ),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
                         ),
-                        validator: (v) => (v == null || v.length < 6) ? 'Must be at least 6 characters' : null,
+                        validator: (v) => (v == null || v.length < 6)
+                            ? 'Must be at least 6 characters'
+                            : null,
                       ),
                       const SizedBox(height: 16),
 
@@ -170,11 +192,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         obscureText: _obscurePassword,
                         decoration: InputDecoration(
                           labelText: 'Confirm Password',
-                          prefixIcon: const Icon(Icons.lock_clock_outlined, color: AppColors.textMuted),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          prefixIcon: const Icon(Icons.lock_clock_outlined,
+                              color: AppColors.textMuted),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
                         ),
                         validator: (v) {
-                          if (v != _passwordController.text) return 'Passwords do not match';
+                          if (v != _passwordController.text)
+                            return 'Passwords do not match';
                           return null;
                         },
                       ),
@@ -183,13 +208,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       // Terms Checkbox
                       CheckboxListTile(
                         value: _agreeToTerms,
-                        onChanged: (v) => setState(() => _agreeToTerms = v ?? true),
+                        onChanged: (v) =>
+                            setState(() => _agreeToTerms = v ?? true),
                         activeColor: AppColors.primary,
                         contentPadding: EdgeInsets.zero,
                         controlAffinity: ListTileControlAffinity.leading,
                         title: const Text(
                           'I agree to the Terms of Service & Privacy Policy',
-                          style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                          style: TextStyle(
+                              color: AppColors.textSecondary, fontSize: 12),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -202,7 +229,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary,
                             foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
                             elevation: 0,
                           ),
                           child: _isLoading
@@ -216,7 +244,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 )
                               : const Text(
                                   'Create Account',
-                                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16),
                                 ),
                         ),
                       ),

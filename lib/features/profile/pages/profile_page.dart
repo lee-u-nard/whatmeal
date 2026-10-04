@@ -13,8 +13,9 @@ import '../../auth/data/auth_repository.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  void _openEditProfileSheet(BuildContext context, String currentName, String currentEmail) async {
-    final updated = await showModalBottomSheet<bool>(
+  void _openEditProfileSheet(
+      BuildContext context, String currentName, String currentEmail) async {
+    await showModalBottomSheet<bool>(
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColors.cardSurface,
@@ -26,15 +27,7 @@ class ProfilePage extends StatelessWidget {
         initialEmail: currentEmail,
       ),
     );
-
-    if (updated == true && context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Profile updated successfully!'),
-          backgroundColor: AppColors.primary,
-        ),
-      );
-    }
+    // Success/error messages are now handled by the sheet itself
   }
 
   void _openAddMemberSheet(BuildContext context) async {
@@ -79,22 +72,28 @@ class ProfilePage extends StatelessWidget {
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text('Delete ${member.name}?'),
-        content: Text('Are you sure you want to remove ${member.name} from family profiles?'),
+        content: Text(
+            'Are you sure you want to remove ${member.name} from family profiles?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel', style: TextStyle(color: AppColors.textSecondary)),
+            child: const Text('Cancel',
+                style: TextStyle(color: AppColors.textSecondary)),
           ),
           ElevatedButton(
             onPressed: () {
               FamilyMemberRepository.instance.deleteMember(member.id);
               Navigator.pop(ctx);
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Removed ${member.name} from family profiles.')),
+                SnackBar(
+                    content:
+                        Text('Removed ${member.name} from family profiles.')),
               );
             },
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
-            child: const Text('Delete', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+            child: const Text('Delete',
+                style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.w700)),
           ),
         ],
       ),
@@ -130,7 +129,8 @@ class ProfilePage extends StatelessWidget {
                           const CircleAvatar(
                             radius: 28,
                             backgroundColor: AppColors.primaryLight,
-                            child: Icon(Icons.person, size: 32, color: AppColors.primary),
+                            child: Icon(Icons.person,
+                                size: 32, color: AppColors.primary),
                           ),
                           const SizedBox(width: 14),
                           Expanded(
@@ -148,29 +148,65 @@ class ProfilePage extends StatelessWidget {
                                 const SizedBox(height: 2),
                                 Text(
                                   userEmail,
-                                  style: const TextStyle(color: AppColors.textMuted, fontSize: 12),
+                                  style: const TextStyle(
+                                      color: AppColors.textMuted, fontSize: 12),
                                 ),
                               ],
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.edit_outlined, color: AppColors.primary),
+                            icon: const Icon(Icons.edit_outlined,
+                                color: AppColors.primary),
                             tooltip: 'Edit Profile',
-                            onPressed: () => _openEditProfileSheet(context, userName, userEmail),
+                            onPressed: () => _openEditProfileSheet(
+                                context, userName, userEmail),
                           ),
                           const SizedBox(width: 4),
                           OutlinedButton(
                             onPressed: () {
-                              AuthRepository.instance.logout();
-                              context.go('/login');
+                              showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  title: const Text('Log Out'),
+                                  content: const Text(
+                                      'Are you sure you want to log out?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(ctx),
+                                      child: const Text('Cancel',
+                                          style: TextStyle(
+                                              color: AppColors.textSecondary)),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        AuthRepository.instance.logout();
+                                        Navigator.pop(ctx);
+                                        context.go('/login');
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: AppColors.danger),
+                                      child: const Text('Log Out',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700)),
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
                             style: OutlinedButton.styleFrom(
                               foregroundColor: AppColors.danger,
                               side: const BorderSide(color: AppColors.danger),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 6),
                             ),
-                            child: const Text('Sign Out', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12)),
+                            child: const Text('Sign Out',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700, fontSize: 12)),
                           ),
                         ],
                       ),
@@ -192,7 +228,8 @@ class ProfilePage extends StatelessWidget {
                       return _buildSettingsMenuCard(
                         context,
                         title: 'Family Sharing',
-                        subtitle: space == null ? 'Not sharing space' : space.name,
+                        subtitle:
+                            space == null ? 'Not sharing space' : space.name,
                         icon: Icons.groups,
                         badgeText: space != null ? 'Active' : 'Create/Join',
                         color: AppColors.primaryLight,
@@ -212,7 +249,10 @@ class ProfilePage extends StatelessWidget {
                         title: 'AI Settings',
                         subtitle: aiConfig.providerType.displayName,
                         icon: Icons.auto_awesome,
-                        badgeText: aiConfig.status == ApiConnectionStatus.connected ? 'Connected' : 'Configure',
+                        badgeText:
+                            aiConfig.status == ApiConnectionStatus.connected
+                                ? 'Connected'
+                                : 'Configure',
                         color: AppColors.infoLight,
                         iconColor: AppColors.info,
                         onTap: () => context.push('/ai-settings'),
@@ -239,8 +279,12 @@ class ProfilePage extends StatelessWidget {
                 ),
                 TextButton.icon(
                   onPressed: () => _openAddMemberSheet(context),
-                  icon: const Icon(Icons.add, size: 16, color: AppColors.primary),
-                  label: const Text('Add', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700)),
+                  icon:
+                      const Icon(Icons.add, size: 16, color: AppColors.primary),
+                  label: const Text('Add',
+                      style: TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w700)),
                 ),
               ],
             ),
@@ -299,15 +343,21 @@ class ProfilePage extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
+                  decoration: BoxDecoration(
+                      color: color, borderRadius: BorderRadius.circular(10)),
                   child: Icon(icon, color: iconColor, size: 20),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(4)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                      color: color, borderRadius: BorderRadius.circular(4)),
                   child: Text(
                     badgeText,
-                    style: TextStyle(color: iconColor, fontSize: 12, fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        color: iconColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
               ],
@@ -315,7 +365,10 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               title,
-              style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w700, fontSize: 14),
+              style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14),
             ),
             const SizedBox(height: 2),
             Text(
@@ -386,10 +439,12 @@ class _FamilyMemberCard extends StatelessWidget {
                       children: [
                         Text(
                           '${member.age} yrs',
-                          style: const TextStyle(color: AppColors.textMuted, fontSize: 12),
+                          style: const TextStyle(
+                              color: AppColors.textMuted, fontSize: 12),
                         ),
                         PopupMenuButton<String>(
-                          icon: const Icon(Icons.more_vert, size: 18, color: AppColors.textMuted),
+                          icon: const Icon(Icons.more_vert,
+                              size: 18, color: AppColors.textMuted),
                           tooltip: 'Member actions',
                           onSelected: (val) {
                             if (val == 'edit') onEdit();
@@ -400,7 +455,8 @@ class _FamilyMemberCard extends StatelessWidget {
                               value: 'edit',
                               child: Row(
                                 children: [
-                                  Icon(Icons.edit_outlined, size: 16, color: AppColors.primary),
+                                  Icon(Icons.edit_outlined,
+                                      size: 16, color: AppColors.primary),
                                   SizedBox(width: 8),
                                   Text('Edit Profile'),
                                 ],
@@ -410,9 +466,12 @@ class _FamilyMemberCard extends StatelessWidget {
                               value: 'delete',
                               child: Row(
                                 children: [
-                                  Icon(Icons.delete_outline, size: 16, color: AppColors.danger),
+                                  Icon(Icons.delete_outline,
+                                      size: 16, color: AppColors.danger),
                                   SizedBox(width: 8),
-                                  Text('Remove', style: TextStyle(color: AppColors.danger)),
+                                  Text('Remove',
+                                      style:
+                                          TextStyle(color: AppColors.danger)),
                                 ],
                               ),
                             ),
@@ -428,9 +487,15 @@ class _FamilyMemberCard extends StatelessWidget {
                   runSpacing: 6,
                   children: [
                     for (final pref in member.preferences)
-                      _Pill(label: pref, background: AppColors.primaryLight, foreground: AppColors.primary),
+                      _Pill(
+                          label: pref,
+                          background: AppColors.primaryLight,
+                          foreground: AppColors.primary),
                     for (final r in member.restrictions)
-                      _Pill(label: r, background: AppColors.dangerLight, foreground: AppColors.danger),
+                      _Pill(
+                          label: r,
+                          background: AppColors.dangerLight,
+                          foreground: AppColors.danger),
                   ],
                 ),
               ],
@@ -443,7 +508,10 @@ class _FamilyMemberCard extends StatelessWidget {
 }
 
 class _Pill extends StatelessWidget {
-  const _Pill({required this.label, required this.background, required this.foreground});
+  const _Pill(
+      {required this.label,
+      required this.background,
+      required this.foreground});
   final String label;
   final Color background;
   final Color foreground;
@@ -452,10 +520,12 @@ class _Pill extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+          color: background, borderRadius: BorderRadius.circular(20)),
       child: Text(
         label,
-        style: TextStyle(color: foreground, fontSize: 12, fontWeight: FontWeight.w600),
+        style: TextStyle(
+            color: foreground, fontSize: 12, fontWeight: FontWeight.w600),
       ),
     );
   }
@@ -522,7 +592,8 @@ class _DashedBorderPainter extends CustomPainter {
       var distance = 0.0;
       while (distance < metric.length) {
         final next = distance + dashWidth;
-        canvas.drawPath(metric.extractPath(distance, next.clamp(0, metric.length)), paint);
+        canvas.drawPath(
+            metric.extractPath(distance, next.clamp(0, metric.length)), paint);
         distance = next + dashSpace;
       }
     }

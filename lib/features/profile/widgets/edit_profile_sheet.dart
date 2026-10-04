@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../auth/data/auth_repository.dart';
 
-/// Bottom sheet for editing the logged-in user's display name, email,
-/// and password (FR-01 — Account Management, UI-only).
+/// Bottom sheet for editing the logged-in user's display name and password.
+/// Email is read-only to avoid Firebase Auth/Firestore consistency issues.
 class EditProfileSheet extends StatefulWidget {
   const EditProfileSheet({
     super.key,
@@ -28,6 +29,7 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
   bool _obscureCurrent = true;
   bool _obscureNew = true;
   bool _obscureConfirm = true;
+  bool _isSaving = false;
 
   @override
   void initState() {
@@ -46,9 +48,51 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
     super.dispose();
   }
 
-  void _save() {
+  Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
-    Navigator.pop(context, true); // true = saved successfully
+
+    setState(() => _isSaving = true);
+
+    try {
+      final newName = _nameController.text.trim();
+      final currentPassword = _currentPasswordController.text.trim();
+      final newPassword = _newPasswordController.text.trim();
+
+      // Update display name if changed
+      if (newName != widget.initialName) {
+        await AuthRepository.instance.updateProfile(displayName: newName);
+      }
+
+      // Update password if provided
+      if (newPassword.isNotEmpty) {
+        if (currentPassword.isEmpty) {
+          throw Exception('Current password is required to change password');
+        }
+        await AuthRepository.instance.updatePassword(
+          currentPassword: currentPassword,
+          newPassword: newPassword,
+        );
+      }
+
+      if (!mounted) return;
+      Navigator.pop(context, true);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Profile updated successfully!'),
+          backgroundColor: AppColors.primary,
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to update profile: $e'),
+          backgroundColor: AppColors.danger,
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
   }
 
   @override
@@ -100,8 +144,10 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
                 textCapitalization: TextCapitalization.words,
                 decoration: InputDecoration(
                   labelText: 'Display Name',
-                  prefixIcon: const Icon(Icons.person_outline, color: AppColors.textMuted),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.person_outline,
+                      color: AppColors.textMuted),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
                 ),
                 validator: (v) =>
                     (v == null || v.trim().isEmpty) ? 'Name is required' : null,
@@ -110,16 +156,25 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
+                enabled: false,
                 decoration: InputDecoration(
                   labelText: 'Email Address',
-                  prefixIcon: const Icon(Icons.email_outlined, color: AppColors.textMuted),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.email_outlined,
+                      color: AppColors.textMuted),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                  filled: true,
+                  fillColor: AppColors.background,
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: AppColors.border),
+                  ),
                 ),
-                validator: (v) {
-                  if (v == null || v.trim().isEmpty) return 'Email is required';
-                  if (!v.contains('@')) return 'Enter a valid email address';
-                  return null;
-                },
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                'Email cannot be changed through the app. Contact support if needed.',
+                style: TextStyle(color: AppColors.textMuted, fontSize: 11),
               ),
               const SizedBox(height: 24),
 
@@ -136,15 +191,21 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
                 obscureText: _obscureCurrent,
                 decoration: InputDecoration(
                   labelText: 'Current Password',
-                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.lock_outline,
+                      color: AppColors.textMuted),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _obscureCurrent ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                      _obscureCurrent
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
                       color: AppColors.textMuted,
                     ),
-                    tooltip: _obscureCurrent ? 'Show password' : 'Hide password',
-                    onPressed: () => setState(() => _obscureCurrent = !_obscureCurrent),
+                    tooltip:
+                        _obscureCurrent ? 'Show password' : 'Hide password',
+                    onPressed: () =>
+                        setState(() => _obscureCurrent = !_obscureCurrent),
                   ),
                 ),
               ),
@@ -154,11 +215,15 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
                 obscureText: _obscureNew,
                 decoration: InputDecoration(
                   labelText: 'New Password',
-                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.lock_outline,
+                      color: AppColors.textMuted),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _obscureNew ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                      _obscureNew
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
                       color: AppColors.textMuted,
                     ),
                     tooltip: _obscureNew ? 'Show password' : 'Hide password',
@@ -178,15 +243,21 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
                 obscureText: _obscureConfirm,
                 decoration: InputDecoration(
                   labelText: 'Confirm New Password',
-                  prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.lock_outline,
+                      color: AppColors.textMuted),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _obscureConfirm ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                      _obscureConfirm
+                          ? Icons.visibility_off_outlined
+                          : Icons.visibility_outlined,
                       color: AppColors.textMuted,
                     ),
-                    tooltip: _obscureConfirm ? 'Show password' : 'Hide password',
-                    onPressed: () => setState(() => _obscureConfirm = !_obscureConfirm),
+                    tooltip:
+                        _obscureConfirm ? 'Show password' : 'Hide password',
+                    onPressed: () =>
+                        setState(() => _obscureConfirm = !_obscureConfirm),
                   ),
                 ),
                 validator: (v) {
@@ -203,7 +274,7 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: _save,
+                  onPressed: _isSaving ? null : _save,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
@@ -211,10 +282,19 @@ class _EditProfileSheetState extends State<EditProfileSheet> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    'Save Changes',
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
-                  ),
+                  child: _isSaving
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        )
+                      : const Text(
+                          'Save Changes',
+                          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                        ),
                 ),
               ),
             ],

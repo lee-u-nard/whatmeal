@@ -43,7 +43,8 @@ class _PantryPageState extends State<PantryPage> {
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(Icons.close, color: AppColors.textMuted),
+                        icon:
+                            const Icon(Icons.close, color: AppColors.textMuted),
                         tooltip: 'Close',
                         onPressed: () => Navigator.pop(ctx),
                       ),
@@ -54,7 +55,8 @@ class _PantryPageState extends State<PantryPage> {
                     activeThumbColor: AppColors.danger,
                     title: const Text(
                       'Show Only Expiring Soon (<= 5 days)',
-                      style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
                     ),
                     value: _onlyExpiringSoon,
                     onChanged: (val) {
@@ -71,9 +73,11 @@ class _PantryPageState extends State<PantryPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
                       ),
-                      child: const Text('Apply Filter', style: TextStyle(fontWeight: FontWeight.w700)),
+                      child: const Text('Apply Filter',
+                          style: TextStyle(fontWeight: FontWeight.w700)),
                     ),
                   ),
                 ],
@@ -118,11 +122,13 @@ class _PantryPageState extends State<PantryPage> {
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text('Delete ${item.name}?'),
-        content: Text('Are you sure you want to remove ${item.name} from your pantry inventory?'),
+        content: Text(
+            'Are you sure you want to remove ${item.name} from your pantry inventory?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel', style: TextStyle(color: AppColors.textSecondary)),
+            child: const Text('Cancel',
+                style: TextStyle(color: AppColors.textSecondary)),
           ),
           ElevatedButton(
             onPressed: () {
@@ -133,7 +139,9 @@ class _PantryPageState extends State<PantryPage> {
               );
             },
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
-            child: const Text('Delete', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+            child: const Text('Delete',
+                style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.w700)),
           ),
         ],
       ),
@@ -145,16 +153,50 @@ class _PantryPageState extends State<PantryPage> {
     return ValueListenableBuilder<Map<String, List<PantryItem>>>(
       valueListenable: PantryRepository.instance,
       builder: (context, categories, _) {
-        final filteredEntries = categories.entries.map((entry) {
-          final items = _filterItems(entry.value);
-          return MapEntry(entry.key, items);
-        }).where((e) => e.value.isNotEmpty).toList();
+        final filteredEntries = categories.entries
+            .map((entry) {
+              final items = _filterItems(entry.value);
+              return MapEntry(entry.key, items);
+            })
+            .where((e) => e.value.isNotEmpty)
+            .toList();
 
-        final totalItems = categories.values.expand((element) => element).length;
+        final totalItems =
+            categories.values.expand((element) => element).length;
 
         return ListView(
           padding: const EdgeInsets.all(20),
           children: [
+            if (PantryRepository.instance.isShared)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryLight,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: AppColors.primary.withValues(alpha: 0.3)),
+                  ),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.groups, size: 18, color: AppColors.primary),
+                      SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Shared family pantry — changes sync for all household members.',
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             // Search and Filter Bar Row
             Row(
               children: [
@@ -166,11 +208,14 @@ class _PantryPageState extends State<PantryPage> {
                       border: Border.all(color: AppColors.border),
                     ),
                     child: TextField(
-                      onChanged: (q) => setState(() => _searchQuery = q.toLowerCase()),
+                      onChanged: (q) =>
+                          setState(() => _searchQuery = q.toLowerCase()),
                       decoration: const InputDecoration(
                         hintText: 'Search ingredients',
-                        hintStyle: TextStyle(color: AppColors.textMuted, fontSize: 13),
-                        prefixIcon: Icon(Icons.search, color: AppColors.textMuted, size: 20),
+                        hintStyle:
+                            TextStyle(color: AppColors.textMuted, fontSize: 13),
+                        prefixIcon: Icon(Icons.search,
+                            color: AppColors.textMuted, size: 20),
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(vertical: 12),
                       ),
@@ -182,11 +227,14 @@ class _PantryPageState extends State<PantryPage> {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: _onlyExpiringSoon ? AppColors.danger : AppColors.primary,
+                    color: _onlyExpiringSoon
+                        ? AppColors.danger
+                        : AppColors.primary,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: IconButton(
-                    icon: const Icon(Icons.filter_list, color: Colors.white, size: 20),
+                    icon: const Icon(Icons.filter_list,
+                        color: Colors.white, size: 20),
                     tooltip: 'Filter options',
                     onPressed: _showFilterSheet,
                   ),
@@ -224,12 +272,27 @@ class _PantryPageState extends State<PantryPage> {
                           category: entry.key,
                           onEdit: () => _editItem(entry.value[i], entry.key),
                           onDelete: () => _confirmDeleteItem(entry.value[i]),
-                          onStatusChanged: (newStatus) {
-                            PantryRepository.instance.setItemStatus(entry.value[i].id!, newStatus);
+                          onStatusChanged: (newStatus) async {
+                            try {
+                              await PantryRepository.instance
+                                  .setItemStatus(entry.value[i].id!, newStatus);
+                            } catch (e) {
+                              if (!context.mounted) return;
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('$e'),
+                                  backgroundColor: AppColors.danger,
+                                ),
+                              );
+                            }
                           },
                         ),
                         if (i != entry.value.length - 1)
-                          const Divider(height: 1, indent: 16, endIndent: 16, color: AppColors.border),
+                          const Divider(
+                              height: 1,
+                              indent: 16,
+                              endIndent: 16,
+                              color: AppColors.border),
                       ],
                     ],
                   ),
@@ -252,10 +315,14 @@ class _PantryPageState extends State<PantryPage> {
           const SizedBox(height: 12),
           Text(
             'No ingredients matching "$_searchQuery"',
-            style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w700, fontSize: 15),
+            style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w700,
+                fontSize: 15),
           ),
           const SizedBox(height: 4),
-          const Text('Try adjusting your search query or filters.', style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
+          const Text('Try adjusting your search query or filters.',
+              style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
         ],
       ),
     );
@@ -266,11 +333,15 @@ class _PantryPageState extends State<PantryPage> {
       padding: const EdgeInsets.symmetric(vertical: 40),
       child: Column(
         children: [
-          const Icon(Icons.kitchen_outlined, size: 64, color: AppColors.textMuted),
+          const Icon(Icons.kitchen_outlined,
+              size: 64, color: AppColors.textMuted),
           const SizedBox(height: 16),
           const Text(
             'Your Pantry is Empty',
-            style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w800, fontSize: 18),
+            style: TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w800,
+                fontSize: 18),
           ),
           const SizedBox(height: 8),
           const Text(
@@ -292,7 +363,9 @@ class _PantryPageState extends State<PantryPage> {
             },
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
             icon: const Icon(Icons.add, color: Colors.white),
-            label: const Text('Add Ingredient', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+            label: const Text('Add Ingredient',
+                style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.w700)),
           ),
         ],
       ),
@@ -301,7 +374,8 @@ class _PantryPageState extends State<PantryPage> {
 
   List<PantryItem> _filterItems(List<PantryItem> items) {
     return items.where((i) {
-      final matchesSearch = _searchQuery.isEmpty || i.name.toLowerCase().contains(_searchQuery);
+      final matchesSearch =
+          _searchQuery.isEmpty || i.name.toLowerCase().contains(_searchQuery);
       final matchesExpiry = !_onlyExpiringSoon || i.isExpiringSoon;
       return matchesSearch && matchesExpiry;
     }).toList();
@@ -325,8 +399,10 @@ class _PantryItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final expiryColor = item.isExpiringSoon ? AppColors.danger : AppColors.primary;
-    final expiryBg = item.isExpiringSoon ? AppColors.dangerLight : AppColors.primaryLight;
+    final expiryColor =
+        item.isExpiringSoon ? AppColors.danger : AppColors.primary;
+    final expiryBg =
+        item.isExpiringSoon ? AppColors.dangerLight : AppColors.primaryLight;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -348,10 +424,14 @@ class _PantryItemTile extends StatelessWidget {
                 Text(
                   item.name,
                   style: TextStyle(
-                    color: item.status == PantryStatus.used ? AppColors.textMuted : AppColors.textPrimary,
+                    color: item.status == PantryStatus.used
+                        ? AppColors.textMuted
+                        : AppColors.textPrimary,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
-                    decoration: item.status == PantryStatus.used ? TextDecoration.lineThrough : null,
+                    decoration: item.status == PantryStatus.used
+                        ? TextDecoration.lineThrough
+                        : null,
                   ),
                 ),
                 Text(
@@ -370,7 +450,8 @@ class _PantryItemTile extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(6),
               onTap: () {
-                final nextIndex = (item.status.index + 1) % PantryStatus.values.length;
+                final nextIndex =
+                    (item.status.index + 1) % PantryStatus.values.length;
                 onStatusChanged(PantryStatus.values[nextIndex]);
               },
               child: _buildStatusChip(item.status),
@@ -388,7 +469,9 @@ class _PantryItemTile extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
-                  item.isExpiringSoon ? Icons.warning_amber_rounded : Icons.check_circle_outline,
+                  item.isExpiringSoon
+                      ? Icons.warning_amber_rounded
+                      : Icons.check_circle_outline,
                   size: 12,
                   color: expiryColor,
                 ),
@@ -406,7 +489,8 @@ class _PantryItemTile extends StatelessWidget {
           ),
           // Actions menu (FR-03: Edit + Delete)
           PopupMenuButton<String>(
-            icon: const Icon(Icons.more_vert, size: 18, color: AppColors.textMuted),
+            icon: const Icon(Icons.more_vert,
+                size: 18, color: AppColors.textMuted),
             tooltip: 'Item options',
             onSelected: (val) {
               if (val == 'edit') onEdit();
@@ -417,7 +501,8 @@ class _PantryItemTile extends StatelessWidget {
                 value: 'edit',
                 child: Row(
                   children: [
-                    Icon(Icons.edit_outlined, size: 16, color: AppColors.primary),
+                    Icon(Icons.edit_outlined,
+                        size: 16, color: AppColors.primary),
                     SizedBox(width: 8),
                     Text('Edit Item'),
                   ],
@@ -427,9 +512,11 @@ class _PantryItemTile extends StatelessWidget {
                 value: 'delete',
                 child: Row(
                   children: [
-                    Icon(Icons.delete_outline, size: 16, color: AppColors.danger),
+                    Icon(Icons.delete_outline,
+                        size: 16, color: AppColors.danger),
                     SizedBox(width: 8),
-                    Text('Delete Item', style: TextStyle(color: AppColors.danger)),
+                    Text('Delete Item',
+                        style: TextStyle(color: AppColors.danger)),
                   ],
                 ),
               ),
@@ -450,6 +537,11 @@ class _PantryItemTile extends StatelessWidget {
         bg = AppColors.primaryLight;
         fg = AppColors.primary;
         label = 'Available';
+        break;
+      case PantryStatus.runningLow:
+        bg = AppColors.warningLight;
+        fg = AppColors.warning;
+        label = 'Running Low';
         break;
       case PantryStatus.used:
         bg = const Color(0xFFEEEEEE);

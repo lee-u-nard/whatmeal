@@ -29,6 +29,38 @@ class _GroceryPageState extends State<GroceryPage> {
     super.dispose();
   }
 
+  void _confirmDeleteItem(String itemName, String itemId) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text('Delete $itemName?'),
+        content: Text(
+            'Are you sure you want to remove $itemName from your grocery list?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel',
+                style: TextStyle(color: AppColors.textSecondary)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              GroceryRepository.instance.deleteItem(itemId);
+              Navigator.pop(ctx);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Removed $itemName from grocery list')),
+              );
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
+            child: const Text('Delete',
+                style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.w700)),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showAddGroceryModal() {
     _nameController.clear();
     _qtyController.clear();
@@ -75,7 +107,8 @@ class _GroceryPageState extends State<GroceryPage> {
                 decoration: InputDecoration(
                   labelText: 'Item Name',
                   hintText: 'e.g. Organic Milk',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
                 ),
               ),
               const SizedBox(height: 12),
@@ -84,7 +117,8 @@ class _GroceryPageState extends State<GroceryPage> {
                 decoration: InputDecoration(
                   labelText: 'Quantity',
                   hintText: 'e.g. 2 Gallons, 500g',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
                 ),
               ),
               const SizedBox(height: 12),
@@ -92,7 +126,8 @@ class _GroceryPageState extends State<GroceryPage> {
                 initialValue: _selectedSection,
                 decoration: InputDecoration(
                   labelText: 'Aisle / Category',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12)),
                 ),
                 items: _sectionsList
                     .map((s) => DropdownMenuItem(value: s, child: Text(s)))
@@ -140,9 +175,11 @@ class _GroceryPageState extends State<GroceryPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: const Text('Add to List', style: TextStyle(fontWeight: FontWeight.w700)),
+                  child: const Text('Add to List',
+                      style: TextStyle(fontWeight: FontWeight.w700)),
                 ),
               ),
             ],
@@ -207,9 +244,42 @@ class _GroceryPageState extends State<GroceryPage> {
               : ListView(
                   padding: const EdgeInsets.all(20),
                   children: [
+                    if (GroceryRepository.instance.isShared)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryLight,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color:
+                                    AppColors.primary.withValues(alpha: 0.3)),
+                          ),
+                          child: const Row(
+                            children: [
+                              Icon(Icons.groups,
+                                  size: 18, color: AppColors.primary),
+                              SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  'Shared family grocery list — updates sync for household members.',
+                                  style: TextStyle(
+                                    color: AppColors.primary,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     // Status legend banner
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 14, vertical: 10),
                       decoration: BoxDecoration(
                         color: AppColors.cardSurface,
                         borderRadius: BorderRadius.circular(12),
@@ -221,17 +291,17 @@ class _GroceryPageState extends State<GroceryPage> {
                           _LegendDot(
                             color: AppColors.danger,
                             label: 'Needed',
-                            subtitle: 'tap to cycle',
+                            subtitle: 'unchecked',
                           ),
                           _LegendDot(
                             color: AppColors.info,
                             label: 'Available',
-                            subtitle: 'in stock',
+                            subtitle: 'tap chip',
                           ),
                           _LegendDot(
-                            color: AppColors.textMuted,
-                            label: 'Used',
-                            subtitle: 'done',
+                            color: AppColors.primary,
+                            label: 'Purchased',
+                            subtitle: 'checkbox ✓',
                           ),
                         ],
                       ),
@@ -254,7 +324,8 @@ class _GroceryPageState extends State<GroceryPage> {
                           children: [
                             TextButton.icon(
                               onPressed: () => _shareGroceryList(sections),
-                              icon: const Icon(Icons.share, size: 14, color: AppColors.primary),
+                              icon: const Icon(Icons.share,
+                                  size: 14, color: AppColors.primary),
                               label: const Text(
                                 'Share List',
                                 style: TextStyle(
@@ -265,7 +336,8 @@ class _GroceryPageState extends State<GroceryPage> {
                               ),
                             ),
                             TextButton.icon(
-                              onPressed: () => GroceryRepository.instance.clearUsed(),
+                              onPressed: () =>
+                                  GroceryRepository.instance.clearUsed(),
                               icon: const Icon(Icons.cleaning_services_outlined,
                                   size: 14, color: AppColors.danger),
                               label: const Text(
@@ -286,7 +358,8 @@ class _GroceryPageState extends State<GroceryPage> {
                     for (final entry in sections.entries) ...[
                       if (entry.value.isNotEmpty) ...[
                         Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 4),
+                          padding:
+                              const EdgeInsets.only(top: 8, bottom: 8, left: 4),
                           child: Text(
                             entry.key,
                             style: const TextStyle(
@@ -308,10 +381,14 @@ class _GroceryPageState extends State<GroceryPage> {
                               for (var i = 0; i < entry.value.length; i++) ...[
                                 _GroceryItemTile(
                                   item: entry.value[i],
-                                  onCycleStatus: () => GroceryRepository.instance
+                                  onTogglePurchased: (purchased) =>
+                                      GroceryRepository.instance.setPurchased(
+                                          entry.value[i].id!, purchased),
+                                  onCycleStatus: () => GroceryRepository
+                                      .instance
                                       .cycleStatus(entry.value[i].id!),
-                                  onDelete: () => GroceryRepository.instance
-                                      .deleteItem(entry.value[i].id!),
+                                  onDelete: () => _confirmDeleteItem(
+                                      entry.value[i].name, entry.value[i].id!),
                                 ),
                                 if (i != entry.value.length - 1)
                                   const Divider(
@@ -387,31 +464,34 @@ class _GroceryPageState extends State<GroceryPage> {
 class _GroceryItemTile extends StatelessWidget {
   const _GroceryItemTile({
     required this.item,
+    required this.onTogglePurchased,
     required this.onCycleStatus,
     required this.onDelete,
   });
 
   final GroceryItem item;
+  final ValueChanged<bool> onTogglePurchased;
   final VoidCallback onCycleStatus;
   final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
-    final isUsed = item.status == GroceryStatus.used;
+    final isPurchased = item.isPurchased;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Row(
         children: [
-          // Status chip — tap to cycle
-          Tooltip(
-            message: 'Tap to change status',
-            child: GestureDetector(
-              onTap: onCycleStatus,
-              child: _StatusChip(status: item.status),
+          // Purchase checkbox
+          Checkbox(
+            value: isPurchased,
+            activeColor: AppColors.primary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
             ),
+            onChanged: (v) => onTogglePurchased(v ?? false),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 4),
 
           // Name + quantity
           Expanded(
@@ -421,10 +501,12 @@ class _GroceryItemTile extends StatelessWidget {
                 Text(
                   item.name,
                   style: TextStyle(
-                    color: isUsed ? AppColors.textMuted : AppColors.textPrimary,
+                    color: isPurchased
+                        ? AppColors.textMuted
+                        : AppColors.textPrimary,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
-                    decoration: isUsed ? TextDecoration.lineThrough : null,
+                    decoration: isPurchased ? TextDecoration.lineThrough : null,
                   ),
                 ),
                 Row(
@@ -434,7 +516,7 @@ class _GroceryItemTile extends StatelessWidget {
                       style: const TextStyle(
                           color: AppColors.textMuted, fontSize: 12),
                     ),
-                    if (item.tag != null && isUsed) ...[
+                    if (item.tag != null && isPurchased) ...[
                       const SizedBox(width: 6),
                       Text(
                         '(${item.tag})',
@@ -450,6 +532,16 @@ class _GroceryItemTile extends StatelessWidget {
               ],
             ),
           ),
+
+          // Optional status chip (long-press / tap to cycle needed/available)
+          Tooltip(
+            message: 'Tap to change availability status',
+            child: GestureDetector(
+              onTap: onCycleStatus,
+              child: _StatusChip(status: item.status),
+            ),
+          ),
+          const SizedBox(width: 4),
 
           // Delete
           IconButton(
@@ -548,8 +640,8 @@ class _LegendDot extends StatelessWidget {
                 style: TextStyle(
                     color: color, fontSize: 12, fontWeight: FontWeight.w700)),
             Text(subtitle,
-                style: const TextStyle(
-                    color: AppColors.textMuted, fontSize: 10)),
+                style:
+                    const TextStyle(color: AppColors.textMuted, fontSize: 10)),
           ],
         ),
       ],

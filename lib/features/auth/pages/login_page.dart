@@ -36,8 +36,13 @@ class _LoginPageState extends State<LoginPage> {
     } catch (e) {
       if (!mounted) return;
       final msg = _friendlyAuthError(e.toString());
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(msg), backgroundColor: AppColors.danger),
+        SnackBar(
+          content: Text(msg),
+          backgroundColor: AppColors.danger,
+          duration: const Duration(seconds: 5),
+        ),
       );
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -45,15 +50,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   String _friendlyAuthError(String raw) {
-    if (raw.contains('user-not-found') || raw.contains('wrong-password') ||
-        raw.contains('invalid-credential')) {
-      return 'Email or password is incorrect. Please try again.';
-    } else if (raw.contains('too-many-requests')) {
-      return 'Too many attempts. Please wait a moment and try again.';
-    } else if (raw.contains('network-request-failed')) {
-      return 'No internet connection. Please check your network.';
-    }
-    return 'Sign-in failed. Please try again.';
+    var text = raw;
+    if (text.startsWith('Exception: ')) text = text.substring(11);
+    text = text.trim();
+    // AuthRepository already maps Firebase codes into clear messages.
+    if (text.isNotEmpty) return text;
+    return 'Sign-in failed. Please check your username/email and password.';
   }
 
   @override
@@ -86,7 +88,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ],
                       ),
-                      child: const Icon(Icons.eco, color: Colors.white, size: 36),
+                      child:
+                          const Icon(Icons.eco, color: Colors.white, size: 36),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -146,23 +149,29 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
                             labelText: 'Email Address',
                             hintText: 'name@example.com',
-                            prefixIcon: const Icon(Icons.email_outlined, color: AppColors.textMuted),
+                            prefixIcon: const Icon(Icons.email_outlined,
+                                color: AppColors.textMuted),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: AppColors.border),
+                              borderSide:
+                                  const BorderSide(color: AppColors.border),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: AppColors.border),
+                              borderSide:
+                                  const BorderSide(color: AppColors.border),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: AppColors.primary, width: 2),
+                              borderSide: const BorderSide(
+                                  color: AppColors.primary, width: 2),
                             ),
                           ),
                           validator: (v) {
-                            if (v == null || v.isEmpty) return 'Please enter your email';
-                            if (!v.contains('@')) return 'Enter a valid email address';
+                            if (v == null || v.isEmpty)
+                              return 'Please enter your email';
+                            if (!v.contains('@'))
+                              return 'Enter a valid email address';
                             return null;
                           },
                         ),
@@ -174,28 +183,37 @@ class _LoginPageState extends State<LoginPage> {
                           obscureText: _obscurePassword,
                           decoration: InputDecoration(
                             labelText: 'Password',
-                            prefixIcon: const Icon(Icons.lock_outline, color: AppColors.textMuted),
+                            prefixIcon: const Icon(Icons.lock_outline,
+                                color: AppColors.textMuted),
                             suffixIcon: IconButton(
                               icon: Icon(
-                                _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                                _obscurePassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
                                 color: AppColors.textMuted,
                               ),
-                              onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                              onPressed: () => setState(
+                                  () => _obscurePassword = !_obscurePassword),
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: AppColors.border),
+                              borderSide:
+                                  const BorderSide(color: AppColors.border),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: AppColors.border),
+                              borderSide:
+                                  const BorderSide(color: AppColors.border),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: AppColors.primary, width: 2),
+                              borderSide: const BorderSide(
+                                  color: AppColors.primary, width: 2),
                             ),
                           ),
-                          validator: (v) => (v == null || v.length < 6) ? 'Password must be at least 6 characters' : null,
+                          validator: (v) => (v == null || v.length < 6)
+                              ? 'Password must be at least 6 characters'
+                              : null,
                         ),
                         const SizedBox(height: 8),
 
@@ -226,7 +244,8 @@ class _LoginPageState extends State<LoginPage> {
                               backgroundColor: AppColors.primary,
                               foregroundColor: Colors.white,
                               elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
                             ),
                             child: _isLoading
                                 ? const SizedBox(
@@ -239,7 +258,9 @@ class _LoginPageState extends State<LoginPage> {
                                   )
                                 : const Text(
                                     'Sign In',
-                                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16),
                                   ),
                           ),
                         ),
@@ -255,7 +276,8 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Text(
                         "Don't have an account?",
-                        style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
+                        style: TextStyle(
+                            color: AppColors.textSecondary, fontSize: 14),
                       ),
                       TextButton(
                         onPressed: () => context.push('/register'),

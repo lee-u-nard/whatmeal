@@ -49,7 +49,9 @@ class _AddFamilyMemberSheetState extends State<AddFamilyMemberSheet> {
     if (!_formKey.currentState!.validate()) return;
     final member = FamilyMember(
       name: _nameController.text.trim(),
-      relation: _relationController.text.trim().isEmpty ? null : _relationController.text.trim(),
+      relation: _relationController.text.trim().isEmpty
+          ? null
+          : _relationController.text.trim(),
       age: int.tryParse(_ageController.text) ?? 0,
       preferences: List.from(_preferences),
       restrictions: List.from(_restrictions),
@@ -61,7 +63,9 @@ class _AddFamilyMemberSheetState extends State<AddFamilyMemberSheet> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: 16, right: 16, top: 16,
+        left: 16,
+        right: 16,
+        top: 16,
         bottom: MediaQuery.of(context).viewInsets.bottom + 16,
       ),
       child: Form(
@@ -71,7 +75,8 @@ class _AddFamilyMemberSheetState extends State<AddFamilyMemberSheet> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Add Family Member', style: Theme.of(context).textTheme.titleLarge),
+              Text('Add Family Member',
+                  style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _nameController,
@@ -81,7 +86,8 @@ class _AddFamilyMemberSheetState extends State<AddFamilyMemberSheet> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _relationController,
-                decoration: const InputDecoration(labelText: 'Relation (e.g., Dad, Mom, optional)'),
+                decoration: const InputDecoration(
+                    labelText: 'Relation (e.g., Dad, Mom, optional)'),
               ),
               const SizedBox(height: 12),
               TextFormField(
@@ -93,19 +99,24 @@ class _AddFamilyMemberSheetState extends State<AddFamilyMemberSheet> {
               const SizedBox(height: 16),
 
               // Preferences
-              Text('Preferences', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
+              Text('Preferences',
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600)),
               const SizedBox(height: 8),
               Row(
                 children: [
                   Expanded(
                     child: TextField(
                       controller: _prefController,
-                      decoration: const InputDecoration(hintText: 'e.g., Low-carb'),
+                      decoration:
+                          const InputDecoration(hintText: 'e.g., Low-carb'),
                       onSubmitted: (_) => _addPreference(),
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.add_circle, color: AppColors.primary),
+                    icon:
+                        const Icon(Icons.add_circle, color: AppColors.primary),
                     onPressed: _addPreference,
                   ),
                 ],
@@ -113,24 +124,32 @@ class _AddFamilyMemberSheetState extends State<AddFamilyMemberSheet> {
               if (_preferences.isNotEmpty)
                 Wrap(
                   spacing: 6,
-                  children: _preferences.map((p) => Chip(
-                    label: Text(p, style: const TextStyle(fontSize: 12)),
-                    backgroundColor: AppColors.primaryLight,
-                    deleteIcon: const Icon(Icons.close, size: 16),
-                    onDeleted: () => setState(() => _preferences.remove(p)),
-                  )).toList(),
+                  children: _preferences
+                      .map((p) => Chip(
+                            label:
+                                Text(p, style: const TextStyle(fontSize: 12)),
+                            backgroundColor: AppColors.primaryLight,
+                            deleteIcon: const Icon(Icons.close, size: 16),
+                            onDeleted: () =>
+                                setState(() => _preferences.remove(p)),
+                          ))
+                      .toList(),
                 ),
               const SizedBox(height: 12),
 
               // Restrictions
-              Text('Restrictions', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
+              Text('Restrictions',
+                  style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600)),
               const SizedBox(height: 8),
               Row(
                 children: [
                   Expanded(
                     child: TextField(
                       controller: _restrictController,
-                      decoration: const InputDecoration(hintText: 'e.g., Nut allergy'),
+                      decoration:
+                          const InputDecoration(hintText: 'e.g., Nut allergy'),
                       onSubmitted: (_) => _addRestriction(),
                     ),
                   ),
@@ -143,18 +162,23 @@ class _AddFamilyMemberSheetState extends State<AddFamilyMemberSheet> {
               if (_restrictions.isNotEmpty)
                 Wrap(
                   spacing: 6,
-                  children: _restrictions.map((r) => Chip(
-                    label: Text(r, style: const TextStyle(fontSize: 12)),
-                    backgroundColor: AppColors.dangerLight,
-                    deleteIcon: const Icon(Icons.close, size: 16),
-                    onDeleted: () => setState(() => _restrictions.remove(r)),
-                  )).toList(),
+                  children: _restrictions
+                      .map((r) => Chip(
+                            label:
+                                Text(r, style: const TextStyle(fontSize: 12)),
+                            backgroundColor: AppColors.dangerLight,
+                            deleteIcon: const Icon(Icons.close, size: 16),
+                            onDeleted: () =>
+                                setState(() => _restrictions.remove(r)),
+                          ))
+                      .toList(),
                 ),
               const SizedBox(height: 20),
 
               SizedBox(
                 width: double.infinity,
-                child: FilledButton(onPressed: _submit, child: const Text('Add Member')),
+                child: FilledButton(
+                    onPressed: _submit, child: const Text('Add Member')),
               ),
             ],
           ),

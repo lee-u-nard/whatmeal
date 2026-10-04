@@ -1,11 +1,14 @@
 /// Supported AI providers for meal-plan generation.
 ///
 /// Each value carries its own display metadata and hard-coded API endpoint
-/// so the client never asks users to enter a URL.
+/// (except [custom], which uses a user-supplied endpoint) so the client
+/// never needs to ask users to type a URL for built-in providers.
 enum LlmProvider {
   gemini,
   openai,
-  anthropic;
+  anthropic,
+  groq,
+  custom;
 
   // ---------------------------------------------------------------------------
   // Display metadata (used by the UI provider-picker cards)
@@ -20,6 +23,10 @@ enum LlmProvider {
         return 'ChatGPT (OpenAI)';
       case LlmProvider.anthropic:
         return 'Claude (Anthropic)';
+      case LlmProvider.groq:
+        return 'Groq';
+      case LlmProvider.custom:
+        return 'Custom API';
     }
   }
 
@@ -32,42 +39,62 @@ enum LlmProvider {
         return 'Bring your own account — billed by OpenAI';
       case LlmProvider.anthropic:
         return 'Bring your own account — billed by Anthropic';
+      case LlmProvider.groq:
+        return 'Ultra-fast inference — billed by Groq';
+      case LlmProvider.custom:
+        return 'Any OpenAI-compatible endpoint you host';
     }
   }
 
   /// URL where users can create an API key for this provider.
   ///
-  /// `null` for [LlmProvider.gemini] since it uses the built-in backend.
+  /// `null` for [LlmProvider.gemini] since it uses the built-in backend,
+  /// and for [LlmProvider.custom] which has a user-supplied endpoint.
   String? get keyCreationUrl {
     switch (this) {
       case LlmProvider.gemini:
-        return null;
+        return 'https://aistudio.google.com/app/apikey';
       case LlmProvider.openai:
         return 'https://platform.openai.com/api-keys';
       case LlmProvider.anthropic:
         return 'https://console.anthropic.com/settings/keys';
+      case LlmProvider.groq:
+        return 'https://console.groq.com/keys';
+      case LlmProvider.custom:
+        return null;
     }
   }
 
-  /// The API endpoint used internally when routing a request to this provider.
+  /// The built-in API endpoint used when routing a request to this provider.
   ///
-  /// `null` for [LlmProvider.gemini] since it uses Firebase AI Logic.
+  /// - `null` for [LlmProvider.custom] (endpoint is stored in [LlmConfig.customEndpoint]).
   String? get endpoint {
     switch (this) {
       case LlmProvider.gemini:
-        return null;
+        return 'https://generativelanguage.googleapis.com/v1beta/models';
       case LlmProvider.openai:
         return 'https://api.openai.com/v1/chat/completions';
       case LlmProvider.anthropic:
         return 'https://api.anthropic.com/v1/messages';
+      case LlmProvider.groq:
+        return 'https://api.groq.com/openai/v1/chat/completions';
+      case LlmProvider.custom:
+        return null;
     }
   }
 
   /// Serialisation key stored in Firestore.
-  String get id => name; // 'gemini' | 'openai' | 'anthropic'
+  String get id =>
+      name; // 'gemini' | 'openai' | 'anthropic' | 'groq' | 'custom'
 
   /// Whether this provider requires the user to supply their own API key.
   bool get requiresCustomKey => this != LlmProvider.gemini;
+
+  /// Whether this provider uses an OpenAI-compatible chat completions endpoint.
+  bool get isOpenAiCompatible =>
+      this == LlmProvider.openai ||
+      this == LlmProvider.groq ||
+      this == LlmProvider.custom;
 
   /// Parse from the Firestore `provider` string. Returns [LlmProvider.gemini]
   /// as a safe default if the value is unrecognised.
@@ -91,6 +118,9 @@ class LlmConfig {
   LlmConfig({
     required this.provider,
     this.apiKey,
+    this.model,
+    this.customEndpoint,
+    this.isOpenAiCompatible,
     this.updatedAt,
   });
 
@@ -99,16 +129,34 @@ class LlmConfig {
   /// The user's custom API key. `null` means "use built-in Gemini default".
   final String? apiKey;
 
+  /// Override model name for this provider.
+  /// Defaults to the provider's [LlmProvider.defaultModel] when `null`.
+  final String? model;
+
+  /// Custom API endpoint, only used when [provider] is [LlmProvider.custom].
+  final String? customEndpoint;
+
+  /// Whether custom endpoint follows OpenAI-compatible protocol.
+  final bool? isOpenAiCompatible;
+
   final DateTime? updatedAt;
 
   /// Whether this config represents a user-supplied custom key.
-  bool get isCustom =>
-      provider.requiresCustomKey && apiKey != null && apiKey!.isNotEmpty;
+  bool get isCustom => apiKey != null && apiKey!.trim().isNotEmpty;
+
+  /// Resolved API endpoint:
+  /// - built-in endpoint for known providers
+  /// - [customEndpoint] for [LlmProvider.custom]
+  String? get resolvedEndpoint =>
+      provider == LlmProvider.custom ? customEndpoint : provider.endpoint;
 
   factory LlmConfig.fromMap(Map<String, dynamic> data) {
     return LlmConfig(
       provider: LlmProvider.fromId(data['provider'] as String?),
       apiKey: data['apiKey'] as String?,
+      model: data['model'] as String?,
+      customEndpoint: data['customEndpoint'] as String?,
+      isOpenAiCompatible: data['isOpenAiCompatible'] as bool? ?? true,
       updatedAt: data['updatedAt'] != null
           ? DateTime.tryParse(data['updatedAt'] as String)
           : null,
@@ -116,11 +164,17 @@ class LlmConfig {
   }
 
   Map<String, dynamic> toMap() => {
-    'provider': provider.id,
-    'apiKey': apiKey,
-    'updatedAt': DateTime.now().toIso8601String(),
-  };
+        'provider': provider.id,
+        'apiKey': apiKey,
+        'model': model,
+        'customEndpoint': customEndpoint,
+        'isOpenAiCompatible': isOpenAiCompatible ?? true,
+        'updatedAt': DateTime.now().toIso8601String(),
+      };
 
   /// Default config: built-in Gemini, no custom key.
-  static LlmConfig get defaultConfig => LlmConfig(provider: LlmProvider.gemini);
+  static LlmConfig get defaultConfig => LlmConfig(
+        provider: LlmProvider.gemini,
+        model: 'gemini-3.8-flash',
+      );
 }

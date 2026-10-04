@@ -1,36 +1,38 @@
-import 'dart:convert';
-import 'package:firebase_ai/firebase_ai.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:http/http.dart' as http;
 import '../models/llm_config.dart';
 import '../../features/meal/models/meal.dart';
-import 'package:flutter/foundation.dart';
+import 'ai/ai_models.dart';
+import 'ai/ai_provider_factory.dart';
+import 'ai/ai_logger.dart';
+import 'secure_key_store.dart';
 
 // ---------------------------------------------------------------------------
 // Result wrapper
 // ---------------------------------------------------------------------------
 
 /// Wraps the result of an AI generation call with metadata about how the
-/// request was fulfilled (custom key vs. built-in Gemini fallback, quota).
+/// request was fulfilled (provider used, remaining Gemini quota).
 class AiResult<T> {
   AiResult({
     required this.data,
     this.usedFallback = false,
     this.quotaRemaining,
+    this.providerUsed,
   });
 
   /// The generated data.
   final T data;
 
-  /// `true` when the user had a custom key configured but it failed, and the
-  /// app silently fell back to the built-in Gemini key.
+  /// Whether fallback was used.
   final bool usedFallback;
 
   /// How many built-in Gemini generations remain today.
-  /// `null` when the request was fulfilled by a custom key.
+  /// `null` when fulfilled by a custom provider key.
   final int? quotaRemaining;
+
+  /// Which provider fulfilled the request.
+  final LlmProvider? providerUsed;
 }
 
 // ---------------------------------------------------------------------------
@@ -45,9 +47,14 @@ const int kDailyQuotaLimit = 10;
 // ---------------------------------------------------------------------------
 
 class KeyValidationResult {
-  const KeyValidationResult({required this.isValid, this.errorMessage});
+  const KeyValidationResult({
+    required this.isValid,
+    this.errorMessage,
+    this.status = TestConnectionStatus.connected,
+  });
 
   final bool isValid;
+  final TestConnectionStatus status;
 
   /// Plain-language error message shown to the user on failure. `null` on success.
   final String? errorMessage;
@@ -59,10 +66,14 @@ class KeyValidationResult {
 
 /// AI-powered meal planning service.
 ///
-/// Routing priority (per call):
-///  1. User's custom key (OpenAI / Anthropic) — if configured and healthy
-///  2. Built-in Firebase AI Logic (Gemini) — always available as fallback,
-///     subject to [kDailyQuotaLimit] per user per day
+/// Routing behavior:
+///  - If user configured a custom key (OpenAI / Anthropic / Groq / Custom), the active
+///    adapter for that provider is invoked. If it fails, a clean [AiProviderException]
+///    is thrown with clear diagnostics to allow Retry or Settings editing.
+///  - If user has no custom key (or provider is Gemini), uses WhatMeal's built-in
+///    Firebase AI Logic Gemini engine, subject to [kDailyQuotaLimit] per day.
+///  - When the user removes a custom key, the active provider automatically reverts
+///    to default built-in Gemini.
 class LlmService {
   LlmService();
 
@@ -72,8 +83,10 @@ class LlmService {
   // Provider config — Firestore persistence
   // ---------------------------------------------------------------------------
 
-  /// Read the user's stored [LlmConfig] from Firestore.
-  /// Returns [LlmConfig.defaultConfig] if nothing is stored.
+  /// Read the user's stored [LlmConfig] from Firestore secrets.
+  ///
+  /// Keys live only at `users/{uid}/secrets/llmConfig` (owner-only rules)
+  /// and are never logged. A short-lived memory cache speeds up repeats.
   Future<LlmConfig> getLlmConfig(String uid) async {
     final doc = await _firestore
         .collection('users')
@@ -82,11 +95,28 @@ class LlmService {
         .doc('llmConfig')
         .get();
     if (!doc.exists) return LlmConfig.defaultConfig;
-    return LlmConfig.fromMap(doc.data()!);
+
+    final config = LlmConfig.fromMap(doc.data()!);
+    // Prefer memory cache if present (same session after save).
+    final cached = await SecureKeyStore.instance.readApiKey(uid);
+    final apiKey =
+        (cached != null && cached.isNotEmpty) ? cached : config.apiKey;
+    if (apiKey != null && apiKey.isNotEmpty) {
+      await SecureKeyStore.instance.saveApiKey(uid, apiKey);
+    }
+    return LlmConfig(
+      provider: config.provider,
+      apiKey: apiKey,
+      model: config.model,
+      customEndpoint: config.customEndpoint,
+      isOpenAiCompatible: config.isOpenAiCompatible,
+      updatedAt: config.updatedAt,
+    );
   }
 
-  /// Save [config] to Firestore.
+  /// Save [config] to the owner-only Firestore secrets doc + memory cache.
   Future<void> saveLlmConfig(String uid, LlmConfig config) async {
+    await SecureKeyStore.instance.saveApiKey(uid, config.apiKey);
     await _firestore
         .collection('users')
         .doc(uid)
@@ -95,8 +125,9 @@ class LlmService {
         .set(config.toMap());
   }
 
-  /// Remove the custom key and revert to built-in Gemini.
+  /// Remove the custom key and revert completely to built-in default Gemini.
   Future<void> clearLlmConfig(String uid) async {
+    await SecureKeyStore.instance.clearApiKey(uid);
     await saveLlmConfig(uid, LlmConfig.defaultConfig);
   }
 
@@ -108,8 +139,9 @@ class LlmService {
         .collection('secrets')
         .doc('llmConfig')
         .snapshots()
-        .map((snap) =>
-            snap.exists ? LlmConfig.fromMap(snap.data()!) : LlmConfig.defaultConfig);
+        .map((snap) => snap.exists
+            ? LlmConfig.fromMap(snap.data()!)
+            : LlmConfig.defaultConfig);
   }
 
   // ---------------------------------------------------------------------------
@@ -132,11 +164,7 @@ class LlmService {
     return (date: today, count: (snap.data()!['count'] as int? ?? 0));
   }
 
-  /// Checks whether the user is under their daily quota and atomically
-  /// increments the counter if so.
-  ///
-  /// Returns `true` if the request is allowed (counter was incremented),
-  /// `false` if the quota is exceeded.
+  /// Checks whether the user is under their daily quota and atomically increments the counter.
   Future<bool> _tryIncrementQuota(String uid) async {
     final quota = await _getOrCreateQuota(uid);
     if (quota.count >= kDailyQuotaLimit) return false;
@@ -155,105 +183,57 @@ class LlmService {
   }
 
   // ---------------------------------------------------------------------------
-  // Key validation (for "Test connection" step in settings)
+  // Key validation (Real Test Connection)
   // ---------------------------------------------------------------------------
 
-  /// Validates [apiKey] against [provider]'s API with the cheapest possible
-  /// request. Returns a [KeyValidationResult] with a plain-language message.
+  /// Performs a real test connection to verify that the provider API key,
+  /// model, and endpoint are valid and operational.
   Future<KeyValidationResult> validateKey(
-      LlmProvider provider, String apiKey) async {
-    try {
-      switch (provider) {
-        case LlmProvider.gemini:
-          // Built-in — never needs validation.
-          return const KeyValidationResult(isValid: true);
-        case LlmProvider.openai:
-          return await _validateOpenAiKey(apiKey);
-        case LlmProvider.anthropic:
-          return await _validateAnthropicKey(apiKey);
-      }
-    } catch (e) {
-      return KeyValidationResult(
-        isValid: false,
-        errorMessage:
-            "Couldn't reach the server. Check your internet connection and try again.",
-      );
-    }
+    LlmProvider provider,
+    String apiKey, {
+    String? customEndpoint,
+    String? model,
+    bool? isOpenAiCompatible,
+  }) async {
+    final config = LlmConfig(
+      provider: provider,
+      apiKey: apiKey.trim(),
+      model: model,
+      customEndpoint: customEndpoint,
+      isOpenAiCompatible: isOpenAiCompatible,
+    );
+
+    final adapter = AiProviderFactory.create(config);
+    final testResult = await adapter.testConnection();
+
+    return KeyValidationResult(
+      isValid: testResult.isValid,
+      status: testResult.status,
+      errorMessage: testResult.errorMessage,
+    );
   }
 
-  Future<KeyValidationResult> _validateOpenAiKey(String apiKey) async {
-    final response = await http
-        .get(
-          Uri.parse('https://api.openai.com/v1/models'),
-          headers: {'Authorization': 'Bearer $apiKey'},
-        )
-        .timeout(const Duration(seconds: 10));
-
-    if (response.statusCode == 200) {
-      return const KeyValidationResult(isValid: true);
-    } else if (response.statusCode == 401) {
-      return const KeyValidationResult(
-        isValid: false,
-        errorMessage:
-            "That key doesn't look right. Double-check it was copied in full and try again.",
-      );
-    } else {
-      return KeyValidationResult(
-        isValid: false,
-        errorMessage:
-            "OpenAI returned an unexpected error (${response.statusCode}). Try again in a moment.",
-      );
-    }
-  }
-
-  Future<KeyValidationResult> _validateAnthropicKey(String apiKey) async {
-    // Cheapest Anthropic call: 1-token completion.
-    final body = jsonEncode({
-      'model': 'claude-haiku-20240307',
-      'max_tokens': 1,
-      'messages': [
-        {'role': 'user', 'content': 'Hi'},
-      ],
-    });
-
-    final response = await http
-        .post(
-          Uri.parse('https://api.anthropic.com/v1/messages'),
-          headers: {
-            'x-api-key': apiKey,
-            'anthropic-version': '2023-06-01',
-            'content-type': 'application/json',
-          },
-          body: body,
-        )
-        .timeout(const Duration(seconds: 10));
-
-    if (response.statusCode == 200) {
-      return const KeyValidationResult(isValid: true);
-    } else if (response.statusCode == 401) {
-      return const KeyValidationResult(
-        isValid: false,
-        errorMessage:
-            "That key doesn't look right. Double-check it was copied in full and try again.",
-      );
-    } else {
-      return KeyValidationResult(
-        isValid: false,
-        errorMessage:
-            "Anthropic returned an unexpected error (${response.statusCode}). Try again in a moment.",
-      );
-    }
+  /// Fetches available chat-compatible models from the provider.
+  Future<List<String>> fetchAvailableModels({
+    required LlmProvider provider,
+    required String apiKey,
+    String? customEndpoint,
+    bool? isOpenAiCompatible,
+  }) async {
+    final config = LlmConfig(
+      provider: provider,
+      apiKey: apiKey.trim(),
+      customEndpoint: customEndpoint,
+      isOpenAiCompatible: isOpenAiCompatible,
+    );
+    final adapter = AiProviderFactory.create(config);
+    return adapter.fetchAvailableModels();
   }
 
   // ---------------------------------------------------------------------------
   // Meal Plan Generation
   // ---------------------------------------------------------------------------
 
-  /// Generate a multi-day meal plan.
-  ///
-  /// Automatically routes to the user's custom key (if configured and valid)
-  /// or the built-in Gemini backend. Returns an [AiResult] carrying the meals
-  /// plus metadata about how the request was fulfilled.
   Future<AiResult<List<Meal>>> generateMealPlan({
     required String uid,
     required List<String> familyMemberNames,
@@ -262,19 +242,81 @@ class LlmService {
     required List<String> cuisinePreferences,
     required bool prioritizePantry,
     List<String> pantryItems = const [],
+    List<String> groceryItems = const [],
     List<String> restrictions = const [],
+    List<String> preferences = const [],
+    Map<String, int> memberAges = const {},
+    String? budget,
   }) async {
-    final prompt = _buildMealPlanPrompt(
+    final request = AiMealPlanRequest(
       familyMemberNames: familyMemberNames,
+      memberAges: memberAges,
       numberOfDays: numberOfDays,
       mealTypes: mealTypes,
       cuisinePreferences: cuisinePreferences,
       prioritizePantry: prioritizePantry,
       pantryItems: pantryItems,
+      groceryItems: groceryItems,
       restrictions: restrictions,
+      preferences: preferences,
+      budget: budget,
     );
 
-    return _generate(uid: uid, prompt: prompt, parse: _parseMealsFromText);
+    final config = await getLlmConfig(uid);
+    final isGeminiDefault =
+        config.provider == LlmProvider.gemini && !config.isCustom;
+
+    int? remainingQuota;
+    if (isGeminiDefault) {
+      final quota = await _getOrCreateQuota(uid);
+      if (quota.count >= kDailyQuotaLimit) throw QuotaExceededException();
+      remainingQuota =
+          (kDailyQuotaLimit - quota.count).clamp(0, kDailyQuotaLimit);
+    }
+
+    final adapter = AiProviderFactory.create(config);
+    try {
+      final response = await adapter.generateMealPlan(request);
+      if (isGeminiDefault) {
+        await _tryIncrementQuota(uid);
+        remainingQuota = await getRemainingQuota(uid);
+      }
+      return AiResult(
+        data: response.toCoreMeals(),
+        usedFallback: false,
+        quotaRemaining: remainingQuota,
+        providerUsed: config.provider,
+      );
+    } catch (e) {
+      AiLogger.logError(
+        provider: config.provider.displayName,
+        model: adapter.model,
+        error: e,
+      );
+      if (isGeminiDefault) {
+        throw _mapFirebaseAiError(e);
+      }
+
+      // Automatic Gemini fallback when a custom BYO provider fails.
+      try {
+        final quota = await _getOrCreateQuota(uid);
+        if (quota.count >= kDailyQuotaLimit) {
+          throw AiProviderException(provider: config.provider, cause: e);
+        }
+        final geminiAdapter = AiProviderFactory.create(LlmConfig.defaultConfig);
+        final fallbackResponse = await geminiAdapter.generateMealPlan(request);
+        await _tryIncrementQuota(uid);
+        remainingQuota = await getRemainingQuota(uid);
+        return AiResult(
+          data: fallbackResponse.toCoreMeals(),
+          usedFallback: true,
+          quotaRemaining: remainingQuota,
+          providerUsed: LlmProvider.gemini,
+        );
+      } catch (_) {
+        throw AiProviderException(provider: config.provider, cause: e);
+      }
+    }
   }
 
   /// Generate a single replacement meal.
@@ -283,250 +325,70 @@ class LlmService {
     required Meal currentMeal,
     List<String> cuisinePreferences = const [],
     List<String> restrictions = const [],
+    List<String> pantryItems = const [],
   }) async {
-    final prompt = '''
-You are a meal planning assistant. Replace the following meal with a different one.
-Current meal: ${currentMeal.title} (${currentMeal.cuisine})
-Cuisine preferences: ${cuisinePreferences.join(', ')}
-Dietary restrictions: ${restrictions.join(', ')}
-
-Return ONLY a JSON object with these fields:
-{"title":"...","subtitle":"...","cuisine":"...","mealType":"${currentMeal.mealType}","prepTime":"...","cookTime":"...","servings":"...","calories":"...","protein":"...","carbs":"...","fats":"...","badgeText":"AI Suggested","ingredients":[{"name":"...","amount":"..."}]}
-''';
-
-    final result = await _generate(
-      uid: uid,
-      prompt: prompt,
-      parse: (text) {
-        final meals = _parseMealsFromText(text);
-        if (meals.isEmpty) throw Exception('Failed to generate a replacement meal.');
-        return meals.first;
-      },
+    final request = AiMealReplacementRequest(
+      currentMeal: currentMeal,
+      cuisinePreferences: cuisinePreferences,
+      restrictions: restrictions,
+      pantryItems: pantryItems,
     );
 
-    return result;
-  }
-
-  // ---------------------------------------------------------------------------
-  // Core generation routing
-  // ---------------------------------------------------------------------------
-
-  Future<AiResult<T>> _generate<T>({
-    required String uid,
-    required String prompt,
-    required T Function(String) parse,
-  }) async {
     final config = await getLlmConfig(uid);
+    final isGeminiDefault =
+        config.provider == LlmProvider.gemini && !config.isCustom;
 
-    // 1 — Try the user's custom key first.
-    if (config.isCustom) {
+    int? remainingQuota;
+    if (isGeminiDefault) {
+      final quota = await _getOrCreateQuota(uid);
+      if (quota.count >= kDailyQuotaLimit) throw QuotaExceededException();
+      remainingQuota =
+          (kDailyQuotaLimit - quota.count).clamp(0, kDailyQuotaLimit);
+    }
+
+    final adapter = AiProviderFactory.create(config);
+    try {
+      final response = await adapter.generateMealReplacement(request);
+      if (isGeminiDefault) {
+        await _tryIncrementQuota(uid);
+        remainingQuota = await getRemainingQuota(uid);
+      }
+      return AiResult(
+        data: response.toCoreMeal(fallbackIndex: currentMeal.dayIndex),
+        usedFallback: false,
+        quotaRemaining: remainingQuota,
+        providerUsed: config.provider,
+      );
+    } catch (e) {
+      AiLogger.logError(
+        provider: config.provider.displayName,
+        model: adapter.model,
+        error: e,
+      );
+      if (isGeminiDefault) {
+        throw _mapFirebaseAiError(e);
+      }
+
       try {
-        final text = await _generateWithCustomKey(config, prompt);
-        return AiResult(data: parse(text));
-      } catch (_) {
-        // Custom key failed — fall through to built-in Gemini.
-      }
-    }
-
-    // 2 — Built-in Gemini (with quota guard).
-    final allowed = await _tryIncrementQuota(uid);
-    if (!allowed) {
-      throw QuotaExceededException();
-    }
-
-    final remaining = await getRemainingQuota(uid);
-    final text = await _generateWithFirebaseAI(prompt);
-    return AiResult(
-      data: parse(text),
-      usedFallback: config.isCustom, // fell back from a broken custom key
-      quotaRemaining: remaining,
-    );
-  }
-
-  // ---------------------------------------------------------------------------
-  // Firebase AI Logic (built-in Gemini)
-  // ---------------------------------------------------------------------------
-
-  GenerativeModel _getGeminiModel() {
-    final googleAI = FirebaseAI.googleAI(
-      auth: FirebaseAuth.instance,
-      appCheck: FirebaseAppCheck.instance,
-    );
-    return googleAI.generativeModel(model: 'gemini-2.5-flash');
-  }
-
-  Future<String> _generateWithFirebaseAI(String prompt) async {
-    try {
-      final model = _getGeminiModel();
-      final response = await model.generateContent([Content.text(prompt)]);
-      final text = response.text;
-      if (text == null || text.isEmpty) {
-        throw Exception('Firebase AI returned an empty response.');
-      }
-      return text;
-    } catch (e) {
-      debugPrint('[SAVE-DEBUG] Firebase AI / App Check error: $e');
-      throw _mapFirebaseAiError(e);
-    }
-  }
-
-  // ---------------------------------------------------------------------------
-  // Custom key providers (OpenAI / Anthropic)
-  // ---------------------------------------------------------------------------
-
-  Future<String> _generateWithCustomKey(LlmConfig config, String prompt) async {
-    switch (config.provider) {
-      case LlmProvider.gemini:
-        return _generateWithFirebaseAI(prompt);
-      case LlmProvider.openai:
-        return _generateWithOpenAI(config.apiKey!, prompt);
-      case LlmProvider.anthropic:
-        return _generateWithAnthropic(config.apiKey!, prompt);
-    }
-  }
-
-  Future<String> _generateWithOpenAI(String apiKey, String prompt) async {
-    final body = jsonEncode({
-      'model': 'gpt-4o-mini',
-      'messages': [
-        {'role': 'user', 'content': prompt},
-      ],
-    });
-
-    final response = await http
-        .post(
-          Uri.parse('https://api.openai.com/v1/chat/completions'),
-          headers: {
-            'Authorization': 'Bearer $apiKey',
-            'Content-Type': 'application/json',
-          },
-          body: body,
-        )
-        .timeout(const Duration(seconds: 60));
-
-    if (response.statusCode != 200) {
-      throw Exception('OpenAI error ${response.statusCode}');
-    }
-
-    final decoded = jsonDecode(response.body) as Map<String, dynamic>;
-    final text =
-        (decoded['choices'] as List).first['message']['content'] as String?;
-    if (text == null || text.isEmpty) throw Exception('OpenAI returned empty response.');
-    return text;
-  }
-
-  Future<String> _generateWithAnthropic(String apiKey, String prompt) async {
-    final body = jsonEncode({
-      'model': 'claude-haiku-20240307',
-      'max_tokens': 4096,
-      'messages': [
-        {'role': 'user', 'content': prompt},
-      ],
-    });
-
-    final response = await http
-        .post(
-          Uri.parse('https://api.anthropic.com/v1/messages'),
-          headers: {
-            'x-api-key': apiKey,
-            'anthropic-version': '2023-06-01',
-            'content-type': 'application/json',
-          },
-          body: body,
-        )
-        .timeout(const Duration(seconds: 60));
-
-    if (response.statusCode != 200) {
-      throw Exception('Anthropic error ${response.statusCode}');
-    }
-
-    final decoded = jsonDecode(response.body) as Map<String, dynamic>;
-    final text =
-        (decoded['content'] as List).first['text'] as String?;
-    if (text == null || text.isEmpty) throw Exception('Anthropic returned empty response.');
-    return text;
-  }
-
-  // ---------------------------------------------------------------------------
-  // Prompt builder
-  // ---------------------------------------------------------------------------
-
-  String _buildMealPlanPrompt({
-    required List<String> familyMemberNames,
-    required int numberOfDays,
-    required List<String> mealTypes,
-    required List<String> cuisinePreferences,
-    required bool prioritizePantry,
-    required List<String> pantryItems,
-    required List<String> restrictions,
-  }) {
-    return '''
-You are a family meal planning assistant. Generate a $numberOfDays-day meal plan.
-
-Family members: ${familyMemberNames.join(', ')}
-Meal types per day: ${mealTypes.join(', ')}
-Cuisine preferences: ${cuisinePreferences.join(', ')}
-Dietary restrictions: ${restrictions.join(', ')}
-${prioritizePantry && pantryItems.isNotEmpty ? 'Prioritize using these pantry items: ${pantryItems.join(', ')}' : ''}
-
-Return ONLY a JSON array of meal objects. Each meal must have:
-{"title":"...","subtitle":"...","cuisine":"...","mealType":"Breakfast|Lunch|Dinner","dayIndex":0,"prepTime":"10m","cookTime":"15m","servings":"4 Persons","calories":"450 kcal","protein":"42g","carbs":"8g","fats":"18g","badgeText":"...","ingredients":[{"name":"...","amount":"..."}]}
-
-Generate ${numberOfDays * mealTypes.length} meals total (${mealTypes.length} per day, for $numberOfDays days).
-Set dayIndex from 0 to ${numberOfDays - 1}.
-''';
-  }
-
-  // ---------------------------------------------------------------------------
-  // Response parser
-  // ---------------------------------------------------------------------------
-
-  List<Meal> _parseMealsFromText(String text) {
-    try {
-      // Strip markdown code fences if present
-      String content = text
-          .replaceAll(RegExp(r'```json\s*'), '')
-          .replaceAll(RegExp(r'```\s*'), '')
-          .trim();
-
-      final arrayStart = content.indexOf('[');
-      final arrayEnd = content.lastIndexOf(']');
-      if (arrayStart >= 0 && arrayEnd > arrayStart) {
-        content = content.substring(arrayStart, arrayEnd + 1);
-      }
-
-      final dynamic decoded = jsonDecode(content);
-      final List<dynamic> mealsJson = decoded is List ? decoded : [decoded];
-
-      return mealsJson.map((json) {
-        final map = Map<String, dynamic>.from(json as Map);
-        return Meal(
-          id: '',
-          title: map['title'] ?? '',
-          subtitle: map['subtitle'],
-          cuisine: map['cuisine'],
-          mealType: map['mealType'],
-          dayIndex: map['dayIndex'] ?? 0,
-          prepTime: map['prepTime'],
-          cookTime: map['cookTime'],
-          servings: map['servings'],
-          calories: map['calories'],
-          protein: map['protein'],
-          carbs: map['carbs'],
-          fats: map['fats'],
-          badgeText: map['badgeText'],
-          ingredients: (map['ingredients'] as List<dynamic>?)
-                  ?.map(
-                    (e) => Ingredient.fromMap(
-                      Map<String, dynamic>.from(e as Map),
-                    ),
-                  )
-                  .toList() ??
-              [],
+        final quota = await _getOrCreateQuota(uid);
+        if (quota.count >= kDailyQuotaLimit) {
+          throw AiProviderException(provider: config.provider, cause: e);
+        }
+        final geminiAdapter = AiProviderFactory.create(LlmConfig.defaultConfig);
+        final fallbackResponse =
+            await geminiAdapter.generateMealReplacement(request);
+        await _tryIncrementQuota(uid);
+        remainingQuota = await getRemainingQuota(uid);
+        return AiResult(
+          data:
+              fallbackResponse.toCoreMeal(fallbackIndex: currentMeal.dayIndex),
+          usedFallback: true,
+          quotaRemaining: remainingQuota,
+          providerUsed: LlmProvider.gemini,
         );
-      }).toList();
-    } catch (e) {
-      throw Exception('Failed to parse AI response: $e');
+      } catch (_) {
+        throw AiProviderException(provider: config.provider, cause: e);
+      }
     }
   }
 
@@ -554,7 +416,25 @@ class QuotaExceededException implements Exception {
 class FirebaseAiNotEnabledException implements Exception {
   @override
   String toString() =>
-      "Couldn't generate a plan right now, please try again";
+      "Firebase AI / App Check is not enabled for this project. "
+      "You can enter a free Google Gemini key in AI Settings to generate plans directly!";
+}
+
+/// Thrown when a user-configured AI provider fails.
+class AiProviderException implements Exception {
+  const AiProviderException({required this.provider, required this.cause});
+
+  final LlmProvider provider;
+  final Object cause;
+
+  @override
+  String toString() {
+    var msg = cause.toString();
+    if (msg.startsWith('Exception: ')) {
+      msg = msg.substring('Exception: '.length);
+    }
+    return msg.isNotEmpty ? msg : '${provider.displayName} request failed.';
+  }
 }
 
 Exception _mapFirebaseAiError(Object e) {
@@ -571,5 +451,3 @@ Exception _mapFirebaseAiError(Object e) {
   if (e is Exception) return e;
   return Exception(e.toString());
 }
-
-

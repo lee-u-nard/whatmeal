@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../../features/pantry/data/pantry_repository.dart';
-import '../../features/pantry/models/pantry_item.dart';
 import '../../features/pantry/widgets/add_pantry_item_sheet.dart';
 import '../../features/family/data/family_repository.dart';
+import '../services/notification_service.dart';
 
 class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
 
-  static const _titles = ['WhatMeal', 'Meal Plan', 'Pantry Inventory', 'Grocery List', 'Family Profiles'];
+  static const _titles = [
+    'WhatMeal',
+    'Meal Plan',
+    'Pantry Inventory',
+    'Grocery List',
+    'Family Profiles',
+  ];
 
   static Widget? _fabForTab(int index, BuildContext context) {
     if (index != 2) return null;
@@ -66,9 +71,44 @@ class AppShell extends StatelessWidget {
           ],
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none, color: AppColors.textPrimary),
-            onPressed: () => context.push('/notifications'),
+          // Notification bell with unread badge
+          ValueListenableBuilder<List<dynamic>>(
+            valueListenable: NotificationService.instance,
+            builder: (context, notifications, _) {
+              final unread = NotificationService.instance.unreadCount;
+              return Stack(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.notifications_none,
+                        color: AppColors.textPrimary),
+                    onPressed: () => context.push('/notifications'),
+                  ),
+                  if (unread > 0)
+                    Positioned(
+                      right: 8,
+                      top: 8,
+                      child: Container(
+                        padding: const EdgeInsets.all(3),
+                        decoration: const BoxDecoration(
+                          color: AppColors.danger,
+                          shape: BoxShape.circle,
+                        ),
+                        constraints:
+                            const BoxConstraints(minWidth: 16, minHeight: 16),
+                        child: Text(
+                          unread > 9 ? '9+' : '$unread',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 9,
+                            fontWeight: FontWeight.w800,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.only(right: 16),
@@ -83,7 +123,8 @@ class AppShell extends StatelessWidget {
                       const CircleAvatar(
                         radius: 16,
                         backgroundColor: AppColors.primaryLight,
-                        child: Icon(Icons.person, size: 20, color: AppColors.primary),
+                        child: Icon(Icons.person,
+                            size: 20, color: AppColors.primary),
                       ),
                       if (hasSpace)
                         Positioned(
@@ -95,7 +136,8 @@ class AppShell extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: AppColors.primary,
                               shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.white, width: 1.5),
                             ),
                           ),
                         ),
@@ -119,11 +161,31 @@ class AppShell extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(context, index: 0, icon: Icons.home_outlined, activeIcon: Icons.home, label: 'Home'),
-            _buildNavItem(context, index: 1, icon: Icons.calendar_today_outlined, activeIcon: Icons.calendar_today, label: 'Meal Plan'),
-            _buildNavItem(context, index: 2, icon: Icons.inventory_2_outlined, activeIcon: Icons.inventory_2, label: 'Pantry'),
-            _buildNavItem(context, index: 3, icon: Icons.shopping_cart_outlined, activeIcon: Icons.shopping_cart, label: 'Grocery'),
-            _buildNavItem(context, index: 4, icon: Icons.person_outline, activeIcon: Icons.person, label: 'Profile'),
+            _buildNavItem(context,
+                index: 0,
+                icon: Icons.home_outlined,
+                activeIcon: Icons.home,
+                label: 'Home'),
+            _buildNavItem(context,
+                index: 1,
+                icon: Icons.calendar_today_outlined,
+                activeIcon: Icons.calendar_today,
+                label: 'Meal Plan'),
+            _buildNavItem(context,
+                index: 2,
+                icon: Icons.inventory_2_outlined,
+                activeIcon: Icons.inventory_2,
+                label: 'Pantry'),
+            _buildNavItem(context,
+                index: 3,
+                icon: Icons.shopping_cart_outlined,
+                activeIcon: Icons.shopping_cart,
+                label: 'Grocery'),
+            _buildNavItem(context,
+                index: 4,
+                icon: Icons.person_outline,
+                activeIcon: Icons.person,
+                label: 'Profile'),
           ],
         ),
       ),

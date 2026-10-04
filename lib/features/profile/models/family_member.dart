@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FamilyMember {
   const FamilyMember({
-    this.id = '', // Provide default to satisfy `required` String while being optional when adding
+    this.id =
+        '', // Provide default to satisfy `required` String while being optional when adding
     required this.name,
     this.relation,
     required this.age,
@@ -19,7 +20,8 @@ class FamilyMember {
   final List<String> restrictions;
   final DateTime? createdAt;
 
-  String get displayName => (relation != null && relation!.isNotEmpty) ? '$relation ($name)' : name;
+  String get displayName =>
+      (relation != null && relation!.isNotEmpty) ? '$relation ($name)' : name;
 
   FamilyMember copyWith({
     String? id,
@@ -41,7 +43,8 @@ class FamilyMember {
     );
   }
 
-  factory FamilyMember.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+  factory FamilyMember.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data()!;
     return FamilyMember(
       id: doc.id,
@@ -55,11 +58,13 @@ class FamilyMember {
   }
 
   Map<String, dynamic> toFirestore() => {
-    'name': name,
-    'relation': relation,
-    'age': age,
-    'preferences': preferences,
-    'restrictions': restrictions,
-    'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
-  };
+        'name': name,
+        'relation': relation,
+        'age': age,
+        'preferences': preferences,
+        'restrictions': restrictions,
+        'createdAt': createdAt != null
+            ? Timestamp.fromDate(createdAt!)
+            : FieldValue.serverTimestamp(),
+      };
 }

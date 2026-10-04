@@ -18,9 +18,15 @@ service cloud.firestore {
 
     // User doc + personal subcollections actually used by the app:
     // pantryItems, groceryLists/{id}/items, familyMembers, mealPlans/{id}/meals,
-    // secrets/llmConfig, usageCounters/daily
+    // secrets/llmConfig (owner-only API keys — never expose publicly),
+    // usageCounters/daily, notifications, fcmTokens
     match /users/{uid} {
       allow read, write: if isOwner(uid);
+
+      // FCM tokens subcollection for multi-device support
+      match /fcmTokens/{tokenId} {
+        allow read, write: if isOwner(uid);
+      }
 
       match /{document=**} {
         allow read, write: if isOwner(uid);
@@ -28,6 +34,8 @@ service cloud.firestore {
     }
 
     // Family membership field is `memberUids` (see FamilyService).
+    // Shared household data under families/{id}:
+    //   mealPlans/{id}/meals, pantryItems, groceryLists/{id}/items, members/{uid}
     // Nested {document=**} does not match the family document itself, so the
     // parent match stays explicit. Create/get/list stay open to signed-in users
     // so invite-code lookup and family create/join still work. Join writes the

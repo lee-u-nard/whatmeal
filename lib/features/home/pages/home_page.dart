@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/utils/week_calendar.dart';
+import '../../../core/services/unsplash_service.dart';
 import '../../family/data/family_repository.dart';
 import '../../pantry/data/pantry_repository.dart';
 import '../../meal_plan/data/saved_plans_repository.dart';
+import '../../meal_plan/models/saved_meal_plan.dart';
+import '../../meal/widgets/meal_status_badge.dart';
+import '../../meal/widgets/meal_network_image.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,15 +26,18 @@ class HomePage extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                 decoration: BoxDecoration(
                   color: AppColors.primaryLight,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+                  border: Border.all(
+                      color: AppColors.primary.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.groups, color: AppColors.primary, size: 20),
+                    const Icon(Icons.groups,
+                        color: AppColors.primary, size: 20),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
@@ -43,8 +51,14 @@ class HomePage extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () => context.push('/family-space'),
-                      style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(50, 30)),
-                      child: const Text('Manage', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w800, fontSize: 12)),
+                      style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: const Size(50, 30)),
+                      child: const Text('Manage',
+                          style: TextStyle(
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 12)),
                     ),
                   ],
                 ),
@@ -78,7 +92,8 @@ class HomePage extends StatelessWidget {
                       color: Colors.white.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(Icons.auto_awesome, color: Colors.white, size: 24),
+                    child: const Icon(Icons.auto_awesome,
+                        color: Colors.white, size: 24),
                   ),
                   const SizedBox(width: 12),
                   const Text(
@@ -110,7 +125,8 @@ class HomePage extends StatelessWidget {
                     foregroundColor: AppColors.primary,
                     elevation: 0,
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                   ),
                   icon: const Icon(Icons.auto_awesome, size: 18),
                   label: const Text(
@@ -132,14 +148,22 @@ class HomePage extends StatelessWidget {
               child: ValueListenableBuilder(
                 valueListenable: PantryRepository.instance,
                 builder: (context, pantryMap, _) {
-                  final expiringCount = pantryMap.values
-                      .expand((items) => items)
-                      .where((item) => item.isExpiringSoon)
-                      .length;
+                  final allItems =
+                      pantryMap.values.expand((items) => items).toList();
+                  final totalCount = allItems.length;
+                  final expiringCount =
+                      allItems.where((item) => item.isExpiringSoon).length;
+
+                  final subtitle = totalCount == 0
+                      ? 'Pantry is empty'
+                      : (expiringCount > 0
+                          ? '$totalCount item${totalCount > 1 ? 's' : ''} ($expiringCount expiring)'
+                          : '$totalCount item${totalCount > 1 ? 's' : ''} in stock');
+
                   return _buildQuickActionCard(
                     context,
                     title: 'View Pantry',
-                    subtitle: '$expiringCount items expiring soon',
+                    subtitle: subtitle,
                     icon: Icons.kitchen,
                     color: AppColors.primaryLight,
                     iconColor: AppColors.primary,
@@ -170,6 +194,232 @@ class HomePage extends StatelessWidget {
 
         const SizedBox(height: 24),
 
+        // This Week overview — Mon–Sun schedule for the current calendar week
+        ValueListenableBuilder<List<SavedMealPlan>>(
+          valueListenable: SavedPlansRepository.instance,
+          builder: (context, savedPlans, _) {
+            final weekMonday = WeekCalendar.mondayOf(DateTime.now());
+            final weekEnd = weekMonday.add(const Duration(days: 6));
+            final weekEntries = <({GeneratedMeal meal, DateTime date})>[];
+            for (final plan in savedPlans) {
+              for (final meal in plan.activeMeals) {
+                final date = plan.dateForMeal(meal);
+                if (WeekCalendar.isInWeek(date, weekMonday)) {
+                  weekEntries.add((meal: meal, date: date));
+                }
+              }
+            }
+            final weekMeals = weekEntries.map((e) => e.meal).toList();
+            final pending = weekMeals.where((m) => m.isPending).length;
+            final accepted = weekMeals.where((m) => m.isAccepted).length;
+            final completed = weekMeals.where((m) => m.isCompleted).length;
+            final favorites = weekMeals.where((m) => m.isFavorite).length;
+            final todayIndex = WeekCalendar.dayIndexOf(DateTime.now());
+
+            return Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppColors.cardSurface,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'This Week',
+                            style: TextStyle(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            WeekCalendar.formatRange(weekMonday, weekEnd),
+                            style: const TextStyle(
+                              color: AppColors.textMuted,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () => context.go('/meal-plan'),
+                            child: const Text(
+                              'Calendar',
+                              style: TextStyle(
+                                  color: AppColors.primary,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                context.push('/household-dashboard'),
+                            child: const Text(
+                              'Household',
+                              style: TextStyle(
+                                  color: AppColors.primary,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      _weekStat('Pending', pending, AppColors.warning),
+                      const SizedBox(width: 8),
+                      _weekStat('Accepted', accepted, AppColors.primary),
+                      const SizedBox(width: 8),
+                      _weekStat('Done', completed, AppColors.info),
+                      const SizedBox(width: 8),
+                      _weekStat('Favorites', favorites, AppColors.danger),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  const Text(
+                    'Weekly Schedule',
+                    style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  ...List.generate(7, (day) {
+                    final dayDate =
+                        WeekCalendar.dateForDayIndex(weekMonday, day);
+                    final dayMeals = weekEntries
+                        .where((e) =>
+                            WeekCalendar.dateOnly(e.date) ==
+                            WeekCalendar.dateOnly(dayDate))
+                        .map((e) => e.meal)
+                        .toList();
+                    final isToday = day == todayIndex;
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 6),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: isToday
+                            ? AppColors.primaryLight
+                            : AppColors.background,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: isToday
+                              ? AppColors.primary.withValues(alpha: 0.35)
+                              : AppColors.border,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 44,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  WeekCalendar.shortDays[day],
+                                  style: TextStyle(
+                                    color: isToday
+                                        ? AppColors.primary
+                                        : AppColors.textMuted,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Text(
+                                  '${dayDate.day}',
+                                  style: TextStyle(
+                                    color: isToday
+                                        ? AppColors.primary
+                                        : AppColors.textSecondary,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: dayMeals.isEmpty
+                                ? const Text(
+                                    'No meals planned',
+                                    style: TextStyle(
+                                      color: AppColors.textMuted,
+                                      fontSize: 12,
+                                    ),
+                                  )
+                                : Wrap(
+                                    spacing: 6,
+                                    runSpacing: 4,
+                                    children: dayMeals.map((m) {
+                                      final label = m.title.trim().isEmpty
+                                          ? m.type
+                                          : m.title;
+                                      return GestureDetector(
+                                        onTap: () => context.push(
+                                          '/meal/${m.id}',
+                                          extra: m,
+                                        ),
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8, vertical: 3),
+                                          decoration: BoxDecoration(
+                                            color: AppColors.cardSurface,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            border: Border.all(
+                                                color: AppColors.border),
+                                          ),
+                                          child: Text(
+                                            '${m.type}: $label',
+                                            style: const TextStyle(
+                                              color: AppColors.textPrimary,
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                  if (weekMeals.isEmpty) ...[
+                    const SizedBox(height: 4),
+                    TextButton.icon(
+                      onPressed: () => context.go('/meal-plan'),
+                      icon: const Icon(Icons.auto_awesome, size: 16),
+                      label: const Text('Create this week\'s plan',
+                          style: TextStyle(fontWeight: FontWeight.w700)),
+                    ),
+                  ],
+                ],
+              ),
+            );
+          },
+        ),
+
+        const SizedBox(height: 24),
+
         // Recommended Meals Section
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,34 +433,124 @@ class HomePage extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () => context.push('/generated-plan'),
+              onPressed: () => context.push('/saved-meal-plans'),
               child: const Text(
                 'See All',
-                style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700),
+                style: TextStyle(
+                    color: AppColors.primary, fontWeight: FontWeight.w700),
               ),
             ),
           ],
         ),
         const SizedBox(height: 12),
 
-        _buildMealCard(
-          context,
-          id: '1',
-          title: 'Honey Garlic Pan Seared Salmon',
-          subtitle: 'Mediterranean • 25m prep & cook',
-          calories: '450 kcal',
-          badgeText: 'Dinner Special',
-        ),
-        const SizedBox(height: 12),
-        _buildMealCard(
-          context,
-          id: '2',
-          title: 'Avocado & Spinach Salad',
-          subtitle: 'Vegetarian • 10m prep',
-          calories: '320 kcal',
-          badgeText: 'Pantry Cleanout',
+        // Dynamic Recommendations
+        ValueListenableBuilder<List<SavedMealPlan>>(
+          valueListenable: SavedPlansRepository.instance,
+          builder: (context, savedPlans, _) {
+            final allSavedMeals =
+                savedPlans.expand((plan) => plan.activeMeals).toList();
+            if (allSavedMeals.isEmpty) {
+              return Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: AppColors.cardSurface,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppColors.border),
+                ),
+                child: Column(
+                  children: [
+                    const Icon(Icons.restaurant_menu,
+                        color: AppColors.textMuted, size: 36),
+                    const SizedBox(height: 10),
+                    const Text(
+                      'No Meal Recommendations',
+                      style: TextStyle(
+                        color: AppColors.textPrimary,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    const Text(
+                      'Generate an AI meal plan or create your custom plan to see today\'s recommendations here.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 12,
+                          height: 1.4),
+                    ),
+                    const SizedBox(height: 14),
+                    ElevatedButton.icon(
+                      onPressed: () => context.go('/meal-plan'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      icon: const Icon(Icons.auto_awesome, size: 16),
+                      label: const Text('Plan Meals Now',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 13)),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            final displayMeals = allSavedMeals.take(4).toList();
+
+            return Column(
+              children: displayMeals.map((meal) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: _buildMealCard(
+                    context,
+                    meal: meal,
+                  ),
+                );
+              }).toList(),
+            );
+          },
         ),
       ],
+    );
+  }
+
+  Widget _weekStat(String label, int count, Color color) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Text(
+              '$count',
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.w800,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.w600,
+                fontSize: 10,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -269,12 +609,13 @@ class HomePage extends StatelessWidget {
 
   Widget _buildMealCard(
     BuildContext context, {
-    required String id,
-    required String title,
-    required String subtitle,
-    required String calories,
-    required String badgeText,
+    required GeneratedMeal meal,
   }) {
+    final subtitle =
+        '${meal.type} • ${meal.prepTime.isEmpty ? "Quick prep" : meal.prepTime}';
+    final calories = meal.calories.isEmpty ? 'Balanced' : meal.calories;
+    final badgeText = meal.badgeText.isEmpty ? 'Recommended' : meal.badgeText;
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.cardSurface,
@@ -293,14 +634,21 @@ class HomePage extends StatelessWidget {
         leading: Container(
           width: 56,
           height: 56,
+          clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: AppColors.primaryLight,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Icon(Icons.restaurant, color: AppColors.primary, size: 28),
+          child: MealNetworkImage(
+            url: meal.imageUrl.isNotEmpty
+                ? meal.imageUrl
+                : UnsplashService.syncFoodUrl(meal.title),
+            width: 56,
+            height: 56,
+          ),
         ),
         title: Text(
-          title,
+          meal.title,
           style: const TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.w700,
@@ -311,12 +659,17 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 4),
-            Text(subtitle, style: const TextStyle(color: AppColors.textMuted, fontSize: 11)),
+            Text(subtitle,
+                style:
+                    const TextStyle(color: AppColors.textMuted, fontSize: 11)),
             const SizedBox(height: 6),
             Row(
               children: [
+                MealStatusBadge(status: meal.status, compact: true),
+                const SizedBox(width: 6),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
                     color: AppColors.primaryLight,
                     borderRadius: BorderRadius.circular(4),
@@ -331,13 +684,15 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Text(calories, style: const TextStyle(color: AppColors.textSecondary, fontSize: 11)),
+                Text(calories,
+                    style: const TextStyle(
+                        color: AppColors.textSecondary, fontSize: 11)),
               ],
             ),
           ],
         ),
         trailing: const Icon(Icons.chevron_right, color: AppColors.textMuted),
-        onTap: () => context.push('/meal/$id'),
+        onTap: () => context.push('/meal/${meal.id}', extra: meal),
       ),
     );
   }

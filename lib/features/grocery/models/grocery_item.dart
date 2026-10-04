@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-/// Three-state status for a grocery list item (FR-08).
+/// Three-state (+ purchased) status for a grocery list item.
 enum GroceryStatus { needed, available, used }
 
 class GroceryItem {
@@ -13,21 +13,26 @@ class GroceryItem {
     GroceryStatus? status,
     this.tag,
     this.addedBy,
+    this.mealPlanId,
     String? section,
-  }) : checked = checked ?? (status == GroceryStatus.used),
-       status = status ?? (checked == true ? GroceryStatus.used : GroceryStatus.needed),
-       category = section ?? category;
+  })  : checked = checked ?? (status == GroceryStatus.used),
+        status = status ??
+            (checked == true ? GroceryStatus.used : GroceryStatus.needed),
+        category = section ?? category;
 
   final String? id;
   final String name;
   final String quantity;
   final String category;
-  bool checked; // Used for backend
-  GroceryStatus status; // Used for frontend
+  bool checked;
+  GroceryStatus status;
   final String? tag;
   final String? addedBy;
-  
+  final String? mealPlanId;
+
   String get section => category;
+
+  bool get isPurchased => status == GroceryStatus.used || checked;
 
   GroceryItem copyWith({
     String? id,
@@ -38,6 +43,8 @@ class GroceryItem {
     GroceryStatus? status,
     String? tag,
     String? section,
+    String? mealPlanId,
+    String? addedBy,
   }) {
     return GroceryItem(
       id: id ?? this.id,
@@ -47,29 +54,53 @@ class GroceryItem {
       checked: checked ?? this.checked,
       status: status ?? this.status,
       tag: tag ?? this.tag,
-      addedBy: addedBy,
+      mealPlanId: mealPlanId ?? this.mealPlanId,
+      addedBy: addedBy ?? this.addedBy,
     );
   }
 
-  factory GroceryItem.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+  static GroceryStatus _parseStatus(Map<String, dynamic> data) {
+    final raw = data['status'] as String?;
+    if (raw != null) {
+      switch (raw.toLowerCase()) {
+        case 'available':
+          return GroceryStatus.available;
+        case 'used':
+          return GroceryStatus.used;
+        case 'needed':
+          return GroceryStatus.needed;
+      }
+    }
+    return (data['checked'] == true)
+        ? GroceryStatus.used
+        : GroceryStatus.needed;
+  }
+
+  factory GroceryItem.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data()!;
+    final status = _parseStatus(data);
     return GroceryItem(
       id: doc.id,
       name: data['name'] ?? '',
       quantity: data['quantity'] ?? '',
       category: data['category'] ?? 'Other',
-      checked: data['checked'] ?? false,
+      checked: status == GroceryStatus.used,
+      status: status,
       tag: data['tag'],
       addedBy: data['addedBy'],
+      mealPlanId: data['mealPlanId'],
     );
   }
 
   Map<String, dynamic> toFirestore() => {
-    'name': name,
-    'quantity': quantity,
-    'category': category,
-    'checked': status == GroceryStatus.used || checked,
-    'tag': tag,
-    'addedBy': addedBy,
-  };
+        'name': name,
+        'quantity': quantity,
+        'category': category,
+        'checked': status == GroceryStatus.used || checked,
+        'status': status.name,
+        'tag': tag,
+        'addedBy': addedBy,
+        if (mealPlanId != null) 'mealPlanId': mealPlanId,
+      };
 }
