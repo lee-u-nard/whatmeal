@@ -4,29 +4,66 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import '../models/pantry_item.dart';
 import '../../family/data/family_repository.dart';
+import '../../family/models/family_space.dart';
 import '../../../core/utils/family_permissions.dart';
-import '../../../core/services/household_notification_service.dart';
+import 'pantry_store.dart';
 
 /// Personal or family-scoped pantry. When the user is in a Family Space,
 /// reads/writes go to `families/{familyId}/pantryItems`.
 class PantryRepository extends ValueNotifier<Map<String, List<PantryItem>>> {
-  PantryRepository._() : super({}) {
-    FirebaseAuth.instance.authStateChanges().listen((user) {
-      _uid = user?.uid;
+  PantryRepository({
+    required FirebaseFirestore firestore,
+    required Stream<String?> authIds,
+    required ValueListenable<FamilySpace?> household,
+    Stream<List<PantryItem>> Function(String path)? watch,
+  })  : _firestore = firestore,
+        _household = household,
+        _watch = watch,
+        super({}) {
+    _authSub = authIds.listen((uid) {
+      _uid = uid;
       _resetListener();
     });
-    FamilyRepository.instance.addListener(_onFamilyChange);
+    _household.addListener(_onFamilyChange);
   }
 
-  static final instance = PantryRepository._();
+  static final instance = PantryRepository(
+    firestore: FirebaseFirestore.instance,
+    authIds: FirebaseAuth.instance.authStateChanges().map((user) => user?.uid),
+    household: FamilyRepository.instance,
+  );
+  final FirebaseFirestore _firestore;
+  final ValueListenable<FamilySpace?> _household;
+  final Stream<List<PantryItem>> Function(String path)? _watch;
+  StreamSubscription<String?>? _authSub;
+  bool _disposed = false;
 
-  final _firestore = FirebaseFirestore.instance;
+  @override
+  void dispose() {
+    _disposed = true;
+    ++_scopeVersion;
+    _authSub?.cancel();
+    _sub?.cancel();
+    _household.removeListener(_onFamilyChange);
+    super.dispose();
+  }
+
   String? _uid;
   String? _familyId;
   StreamSubscription? _sub;
   String? error;
+  bool isLoading = false;
+  void retry() => _resetListener();
+  int _scopeVersion = 0;
+  int get scopeVersion => _scopeVersion;
 
   Map<String, List<PantryItem>> get items => value;
+
+  String? get scopePath => _uid == null
+      ? null
+      : _familyId == null
+          ? 'users/$_uid'
+          : 'families/$_familyId';
 
   bool get isShared => _familyId != null;
 
@@ -42,7 +79,7 @@ class PantryRepository extends ValueNotifier<Map<String, List<PantryItem>>> {
   }
 
   void _onFamilyChange() {
-    final newId = FamilyRepository.instance.value?.id;
+    final newId = _household.value?.id;
     if (_familyId != newId) {
       _familyId = newId;
       _resetListener();
@@ -50,37 +87,51 @@ class PantryRepository extends ValueNotifier<Map<String, List<PantryItem>>> {
   }
 
   void _resetListener() {
+    if (_disposed) return;
+    ++_scopeVersion;
     _sub?.cancel();
     _sub = null;
-    value = {};
     error = null;
+    isLoading = _uid != null;
+    final family = _household.value;
+    _familyId = family?.memberForUid(_uid) != null ? family?.id : null;
+    value = {};
     if (_uid == null) return;
-    _familyId = FamilyRepository.instance.value?.id;
     _listenToItems();
   }
 
   void _listenToItems() {
     _sub?.cancel();
     if (_uid == null) return;
-    _sub = _pantryCol.orderBy('createdAt', descending: true).snapshots().listen(
-      (snapshot) {
+    final scope = _scopeVersion;
+    _sub = (_watch?.call('$scopePath/pantryItems') ??
+            _pantryCol.orderBy('createdAt', descending: true).snapshots().map(
+                (snapshot) =>
+                    snapshot.docs.map(PantryItem.fromFirestore).toList()))
+        .listen(
+      (items) {
+        if (scope != _scopeVersion || _disposed) return;
         error = null;
+        isLoading = false;
         final grouped = <String, List<PantryItem>>{};
-        for (final doc in snapshot.docs) {
-          final item = PantryItem.fromFirestore(doc);
+        for (final item in items) {
           grouped.putIfAbsent(item.category, () => []).add(item);
         }
         value = grouped;
       },
       onError: (e) {
-        error = 'Failed to load pantry: $e';
-        notifyListeners();
+        if (scope != _scopeVersion) return;
+        isLoading = false;
+        error = 'Pantry could not be loaded. Please retry.';
+        value = {};
       },
+      cancelOnError: true,
     );
   }
 
   Future<void> addItem(String category, PantryItem item) async {
-    if (_uid == null) return;
+    final scope = _scopeVersion;
+    if (_uid == null) throw StateError('Sign in to add ingredients.');
     if (!FamilyPermissions.canManagePantry) {
       error = FamilyPermissions.denialMessage('manage the pantry');
       notifyListeners();
@@ -90,37 +141,46 @@ class PantryRepository extends ValueNotifier<Map<String, List<PantryItem>>> {
       category: category,
       addedBy: item.addedBy ?? _uid,
     );
-    await _pantryCol.add(itemToSave.toFirestore());
-
-    // Send household notification
-    HouseholdNotificationService.instance.notifyPantryActivity(
-      action: 'added',
-      itemName: item.name,
-    );
+    await PantryStore(_firestore).write(
+        item: _pantryCol.doc(),
+        actorUid: _uid!,
+        action: 'added',
+        data: itemToSave.toFirestore());
+    if (scope != _scopeVersion) throw StateError('Workspace changed.');
   }
 
   Future<void> updateItem(String category, PantryItem updatedItem) async {
     if (_uid == null || updatedItem.id == null || updatedItem.id!.isEmpty) {
-      return;
+      throw StateError('Ingredient is unavailable.');
     }
     if (!FamilyPermissions.canManagePantry) {
       error = FamilyPermissions.denialMessage('manage the pantry');
       notifyListeners();
       throw StateError(error!);
     }
-    await _pantryCol
-        .doc(updatedItem.id)
-        .update(updatedItem.copyWith(category: category).toFirestore());
+    final scope = _scopeVersion;
+    await PantryStore(_firestore).write(
+        item: _pantryCol.doc(updatedItem.id),
+        actorUid: _uid!,
+        action: 'updated',
+        data: updatedItem.copyWith(category: category).toFirestore());
+    if (scope != _scopeVersion) throw StateError('Workspace changed.');
   }
 
   Future<void> setItemStatus(String id, PantryStatus status) async {
-    if (_uid == null) return;
+    if (_uid == null) throw StateError('Sign in to update pantry.');
     if (!FamilyPermissions.canManagePantry) {
       error = FamilyPermissions.denialMessage('manage the pantry');
       notifyListeners();
       throw StateError(error!);
     }
-    await _pantryCol.doc(id).update({'status': status.name});
+    final scope = _scopeVersion;
+    await PantryStore(_firestore).write(
+        item: _pantryCol.doc(id),
+        actorUid: _uid!,
+        action: 'updated',
+        data: {'status': status.name});
+    if (scope != _scopeVersion) throw StateError('Workspace changed.');
   }
 
   /// Cycle available → runningLow → used → needed → available.
@@ -139,31 +199,17 @@ class PantryRepository extends ValueNotifier<Map<String, List<PantryItem>>> {
   }
 
   Future<void> deleteItem(String id) async {
-    if (_uid == null) return;
+    final scope = _scopeVersion;
+    if (_uid == null) throw StateError('Sign in to update pantry.');
     if (!FamilyPermissions.canManagePantry) {
       error = FamilyPermissions.denialMessage('manage the pantry');
       notifyListeners();
       throw StateError(error!);
     }
 
-    // Get item name for notification
-    PantryItem? foundItem;
-    for (final list in value.values) {
-      try {
-        foundItem = list.firstWhere((i) => i.id == id);
-        break;
-      } catch (_) {}
-    }
-
-    await _pantryCol.doc(id).delete();
-
-    // Send household notification
-    if (foundItem != null) {
-      HouseholdNotificationService.instance.notifyPantryActivity(
-        action: 'deleted',
-        itemName: foundItem.name,
-      );
-    }
+    await PantryStore(_firestore)
+        .write(item: _pantryCol.doc(id), actorUid: _uid!, action: 'deleted');
+    if (scope != _scopeVersion) throw StateError('Workspace changed.');
   }
 
   int get expiringCount {
@@ -178,8 +224,10 @@ class PantryRepository extends ValueNotifier<Map<String, List<PantryItem>>> {
   List<String> get availableNames => value.values
       .expand((list) => list)
       .where((i) =>
-          i.status == PantryStatus.available ||
-          i.status == PantryStatus.runningLow)
+          (i.status == PantryStatus.available ||
+              i.status == PantryStatus.runningLow) &&
+          !i.expirationDate.isBefore(DateTime(
+              DateTime.now().year, DateTime.now().month, DateTime.now().day)))
       .map((i) => i.name)
       .where((n) => n.isNotEmpty)
       .toList();

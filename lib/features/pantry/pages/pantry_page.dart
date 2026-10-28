@@ -90,6 +90,7 @@ class _PantryPageState extends State<PantryPage> {
   }
 
   void _editItem(PantryItem item, String category) async {
+    final scope = PantryRepository.instance.scopeVersion;
     final result = await showModalBottomSheet<NewPantryItem>(
       context: context,
       isScrollControlled: true,
@@ -100,23 +101,39 @@ class _PantryPageState extends State<PantryPage> {
       builder: (_) => AddPantryItemSheet(
         existingItem: item,
         existingCategory: category,
+        onSave: (updated) async {
+          if (scope != PantryRepository.instance.scopeVersion) {
+            throw StateError("Workspace changed.");
+          }
+          await PantryRepository.instance
+              .updateItem(updated.category, updated.item);
+        },
       ),
     );
 
-    if (result != null && mounted) {
-      if (result.category != category) {
-        PantryRepository.instance.deleteItem(item.id!);
-        PantryRepository.instance.addItem(result.category, result.item);
-      } else {
-        PantryRepository.instance.updateItem(category, result.item);
+    if (result != null &&
+        mounted &&
+        scope == PantryRepository.instance.scopeVersion) {
+      try {
+        // Category is a field, not a collection. Keep the same document so a
+        // failed edit cannot delete the original or create a duplicate.
+        // Editor already awaited the same-document update.
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Updated ${result.item.name}')),
+        );
+      } catch (_) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Could not update ingredient. Please retry.')),
+        );
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Updated ${result.item.name}')),
-      );
     }
   }
 
   void _confirmDeleteItem(PantryItem item) {
+    final scope = PantryRepository.instance.scopeVersion;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -131,8 +148,21 @@ class _PantryPageState extends State<PantryPage> {
                 style: TextStyle(color: AppColors.textSecondary)),
           ),
           ElevatedButton(
-            onPressed: () {
-              PantryRepository.instance.deleteItem(item.id!);
+            onPressed: () async {
+              try {
+                if (scope != PantryRepository.instance.scopeVersion) {
+                  throw StateError('Workspace changed.');
+                }
+                await PantryRepository.instance.deleteItem(item.id!);
+              } catch (_) {
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content:
+                          Text('Ingredient was not removed. Please retry.')));
+                }
+                return;
+              }
+              if (!mounted || !ctx.mounted) return;
               Navigator.pop(ctx);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Removed ${item.name} from pantry.')),
@@ -243,7 +273,15 @@ class _PantryPageState extends State<PantryPage> {
             ),
             const SizedBox(height: 20),
 
-            if (totalItems == 0) ...[
+            if (PantryRepository.instance.isLoading) ...[
+              const Center(child: CircularProgressIndicator()),
+            ] else if (PantryRepository.instance.error != null) ...[
+              Text(PantryRepository.instance.error!),
+              TextButton.icon(
+                  onPressed: PantryRepository.instance.retry,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Retry Pantry')),
+            ] else if (totalItems == 0) ...[
               _buildEmptyPantryState(context),
             ] else if (filteredEntries.isEmpty) ...[
               _buildEmptySearchState(),
@@ -280,7 +318,8 @@ class _PantryPageState extends State<PantryPage> {
                               if (!context.mounted) return;
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('$e'),
+                                  content: const Text(
+                                      'Pantry status was not saved. Please retry.'),
                                   backgroundColor: AppColors.danger,
                                 ),
                               );
@@ -352,14 +391,18 @@ class _PantryPageState extends State<PantryPage> {
           const SizedBox(height: 20),
           ElevatedButton.icon(
             onPressed: () async {
-              final result = await showModalBottomSheet<NewPantryItem>(
+              final scope = PantryRepository.instance.scopeVersion;
+              await showModalBottomSheet<NewPantryItem>(
                 context: context,
                 isScrollControlled: true,
-                builder: (_) => const AddPantryItemSheet(),
+                builder: (_) => AddPantryItemSheet(onSave: (added) async {
+                  if (scope != PantryRepository.instance.scopeVersion) {
+                    throw StateError('Workspace changed.');
+                  }
+                  await PantryRepository.instance
+                      .addItem(added.category, added.item);
+                }),
               );
-              if (result != null) {
-                PantryRepository.instance.addItem(result.category, result.item);
-              }
             },
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
             icon: const Icon(Icons.add, color: Colors.white),

@@ -1,0 +1,17 @@
+{
+  "score": 4,
+  "summary": "Focused Firestore review found no new critical/high authorization defect; the exact rules source matches executed 71-case evidence. Publishing is separately blocked by an exposed historical App Check debug credential with unconfirmed revocation.",
+  "findings": [
+    {
+      "check": "Resource exhaustion / quota authority",
+      "severity": "minor",
+      "issue": "The owner may reset its own usageCounters/daily count and date within the allowed schema, so the client daily counter is not authoritative abuse protection.",
+      "recommendation": "Treat it as a convenience limit. Do not rely on client-shipped shared credentials for secured public distribution. No hurried production rules change."
+    }
+  ],
+  "publishingGate": "BLOCKED — historical App Check debug credential requires owner-controlled revocation confirmation",
+  "rulesChanged": false,
+  "productionAccessed": false,
+  "testsRerun": false,
+  "reusedSecurityCasesPassed": 71
+}

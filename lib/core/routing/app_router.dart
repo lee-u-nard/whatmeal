@@ -9,6 +9,7 @@ import '../../features/meal_plan/pages/meal_plan_page.dart';
 import '../../features/meal_plan/pages/saved_meal_plans_page.dart';
 import '../../features/meal_plan/pages/generated_meal_plan_page.dart';
 import '../../features/meal_plan/pages/meal_history_page.dart';
+import '../../features/meal_plan/pages/meal_plan_calendar_page.dart';
 import '../../features/pantry/pages/pantry_page.dart';
 import '../../features/grocery/pages/grocery_page.dart';
 import '../../features/profile/pages/profile_page.dart';
@@ -21,6 +22,7 @@ import '../../features/family/pages/household_dashboard_page.dart';
 import '../../features/auth/pages/verify_email_page.dart';
 import '../../features/ai_settings/pages/ai_settings_page.dart';
 import '../../features/notifications/pages/notifications_page.dart';
+import '../../features/notifications/pages/notification_target_page.dart';
 import '../../features/meal_plan/models/saved_meal_plan.dart';
 
 /// Builds the GoRouter instance wired with [AuthRepository] for authentication redirects.
@@ -81,7 +83,9 @@ GoRouter createAppRouter(AuthRepository authRepository,
           StatefulShellBranch(routes: [
             GoRoute(
                 path: '/meal-plan',
-                builder: (context, state) => const MealPlanPage()),
+                builder: (context, state) => MealPlanPage(
+                    initialDate: DateTime.tryParse(
+                        state.uri.queryParameters['date'] ?? ''))),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
@@ -105,8 +109,16 @@ GoRouter createAppRouter(AuthRepository authRepository,
         builder: (context, state) => const SavedMealPlansPage(),
       ),
       GoRoute(
+        path: '/meal-calendar',
+        builder: (context, state) => MealPlanCalendarPage(
+            initialDate:
+                DateTime.tryParse(state.uri.queryParameters['date'] ?? '')),
+      ),
+      GoRoute(
         path: '/meal-history',
-        builder: (context, state) => const MealHistoryPage(),
+        builder: (context, state) => MealHistoryPage(
+            filter: state.uri.queryParameters['filter'],
+            week: DateTime.tryParse(state.uri.queryParameters['week'] ?? '')),
       ),
       GoRoute(
         path: '/generated-plan',
@@ -134,11 +146,20 @@ GoRouter createAppRouter(AuthRepository authRepository,
         builder: (context, state) => const NotificationsPage(),
       ),
       GoRoute(
+        path: '/notification-target',
+        builder: (context, state) => NotificationTargetPage(
+          planPath: state.uri.queryParameters['plan'],
+          planId: state.uri.queryParameters['planId'],
+          mealId: state.uri.queryParameters['mealId'],
+        ),
+      ),
+      GoRoute(
         path: '/meal/:mealId',
         builder: (context, state) {
           final extra = state.extra;
           return MealDetailPage(
             mealId: state.pathParameters['mealId']!,
+            planPath: state.uri.queryParameters['plan'],
             meal: extra is GeneratedMeal ? extra : null,
           );
         },

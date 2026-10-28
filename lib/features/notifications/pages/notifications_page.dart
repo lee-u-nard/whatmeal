@@ -3,65 +3,121 @@ import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/models/app_notification.dart';
 import '../../../core/services/notification_service.dart';
+import '../../../core/routing/notification_route.dart';
 
 class NotificationsPage extends StatelessWidget {
-  const NotificationsPage({super.key});
+  const NotificationsPage({super.key, this.service});
+  final NotificationService? service;
 
   @override
   Widget build(BuildContext context) {
+    final service = this.service ?? NotificationService.instance;
     return ValueListenableBuilder<List<AppNotification>>(
-      valueListenable: NotificationService.instance,
+      valueListenable: service,
       builder: (context, notifications, _) {
-        return Scaffold(
-          backgroundColor: AppColors.background,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-              onPressed: () => context.pop(),
-            ),
-            title: const Text(
-              'Notifications & Alerts',
-              style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16),
-            ),
-            actions: [
-              if (notifications.any((n) => !n.read))
-                TextButton(
-                  onPressed: () => NotificationService.instance.markAllRead(),
-                  child: const Text(
-                    'Mark all read',
-                    style: TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12),
-                  ),
-                ),
-            ],
-          ),
-          body: notifications.isEmpty
-              ? _buildEmptyState()
-              : ListView.separated(
-                  padding: const EdgeInsets.all(20),
-                  itemCount: notifications.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 12),
-                  itemBuilder: (context, index) {
-                    final n = notifications[index];
-                    return _NotificationCard(
-                      notification: n,
-                      onTap: () {
-                        if (!n.read) {
-                          NotificationService.instance.markRead(n.id);
-                        }
-                      },
-                    );
-                  },
-                ),
+        final session = service.sessionVersion;
+        return NotificationInbox(
+          notifications: notifications,
+          isLoading: service.isLoading,
+          error: service.error,
+          onRetry: service.retry,
+          onBack: () => context.pop(),
+          onMarkAllRead: () => service.markAllRead(expectedSession: session),
+          onOpen: (n) async {
+            if (session != service.sessionVersion) return;
+            if (!n.read) await service.markRead(n.id, expectedSession: session);
+            if (!context.mounted || session != service.sessionVersion) return;
+            final destination = notificationRoute({
+              'route': n.navigationRoute,
+              'parameters': n.navigationParameters,
+              'type': n.type.name,
+              if (n.targetId != null) 'targetId': n.targetId,
+              if (n.relatedPlanId != null) 'planId': n.relatedPlanId,
+            });
+            // Reuse the existing indexed shell for tab destinations. Pushing
+            // another copy can leave its shared branch navigators empty.
+            if (const {'/home', '/meal-plan', '/pantry', '/grocery', '/profile'}
+                .contains(Uri.parse(destination).path)) {
+              context.go(destination);
+            } else {
+              context.push(destination);
+            }
+          },
         );
       },
     );
   }
+}
+
+class NotificationInbox extends StatelessWidget {
+  const NotificationInbox(
+      {super.key,
+      required this.notifications,
+      required this.isLoading,
+      required this.error,
+      required this.onRetry,
+      required this.onBack,
+      required this.onMarkAllRead,
+      required this.onOpen});
+  final List<AppNotification> notifications;
+  final bool isLoading;
+  final String? error;
+  final VoidCallback onRetry, onBack;
+  final Future<void> Function() onMarkAllRead;
+  final Future<void> Function(AppNotification) onOpen;
+
+  Future<void> _run(
+      BuildContext context, Future<void> Function() action) async {
+    try {
+      await action();
+    } catch (_) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Notification change failed. Please retry.')));
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
+          leading:
+              IconButton(icon: const Icon(Icons.arrow_back), onPressed: onBack),
+          title: const Text('Notifications & Alerts',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+          actions: [
+            if (notifications.any((n) => !n.read))
+              TextButton(
+                  onPressed: () => _run(context, onMarkAllRead),
+                  child: const Text('Mark all read'))
+          ],
+        ),
+        body: error != null
+            ? Center(
+                child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      Text(error!, textAlign: TextAlign.center),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                          onPressed: onRetry, child: const Text('Retry'))
+                    ])))
+            : isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : notifications.isEmpty
+                    ? _buildEmptyState()
+                    : ListView.separated(
+                        padding: const EdgeInsets.all(20),
+                        itemCount: notifications.length,
+                        separatorBuilder: (_, __) => const SizedBox(height: 12),
+                        itemBuilder: (context, index) => _NotificationCard(
+                            key: ValueKey(
+                                'notification:${notifications[index].id}'),
+                            notification: notifications[index],
+                            onTap: () => _run(
+                                context, () => onOpen(notifications[index])))),
+      );
 
   Widget _buildEmptyState() {
     return const Center(
@@ -97,6 +153,7 @@ class NotificationsPage extends StatelessWidget {
 
 class _NotificationCard extends StatelessWidget {
   const _NotificationCard({
+    super.key,
     required this.notification,
     required this.onTap,
   });

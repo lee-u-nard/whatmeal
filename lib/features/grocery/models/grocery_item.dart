@@ -14,6 +14,7 @@ class GroceryItem {
     this.tag,
     this.addedBy,
     this.mealPlanId,
+    this.sourceMealPaths = const [],
     String? section,
   })  : checked = checked ?? (status == GroceryStatus.used),
         status = status ??
@@ -29,6 +30,7 @@ class GroceryItem {
   final String? tag;
   final String? addedBy;
   final String? mealPlanId;
+  final List<String> sourceMealPaths;
 
   String get section => category;
 
@@ -45,6 +47,7 @@ class GroceryItem {
     String? section,
     String? mealPlanId,
     String? addedBy,
+    List<String>? sourceMealPaths,
   }) {
     return GroceryItem(
       id: id ?? this.id,
@@ -56,6 +59,7 @@ class GroceryItem {
       tag: tag ?? this.tag,
       mealPlanId: mealPlanId ?? this.mealPlanId,
       addedBy: addedBy ?? this.addedBy,
+      sourceMealPaths: sourceMealPaths ?? this.sourceMealPaths,
     );
   }
 
@@ -90,6 +94,7 @@ class GroceryItem {
       tag: data['tag'],
       addedBy: data['addedBy'],
       mealPlanId: data['mealPlanId'],
+      sourceMealPaths: List<String>.from(data['sourceMealPaths'] ?? const []),
     );
   }
 
@@ -101,6 +106,7 @@ class GroceryItem {
         'status': status.name,
         'tag': tag,
         'addedBy': addedBy,
+        if (sourceMealPaths.isNotEmpty) 'sourceMealPaths': sourceMealPaths,
         if (mealPlanId != null) 'mealPlanId': mealPlanId,
       };
 }

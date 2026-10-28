@@ -220,6 +220,11 @@ class Meal {
       };
 
   Meal copyWith({
+    bool clearReplacementLinks = false,
+    String? id,
+    int? dayIndex,
+    String? mealType,
+    bool clearMealType = false,
     MealStatus? status,
     bool? accepted,
     String? replacedByMealId,
@@ -234,13 +239,13 @@ class Meal {
     String? servings,
   }) =>
       Meal(
-        id: id,
+        id: id ?? this.id,
         title: title,
         subtitle: subtitle,
         imageUrl: imageUrl ?? this.imageUrl,
         cuisine: cuisine,
-        mealType: mealType,
-        dayIndex: dayIndex,
+        mealType: clearMealType ? null : mealType ?? this.mealType,
+        dayIndex: dayIndex ?? this.dayIndex,
         prepTime: prepTime,
         cookTime: cookTime,
         servings: servings ?? this.servings,
@@ -260,8 +265,12 @@ class Meal {
         status: status ?? this.status,
         accepted: accepted ??
             (status != null ? status == MealStatus.accepted : this.accepted),
-        replacedByMealId: replacedByMealId ?? this.replacedByMealId,
-        replacedMealId: replacedMealId ?? this.replacedMealId,
+        replacedByMealId: clearReplacementLinks
+            ? null
+            : replacedByMealId ?? this.replacedByMealId,
+        replacedMealId: clearReplacementLinks
+            ? null
+            : replacedMealId ?? this.replacedMealId,
         isFavorite: isFavorite ?? this.isFavorite,
         createdAt: createdAt,
       );

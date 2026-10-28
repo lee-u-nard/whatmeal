@@ -5,17 +5,22 @@ import '../ai_provider_adapter.dart';
 import '../ai_models.dart';
 import '../ai_logger.dart';
 import '../ai_json_parser.dart';
+import 'http_response_support.dart';
+import '../model_registry.dart';
 
 /// Anthropic (Claude) provider adapter.
 class AnthropicAdapter implements AiProviderAdapter {
   AnthropicAdapter({
     required this.apiKey,
     String? model,
-  }) : model = model ?? 'claude-haiku-4-5';
+    http.Client? client,
+  })  : model = model ?? 'claude-haiku-4-5',
+        _transport = AiHttpTransport('Claude', client: client);
 
   final String apiKey;
   @override
   final String model;
+  final AiHttpTransport _transport;
 
   @override
   LlmProvider get provider => LlmProvider.anthropic;
@@ -36,23 +41,22 @@ class AnthropicAdapter implements AiProviderAdapter {
     AiLogger.logRequest(provider: 'Claude', endpoint: _endpoint, model: model);
 
     try {
-      final response = await http
-          .post(
-            Uri.parse(_endpoint),
-            headers: {
-              'x-api-key': cleanKey,
-              'anthropic-version': '2023-06-01',
-              'content-type': 'application/json',
-            },
-            body: jsonEncode({
-              'model': model,
-              'max_tokens': 1,
-              'messages': [
-                {'role': 'user', 'content': 'Hi'}
-              ],
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await _transport.post(
+        Uri.parse(_endpoint),
+        headers: {
+          'x-api-key': cleanKey,
+          'anthropic-version': '2023-06-01',
+          'content-type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': model,
+          'max_tokens': 32,
+          'messages': [
+            {'role': 'user', 'content': 'Reply with OK.'}
+          ],
+        }),
+        timeout: const Duration(seconds: 15),
+      );
 
       final elapsed = DateTime.now().difference(startTime).inMilliseconds;
       AiLogger.logResponse(
@@ -63,45 +67,12 @@ class AnthropicAdapter implements AiProviderAdapter {
       );
 
       if (response.statusCode == 200) {
+        _completedText(response.body);
         return TestConnectionResult.success();
-      } else if (response.statusCode == 401) {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.invalidKey,
-          message:
-              'Invalid Claude API key. Check that it was copied correctly from console.anthropic.com.',
-        );
-      } else if (response.statusCode == 404 || response.statusCode == 400) {
-        final bodyStr = response.body.toLowerCase();
-        if (bodyStr.contains('model') || response.statusCode == 404) {
-          return TestConnectionResult.failure(
-            status: TestConnectionStatus.invalidModel,
-            message:
-                'Model "$model" is not recognized or not accessible by this Anthropic key.',
-          );
-        }
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.invalidKey,
-          message:
-              'Anthropic rejected the request (${response.statusCode}). Check your key.',
-        );
-      } else if (response.statusCode == 429) {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.rateLimited,
-          message:
-              'Claude rate limit or credit balance exceeded. Check your Anthropic console.',
-        );
-      } else if (response.statusCode == 529) {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.providerUnavailable,
-          message:
-              'Anthropic servers are currently overloaded. Try again in a few moments.',
-        );
-      } else {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.providerUnavailable,
-          message: 'Anthropic returned HTTP ${response.statusCode}.',
-        );
       }
+      return providerHttpFailure(response, 'Claude').toConnectionResult();
+    } on AiHttpFailure catch (error) {
+      return error.toConnectionResult();
     } catch (e) {
       AiLogger.logError(provider: 'Claude', model: model, error: e);
       return TestConnectionResult.failure(
@@ -110,6 +81,46 @@ class AnthropicAdapter implements AiProviderAdapter {
             'Could not connect to Anthropic. Check your internet connection.',
       );
     }
+  }
+
+  String _completedText(String body) {
+    final decoded = decodeProviderObject(body, 'Claude');
+    if (decoded['stop_reason'] == 'max_tokens') {
+      throw const AiHttpFailure(
+          'Claude response was cut short. Try fewer meals or another model.');
+    }
+    if (decoded['stop_reason'] == 'refusal') {
+      throw const AiHttpFailure(
+          'Claude declined this request. Review the request and try again.');
+    }
+    if (decoded['stop_reason'] != 'end_turn') {
+      throw const AiHttpFailure(
+          'Claude did not finish a text response. Please retry.');
+    }
+    final content = decoded['content'];
+    if (content is! List) {
+      throw const AiHttpFailure(
+          'Claude returned an invalid response. Please retry.');
+    }
+    final text = StringBuffer();
+    for (final block in content) {
+      if (block is! Map) {
+        throw const AiHttpFailure(
+            'Claude returned an invalid response. Please retry.');
+      }
+      if (block['type'] == 'text') {
+        if (block['text'] is! String) {
+          throw const AiHttpFailure(
+              'Claude returned an invalid response. Please retry.');
+        }
+        text.write(block['text']);
+      }
+    }
+    if (text.toString().trim().isEmpty) {
+      throw const AiHttpFailure(
+          'Claude returned an empty response. Please retry.');
+    }
+    return text.toString();
   }
 
   @override
@@ -130,28 +141,31 @@ class AnthropicAdapter implements AiProviderAdapter {
 
   Future<String> _callMessages(String prompt) async {
     final cleanKey = apiKey.trim();
+    if (cleanKey.isEmpty) {
+      throw const AiHttpFailure(
+          'Claude API key is missing.', TestConnectionStatus.invalidKey);
+    }
     final startTime = DateTime.now();
     AiLogger.logRequest(provider: 'Claude', endpoint: _endpoint, model: model);
 
-    final response = await http
-        .post(
-          Uri.parse(_endpoint),
-          headers: {
-            'x-api-key': cleanKey,
-            'anthropic-version': '2023-06-01',
-            'content-type': 'application/json',
-          },
-          body: jsonEncode({
-            'model': model,
-            'max_tokens': 4096,
-            'system':
-                'You are WhatMeal\'s specialized chef assistant. Always return valid, unescaped raw JSON strictly conforming to the requested schema. Never output markdown fences or explanatory text.',
-            'messages': [
-              {'role': 'user', 'content': prompt}
-            ],
-          }),
-        )
-        .timeout(const Duration(seconds: 90));
+    final response = await _transport.post(
+      Uri.parse(_endpoint),
+      headers: {
+        'x-api-key': cleanKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+      },
+      body: jsonEncode({
+        'model': model,
+        'max_tokens': 4096,
+        'system':
+            'You are WhatMeal\'s specialized chef assistant. Always return valid, unescaped raw JSON strictly conforming to the requested schema. Never output markdown fences or explanatory text.',
+        'messages': [
+          {'role': 'user', 'content': prompt}
+        ],
+      }),
+      timeout: const Duration(seconds: 90),
+    );
 
     final elapsed = DateTime.now().difference(startTime).inMilliseconds;
     AiLogger.logResponse(
@@ -162,38 +176,45 @@ class AnthropicAdapter implements AiProviderAdapter {
     );
 
     if (response.statusCode == 200) {
-      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
-      final content = decoded['content'] as List?;
-      final text = content?.firstOrNull?['text'] as String?;
-      if (text == null || text.trim().isEmpty) {
-        throw Exception('Anthropic Claude returned an empty response.');
-      }
-      return text;
-    } else if (response.statusCode == 401) {
-      throw Exception(
-          'Invalid Claude API key. Please check your key in AI Settings.');
-    } else if (response.statusCode == 404 || response.statusCode == 400) {
-      throw Exception(
-          'Claude model "$model" is not accessible or does not exist (HTTP ${response.statusCode}).');
-    } else if (response.statusCode == 429) {
-      throw Exception(
-          'Claude rate limit or credit balance exceeded. Please check your Anthropic account.');
-    } else if (response.statusCode == 529) {
-      throw Exception(
-          'Claude is currently overloaded. Please wait a moment and try again.');
-    } else {
-      throw Exception('Claude error (HTTP ${response.statusCode}).');
+      return _completedText(response.body);
     }
+    throw providerHttpFailure(response, 'Claude');
   }
 
   @override
   Future<List<String>> fetchAvailableModels() async {
-    return [
-      'claude-haiku-4-5',
-      'claude-sonnet-4-5',
-      'claude-opus-4-5',
-      'claude-3-5-haiku-20241022',
-      'claude-3-5-sonnet-20241022',
-    ];
+    final ids = <String>[];
+    String? after;
+    for (var page = 0; page < 10; page++) {
+      final response = await _transport.get(
+        Uri.https('api.anthropic.com', '/v1/models', {
+          'limit': '1000',
+          if (after != null) 'after_id': after,
+        }),
+        headers: {
+          'x-api-key': apiKey.trim(),
+          'anthropic-version': '2023-06-01'
+        },
+        timeout: const Duration(seconds: 15),
+      );
+      if (response.statusCode != 200) {
+        throw providerHttpFailure(response, 'Claude');
+      }
+      final data = decodeProviderObject(response.body, 'Claude');
+      for (final item in (data['data'] as List? ?? []).whereType<Map>()) {
+        if (item['id'] is String) ids.add(item['id'] as String);
+      }
+      final next = data['last_id'];
+      if (data['has_more'] != true || next is! String || next == after) break;
+      after = next;
+    }
+    // Anthropic lists dated snapshots, while the UI stores documented aliases.
+    const aliases = {
+      'claude-haiku-4-5-20251001': 'claude-haiku-4-5',
+      'claude-sonnet-4-5-20250929': 'claude-sonnet-4-5',
+      'claude-opus-4-5-20251101': 'claude-opus-4-5',
+    };
+    return AiModelRegistry.filterDiscovered(
+        provider, ids.map((id) => aliases[id] ?? id));
   }
 }

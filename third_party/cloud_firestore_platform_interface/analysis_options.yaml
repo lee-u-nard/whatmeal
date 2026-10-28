@@ -1,0 +1,5 @@
+# This published dependency owns its analysis context. Keep its public names/style
+# byte-identical to6.6.12; application flutter_lints do not define SDK source style.
+# No files or Dart compile/error/warning diagnostics are excluded or suppressed.
+analyzer:
+  exclude: []

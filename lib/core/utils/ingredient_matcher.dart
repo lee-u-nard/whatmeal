@@ -44,18 +44,6 @@ class IngredientMatcher {
   static bool _namesMatch(String a, String b) {
     if (a.isEmpty || b.isEmpty) return false;
     if (a == b) return true;
-    // "green onion" vs "onion", "chicken breast" vs "chicken"
-    if (a.contains(b) || b.contains(a)) return true;
-    final aTokens = a.split(' ').where((t) => t.length > 2).toSet();
-    final bTokens = b.split(' ').where((t) => t.length > 2).toSet();
-    if (aTokens.isNotEmpty && bTokens.isNotEmpty) {
-      if (aTokens.intersection(bTokens).isNotEmpty) {
-        // Prefer matching the primary noun (last significant token).
-        final aLast = a.split(' ').last;
-        final bLast = b.split(' ').last;
-        if (aLast == bLast) return true;
-      }
-    }
     return false;
   }
 
@@ -83,7 +71,13 @@ class IngredientMatcher {
     s = s.replaceAll(RegExp(r'\s+'), ' ').trim();
     if (s.isEmpty) return '';
 
-    return s.split(' ').map(_singularizeToken).join(' ');
+    final name = s.split(' ').map(_singularizeToken).join(' ');
+    return const {
+          'red onion': 'onion',
+          'white onion': 'onion',
+          'yellow onion': 'onion'
+        }[name] ??
+        name;
   }
 
   static String _singularizeToken(String word) {

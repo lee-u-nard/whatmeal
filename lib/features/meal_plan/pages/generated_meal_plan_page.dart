@@ -1,38 +1,186 @@
+import 'dart:async';
+import '../../../core/routing/meal_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/services/llm_service.dart';
-import '../../../core/services/notification_service.dart';
-import '../../../core/services/household_notification_service.dart';
-import '../../../core/services/unsplash_service.dart';
-import '../../../core/models/app_notification.dart';
+import '../../../core/services/ai/generation_failure.dart';
+import '../../../core/services/ai/pantry_prompt_context.dart';
+import '../../../core/widgets/ai_generation_snack_bar.dart';
 import '../../../core/utils/family_permissions.dart';
-import '../../../core/utils/ingredient_matcher.dart';
+import '../../meal/widgets/meal_ingredients_panel.dart';
+import '../../meal/widgets/unsaved_meal_preview.dart';
 import '../../../core/utils/week_calendar.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../pantry/data/pantry_repository.dart';
-import '../../grocery/data/grocery_repository.dart';
-import '../../grocery/models/grocery_item.dart';
+import '../../profile/data/family_member_repository.dart';
 import '../data/saved_plans_repository.dart';
 import '../models/saved_meal_plan.dart';
 import '../models/meal_plan.dart';
+import '../widgets/unsaved_plan_guard.dart';
+import '../widgets/add_meal_dialog.dart';
 import '../../meal/models/meal.dart';
 import '../../meal/widgets/meal_status_badge.dart';
 import '../../meal/widgets/meal_network_image.dart';
 
 class GeneratedMealPlanPage extends StatefulWidget {
-  const GeneratedMealPlanPage({super.key, this.draft});
+  const GeneratedMealPlanPage({super.key, this.draft, this.repository});
 
   final GeneratedPlanDraft? draft;
+  final SavedPlansRepository? repository;
 
   @override
   State<GeneratedMealPlanPage> createState() => _GeneratedMealPlanPageState();
 }
 
 class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
+  SavedPlansRepository get _repo =>
+      widget.repository ?? SavedPlansRepository.instance;
+  List<GeneratedMeal> get _mealsForSave =>
+      widget.draft?.mealsForSaving(_allMeals) ?? List.of(_allMeals);
   int _selectedDayIndex = 0;
+  String? _planPath;
+  Future<String>? _saving;
+  bool _mutating = false;
+  bool _saveDialogBusy = false;
+  late int _session;
+
+  Future<String> _ensurePersisted() async {
+    final repo = _repo;
+    if (repo.sessionVersion != _session) {
+      throw StateError('Account or household changed. Reopen the plan.');
+    }
+    if (_planPath != null) return _planPath!;
+    return _saving ??= _saveDraft();
+  }
+
+  Future<String> _saveDraft() async {
+    final repo = _repo;
+    final root = repo.workspacePath;
+    try {
+      final meals = _mealsForSave;
+      final days = meals.fold<int>(_numberOfDays,
+          (days, meal) => meal.dayIndex + 1 > days ? meal.dayIndex + 1 : days);
+      final title = _saveTitleController.text.trim().isEmpty
+          ? 'Family Meal Plan'
+          : _saveTitleController.text.trim();
+      final id = await repo.savePlan(
+          MealPlan(
+              id: '',
+              title: title,
+              startDate: _startDate,
+              endDate: DateTime(
+                  _startDate.year, _startDate.month, _startDate.day + days - 1),
+              numberOfDays: days,
+              mealTypes: _allMeals.map((meal) => meal.type).toSet().toList(),
+              selectedMemberIds: widget.draft?.selectedMemberIds ?? const [],
+              cuisinePreferences: widget.draft?.cuisinePreferences ?? const [],
+              prioritizePantry: widget.draft?.prioritizePantry ?? true,
+              status: meals.isEmpty ? 'draft' : 'saved'),
+          meals.map((m) => m.toCore()).toList(),
+          allowEmptyDraft: widget.draft?.isManual == true);
+      if (repo.sessionVersion != _session || !mounted) {
+        throw StateError('Workspace changed.');
+      }
+      setState(() {
+        _planPath = '$root/mealPlans/$id';
+        _allMeals = meals;
+        _numberOfDays = days;
+      });
+      return _planPath!;
+    } finally {
+      _saving = null;
+    }
+  }
+
+  void _onPersistedPlanChanged() {
+    if (!mounted) return;
+    final repo = _repo;
+    if (repo.sessionVersion != _session) {
+      setState(() {
+        _allMeals = [];
+        _familyMembers = [];
+        _saveTitleController.clear();
+        _planPath = null;
+      });
+      return;
+    }
+    if (_planPath == null) return;
+    final plan = repo.value.where((p) => p.sourcePath == _planPath).firstOrNull;
+    if (_saving == null) {
+      setState(() => _allMeals = List.of(plan?.activeMeals ?? const []));
+    }
+  }
+
+  void _showUnsavedMeal(GeneratedMeal meal) {
+    final repo = _repo;
+    if (repo.sessionVersion != _session) return;
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (sheetContext) => ListenableBuilder(
+        listenable: repo,
+        builder: (context, _) => repo.sessionVersion != _session
+            ? const Padding(
+                padding: EdgeInsets.all(24),
+                child:
+                    Text('Your account or household changed. Reopen the plan.'))
+            : UnsavedMealPreview(
+                meal: meal,
+                onSave: () {
+                  Navigator.pop(sheetContext);
+                  if (mounted && repo.sessionVersion == _session) {
+                    _showSavePlanDialog();
+                  }
+                }),
+      ),
+    );
+  }
+
+  Future<void> _setStatus(GeneratedMeal meal, MealStatus status) async {
+    if (_mutating) return;
+    if (_planPath == null) {
+      _showUnsavedMeal(meal);
+      return;
+    }
+    if (status == MealStatus.completed) {
+      final problem = mealCookingProblem(meal, PantryRepository.instance,
+          expectedScope: _repo.workspacePath);
+      if (problem != null) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(problem)));
+        return;
+      }
+    }
+    _mutating = true;
+    try {
+      final path = await _ensurePersisted();
+      await _repo.updateMealStatus(meal.id, status, planPath: path);
+      if (!mounted || !context.mounted || _repo.sessionVersion != _session) {
+        return;
+      }
+      setState(() {
+        _allMeals = _allMeals
+            .map((m) => m.id == meal.id ? m.copyWith(status: status) : m)
+            .toList();
+      });
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+              'Meal marked ${status.name}. Grocery requirements update from accepted meals.')));
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Meal could not be updated. Check the plan and connection, then retry.')));
+      }
+    } finally {
+      _mutating = false;
+    }
+  }
+
   late final TextEditingController _saveTitleController;
   late List<GeneratedMeal> _allMeals;
   late int _numberOfDays;
@@ -72,27 +220,80 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
   void initState() {
     super.initState();
     final draft = widget.draft;
-    _allMeals = List<GeneratedMeal>.from(draft?.meals ?? const []);
+    _planPath = draft?.planPath;
+    _session = draft?.sourceSessionVersion ?? _repo.sessionVersion;
+    final currentSession = _session == _repo.sessionVersion;
+    if (!currentSession) _planPath = null;
+    _repo.addListener(_onPersistedPlanChanged);
+    _allMeals = currentSession
+        ? List<GeneratedMeal>.from(draft?.meals ?? const [])
+        : [];
     _numberOfDays = draft?.numberOfDays ?? 7;
     if (_numberOfDays < 1) _numberOfDays = 1;
-    _familyMembers = List<String>.from(draft?.familyMembers ?? const []);
+    _familyMembers = (currentSession
+            ? draft?.familyMembers ?? const <String>[]
+            : const <String>[])
+        .map((id) =>
+            FamilyMemberRepository.instance.members
+                .where((member) => member.id == id)
+                .firstOrNull
+                ?.displayName ??
+            id)
+        .toList();
     _startDate = draft?.startDate ?? WeekCalendar.mondayOf(DateTime.now());
-    // Align selected day to today when viewing the current week.
-    final todayIdx = WeekCalendar.dayIndexOf(DateTime.now());
-    if (WeekCalendar.mondayOf(_startDate) ==
-            WeekCalendar.mondayOf(DateTime.now()) &&
-        todayIdx < _calendarDays) {
-      _selectedDayIndex = todayIdx;
-    }
+    // New plans open at their chosen start, never at the device's current day.
+    _selectedDayIndex = draft?.initialDayIndex ??
+        (draft?.meals.isNotEmpty == true
+            ? draft!.meals
+                .map((meal) => meal.dayIndex)
+                .reduce((a, b) => a < b ? a : b)
+            : 0);
     _saveTitleController = TextEditingController(
-      text: draft?.title ?? 'My Family Meal Plan',
+      text: currentSession ? draft?.title ?? 'My Family Meal Plan' : '',
     );
   }
 
   @override
   void dispose() {
+    _repo.removeListener(_onPersistedPlanChanged);
     _saveTitleController.dispose();
     super.dispose();
+  }
+
+  // ── Save plan success modal ──────────────────────────────────────────────────
+
+  /// [autoNavigate] = true when called right after a fresh save;
+  /// the dialog will auto-redirect to the calendar after 3 s and hide the
+  /// "Continue Editing" escape hatch so the user cannot re-trigger save.
+  void _showSaveSuccessDialog(String title, {bool autoNavigate = false}) {
+    if (!mounted) return;
+    showDialog(
+      context: context,
+      barrierDismissible: !autoNavigate,
+      builder: (ctx) => _SaveSuccessDialogContent(
+        title: title,
+        familyMembers: _familyMembers,
+        autoNavigate: autoNavigate,
+        onViewCalendar: () {
+          Navigator.pop(ctx);
+          context.go(mealCalendarRoute(DateTime(
+              _startDate.year,
+              _startDate.month,
+              _startDate.day + _selectedDayIndex.clamp(0, _numberOfDays - 1))));
+        },
+        onViewAllPlans: () {
+          Navigator.pop(ctx);
+          context.push('/saved-meal-plans');
+        },
+        onRename: autoNavigate
+            ? null
+            : () {
+                Navigator.pop(ctx);
+                _showSavePlanDialog();
+              },
+        onContinueEditing: autoNavigate ? null : () => Navigator.pop(ctx),
+      ),
+    );
   }
 
   // ── Save plan dialog ────────────────────────────────────────────────────────
@@ -101,161 +302,170 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
     showDialog(
       context: context,
       builder: (ctx) {
-        return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: const Text('Save Meal Plan',
-              style: TextStyle(fontWeight: FontWeight.w800)),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text(
-                  'Give this meal plan a name to load it anytime from Saved Plans.'),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _saveTitleController,
-                decoration: InputDecoration(
-                  labelText: 'Plan Name',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
+        return StatefulBuilder(
+          builder: (dialogCtx, setDialogState) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              title: const Text('Save Meal Plan',
+                  style: TextStyle(fontWeight: FontWeight.w800)),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                      'Give this meal plan a name to load it anytime from Saved Plans.'),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: _saveTitleController,
+                    decoration: InputDecoration(
+                      labelText: 'Plan Name',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel',
-                  style: TextStyle(color: AppColors.textSecondary)),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                final title = _saveTitleController.text.trim().isEmpty
-                    ? 'Family Meal Plan'
-                    : _saveTitleController.text.trim();
-                final endDate =
-                    _startDate.add(Duration(days: _numberOfDays - 1));
-
-                final coreMeals = _allMeals.map((m) => m.toCore()).toList();
-                final corePlan = MealPlan(
-                  id: '',
-                  title: title,
-                  startDate: _startDate,
-                  endDate: endDate,
-                  numberOfDays: _numberOfDays,
-                  selectedMemberIds: _familyMembers,
-                  status: 'saved',
-                );
-
-                try {
-                  // Capture router/messenger before async gaps so View still works
-                  // even if this page is later disposed.
-                  final router = GoRouter.of(context);
-                  final messenger = ScaffoldMessenger.of(context);
-                  final viewedDraft = GeneratedPlanDraft(
-                    meals: List<GeneratedMeal>.from(_allMeals),
-                    familyMembers: List<String>.from(_familyMembers),
-                    numberOfDays: _numberOfDays,
-                    startDate: _startDate,
-                    title: title,
-                  );
-
-                  final savedPlanId = await SavedPlansRepository.instance
-                      .savePlan(corePlan, coreMeals);
-                  final userName =
-                      AuthRepository.instance.value?.name ?? 'A member';
-                  NotificationService.instance.notifyHouseholdMembers(
-                    title: 'Meal Plan Saved 📋',
-                    body: '$userName saved "$title" to the meal plans.',
-                    type: AppNotificationType.mealPlanSaved,
-                    relatedPlanId: savedPlanId,
-                    includeSelf: true,
-                  );
-                  if (!ctx.mounted) return;
-                  Navigator.pop(ctx);
-
-                  messenger.hideCurrentSnackBar();
-                  messenger.showSnackBar(
-                    SnackBar(
-                      duration: const Duration(seconds: 6),
-                      backgroundColor: AppColors.primary,
-                      content: Row(
-                        children: [
-                          const Icon(Icons.check_circle,
-                              color: Colors.white, size: 20),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              'Saved "$title"!',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
+              actions: [
+                TextButton(
+                  onPressed: _saveDialogBusy ? null : () => Navigator.pop(ctx),
+                  child: const Text('Cancel',
+                      style: TextStyle(color: AppColors.textSecondary)),
+                ),
+                ElevatedButton(
+                  onPressed: _saveDialogBusy
+                      ? null
+                      : () async {
+                          if (_saveDialogBusy) return;
+                          final meals = _mealsForSave;
+                          if (meals.isEmpty && widget.draft?.isManual != true) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Add at least one meal before saving.'),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      action: SnackBarAction(
-                        label: 'View',
-                        textColor: Colors.white,
-                        onPressed: () {
-                          // Prefer the persisted copy once the local cache catches up.
-                          SavedMealPlan? saved;
-                          for (final p in SavedPlansRepository.instance.value) {
-                            if (p.id == savedPlanId) {
-                              saved = p;
-                              break;
-                            }
+                            );
+                            return;
                           }
-                          final draft = saved == null
-                              ? viewedDraft
-                              : GeneratedPlanDraft(
-                                  meals: List<GeneratedMeal>.from(saved.meals),
-                                  familyMembers:
-                                      List<String>.from(saved.familyMembers),
-                                  numberOfDays: saved.meals.isEmpty
-                                      ? viewedDraft.numberOfDays
-                                      : saved.meals
-                                              .map((m) => m.dayIndex)
-                                              .reduce((a, b) => a > b ? a : b) +
-                                          1,
-                                  startDate: viewedDraft.startDate,
-                                  title: saved.title,
-                                );
+                          final unnamedMeals = meals
+                              .where((meal) => meal.title.trim().isEmpty)
+                              .toList();
+                          if (unnamedMeals.isNotEmpty) {
+                            final missingLabels = unnamedMeals
+                                .take(3)
+                                .map((meal) =>
+                                    '${_dayShortLabel(meal.dayIndex)} ${meal.type}')
+                                .join(', ');
+                            final remaining = unnamedMeals.length - 3;
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Add a name for: $missingLabels'
+                                  '${remaining > 0 ? ' and $remaining more' : ''}.',
+                                ),
+                              ),
+                            );
+                            return;
+                          }
+                          setDialogState(() => _saveDialogBusy = true);
+                          final title = _saveTitleController.text.trim().isEmpty
+                              ? 'Family Meal Plan'
+                              : _saveTitleController.text.trim();
+                          try {
+                            final existingPath = _planPath;
+                            final path = await _ensurePersisted();
+                            if (existingPath != null) {
+                              final savedTitle = _repo.value
+                                  .where(
+                                      (plan) => plan.sourcePath == existingPath)
+                                  .firstOrNull
+                                  ?.title;
+                              if (savedTitle != title) {
+                                await _repo.renamePlan(path, title);
+                              }
+                            }
+                            if (_repo.sessionVersion != _session) {
+                              return;
+                            }
+                            if (!ctx.mounted) return;
+                            Navigator.pop(ctx);
 
-                          // Leave the editor, then open the saved plan so View
-                          // always produces a visible navigation (not a no-op
-                          // push of the same screen the user is already on).
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            router.go('/meal-plan');
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              router.push('/generated-plan', extra: draft);
-                            });
-                          });
+                            if (mounted) {
+                              setState(() {});
+                              _showSaveSuccessDialog(title, autoNavigate: true);
+                            }
+                          } catch (e) {
+                            if (!mounted) return;
+                            final message = e is StateError
+                                ? switch (e.message) {
+                                    'Complete the meal names before saving.' =>
+                                      'Add a name for every meal before saving.',
+                                    'Your role cannot save meals.' =>
+                                      'Your household role does not have permission to save meal plans.',
+                                    'Account or household changed.' ||
+                                    'Account or household changed. Reopen the plan.' =>
+                                      'Your account or household changed. Reopen the plan and retry.',
+                                    _ => GenerationFailure.from(e).toString(),
+                                  }
+                                : _saveFailureMessage(e);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(message),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          } finally {
+                            if (dialogCtx.mounted) {
+                              setDialogState(() => _saveDialogBusy = false);
+                            }
+                            _saveDialogBusy = false;
+                          }
                         },
-                      ),
-                    ),
-                  );
-                } catch (e) {
-                  if (!mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Could not save meal plan: $e'),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
-                }
-              },
-              style:
-                  ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
-              child: const Text('Save Plan',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w700)),
-            ),
-          ],
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary),
+                  child: _saveDialogBusy
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Text('Save Plan',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700)),
+                ),
+              ],
+            );
+          },
         );
       },
     );
+  }
+
+  String _saveFailureMessage(Object error) {
+    if (error is FirebaseException) {
+      final message = switch (error.code) {
+        'permission-denied' =>
+          'Firebase denied saving this plan. Check the deployed Firestore '
+              'rules and App Check configuration for this project.',
+        'unauthenticated' ||
+        'user-token-expired' =>
+          'Your Firebase sign-in expired. Sign in again, then retry saving.',
+        'unavailable' ||
+        'deadline-exceeded' =>
+          'Firebase could not save this plan because the service or network '
+              'is unavailable. Your plan is still open; retry when connected.',
+        _ =>
+          'Firebase could not save this plan. Your plan is still open; retry '
+              'after checking your Firebase configuration.',
+      };
+      final plugin = error.plugin.replaceAll(RegExp(r'[^a-zA-Z0-9_.-]'), '');
+      final code = error.code.replaceAll(RegExp(r'[^a-zA-Z0-9_.-]'), '');
+      return '$message (Firebase: $plugin/$code)';
+    }
+    return GenerationFailure.from(error).toString();
   }
 
   // ── Custom Edit & Add Meal Dialogs ──────────────────────────────────────────
@@ -367,7 +577,7 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 final updatedTitle = titleCtrl.text.trim();
                 if (updatedTitle.isEmpty) return;
 
@@ -377,19 +587,35 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
                     .where((s) => s.isNotEmpty)
                     .toList();
 
-                setState(() {
-                  final allIdx = _allMeals.indexWhere((m) => m.id == meal.id);
-                  if (allIdx >= 0) {
-                    _allMeals[allIdx] = _allMeals[allIdx].copyWith(
-                      title: updatedTitle,
-                      type: selectedType,
-                      prepTime: prepTimeCtrl.text.trim(),
-                      calories: caloriesCtrl.text.trim(),
-                      badgeText: badgeCtrl.text.trim(),
-                      ingredients: rawIngredients,
-                    );
+                final updated = meal.copyWith(
+                    title: updatedTitle,
+                    type: selectedType,
+                    prepTime: prepTimeCtrl.text.trim(),
+                    calories: caloriesCtrl.text.trim(),
+                    badgeText: badgeCtrl.text.trim(),
+                    ingredients: rawIngredients);
+                try {
+                  if (_planPath != null) {
+                    await _repo.editMeal(await _ensurePersisted(), updated);
                   }
-                });
+                  if (!mounted ||
+                      !ctx.mounted ||
+                      _repo.sessionVersion != _session) {
+                    return;
+                  }
+                  setState(() {
+                    _allMeals = _allMeals
+                        .map((m) => m.id == meal.id ? updated : m)
+                        .toList();
+                  });
+                } catch (_) {
+                  if (mounted && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content:
+                            Text('Meal edit was not saved. Please retry.')));
+                  }
+                  return;
+                }
                 Navigator.pop(ctx);
               },
               style:
@@ -405,421 +631,56 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
   }
 
   void _showAddMealDialog() {
-    final titleCtrl = TextEditingController();
-    final prepTimeCtrl = TextEditingController(text: '20m');
-    final caloriesCtrl = TextEditingController(text: '400 kcal');
-    final badgeCtrl = TextEditingController(text: 'Home Cooked');
-    final ingredientsCtrl = TextEditingController();
-    String selectedType = 'Lunch';
-
+    final dayIndex = _selectedDayIndex;
     showDialog(
       context: context,
-      builder: (ctx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: Text('Add Dish to ${_dayLabel(_selectedDayIndex)}',
-              style: const TextStyle(fontWeight: FontWeight.w800)),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  controller: titleCtrl,
-                  decoration: InputDecoration(
-                    labelText: 'Dish Name',
-                    hintText: 'e.g., Sinigang na Baboy',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                DropdownButtonFormField<String>(
-                  initialValue: selectedType,
-                  decoration: InputDecoration(
-                    labelText: 'Meal Type',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  items: ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dessert']
-                      .map((t) => DropdownMenuItem(value: t, child: Text(t)))
-                      .toList(),
-                  onChanged: (val) {
-                    if (val != null) setDialogState(() => selectedType = val);
-                  },
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: prepTimeCtrl,
-                        decoration: InputDecoration(
-                          labelText: 'Prep Time',
-                          hintText: '20m',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: TextField(
-                        controller: caloriesCtrl,
-                        decoration: InputDecoration(
-                          labelText: 'Calories',
-                          hintText: '400 kcal',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: ingredientsCtrl,
-                  maxLines: 2,
-                  decoration: InputDecoration(
-                    labelText: 'Ingredients (comma-separated)',
-                    hintText: 'Pork, Tamarind soup mix, Kangkong',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel',
-                  style: TextStyle(color: AppColors.textSecondary)),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                final title = titleCtrl.text.trim();
-                if (title.isEmpty) return;
-
-                final rawIngredients = ingredientsCtrl.text
-                    .split(',')
-                    .map((s) => s.trim())
-                    .where((s) => s.isNotEmpty)
-                    .toList();
-
-                final newMeal = GeneratedMeal(
-                  id: 'custom_added_${_selectedDayIndex}_${DateTime.now().millisecondsSinceEpoch}',
-                  title: title,
-                  type: selectedType,
-                  dayIndex: _selectedDayIndex,
-                  prepTime: prepTimeCtrl.text.trim(),
-                  calories: caloriesCtrl.text.trim(),
-                  badgeText: badgeCtrl.text.trim(),
-                  imageUrl: '',
-                  ingredients: rawIngredients,
-                  macros: {
-                    'Protein': '25g',
-                    'Carbs': '40g',
-                    'Fats': '15g',
-                  },
-                  status: MealStatus.accepted,
-                );
-
-                setState(() {
-                  _allMeals.add(newMeal);
-                });
-                Navigator.pop(ctx);
-              },
-              style:
-                  ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
-              child: const Text('Add Dish',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w700)),
-            ),
-          ],
-        ),
+      builder: (ctx) => AddMealDialog(
+        dayIndex: dayIndex,
+        dayLabel: _dayLabel(dayIndex),
+        onAdd: (newMeal) async {
+          final repo = _repo;
+          if (!mounted || repo.sessionVersion != _session) {
+            throw StateError('Account or household changed.');
+          }
+          if (_planPath != null) {
+            await repo.editMeal(await _ensurePersisted(), newMeal);
+          }
+          if (!mounted || !ctx.mounted || repo.sessionVersion != _session) {
+            throw StateError('Account or household changed.');
+          }
+          setState(() {
+            if (!_allMeals.any((meal) => meal.id == newMeal.id)) {
+              _allMeals.add(newMeal);
+            }
+            if (_numberOfDays < newMeal.dayIndex + 1) {
+              _numberOfDays = newMeal.dayIndex + 1;
+            }
+          });
+        },
       ),
     );
   }
 
   // ── Smart grocery export ────────────────────────────────────────────────────
 
-  /// Ingredients not found in the pantry (singular/plural-aware) for [meal].
-  List<String> _missingAgainstPantry(GeneratedMeal meal) {
-    final pantryNames = PantryRepository.instance.availableNames;
-    final all = IngredientMatcher.allIngredients(
-      ingredients: meal.ingredients,
-      availableIngredients: meal.availableIngredients,
-      missingIngredients: meal.missingIngredients,
-    );
-    return IngredientMatcher.partition(all, pantryNames).needToBuy;
-  }
-
-  /// On Accept: add every ingredient that is NOT in the pantry to Grocery.
-  /// Empty pantry ⇒ every ingredient is added. Skips items already on grocery.
-  Future<int> _pushMissingIngredientsToGrocery(GeneratedMeal meal) async {
-    final needToBuy = _missingAgainstPantry(meal);
-    if (needToBuy.isEmpty) return 0;
-
-    final groceryNames = GroceryRepository.instance.allItemNames;
-    final newItems = <GroceryItem>[];
-    final seen = <String>{};
-
-    for (final ingredient in needToBuy) {
-      final key = IngredientMatcher.normalize(ingredient);
-      if (key.isEmpty || !seen.add(key)) continue;
-      // Avoid duplicate grocery lines; pantry was already checked above.
-      if (IngredientMatcher.isInPantry(ingredient, groceryNames)) continue;
-      newItems.add(GroceryItem(
-        name: ingredient,
-        quantity: '1',
-        section: _classifyIngredient(ingredient),
-      ));
-    }
-
-    if (newItems.isEmpty) return 0;
-    return GroceryRepository.instance.addMultipleItems(newItems);
-  }
-
   Future<void> _generateGroceryList() async {
-    if (!FamilyPermissions.canGenerateGroceryList) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content:
-              Text(FamilyPermissions.denialMessage('generate a grocery list')),
-          backgroundColor: AppColors.danger,
-        ),
-      );
-      return;
-    }
-
-    final pantryNames = PantryRepository.instance.availableNames;
-    final groceryNames = GroceryRepository.instance.allItemNames;
-
-    final newItems = <GroceryItem>[];
-    final seen = <String>{};
-
-    // Only accepted (and completed) meals feed the grocery list.
-    final sourceMeals = _allMeals.where(
-      (m) => !m.isReplaced && (m.isAccepted || m.isCompleted),
-    );
-    // If nothing accepted yet, fall back to all non-replaced meals.
-    final meals = sourceMeals.isNotEmpty
-        ? sourceMeals
-        : _allMeals.where((m) => !m.isReplaced);
-
-    for (final meal in meals) {
-      final all = IngredientMatcher.allIngredients(
-        ingredients: meal.ingredients,
-        availableIngredients: meal.availableIngredients,
-        missingIngredients: meal.missingIngredients,
-      );
-      final needToBuy = IngredientMatcher.partition(all, pantryNames).needToBuy;
-
-      for (final ingredient in needToBuy) {
-        final key = IngredientMatcher.normalize(ingredient);
-        if (key.isEmpty || !seen.add(key)) continue;
-        if (IngredientMatcher.isInPantry(ingredient, groceryNames)) continue;
-        newItems.add(GroceryItem(
-          name: ingredient,
-          quantity: '1',
-          section: _classifyIngredient(ingredient),
-        ));
-      }
-    }
-
-    if (newItems.isEmpty) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+    if (_planPath == null) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
-              'All ingredients are already in your pantry or grocery list!'),
-        ),
-      );
+              'Save the meal plan first before exporting to grocery list.')));
       return;
     }
-
     try {
-      final added = await GroceryRepository.instance.addMultipleItems(newItems);
-      if (added > 0) {
-        final userName = AuthRepository.instance.value?.name ?? 'A member';
-        NotificationService.instance.notifyHouseholdMembers(
-          title: 'Grocery List Updated 🛒',
-          body:
-              '$userName added $added missing ingredients from the meal plan.',
-          type: AppNotificationType.groceryListUpdated,
-          includeSelf: true,
-        );
+      await _ensurePersisted();
+      if (mounted) context.go('/grocery');
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Save a complete plan and accept meals before opening their grocery requirements.')));
       }
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(added == 0
-              ? 'Those items were already on your grocery list.'
-              : 'Added $added missing ingredients to Grocery List!'),
-          backgroundColor: AppColors.primary,
-          action: SnackBarAction(
-            label: 'View List',
-            textColor: Colors.white,
-            onPressed: () => context.go('/grocery'),
-          ),
-        ),
-      );
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not export grocery list: $e'),
-          backgroundColor: Colors.red,
-        ),
-      );
     }
   }
-
-  /// Classify an ingredient name into a grocery section.
-  String _classifyIngredient(String ingredient) {
-    final lower = ingredient.toLowerCase();
-    if (_containsAny(lower, [
-      'chicken',
-      'beef',
-      'pork',
-      'fish',
-      'shrimp',
-      'prawn',
-      'meat',
-      'salmon',
-      'tuna',
-      'bangus',
-      'tilapia',
-      'galunggong',
-      'squid',
-      'crab',
-      'clams',
-      'mussel',
-      'sausage',
-      'bacon',
-      'ham',
-      'turkey',
-      'lamb',
-      'veal',
-      'ground'
-    ])) {
-      return 'MEAT & SEAFOOD';
-    }
-    if (_containsAny(lower, [
-      'milk',
-      'cheese',
-      'butter',
-      'egg',
-      'yogurt',
-      'cream',
-      'curd',
-      'dairy',
-      'condensed',
-      'evaporated',
-      'whipping',
-      'sour cream'
-    ])) {
-      return 'DAIRY & REFRIGERATED';
-    }
-    if (_containsAny(lower, [
-      'tomato',
-      'lettuce',
-      'onion',
-      'garlic',
-      'pepper',
-      'vegetable',
-      'carrot',
-      'potato',
-      'cabbage',
-      'spinach',
-      'kangkong',
-      'sitaw',
-      'eggplant',
-      'okra',
-      'ampalaya',
-      'fruit',
-      'apple',
-      'banana',
-      'mango',
-      'papaya',
-      'lemon',
-      'calamansi',
-      'ginger',
-      'celery',
-      'leek',
-      'mushroom',
-      'herb',
-      'cilantro',
-      'parsley',
-      'basil',
-      'bay leaf',
-      'lemongrass',
-      'pechay'
-    ])) {
-      return 'PRODUCE AISLE';
-    }
-    if (_containsAny(lower, [
-      'bread',
-      'flour',
-      'rice',
-      'pasta',
-      'noodle',
-      'oat',
-      'cereal',
-      'pancit',
-      'bihon',
-      'misua',
-      'sotanghon',
-      'spaghetti',
-      'macaroni',
-      'crackers',
-      'biscuit'
-    ])) {
-      return 'GRAINS & BREAD';
-    }
-    if (_containsAny(lower, [
-      'sauce',
-      'vinegar',
-      'soy sauce',
-      'fish sauce',
-      'patis',
-      'bagoong',
-      'oyster sauce',
-      'hoisin',
-      'ketchup',
-      'mustard',
-      'mayo',
-      'oil',
-      'olive oil',
-      'coconut oil',
-      'cooking oil',
-      'sugar',
-      'salt',
-      'pepper',
-      'cumin',
-      'turmeric',
-      'paprika',
-      'cinnamon',
-      'spice',
-      'seasoning',
-      'stock',
-      'broth',
-      'coconut milk',
-      'canned',
-      'paste'
-    ])) {
-      return 'PANTRY STAPLES';
-    }
-    return 'PANTRY STAPLES';
-  }
-
-  bool _containsAny(String text, List<String> keywords) =>
-      keywords.any((k) => text.contains(k));
-
-  // ── AI meal replacement ─────────────────────────────────────────────────────
 
   Future<void> _replaceMealWithAi(int index) async {
     final visible = _dayMeals;
@@ -866,41 +727,63 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
         ],
       ),
     );
-    if (confirmed != true) return;
+    if (confirmed != true || !mounted || !context.mounted) return;
 
+    BuildContext? loadingContext;
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        content: const Row(
-          children: [
-            CircularProgressIndicator(color: AppColors.primary),
-            SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                'Asking AI for an alternative recipe…',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+      builder: (ctx) {
+        loadingContext = ctx;
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: const Row(
+            children: [
+              CircularProgressIndicator(color: AppColors.primary),
+              SizedBox(width: 20),
+              Expanded(
+                child: Text(
+                  'Asking AI for an alternative recipe…',
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
 
     try {
-      final pantryNames = PantryRepository.instance.items.values
-          .expand((list) => list)
-          .map((item) => item.name)
+      final pantryContext = pantryPromptContext(
+          PantryRepository.instance.items.values.expand((items) => items),
+          now: DateTime.now());
+      final selectedIds = widget.draft?.selectedMemberIds ?? const <String>[];
+      final participants = FamilyMemberRepository.instance.members
+          .where((m) => selectedIds.contains(m.id))
           .toList();
+      if (participants.isEmpty ||
+          participants.length != selectedIds.toSet().length) {
+        throw StateError(
+            'Plan participants are unavailable. Reopen or recreate the plan with current profiles.');
+      }
+
       final result = await context.read<LlmService>().replaceMeal(
             uid: uid,
             currentMeal: current.toCore(),
-            pantryItems: pantryNames,
+            cuisinePreferences: widget.draft?.cuisinePreferences ?? const [],
+            preferences:
+                participants.expand((m) => m.preferences).toSet().toList(),
+            pantryItems: pantryContext,
+            restrictions: participants
+                .expand((member) => member.restrictions)
+                .toSet()
+                .toList(),
           );
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
-      final replacement = GeneratedMeal.fromCore(
+      if (loadingContext?.mounted == true) Navigator.of(loadingContext!).pop();
+      loadingContext = null;
+      var replacement = GeneratedMeal.fromCore(
         result.data,
         fallbackIndex: index,
       ).copyWith(
@@ -910,6 +793,13 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
         badgeText: 'AI Replacement',
         replacedMealId: current.id,
       );
+      if (_planPath != null) {
+        replacement = await _repo.replaceMeal(current.id, replacement,
+            planPath: _planPath!);
+      }
+      if (!mounted || !context.mounted || _repo.sessionVersion != _session) {
+        return;
+      }
       setState(() {
         final allIndex = _allMeals.indexWhere((m) => m.id == current.id);
         if (allIndex >= 0) {
@@ -917,18 +807,19 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
         }
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-              '${current.title} replaced with "${replacement.title}". Status is now Pending.'),
-          backgroundColor: AppColors.primary,
+        AiGenerationSnackBar(
+          result: result,
+          successMessage:
+              '${current.title} replaced with "${replacement.title}". Status is now Pending.',
         ),
       );
     } catch (e) {
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
+      if (loadingContext?.mounted == true) Navigator.of(loadingContext!).pop();
+      loadingContext = null;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Could not replace meal: $e'),
+          content: Text(GenerationFailure.from(e).toString()),
           backgroundColor: Colors.red,
         ),
       );
@@ -939,397 +830,328 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-          onPressed: () => context.pop(),
-        ),
-        title: const Text(
-          'Meal Plan Editor',
-          style: TextStyle(
-              color: AppColors.textPrimary,
-              fontWeight: FontWeight.w700,
-              fontSize: 16),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.bookmark_border, color: AppColors.primary),
-            tooltip: 'Save Plan',
-            onPressed: _showSavePlanDialog,
+    return UnsavedPlanGuard(
+      hasUnsavedPlan: _planPath == null &&
+          _allMeals.isNotEmpty &&
+          _session == _repo.sessionVersion,
+      onSave: _showSavePlanDialog,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
+            onPressed: () => Navigator.of(context).maybePop(),
           ),
-        ],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          // ── Day selector tabs ─────────────────────────────────────────────
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(_calendarDays, (index) {
-                final isSelected = _selectedDayIndex == index;
-                final date = _startDate.add(Duration(days: index));
-                return Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: InkWell(
-                    onTap: () => setState(() => _selectedDayIndex = index),
-                    borderRadius: BorderRadius.circular(12),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? AppColors.primary
-                            : AppColors.cardSurface,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color:
-                              isSelected ? AppColors.primary : AppColors.border,
+          title: const Text(
+            'Meal Plan Editor',
+            style: TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w700,
+                fontSize: 16),
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(
+                _planPath != null ? Icons.bookmark : Icons.bookmark_border,
+                color: AppColors.primary,
+              ),
+              tooltip: _planPath != null ? 'Plan Saved' : 'Save Plan',
+              onPressed: () {
+                if (_planPath != null) {
+                  _showSaveSuccessDialog(
+                    _saveTitleController.text.trim().isEmpty
+                        ? 'Family Meal Plan'
+                        : _saveTitleController.text.trim(),
+                    autoNavigate: false,
+                  );
+                } else {
+                  _showSavePlanDialog();
+                }
+              },
+            ),
+          ],
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            if (_session != _repo.sessionVersion)
+              const Text(
+                  'Account or household changed. Reopen the plan from the current account.'),
+            if (_planPath == null &&
+                widget.draft?.initialSaveFailed == true &&
+                _session == _repo.sessionVersion)
+              const Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: Text(
+                  'Generated meals are not saved. Keep this editor open and use Save Plan to retry saving without another AI request.',
+                  key: ValueKey('generated-plan-not-saved'),
+                  style: TextStyle(color: AppColors.warning),
+                ),
+              ),
+            // ── Day selector tabs ─────────────────────────────────────────────
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(_calendarDays, (index) {
+                  final isSelected = _selectedDayIndex == index;
+                  final date = _startDate.add(Duration(days: index));
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: InkWell(
+                      onTap: () => setState(() => _selectedDayIndex = index),
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 10),
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? AppColors.primary
+                              : AppColors.cardSurface,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: isSelected
+                                ? AppColors.primary
+                                : AppColors.border,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              _dayShortLabel(index),
+                              style: TextStyle(
+                                color: isSelected
+                                    ? Colors.white
+                                    : AppColors.textSecondary,
+                                fontWeight: isSelected
+                                    ? FontWeight.w800
+                                    : FontWeight.w600,
+                                fontSize: 13,
+                              ),
+                            ),
+                            Text(
+                              '${date.day}/${date.month}',
+                              style: TextStyle(
+                                color: isSelected
+                                    ? Colors.white.withValues(alpha: 0.8)
+                                    : AppColors.textMuted,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Column(
-                        children: [
-                          Text(
-                            _dayShortLabel(index),
-                            style: TextStyle(
-                              color: isSelected
-                                  ? Colors.white
-                                  : AppColors.textSecondary,
-                              fontWeight: isSelected
-                                  ? FontWeight.w800
-                                  : FontWeight.w600,
-                              fontSize: 13,
-                            ),
-                          ),
-                          Text(
-                            '${date.day}/${date.month}',
-                            style: TextStyle(
-                              color: isSelected
-                                  ? Colors.white.withValues(alpha: 0.8)
-                                  : AppColors.textMuted,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-          // ── Day header ────────────────────────────────────────────────────
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                _dayLabel(_selectedDayIndex),
-                style: const TextStyle(
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 20,
-                ),
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryLight,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  '${_dayMeals.length} meals • ${_dayMeals.where((m) => m.isAccepted).length} accepted',
+            // ── Day header ────────────────────────────────────────────────────
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  _dayLabel(_selectedDayIndex),
                   style: const TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12),
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 20,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 14),
-
-          // ── Meals for the day ─────────────────────────────────────────────
-          for (var i = 0; i < _dayMeals.length; i++) ...[
-            _MealCard(
-              meal: _dayMeals[i],
-              dayIndex: _selectedDayIndex,
-              onReplace: () => _replaceMealWithAi(i),
-              onEdit: () => _showEditMealDialog(_dayMeals[i]),
-              onDelete: () {
-                final targetMeal = _dayMeals[i];
-                setState(() {
-                  _allMeals.removeWhere((m) => m.id == targetMeal.id);
-                });
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Removed ${targetMeal.title}'),
-                    duration: const Duration(seconds: 2),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryLight,
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                );
-              },
-              onAccept: () async {
-                if (!FamilyPermissions.canAcceptMeal) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content:
-                          Text(FamilyPermissions.denialMessage('accept meals')),
-                      backgroundColor: AppColors.danger,
-                    ),
-                  );
-                  return;
-                }
-                final targetMeal = _dayMeals[i];
-                final pantryNames = PantryRepository.instance.availableNames;
-                final allIngredients = IngredientMatcher.allIngredients(
-                  ingredients: targetMeal.ingredients,
-                  availableIngredients: targetMeal.availableIngredients,
-                  missingIngredients: targetMeal.missingIngredients,
-                );
-                final split = IngredientMatcher.partition(
-                  allIngredients,
-                  pantryNames,
-                );
-
-                setState(() {
-                  final allIdx =
-                      _allMeals.indexWhere((m) => m.id == targetMeal.id);
-                  if (allIdx >= 0) {
-                    _allMeals[allIdx] = _allMeals[allIdx].copyWith(
-                      status: MealStatus.accepted,
-                      // Recompute against live pantry (ignore AI labels).
-                      availableIngredients: split.inPantry,
-                      missingIngredients: split.needToBuy,
-                      ingredients: allIngredients.isNotEmpty
-                          ? allIngredients
-                          : targetMeal.ingredients,
-                    );
-                  }
-                });
-
-                SavedPlansRepository.instance
-                    .updateMealStatus(targetMeal.id, MealStatus.accepted);
-
-                // Send household notification (plan ID not available for drafts)
-                final targetMemberName = _familyMembers.isNotEmpty
-                    ? _familyMembers[0]
-                    : 'your household';
-                HouseholdNotificationService.instance.notifyMealAccepted(
-                  planId: '', // Draft plans don't have IDs yet
-                  mealId: targetMeal.id,
-                  mealTitle: targetMeal.title,
-                  mealType: targetMeal.type,
-                  targetMemberName: targetMemberName,
-                );
-
-                final messenger = ScaffoldMessenger.of(context);
-                final router = GoRouter.of(context);
-
-                var added = 0;
-                try {
-                  added = await _pushMissingIngredientsToGrocery(
-                    targetMeal.copyWith(
-                      availableIngredients: split.inPantry,
-                      missingIngredients: split.needToBuy,
-                      ingredients: allIngredients.isNotEmpty
-                          ? allIngredients
-                          : targetMeal.ingredients,
-                    ),
-                  );
-                } catch (_) {
-                  added = 0;
-                }
-
-                if (!mounted) return;
-                final groceryNote = pantryNames.isEmpty
-                    ? (added > 0
-                        ? 'Pantry empty — added $added ingredients to Grocery.'
-                        : 'Pantry empty — ingredients already on Grocery.')
-                    : (added > 0
-                        ? 'Added $added missing ingredients to Grocery.'
-                        : (split.needToBuy.isEmpty
-                            ? 'All ingredients are already in your pantry.'
-                            : 'Missing items were already on Grocery.'));
-                messenger.showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Accepted ${targetMeal.title}. $groceryNote',
-                    ),
-                    backgroundColor: AppColors.primary,
-                    action: added > 0
-                        ? SnackBarAction(
-                            label: 'View List',
-                            textColor: Colors.white,
-                            onPressed: () => router.go('/grocery'),
-                          )
-                        : null,
+                  child: Text(
+                    '${_dayMeals.length} meals • ${_dayMeals.where((m) => m.isAccepted).length} accepted',
+                    style: const TextStyle(
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12),
                   ),
-                );
-              },
-              onComplete: () {
-                if (!FamilyPermissions.canAcceptMeal) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(FamilyPermissions.denialMessage(
-                          'update meal status')),
-                      backgroundColor: AppColors.danger,
-                    ),
-                  );
-                  return;
-                }
-                final targetMeal = _dayMeals[i];
-                setState(() {
-                  final allIdx =
-                      _allMeals.indexWhere((m) => m.id == targetMeal.id);
-                  if (allIdx >= 0) {
-                    _allMeals[allIdx] = _allMeals[allIdx].copyWith(
-                      status: MealStatus.completed,
-                    );
-                  }
-                });
-                SavedPlansRepository.instance
-                    .updateMealStatus(targetMeal.id, MealStatus.completed);
-
-                // Send household notification (plan ID not available for drafts)
-                HouseholdNotificationService.instance.notifyMealCompleted(
-                  planId: '', // Draft plans don't have IDs yet
-                  mealId: targetMeal.id,
-                  mealTitle: targetMeal.title,
-                  mealType: targetMeal.type,
-                );
-
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Marked ${targetMeal.title} as completed'),
-                    backgroundColor: AppColors.info,
-                  ),
-                );
-              },
-              onNotCompleted: () {
-                if (!FamilyPermissions.canAcceptMeal) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(FamilyPermissions.denialMessage(
-                          'update meal status')),
-                      backgroundColor: AppColors.danger,
-                    ),
-                  );
-                  return;
-                }
-                final targetMeal = _dayMeals[i];
-                setState(() {
-                  final allIdx =
-                      _allMeals.indexWhere((m) => m.id == targetMeal.id);
-                  if (allIdx >= 0) {
-                    _allMeals[allIdx] = _allMeals[allIdx].copyWith(
-                      status: MealStatus.notCompleted,
-                    );
-                  }
-                });
-                SavedPlansRepository.instance
-                    .updateMealStatus(targetMeal.id, MealStatus.notCompleted);
-
-                // Send household notification (plan ID not available for drafts)
-                HouseholdNotificationService.instance.notifyMealNotCompleted(
-                  planId: '', // Draft plans don't have IDs yet
-                  mealId: targetMeal.id,
-                  mealTitle: targetMeal.title,
-                  mealType: targetMeal.type,
-                );
-
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content:
-                        Text('Marked ${targetMeal.title} as not completed'),
-                    backgroundColor: AppColors.danger,
-                  ),
-                );
-              },
+                ),
+              ],
             ),
             const SizedBox(height: 14),
-          ],
 
-          // ── Add Dish to this day ──────────────────────────────────────────
-          Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: OutlinedButton.icon(
-              onPressed: _showAddMealDialog,
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.primary,
-                side: BorderSide(
-                  color: AppColors.primary.withValues(alpha: 0.6),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+            // ── Meals for the day ─────────────────────────────────────────────
+            for (var i = 0; i < _dayMeals.length; i++) ...[
+              GeneratedMealCard(
+                onOpen: () async {
+                  final target = _dayMeals[i];
+                  if (_planPath == null) {
+                    _showUnsavedMeal(target);
+                    return;
+                  }
+                  try {
+                    final path = await _ensurePersisted();
+                    if (!mounted ||
+                        !context.mounted ||
+                        _session != _repo.sessionVersion) {
+                      return;
+                    }
+                    context.push(mealRoute(target.id, path));
+                  } catch (_) {
+                    if (mounted && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              'Save the plan before opening this meal. Please retry.')));
+                    }
+                  }
+                },
+                isSaved: _planPath != null,
+                onCook: () => _showUnsavedMeal(_dayMeals[i]),
+                meal: _dayMeals[i],
+                dayIndex: _selectedDayIndex,
+                onReplace: () => _replaceMealWithAi(i),
+                onEdit: () => _showEditMealDialog(_dayMeals[i]),
+                onDelete: () async {
+                  final target = _dayMeals[i];
+                  final confirmed = await showDialog<bool>(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                              title: const Text('Remove meal?'),
+                              content: Text(
+                                  'Remove ${target.title} and its grocery contribution?'),
+                              actions: [
+                                TextButton(
+                                    onPressed: () => Navigator.pop(ctx, false),
+                                    child: const Text('Cancel')),
+                                TextButton(
+                                    onPressed: () => Navigator.pop(ctx, true),
+                                    child: const Text('Remove'))
+                              ]));
+                  if (confirmed != true || !mounted || !context.mounted) return;
+                  try {
+                    if (_planPath != null) {
+                      await _repo.deleteMeal(
+                          await _ensurePersisted(), target.id);
+                    }
+                    if (!mounted || _repo.sessionVersion != _session) {
+                      return;
+                    }
+                    setState(
+                        () => _allMeals.removeWhere((m) => m.id == target.id));
+                  } catch (_) {
+                    if (mounted && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Meal could not be removed. Retry.')));
+                    }
+                  }
+                },
+                onAccept: () => _setStatus(_dayMeals[i], MealStatus.accepted),
+                onComplete: () =>
+                    _setStatus(_dayMeals[i], MealStatus.completed),
+                onNotCompleted: () =>
+                    _setStatus(_dayMeals[i], MealStatus.notCompleted),
               ),
-              icon: const Icon(Icons.add_circle_outline, size: 18),
-              label: Text(
-                'Add Dish to ${_dayLabel(_selectedDayIndex)}',
-                style:
-                    const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-              ),
-            ),
-          ),
-
-          if (_dayMeals.isEmpty)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 24),
-              child: Text(
-                'No meals for this day. Tap "Add Dish" above to create one.',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
-              ),
-            ),
-
-          const SizedBox(height: 12),
-
-          // ── Action buttons ────────────────────────────────────────────────
-          Row(
-            children: [
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _generateGroceryList,
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: AppColors.primary,
-                    side:
-                        const BorderSide(color: AppColors.primary, width: 1.5),
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  icon: const Icon(Icons.shopping_cart_outlined, size: 18),
-                  label: const Text('Export Grocery',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: _showSavePlanDialog,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  icon: const Icon(Icons.bookmark_add, size: 18),
-                  label: const Text('Save Plan',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
-                ),
-              ),
+              const SizedBox(height: 14),
             ],
-          ),
-          const SizedBox(height: 20),
-        ],
+
+            // ── Add Dish to this day ──────────────────────────────────────────
+            Padding(
+              padding: const EdgeInsets.only(bottom: 14),
+              child: OutlinedButton.icon(
+                onPressed: _showAddMealDialog,
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: AppColors.primary,
+                  side: BorderSide(
+                    color: AppColors.primary.withValues(alpha: 0.6),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+                icon: const Icon(Icons.add_circle_outline, size: 18),
+                label: Text(
+                  'Add Dish to ${_dayLabel(_selectedDayIndex)}',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w700, fontSize: 13),
+                ),
+              ),
+            ),
+
+            if (_dayMeals.isEmpty)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 24),
+                child: Text(
+                  'No meals for this day. Tap "Add Dish" above to create one.',
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                ),
+              ),
+
+            const SizedBox(height: 12),
+
+            // ── Action buttons ────────────────────────────────────────────────
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: _generateGroceryList,
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors.primary,
+                      side: const BorderSide(
+                          color: AppColors.primary, width: 1.5),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                    ),
+                    icon: const Icon(Icons.shopping_cart_outlined, size: 18),
+                    label: const Text('Export Grocery',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 13)),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _planPath != null
+                      ? ElevatedButton.icon(
+                          onPressed: () => _showSaveSuccessDialog(
+                            _saveTitleController.text.trim().isEmpty
+                                ? 'Family Meal Plan'
+                                : _saveTitleController.text.trim(),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF10B981),
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon:
+                              const Icon(Icons.check_circle_outline, size: 18),
+                          label: const Text('Plan Saved',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 13)),
+                        )
+                      : ElevatedButton.icon(
+                          onPressed: _showSavePlanDialog,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.bookmark_add, size: 18),
+                          label: const Text('Save Plan',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 13)),
+                        ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
@@ -1337,8 +1159,10 @@ class _GeneratedMealPlanPageState extends State<GeneratedMealPlanPage> {
 
 // ── Meal card widget ──────────────────────────────────────────────────────────
 
-class _MealCard extends StatefulWidget {
-  const _MealCard({
+class GeneratedMealCard extends StatefulWidget {
+  const GeneratedMealCard({
+    super.key,
+    required this.onOpen,
     required this.meal,
     required this.dayIndex,
     required this.onReplace,
@@ -1347,8 +1171,13 @@ class _MealCard extends StatefulWidget {
     this.onNotCompleted,
     this.onEdit,
     this.onDelete,
+    this.isSaved = true,
+    this.onCook,
   });
 
+  final VoidCallback onOpen;
+  final bool isSaved;
+  final VoidCallback? onCook;
   final GeneratedMeal meal;
   final int dayIndex;
   final VoidCallback onReplace;
@@ -1359,49 +1188,11 @@ class _MealCard extends StatefulWidget {
   final VoidCallback? onDelete;
 
   @override
-  State<_MealCard> createState() => _MealCardState();
+  State<GeneratedMealCard> createState() => _MealCardState();
 }
 
-class _MealCardState extends State<_MealCard> {
+class _MealCardState extends State<GeneratedMealCard> {
   bool _expanded = false;
-  String? _imageUrl;
-  String? _photographerName;
-  String? _photographerUrl;
-  String? _unsplashPageUrl;
-  bool _showAttribution = false;
-  bool _imageFetched = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchImage();
-  }
-
-  Future<void> _fetchImage() async {
-    if (_imageFetched) return;
-    _imageFetched = true;
-
-    // Use provided imageUrl first, then fall back to Unsplash
-    if (widget.meal.imageUrl.isNotEmpty) {
-      if (mounted) setState(() => _imageUrl = widget.meal.imageUrl);
-      return;
-    }
-
-    final photo = await UnsplashService.instance.fetchMealImage(
-      widget.meal.imageSearchQuery,
-      mealTitle: widget.meal.title,
-    );
-    if (photo != null && mounted) {
-      setState(() {
-        _imageUrl = photo.smallUrl;
-        _photographerName = photo.photographerName;
-        _photographerUrl = photo.photographerProfileUrl;
-        _unsplashPageUrl = photo.unsplashPageUrl;
-        _showAttribution = photo.showUnsplashAttribution;
-      });
-    }
-  }
-
   Future<void> _openUrl(String url) async {
     final uri = Uri.tryParse(url);
     if (uri == null) return;
@@ -1423,90 +1214,34 @@ class _MealCardState extends State<_MealCard> {
         children: [
           // ── Image ─────────────────────────────────────────────────────────
           InkWell(
-            onTap: () =>
-                context.push('/meal/${widget.meal.id}', extra: widget.meal),
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: ClipRRect(
+              onTap: widget.onOpen,
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(16)),
-              child: _imageUrl != null
-                  ? Stack(
-                      children: [
-                        MealNetworkImage(
-                          url: _imageUrl!,
-                          height: 160,
-                          width: double.infinity,
-                        ),
-                        // Attribution overlay (Unsplash TOS only)
-                        if (_showAttribution && _photographerName != null)
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 4),
-                              color: Colors.black.withValues(alpha: 0.5),
-                              child: Row(
-                                children: [
-                                  const Text(
-                                    'Photo by ',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () => _openUrl(_photographerUrl ??
-                                        _unsplashPageUrl ??
-                                        ''),
-                                    child: Text(
-                                      _photographerName!,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 9,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ),
-                                  const Text(
-                                    ' on ',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 9),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () =>
-                                        _openUrl(_unsplashPageUrl ?? ''),
-                                    child: const Text(
-                                      'Unsplash',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 9,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                      ],
-                    )
-                  : _imagePlaceholder(),
-            ),
-          ),
+              child: ClipRRect(
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(16)),
+                  child: MealNetworkImage(
+                      url: widget.meal.imageUrl,
+                      mealTitle: widget.meal.title,
+                      height: 160,
+                      width: double.infinity))),
 
-          // ── Meal Info ─────────────────────────────────────────────────────
           InkWell(
-            onTap: () =>
-                context.push('/meal/${widget.meal.id}', extra: widget.meal),
+            onTap: widget.onOpen,
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 8,
+                    runSpacing: 4,
                     children: [
-                      Row(
+                      Wrap(
+                        spacing: 8,
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Text(
                             widget.meal.type.toUpperCase(),
@@ -1517,14 +1252,14 @@ class _MealCardState extends State<_MealCard> {
                               letterSpacing: 0.5,
                             ),
                           ),
-                          const SizedBox(width: 8),
                           MealStatusBadge(
                             status: widget.meal.status,
                             compact: true,
                           ),
                         ],
                       ),
-                      Row(
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Text(
                             widget.meal.calories,
@@ -1603,12 +1338,14 @@ class _MealCardState extends State<_MealCard> {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               child: Row(
                 children: [
-                  Text(
-                    _expanded ? 'Hide ingredients' : 'Show ingredients',
-                    style: const TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12),
+                  Expanded(
+                    child: Text(
+                      _expanded ? 'Hide ingredients' : 'Show ingredients',
+                      style: const TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12),
+                    ),
                   ),
                   const SizedBox(width: 4),
                   Icon(
@@ -1623,96 +1360,21 @@ class _MealCardState extends State<_MealCard> {
 
           if (_expanded) ...[
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Builder(
-                builder: (context) {
-                  final pantryNames = PantryRepository.instance.availableNames;
-                  final all = IngredientMatcher.allIngredients(
-                    ingredients: widget.meal.ingredients,
-                    availableIngredients: widget.meal.availableIngredients,
-                    missingIngredients: widget.meal.missingIngredients,
-                  );
-                  final split = IngredientMatcher.partition(
-                    all,
-                    pantryNames,
-                  );
-                  final have = split.inPantry;
-                  final need = split.needToBuy;
-
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (have.isNotEmpty) ...[
-                        const Text('✅ In pantry:',
-                            style: TextStyle(
-                                color: AppColors.primary,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12)),
-                        const SizedBox(height: 4),
-                        Wrap(
-                          spacing: 6,
-                          runSpacing: 4,
-                          children: have
-                              .map((i) =>
-                                  _IngredientChip(label: i, available: true))
-                              .toList(),
-                        ),
-                        const SizedBox(height: 8),
-                      ],
-                      if (need.isNotEmpty) ...[
-                        Text(
-                          pantryNames.isEmpty
-                              ? '🛒 Need to buy (pantry empty):'
-                              : '🛒 Need to buy:',
-                          style: const TextStyle(
-                              color: AppColors.danger,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12),
-                        ),
-                        const SizedBox(height: 4),
-                        Wrap(
-                          spacing: 6,
-                          runSpacing: 4,
-                          children: need
-                              .map((i) =>
-                                  _IngredientChip(label: i, available: false))
-                              .toList(),
-                        ),
-                        const SizedBox(height: 8),
-                      ],
-                      if (have.isEmpty && need.isEmpty && all.isNotEmpty) ...[
-                        const Text('Ingredients:',
-                            style: TextStyle(
-                                color: AppColors.textPrimary,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12)),
-                        const SizedBox(height: 4),
-                        ...all.map((i) => Padding(
-                              padding: const EdgeInsets.only(bottom: 2),
-                              child: Text('• $i',
-                                  style: const TextStyle(
-                                      color: AppColors.textSecondary,
-                                      fontSize: 12)),
-                            )),
-                        const SizedBox(height: 8),
-                      ],
-                    ],
-                  );
-                },
-              ),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: MealIngredientsPanel(meal: widget.meal)),
           ],
 
-          // ── Actions ───────────────────────────────────────────────────────
           const Divider(
               height: 1, indent: 12, endIndent: 12, color: AppColors.border),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runSpacing: 8,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     TextButton.icon(
                       onPressed: widget.onReplace,
@@ -1744,7 +1406,12 @@ class _MealCardState extends State<_MealCard> {
                       ),
                   ],
                 ),
-                if (widget.meal.isCompleted)
+                if (!widget.isSaved)
+                  FilledButton.icon(
+                      onPressed: widget.onCook,
+                      icon: const Icon(Icons.restaurant, size: 16),
+                      label: const Text('Cook'))
+                else if (widget.meal.isCompleted)
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -1788,8 +1455,8 @@ class _MealCardState extends State<_MealCard> {
                     ),
                   )
                 else if (widget.meal.isAccepted)
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       if (widget.onNotCompleted != null)
                         TextButton(
@@ -1845,39 +1512,271 @@ class _MealCardState extends State<_MealCard> {
       ),
     );
   }
-
-  Widget _imagePlaceholder() {
-    return Container(
-      height: 120,
-      color: AppColors.primaryLight,
-      child: const Center(
-        child: Icon(Icons.restaurant, color: AppColors.primary, size: 40),
-      ),
-    );
-  }
 }
 
-class _IngredientChip extends StatelessWidget {
-  const _IngredientChip({required this.label, required this.available});
+class _SaveSuccessDialogContent extends StatefulWidget {
+  const _SaveSuccessDialogContent({
+    required this.title,
+    required this.familyMembers,
+    required this.autoNavigate,
+    required this.onViewCalendar,
+    required this.onViewAllPlans,
+    this.onRename,
+    this.onContinueEditing,
+  });
 
-  final String label;
-  final bool available;
+  final String title;
+  final List<String> familyMembers;
+  final bool autoNavigate;
+  final VoidCallback onViewCalendar;
+  final VoidCallback onViewAllPlans;
+  final VoidCallback? onRename;
+  final VoidCallback? onContinueEditing;
+
+  @override
+  State<_SaveSuccessDialogContent> createState() =>
+      _SaveSuccessDialogContentState();
+}
+
+class _SaveSuccessDialogContentState extends State<_SaveSuccessDialogContent>
+    with SingleTickerProviderStateMixin {
+  static const _countdownSeconds = 3;
+  int _remaining = _countdownSeconds;
+  Timer? _timer;
+  late final AnimationController _scaleCtrl;
+  late final Animation<double> _scaleAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _scaleCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _scaleAnim = CurvedAnimation(parent: _scaleCtrl, curve: Curves.elasticOut);
+    _scaleCtrl.forward();
+
+    if (widget.autoNavigate) {
+      _timer = Timer.periodic(const Duration(seconds: 1), (t) {
+        if (!mounted) {
+          t.cancel();
+          return;
+        }
+        setState(() => _remaining--);
+        if (_remaining <= 0) {
+          t.cancel();
+          widget.onViewCalendar();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _scaleCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-        color: available ? AppColors.primaryLight : AppColors.dangerLight,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: available ? AppColors.primary : AppColors.danger,
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
-        ),
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      contentPadding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // ── Animated checkmark ────────────────────────────────────────────
+          ScaleTransition(
+            scale: _scaleAnim,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                if (widget.autoNavigate)
+                  SizedBox(
+                    width: 72,
+                    height: 72,
+                    child: TweenAnimationBuilder<double>(
+                      tween: Tween(
+                        begin: 1.0,
+                        end: (_countdownSeconds - _remaining) /
+                            _countdownSeconds,
+                      ),
+                      duration: const Duration(milliseconds: 900),
+                      curve: Curves.linear,
+                      builder: (ctx, value, _) => CircularProgressIndicator(
+                        value: value,
+                        strokeWidth: 3,
+                        backgroundColor:
+                            AppColors.primary.withValues(alpha: 0.12),
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: const BoxDecoration(
+                    color: AppColors.primaryLight,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check_circle_rounded,
+                    color: AppColors.primary,
+                    size: 38,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 18),
+
+          // ── Title ─────────────────────────────────────────────────────────
+          const Text(
+            'Meal Plan Saved! 🎉',
+            style: TextStyle(
+              fontSize: 19,
+              fontWeight: FontWeight.w800,
+              color: AppColors.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 8),
+
+          // ── Plan name row ─────────────────────────────────────────────────
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Text(
+                  '"${widget.title}"',
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primary,
+                  ),
+                ),
+              ),
+              if (widget.onRename != null)
+                IconButton(
+                  icon: const Icon(Icons.edit_outlined,
+                      size: 16, color: AppColors.textMuted),
+                  tooltip: 'Rename plan',
+                  padding: const EdgeInsets.only(left: 4),
+                  constraints: const BoxConstraints(),
+                  onPressed: widget.onRename,
+                ),
+            ],
+          ),
+
+          if (widget.familyMembers.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 4, bottom: 2),
+              child: Text(
+                'For: ${widget.familyMembers.join(', ')}',
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textMuted,
+                ),
+              ),
+            ),
+          const SizedBox(height: 6),
+          const Text(
+            'Your plan is synced and visible on your household meal calendar.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              color: AppColors.textSecondary,
+              height: 1.4,
+            ),
+          ),
+
+          // ── Auto-nav countdown hint ───────────────────────────────────────
+          if (widget.autoNavigate) ...[
+            const SizedBox(height: 10),
+            Text(
+              'Redirecting to calendar in $_remaining s…',
+              style: TextStyle(
+                fontSize: 11,
+                color: AppColors.textMuted.withValues(alpha: 0.8),
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+
+          const SizedBox(height: 22),
+
+          // ── Primary CTA ───────────────────────────────────────────────────
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: () {
+                _timer?.cancel();
+                widget.onViewCalendar();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(vertical: 13),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              icon: const Icon(Icons.calendar_month, size: 18),
+              label: Text(
+                widget.autoNavigate ? 'Go to Calendar Now' : 'View on Calendar',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+
+          // ── Secondary CTA ─────────────────────────────────────────────────
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: () {
+                _timer?.cancel();
+                widget.onViewAllPlans();
+              },
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.primary,
+                side: const BorderSide(color: AppColors.primary),
+                padding: const EdgeInsets.symmetric(vertical: 13),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              icon: const Icon(Icons.bookmark_outline, size: 18),
+              label: const Text(
+                'View All Saved Plans',
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
+              ),
+            ),
+          ),
+
+          // ── Continue editing (only when revisiting via bookmark) ──────────
+          if (widget.onContinueEditing != null) ...[
+            const SizedBox(height: 4),
+            TextButton(
+              onPressed: widget.onContinueEditing,
+              child: const Text(
+                'Continue Editing',
+                style: TextStyle(
+                  color: AppColors.textMuted,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }

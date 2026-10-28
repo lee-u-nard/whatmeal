@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/models/llm_config.dart';
+import '../../../core/services/ai/model_registry.dart';
 import '../../../core/theme/app_theme.dart';
 
 enum AiProviderType {
@@ -20,7 +21,7 @@ extension AiProviderTypeX on AiProviderType {
       case AiProviderType.claude:
         return 'Anthropic Claude';
       case AiProviderType.groq:
-        return 'Groq (Llama)';
+        return 'Groq';
       case AiProviderType.custom:
         return 'Custom API';
     }
@@ -31,7 +32,7 @@ extension AiProviderTypeX on AiProviderType {
       case AiProviderType.openAi:
         return 'gpt-4.1-mini';
       case AiProviderType.gemini:
-        return 'gemini-3.8-flash';
+        return AiModelRegistry.defaultGemini;
       case AiProviderType.claude:
         return 'claude-haiku-4-5';
       case AiProviderType.groq:
@@ -42,51 +43,7 @@ extension AiProviderTypeX on AiProviderType {
   }
 
   /// Available model choices for this provider shown in the model selector.
-  List<String> get availableModels {
-    switch (this) {
-      case AiProviderType.openAi:
-        return [
-          'gpt-4.1-mini',
-          'gpt-4.1',
-          'gpt-4o',
-          'gpt-4o-mini',
-          'o4-mini',
-          'o3',
-        ];
-      case AiProviderType.gemini:
-        return [
-          'gemini-3.8-flash',
-          'gemini-3.7-flash',
-          'gemini-3.6-flash',
-          'gemini-3.5-flash',
-          'gemini-3.5-flash-lite',
-          'gemini-3.1-pro-preview',
-          'gemini-3-flash-preview',
-          'gemini-2.5-flash',
-          'gemini-2.5-flash-lite',
-        ];
-      case AiProviderType.claude:
-        return [
-          'claude-haiku-4-5',
-          'claude-sonnet-4-5',
-          'claude-opus-4-5',
-          'claude-3-5-haiku-20241022',
-          'claude-3-5-sonnet-20241022',
-        ];
-      case AiProviderType.groq:
-        // Static fallback — use "Load from API" for the live list.
-        return [
-          'openai/gpt-oss-20b',
-          'openai/gpt-oss-120b',
-          'llama-3.3-70b-versatile',
-          'qwen/qwen3.8-27b',
-          'minimaxai/minimax-m2.7',
-          'llama-3.1-8b-instant',
-        ];
-      case AiProviderType.custom:
-        return [];
-    }
-  }
+  List<String> get availableModels => AiModelRegistry.choices(toLlmProvider);
 
   /// Whether this provider requires the user to enter an API key.
   bool get requiresApiKey => this != AiProviderType.gemini;
@@ -112,12 +69,16 @@ extension AiProviderTypeX on AiProviderType {
 }
 
 enum ApiConnectionStatus {
+  configured,
   notConfigured,
   testing,
   connected,
   invalidKey,
   invalidModel,
   invalidEndpoint,
+  configurationError,
+  authenticationRequired,
+  permissionDenied,
   rateLimited,
   networkError,
   providerUnavailable,
@@ -127,6 +88,8 @@ enum ApiConnectionStatus {
 extension ApiConnectionStatusX on ApiConnectionStatus {
   String get label {
     switch (this) {
+      case ApiConnectionStatus.configured:
+        return 'Configured - not tested';
       case ApiConnectionStatus.notConfigured:
         return 'Not Configured';
       case ApiConnectionStatus.testing:
@@ -139,6 +102,12 @@ extension ApiConnectionStatusX on ApiConnectionStatus {
         return 'Invalid Model';
       case ApiConnectionStatus.invalidEndpoint:
         return 'Invalid Endpoint';
+      case ApiConnectionStatus.configurationError:
+        return 'Configuration Required';
+      case ApiConnectionStatus.authenticationRequired:
+        return 'Authentication Required';
+      case ApiConnectionStatus.permissionDenied:
+        return 'Permission Denied';
       case ApiConnectionStatus.rateLimited:
         return 'Rate Limited';
       case ApiConnectionStatus.networkError:
@@ -158,6 +127,7 @@ extension ApiConnectionStatusX on ApiConnectionStatus {
         return AppColors.info;
       case ApiConnectionStatus.rateLimited:
         return AppColors.warning;
+      case ApiConnectionStatus.configured:
       case ApiConnectionStatus.notConfigured:
         return AppColors.textMuted;
       default:
@@ -190,12 +160,28 @@ class AiProviderConfig {
   /// `null` means not yet loaded; empty list means loaded but none found.
   final List<String>? fetchedModels;
 
+  /// Credentials belong to a provider, never to the next dropdown selection.
+  AiProviderConfig forProvider(AiProviderType type) {
+    if (type == providerType) return this;
+    final isGemini = type == AiProviderType.gemini;
+    return AiProviderConfig(
+      providerType: type,
+      selectedModel: type.defaultModel,
+      status: isGemini
+          ? ApiConnectionStatus.configured
+          : ApiConnectionStatus.notConfigured,
+      statusMessage: isGemini
+          ? 'Using built-in Gemini (no key required)'
+          : 'API Key required for ${type.displayName}',
+    );
+  }
+
   /// The model list shown in the dropdown: prefer fetched live list,
   /// fall back to the static list baked into the provider type.
-  List<String> get effectiveModels =>
-      (fetchedModels != null && fetchedModels!.isNotEmpty)
-          ? fetchedModels!
-          : providerType.availableModels;
+  List<String> get effectiveModels => fetchedModels == null
+      ? providerType.availableModels
+      : AiModelRegistry.filterDiscovered(
+          providerType.toLlmProvider, fetchedModels!);
 
   String get maskedApiKey {
     if (apiKey == null || apiKey!.isEmpty) return 'No API Key set';
@@ -214,6 +200,7 @@ class AiProviderConfig {
     ApiConnectionStatus? status,
     String? statusMessage,
     List<String>? fetchedModels,
+    bool clearFetchedModels = false,
   }) {
     return AiProviderConfig(
       providerType: providerType ?? this.providerType,
@@ -223,7 +210,8 @@ class AiProviderConfig {
       isOpenAiCompatible: isOpenAiCompatible ?? this.isOpenAiCompatible,
       status: status ?? this.status,
       statusMessage: statusMessage ?? this.statusMessage,
-      fetchedModels: fetchedModels ?? this.fetchedModels,
+      fetchedModels:
+          clearFetchedModels ? null : fetchedModels ?? this.fetchedModels,
     );
   }
 }

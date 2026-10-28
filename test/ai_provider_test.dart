@@ -34,7 +34,10 @@ void main() {
       expect(prompt, contains('Breakfast, Dinner'));
       expect(prompt, contains('3 days'));
       expect(prompt, contains('Filipino, Asian'));
-      expect(prompt, contains('CRITICAL ALLERGIES & DIETARY RESTRICTIONS (NEVER INCLUDE THESE): Peanut Allergy'));
+      expect(
+          prompt,
+          contains(
+              'CRITICAL ALLERGIES & DIETARY RESTRICTIONS (NEVER INCLUDE THESE): Peanut Allergy'));
       expect(prompt, contains('Low Sodium'));
       expect(prompt, contains('\$50/week'));
       expect(prompt, contains('Garlic, Rice, Soy Sauce'));
@@ -160,7 +163,9 @@ Enjoy your meals!
       expect(meal.dayIndex, equals(2));
     });
 
-    test('parses JSON with alternative field names (name, dish, recipe, prep_time)', () {
+    test(
+        'parses JSON with alternative field names (name, dish, recipe, prep_time)',
+        () {
       const altJson = '''
 {
   "daily_meals": [
@@ -218,14 +223,17 @@ Enjoy your meals!
 
     test('throws FormatException on malformed non-JSON response', () {
       expect(
-        () => AiJsonParser.parseMealList('I cannot generate a meal plan today because I am down.'),
+        () => AiJsonParser.parseMealList(
+            'I cannot generate a meal plan today because I am down.'),
         throwsA(isA<FormatException>()),
       );
     });
   });
 
   group('AI Logger Credential Protection', () {
-    test('redacts Bearer tokens, OpenAI keys, Groq keys, Claude keys, and query secrets', () {
+    test(
+        'redacts Bearer tokens, OpenAI keys, Groq keys, Claude keys, and query secrets',
+        () {
       const sensitiveText =
           'Error calling endpoint with Authorization: Bearer sk-1234567890abcdefghijklmn and Groq key gsk_1234567890abcdefghijklmn and Claude sk-ant-api03-abcdefghijklmn at https://api.example.com?key=AIzaSyD1234567890abcdefghijklmn';
 
@@ -240,34 +248,46 @@ Enjoy your meals!
   });
 
   group('AI Provider Factory & Adapter Isolation', () {
-    test('creates distinct adapters with correct provider types and endpoints', () {
-      final geminiAdapter = AiProviderFactory.create(LlmConfig(provider: LlmProvider.gemini));
+    test('creates distinct adapters with correct provider types and endpoints',
+        () {
+      final geminiAdapter =
+          AiProviderFactory.create(LlmConfig(provider: LlmProvider.gemini));
       expect(geminiAdapter, isA<GeminiAdapter>());
       expect(geminiAdapter.provider, equals(LlmProvider.gemini));
-      expect(geminiAdapter.model, equals('gemini-3.8-flash'));
+      expect(geminiAdapter.model, equals('gemini-3.5-flash-lite'));
 
       final openaiAdapter = AiProviderFactory.create(
-        LlmConfig(provider: LlmProvider.openai, apiKey: 'sk-test', model: 'gpt-4o-mini'),
+        LlmConfig(
+            provider: LlmProvider.openai,
+            apiKey: 'sk-test',
+            model: 'gpt-4o-mini'),
       );
       expect(openaiAdapter, isA<OpenAiAdapter>());
       expect(openaiAdapter.provider, equals(LlmProvider.openai));
       expect(openaiAdapter.model, equals('gpt-4o-mini'));
 
       final claudeAdapter = AiProviderFactory.create(
-        LlmConfig(provider: LlmProvider.anthropic, apiKey: 'sk-ant-test', model: 'claude-3-5-haiku-20241022'),
+        LlmConfig(
+            provider: LlmProvider.anthropic,
+            apiKey: 'sk-ant-test',
+            model: 'claude-haiku-4-5'),
       );
       expect(claudeAdapter, isA<AnthropicAdapter>());
       expect(claudeAdapter.provider, equals(LlmProvider.anthropic));
-      expect(claudeAdapter.model, equals('claude-3-5-haiku-20241022'));
+      expect(claudeAdapter.model, equals('claude-haiku-4-5'));
 
       final groqAdapter = AiProviderFactory.create(
-        LlmConfig(provider: LlmProvider.groq, apiKey: 'gsk-test', model: 'llama-3.1-8b-instant'),
+        LlmConfig(
+            provider: LlmProvider.groq,
+            apiKey: 'gsk-test',
+            model: 'llama-3.1-8b-instant'),
       );
       expect(groqAdapter, isA<GroqAdapter>());
       expect(groqAdapter.provider, equals(LlmProvider.groq));
       expect(groqAdapter.model, equals('llama-3.1-8b-instant'));
       expect(GroqAdapter.baseUrl, equals('https://api.groq.com/openai/v1'));
-      expect(GroqAdapter.completionsEndpoint, equals('https://api.groq.com/openai/v1/chat/completions'));
+      expect(GroqAdapter.completionsEndpoint,
+          equals('https://api.groq.com/openai/v1/chat/completions'));
 
       final customAdapter = AiProviderFactory.create(
         LlmConfig(
@@ -279,7 +299,8 @@ Enjoy your meals!
         ),
       ) as CustomAdapter;
       expect(customAdapter.provider, equals(LlmProvider.custom));
-      expect(customAdapter.completionsUrl, equals('http://localhost:11434/v1/chat/completions'));
+      expect(customAdapter.completionsUrl,
+          equals('http://localhost:11434/v1/chat/completions'));
       expect(customAdapter.isOpenAiCompatible, isTrue);
     });
   });

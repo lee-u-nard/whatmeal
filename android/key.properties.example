@@ -1,0 +1,6 @@
+# Copy to ignored android/key.properties and supply your existing signing identity.
+# Use an absolute path with forward slashes. Never commit real passwords/keystores.
+storeFile=
+storePassword=
+keyAlias=
+keyPassword=

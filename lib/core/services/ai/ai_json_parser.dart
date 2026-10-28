@@ -16,15 +16,12 @@ class AiJsonParser {
 
     final candidates = _jsonCandidates(rawText, preferArray: true);
     Object? decoded;
-    Object? lastError;
 
     for (final candidate in candidates) {
       try {
         decoded = jsonDecode(candidate);
         break;
-      } catch (e) {
-        lastError = e;
-      }
+      } catch (_) {}
     }
 
     // Last resort: salvage complete meal objects from a truncated/broken payload.
@@ -37,8 +34,7 @@ class AiJsonParser {
 
     if (decoded == null) {
       throw FormatException(
-        'Failed to parse AI output as JSON: $lastError\n'
-        'Response snippet: ${_snippet(rawText)}',
+        'AI returned invalid meal JSON. Please retry.',
       );
     }
 
@@ -92,15 +88,12 @@ class AiJsonParser {
 
     final candidates = _jsonCandidates(rawText, preferArray: false);
     Object? decoded;
-    Object? lastError;
 
     for (final candidate in candidates) {
       try {
         decoded = jsonDecode(candidate);
         break;
-      } catch (e) {
-        lastError = e;
-      }
+      } catch (_) {}
     }
 
     if (decoded == null) {
@@ -112,7 +105,7 @@ class AiJsonParser {
 
     if (decoded == null) {
       throw FormatException(
-          'Failed to parse replacement meal as JSON: $lastError');
+          'AI returned invalid replacement JSON. Please retry.');
     }
 
     if (decoded is Map) {
@@ -462,10 +455,5 @@ class AiJsonParser {
       }
     }
     return maps;
-  }
-
-  static String _snippet(String text) {
-    final clean = text.replaceAll('\n', ' ').trim();
-    return clean.length > 120 ? '${clean.substring(0, 120)}...' : clean;
   }
 }

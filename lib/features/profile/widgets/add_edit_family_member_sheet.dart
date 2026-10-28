@@ -3,9 +3,10 @@ import '../../../core/theme/app_theme.dart';
 import '../models/family_member.dart';
 
 class AddEditFamilyMemberSheet extends StatefulWidget {
-  const AddEditFamilyMemberSheet({super.key, this.existingMember});
+  const AddEditFamilyMemberSheet({super.key, this.existingMember, this.onSave});
 
   final FamilyMember? existingMember;
+  final Future<void> Function(FamilyMember value)? onSave;
 
   @override
   State<AddEditFamilyMemberSheet> createState() =>
@@ -14,6 +15,8 @@ class AddEditFamilyMemberSheet extends StatefulWidget {
 
 class _AddEditFamilyMemberSheetState extends State<AddEditFamilyMemberSheet> {
   final _formKey = GlobalKey<FormState>();
+  bool _saving = false;
+  String? _error;
   final _nameController = TextEditingController();
   final _relationController = TextEditingController();
   final _ageController = TextEditingController(text: '30');
@@ -112,7 +115,8 @@ class _AddEditFamilyMemberSheetState extends State<AddEditFamilyMemberSheet> {
     }
   }
 
-  void _submit() {
+  Future<void> _submit() async {
+    if (_saving) return;
     if (!_formKey.currentState!.validate()) return;
 
     final member = FamilyMember(
@@ -125,9 +129,24 @@ class _AddEditFamilyMemberSheetState extends State<AddEditFamilyMemberSheet> {
       age: int.tryParse(_ageController.text.trim()) ?? 18,
       preferences: _selectedPreferences.toList(),
       restrictions: _selectedRestrictions.toList(),
+      createdAt: widget.existingMember?.createdAt,
     );
 
-    Navigator.pop(context, member);
+    final result = member;
+    setState(() {
+      _saving = true;
+      _error = null;
+    });
+    try {
+      await widget.onSave?.call(result);
+      if (mounted) Navigator.pop(context, result);
+    } catch (_) {
+      if (mounted) {
+        setState(() => _error = 'Profile was not saved. Please retry.');
+      }
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 
   @override
@@ -140,270 +159,309 @@ class _AddEditFamilyMemberSheetState extends State<AddEditFamilyMemberSheet> {
     final allRestrOptions =
         {..._presetRestrictions, ..._selectedRestrictions}.toList();
 
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 20,
-        right: 20,
-        top: 20,
-        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-      ),
-      child: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    isEditing ? 'Edit Family Member' : 'Add Family Member',
-                    style: const TextStyle(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 18,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close, color: AppColors.textMuted),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
+    return PopScope(
+        canPop: !_saving,
+        child: AbsorbPointer(
+            absorbing: _saving,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 20,
+                bottom: MediaQuery.viewInsetsOf(context).bottom +
+                    MediaQuery.paddingOf(context).bottom +
+                    20,
               ),
-              const SizedBox(height: 16),
-
-              TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: 'First Name',
-                  hintText: 'e.g. Sarah',
-                  prefixIcon: const Icon(Icons.person_outline,
-                      color: AppColors.textMuted),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
-                validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Name is required' : null,
-              ),
-              const SizedBox(height: 14),
-
-              Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: TextFormField(
-                      controller: _relationController,
-                      decoration: InputDecoration(
-                        labelText: 'Role / Relation',
-                        hintText: 'e.g. Mom, Dad, Son',
-                        prefixIcon: const Icon(Icons.family_restroom,
-                            color: AppColors.textMuted),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12)),
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: Text(
+                            isEditing
+                                ? 'Edit Family Member'
+                                : 'Add Family Member',
+                            style: const TextStyle(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 18,
+                            ),
+                          )),
+                          IconButton(
+                            icon: const Icon(Icons.close,
+                                color: AppColors.textMuted),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    flex: 1,
-                    child: TextFormField(
-                      controller: _ageController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: 'Age',
-                        hintText: '8',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                      ),
-                      validator: (v) =>
-                          (v == null || v.isEmpty) ? 'Required' : null,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 18),
+                      const SizedBox(height: 16),
 
-              // ── Dietary Preferences Section ─────────────────────────────
-              const Text(
-                'Dietary Preferences',
-                style: TextStyle(
-                    color: AppColors.textPrimary,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 13),
-              ),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 6,
-                runSpacing: 6,
-                children: allPrefOptions.map((pref) {
-                  final isSelected = _selectedPreferences.contains(pref);
-                  final isCustom = !_presetPreferences.contains(pref);
-                  return FilterChip(
-                    label: Text(pref),
-                    selected: isSelected,
-                    selectedColor: AppColors.primaryLight,
-                    checkmarkColor: AppColors.primary,
-                    onDeleted: isCustom
-                        ? () =>
-                            setState(() => _selectedPreferences.remove(pref))
-                        : null,
-                    side: BorderSide(
-                        color:
-                            isSelected ? AppColors.primary : AppColors.border),
-                    labelStyle: TextStyle(
-                      color: isSelected
-                          ? AppColors.primary
-                          : AppColors.textSecondary,
-                      fontWeight:
-                          isSelected ? FontWeight.w700 : FontWeight.w500,
-                      fontSize: 11,
-                    ),
-                    onSelected: (val) {
-                      setState(() {
-                        if (val) {
-                          _selectedPreferences.add(pref);
-                        } else {
-                          _selectedPreferences.remove(pref);
-                        }
-                      });
-                    },
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 38,
-                      child: TextField(
-                        controller: _customPrefController,
-                        style: const TextStyle(fontSize: 12),
+                      TextFormField(
+                        controller: _nameController,
                         decoration: InputDecoration(
-                          hintText:
-                              'Add custom preference (e.g. Low Histamine)',
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
+                          labelText: 'First Name',
+                          hintText: 'e.g. Sarah',
+                          prefixIcon: const Icon(Icons.person_outline,
+                              color: AppColors.textMuted),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(12)),
                         ),
-                        onSubmitted: (_) => _addCustomPreference(),
+                        validator: (v) => (v == null || v.trim().isEmpty)
+                            ? 'Name is required'
+                            : v.trim().length > 120
+                                ? 'Use at most 120 characters'
+                                : null,
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    onPressed: _addCustomPreference,
-                    icon:
-                        const Icon(Icons.add_circle, color: AppColors.primary),
-                    tooltip: 'Add preference',
-                  ),
-                ],
-              ),
+                      const SizedBox(height: 14),
 
-              const SizedBox(height: 18),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: TextFormField(
+                              controller: _relationController,
+                              decoration: InputDecoration(
+                                labelText: 'Role / Relation',
+                                hintText: 'e.g. Mom, Dad, Son',
+                                prefixIcon: const Icon(Icons.family_restroom,
+                                    color: AppColors.textMuted),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            flex: 1,
+                            child: TextFormField(
+                              controller: _ageController,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelText: 'Age',
+                                hintText: '8',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
+                              validator: (v) => int.tryParse(v ?? '') == null ||
+                                      int.parse(v!) < 0 ||
+                                      int.parse(v) > 130
+                                  ? 'Enter an age from 0 to 130'
+                                  : null,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 18),
 
-              // ── Severe Allergies & Restrictions Section ────────────────
-              const Text(
-                'Severe Allergies & Restrictions',
-                style: TextStyle(
-                    color: AppColors.danger,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 13),
-              ),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 6,
-                runSpacing: 6,
-                children: allRestrOptions.map((r) {
-                  final isSelected = _selectedRestrictions.contains(r);
-                  final isCustom = !_presetRestrictions.contains(r);
-                  return FilterChip(
-                    label: Text(r),
-                    selected: isSelected,
-                    selectedColor: AppColors.dangerLight,
-                    checkmarkColor: AppColors.danger,
-                    onDeleted: isCustom
-                        ? () => setState(() => _selectedRestrictions.remove(r))
-                        : null,
-                    side: BorderSide(
-                        color:
-                            isSelected ? AppColors.danger : AppColors.border),
-                    labelStyle: TextStyle(
-                      color: isSelected
-                          ? AppColors.danger
-                          : AppColors.textSecondary,
-                      fontWeight:
-                          isSelected ? FontWeight.w700 : FontWeight.w500,
-                      fontSize: 11,
-                    ),
-                    onSelected: (val) {
-                      setState(() {
-                        if (val) {
-                          _selectedRestrictions.add(r);
-                        } else {
-                          _selectedRestrictions.remove(r);
-                        }
-                      });
-                    },
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 38,
-                      child: TextField(
-                        controller: _customRestrController,
-                        style: const TextStyle(fontSize: 12),
-                        decoration: InputDecoration(
-                          hintText:
-                              'Add custom restriction (e.g. Sesame Allergy)',
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                      // ── Dietary Preferences Section ─────────────────────────────
+                      const Text(
+                        'Dietary Preferences',
+                        style: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 13),
+                      ),
+                      const SizedBox(height: 6),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: allPrefOptions.map((pref) {
+                          final isSelected =
+                              _selectedPreferences.contains(pref);
+                          final isCustom = !_presetPreferences.contains(pref);
+                          return FilterChip(
+                            label: Text(pref),
+                            selected: isSelected,
+                            selectedColor: AppColors.primaryLight,
+                            checkmarkColor: AppColors.primary,
+                            onDeleted: isCustom
+                                ? () => setState(
+                                    () => _selectedPreferences.remove(pref))
+                                : null,
+                            side: BorderSide(
+                                color: isSelected
+                                    ? AppColors.primary
+                                    : AppColors.border),
+                            labelStyle: TextStyle(
+                              color: isSelected
+                                  ? AppColors.primary
+                                  : AppColors.textSecondary,
+                              fontWeight: isSelected
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                              fontSize: 11,
+                            ),
+                            onSelected: (val) {
+                              setState(() {
+                                if (val) {
+                                  _selectedPreferences.add(pref);
+                                } else {
+                                  _selectedPreferences.remove(pref);
+                                }
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 38,
+                              child: TextField(
+                                controller: _customPrefController,
+                                style: const TextStyle(fontSize: 12),
+                                decoration: InputDecoration(
+                                  hintText:
+                                      'Add custom preference (e.g. Low Histamine)',
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 8),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                onSubmitted: (_) => _addCustomPreference(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          IconButton(
+                            onPressed: _addCustomPreference,
+                            icon: const Icon(Icons.add_circle,
+                                color: AppColors.primary),
+                            tooltip: 'Add preference',
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 18),
+
+                      // ── Severe Allergies & Restrictions Section ────────────────
+                      const Text(
+                        'Severe Allergies & Restrictions',
+                        style: TextStyle(
+                            color: AppColors.danger,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 13),
+                      ),
+                      const SizedBox(height: 6),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: allRestrOptions.map((r) {
+                          final isSelected = _selectedRestrictions.contains(r);
+                          final isCustom = !_presetRestrictions.contains(r);
+                          return FilterChip(
+                            label: Text(r),
+                            selected: isSelected,
+                            selectedColor: AppColors.dangerLight,
+                            checkmarkColor: AppColors.danger,
+                            onDeleted: isCustom
+                                ? () => setState(
+                                    () => _selectedRestrictions.remove(r))
+                                : null,
+                            side: BorderSide(
+                                color: isSelected
+                                    ? AppColors.danger
+                                    : AppColors.border),
+                            labelStyle: TextStyle(
+                              color: isSelected
+                                  ? AppColors.danger
+                                  : AppColors.textSecondary,
+                              fontWeight: isSelected
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                              fontSize: 11,
+                            ),
+                            onSelected: (val) {
+                              setState(() {
+                                if (val) {
+                                  _selectedRestrictions.add(r);
+                                } else {
+                                  _selectedRestrictions.remove(r);
+                                }
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              height: 38,
+                              child: TextField(
+                                controller: _customRestrController,
+                                style: const TextStyle(fontSize: 12),
+                                decoration: InputDecoration(
+                                  hintText:
+                                      'Add custom restriction (e.g. Sesame Allergy)',
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 8),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                onSubmitted: (_) => _addCustomRestriction(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          IconButton(
+                            onPressed: _addCustomRestriction,
+                            icon: const Icon(Icons.add_circle,
+                                color: AppColors.danger),
+                            tooltip: 'Add restriction',
+                          ),
+                        ],
+                      ),
+
+                      if (_error != null)
+                        Padding(
+                            padding: const EdgeInsets.only(top: 12),
+                            child: Text(_error!,
+                                style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.error))),
+                      const SizedBox(height: 24),
+
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: ElevatedButton(
+                          onPressed: _saving ? null : _submit,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          child: _saving
+                              ? const SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child:
+                                      CircularProgressIndicator(strokeWidth: 2))
+                              : Text(
+                                  isEditing
+                                      ? 'Save Changes'
+                                      : 'Add Family Member',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 15),
+                                ),
                         ),
-                        onSubmitted: (_) => _addCustomRestriction(),
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    onPressed: _addCustomRestriction,
-                    icon: const Icon(Icons.add_circle, color: AppColors.danger),
-                    tooltip: 'Add restriction',
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 24),
-
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: ElevatedButton(
-                  onPressed: _submit,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  child: Text(
-                    isEditing ? 'Save Changes' : 'Add Family Member',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w700, fontSize: 15),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            )));
   }
 }

@@ -4,7 +4,10 @@ import '../../../core/theme/app_theme.dart';
 import '../data/auth_repository.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  const RegisterPage({super.key, this.register});
+
+  final Future<void> Function(String name, String email, String password)?
+      register;
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -41,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isLoading = true);
     try {
-      await AuthRepository.instance.register(
+      await (widget.register ?? AuthRepository.instance.register)(
         _nameController.text.trim(),
         _emailController.text.trim(),
         _passwordController.text,
@@ -49,7 +52,7 @@ class _RegisterPageState extends State<RegisterPage> {
       // Router redirect handles navigation after successful registration.
     } catch (e) {
       if (!mounted) return;
-      final msg = _friendlyAuthError(e.toString());
+      final msg = _friendlyAuthError(e is String ? e : '');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(msg), backgroundColor: AppColors.danger),
       );
@@ -59,16 +62,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   String _friendlyAuthError(String raw) {
-    if (raw.contains('email-already-in-use')) {
-      return 'An account with this email already exists. Try signing in instead.';
-    } else if (raw.contains('weak-password')) {
-      return 'Password is too weak. Please use at least 6 characters.';
-    } else if (raw.contains('invalid-email')) {
-      return 'The email address is not valid.';
-    } else if (raw.contains('network-request-failed')) {
-      return 'No internet connection. Please check your network.';
-    }
-    return 'Registration failed. Please try again.';
+    // AuthRepository maps Firebase failures to safe user-facing strings.
+    return raw.isNotEmpty ? raw : 'Registration failed. Please try again.';
   }
 
   @override
@@ -150,10 +145,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(12)),
                         ),
                         validator: (v) {
-                          if (v == null || v.isEmpty)
+                          if (v == null || v.isEmpty) {
                             return 'Please enter an email';
-                          if (!v.contains('@'))
+                          }
+                          if (!v.contains('@')) {
                             return 'Enter a valid email address';
+                          }
                           return null;
                         },
                       ),
@@ -198,25 +195,29 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(12)),
                         ),
                         validator: (v) {
-                          if (v != _passwordController.text)
+                          if (v != _passwordController.text) {
                             return 'Passwords do not match';
+                          }
                           return null;
                         },
                       ),
                       const SizedBox(height: 16),
 
                       // Terms Checkbox
-                      CheckboxListTile(
-                        value: _agreeToTerms,
-                        onChanged: (v) =>
-                            setState(() => _agreeToTerms = v ?? true),
-                        activeColor: AppColors.primary,
-                        contentPadding: EdgeInsets.zero,
-                        controlAffinity: ListTileControlAffinity.leading,
-                        title: const Text(
-                          'I agree to the Terms of Service & Privacy Policy',
-                          style: TextStyle(
-                              color: AppColors.textSecondary, fontSize: 12),
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          value: _agreeToTerms,
+                          onChanged: (v) =>
+                              setState(() => _agreeToTerms = v ?? true),
+                          activeColor: AppColors.primary,
+                          contentPadding: EdgeInsets.zero,
+                          controlAffinity: ListTileControlAffinity.leading,
+                          title: const Text(
+                            'I agree to the Terms of Service & Privacy Policy',
+                            style: TextStyle(
+                                color: AppColors.textSecondary, fontSize: 12),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 16),

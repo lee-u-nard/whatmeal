@@ -5,6 +5,8 @@ import '../ai_provider_adapter.dart';
 import '../ai_models.dart';
 import '../ai_logger.dart';
 import '../ai_json_parser.dart';
+import 'http_response_support.dart';
+import '../model_registry.dart';
 
 /// OpenAI / ChatGPT provider adapter.
 class OpenAiAdapter implements AiProviderAdapter {
@@ -12,12 +14,15 @@ class OpenAiAdapter implements AiProviderAdapter {
     required this.apiKey,
     String? model,
     this.customEndpoint,
-  }) : model = model ?? 'gpt-4.1-mini';
+    http.Client? client,
+  })  : model = model ?? 'gpt-4.1-mini',
+        _transport = AiHttpTransport('OpenAI', client: client);
 
   final String apiKey;
   @override
   final String model;
   final String? customEndpoint;
+  final AiHttpTransport _transport;
 
   @override
   LlmProvider get provider => LlmProvider.openai;
@@ -52,22 +57,22 @@ class OpenAiAdapter implements AiProviderAdapter {
         provider: 'OpenAI', endpoint: _completionsEndpoint, model: model);
 
     try {
-      final response = await http
-          .post(
-            Uri.parse(_completionsEndpoint),
-            headers: {
-              'Authorization': 'Bearer $cleanKey',
-              'Content-Type': 'application/json',
-            },
-            body: jsonEncode({
-              'model': model,
-              'messages': [
-                {'role': 'user', 'content': 'Hi'}
-              ],
-              'max_tokens': 1,
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await _transport.post(
+        Uri.parse(_completionsEndpoint),
+        headers: {
+          'Authorization': 'Bearer $cleanKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': model,
+          'messages': [
+            {'role': 'user', 'content': 'Reply with OK.'}
+          ],
+          'max_completion_tokens': 1024,
+          if (_supportsNoReasoning) 'reasoning_effort': 'none',
+        }),
+        timeout: const Duration(seconds: 15),
+      );
 
       final elapsed = DateTime.now().difference(startTime).inMilliseconds;
       AiLogger.logResponse(
@@ -78,31 +83,12 @@ class OpenAiAdapter implements AiProviderAdapter {
       );
 
       if (response.statusCode == 200) {
+        completedChatText(response.body, 'OpenAI');
         return TestConnectionResult.success();
-      } else if (response.statusCode == 401) {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.invalidKey,
-          message:
-              'Invalid OpenAI API key. Check that it was copied correctly from platform.openai.com.',
-        );
-      } else if (response.statusCode == 404) {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.invalidModel,
-          message:
-              'Model "$model" does not exist or your account has no access to it.',
-        );
-      } else if (response.statusCode == 429) {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.rateLimited,
-          message:
-              'OpenAI quota or rate limit exceeded. Verify your account balance or wait a moment.',
-        );
-      } else {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.providerUnavailable,
-          message: 'OpenAI returned HTTP ${response.statusCode}.',
-        );
       }
+      return providerHttpFailure(response, 'OpenAI').toConnectionResult();
+    } on AiHttpFailure catch (error) {
+      return error.toConnectionResult();
     } catch (e) {
       AiLogger.logError(provider: 'OpenAI', model: model, error: e);
       return TestConnectionResult.failure(
@@ -111,6 +97,11 @@ class OpenAiAdapter implements AiProviderAdapter {
       );
     }
   }
+
+  // These model families explicitly support disabling reasoning. Earlier
+  // reasoning models must not receive an unsupported "none" effort value.
+  bool get _supportsNoReasoning =>
+      model.startsWith('gpt-6') || model.startsWith('gpt-5.6');
 
   @override
   Future<AiMealPlanResponse> generateMealPlan(AiMealPlanRequest request) async {
@@ -130,31 +121,35 @@ class OpenAiAdapter implements AiProviderAdapter {
 
   Future<String> _callCompletions(String prompt) async {
     final cleanKey = apiKey.trim();
+    if (cleanKey.isEmpty) {
+      throw const AiHttpFailure(
+          'OpenAI API key is missing.', TestConnectionStatus.invalidKey);
+    }
     final startTime = DateTime.now();
     AiLogger.logRequest(
         provider: 'OpenAI', endpoint: _completionsEndpoint, model: model);
 
-    final response = await http
-        .post(
-          Uri.parse(_completionsEndpoint),
-          headers: {
-            'Authorization': 'Bearer $cleanKey',
-            'Content-Type': 'application/json',
+    final response = await _transport.post(
+      Uri.parse(_completionsEndpoint),
+      headers: {
+        'Authorization': 'Bearer $cleanKey',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'model': model,
+        'messages': [
+          {
+            'role': 'system',
+            'content':
+                'You are a professional chef and nutritionist. Always return valid, well-structured JSON.'
           },
-          body: jsonEncode({
-            'model': model,
-            'messages': [
-              {
-                'role': 'system',
-                'content':
-                    'You are a professional chef and nutritionist. Always return valid, well-structured JSON.'
-              },
-              {'role': 'user', 'content': prompt}
-            ],
-            'response_format': {'type': 'json_object'},
-          }),
-        )
-        .timeout(const Duration(seconds: 90));
+          {'role': 'user', 'content': prompt}
+        ],
+        'response_format': {'type': 'json_object'},
+        if (_supportsNoReasoning) 'reasoning_effort': 'none',
+      }),
+      timeout: const Duration(seconds: 90),
+    );
 
     final elapsed = DateTime.now().difference(startTime).inMilliseconds;
     AiLogger.logResponse(
@@ -165,65 +160,39 @@ class OpenAiAdapter implements AiProviderAdapter {
     );
 
     if (response.statusCode == 200) {
-      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
-      final text = (decoded['choices'] as List?)?.firstOrNull?['message']
-          ?['content'] as String?;
-      if (text == null || text.trim().isEmpty) {
-        throw Exception('OpenAI returned an empty response.');
-      }
-      return text;
-    } else if (response.statusCode == 401) {
-      throw Exception('Invalid OpenAI API key. Check your key in AI Settings.');
-    } else if (response.statusCode == 404) {
-      throw Exception(
-          'OpenAI model "$model" was not found (HTTP 404). Check your model selection.');
-    } else if (response.statusCode == 429) {
-      throw Exception(
-          'OpenAI rate limit or billing quota exceeded. Verify your account balance.');
-    } else {
-      throw Exception('OpenAI error (HTTP ${response.statusCode}).');
+      return completedChatText(response.body, 'OpenAI');
     }
+    throw providerHttpFailure(response, 'OpenAI');
   }
 
   @override
   Future<List<String>> fetchAvailableModels() async {
     try {
       final cleanKey = apiKey.trim();
-      final response = await http.get(
+      if (cleanKey.isEmpty) return [];
+      final response = await _transport.get(
         Uri.parse(_modelsEndpoint),
         headers: {'Authorization': 'Bearer $cleanKey'},
-      ).timeout(const Duration(seconds: 15));
+        timeout: const Duration(seconds: 15),
+      );
 
-      if (response.statusCode != 200) return [];
-      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+      if (response.statusCode != 200) {
+        throw providerHttpFailure(response, 'OpenAI');
+      }
+      final decoded = decodeProviderObject(response.body, 'OpenAI');
       final data = decoded['data'] as List<dynamic>? ?? [];
       final list = <String>[];
       for (final item in data) {
         if (item is Map && item['id'] is String) {
           final id = item['id'] as String;
-          if (_isChatModel(id)) list.add(id);
+          list.add(id);
         }
       }
-      list.sort((a, b) => a.compareTo(b));
-      return list;
+      return AiModelRegistry.filterDiscovered(provider, list);
+    } on AiHttpFailure {
+      rethrow;
     } catch (_) {
-      return [];
+      throw const AiHttpFailure('OpenAI returned an invalid model catalogue.');
     }
-  }
-
-  bool _isChatModel(String id) {
-    final lower = id.toLowerCase();
-    final isGpt = lower.contains('gpt');
-    // Include o-series reasoning models (o1, o3, o4-mini, etc.)
-    final isOSeries = RegExp(r'^o\d').hasMatch(lower);
-    if (!isGpt && !isOSeries) return false;
-    if (lower.contains('audio') ||
-        lower.contains('realtime') ||
-        lower.contains('embedding') ||
-        lower.contains('instruct') ||
-        lower.contains('tts')) {
-      return false;
-    }
-    return true;
   }
 }
