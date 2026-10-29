@@ -1,0 +1,8 @@
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/core/models/llm_config.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/core/services/ai/adapters/anthropic_adapter.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/core/services/ai/adapters/openai_adapter.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/core/services/ai/ai_provider_factory.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/ai_settings/pages/ai_settings_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/ai_provider_test.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/custom_adapter_test.dart', LF will be replaced by CRLF the next time Git touches it

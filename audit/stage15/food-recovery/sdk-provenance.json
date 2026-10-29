@@ -1,0 +1,314 @@
+[
+  {
+    "File": "cloud_firestore_platform_interface.dart",
+    "OriginalHash": "1AAFF99FCB99B0951BD8F8A9B227ADA49AD6D5616861D7D4D0EB28BD2D283FA9",
+    "WorkspaceHash": "1AAFF99FCB99B0951BD8F8A9B227ADA49AD6D5616861D7D4D0EB28BD2D283FA9",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\blob.dart",
+    "OriginalHash": "318786C20006FAE433E6CD409836D69EED34B87487F6612375CAD558EB5E4EA9",
+    "WorkspaceHash": "318786C20006FAE433E6CD409836D69EED34B87487F6612375CAD558EB5E4EA9",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\field_path_type.dart",
+    "OriginalHash": "BE398691026A4A2D95A4114256676D3E62D60E58CE09A7E0E738638E40DA33D4",
+    "WorkspaceHash": "BE398691026A4A2D95A4114256676D3E62D60E58CE09A7E0E738638E40DA33D4",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\field_path.dart",
+    "OriginalHash": "0CB6011567A19AEF971C678FFBB5DBC3D254E2D39933A540DA1B7B48CF60F881",
+    "WorkspaceHash": "0CB6011567A19AEF971C678FFBB5DBC3D254E2D39933A540DA1B7B48CF60F881",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\filters.dart",
+    "OriginalHash": "01CC1B779EBD20E820962F5E9C7F1D68B065C800427596DF2CD14300C6A0F31D",
+    "WorkspaceHash": "01CC1B779EBD20E820962F5E9C7F1D68B065C800427596DF2CD14300C6A0F31D",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\geo_point.dart",
+    "OriginalHash": "6AB209097BF5EAD6831B710A071B253C9B8659E2F30A037E16646592CA83ADD4",
+    "WorkspaceHash": "6AB209097BF5EAD6831B710A071B253C9B8659E2F30A037E16646592CA83ADD4",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\get_options.dart",
+    "OriginalHash": "65375B6CA15561C0557D651C68F8C954C105AD868F95DE198647C6AF1A83B882",
+    "WorkspaceHash": "65375B6CA15561C0557D651C68F8C954C105AD868F95DE198647C6AF1A83B882",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\load_bundle_task_state.dart",
+    "OriginalHash": "4D81DA363F73EA24EE3A45C697365AF37B948604B20DCDFD30F12E86CEC35689",
+    "WorkspaceHash": "4D81DA363F73EA24EE3A45C697365AF37B948604B20DCDFD30F12E86CEC35689",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\persistence_settings.dart",
+    "OriginalHash": "61368141A9981ACEEEA14D44EC7587A636D426F8F21850FBFD21B16B5DF62B76",
+    "WorkspaceHash": "61368141A9981ACEEEA14D44EC7587A636D426F8F21850FBFD21B16B5DF62B76",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\set_options.dart",
+    "OriginalHash": "7AC93FE13CE10BB590625D1213D0291AADAC4F8FEA0141C9E1F3253AC0B9362C",
+    "WorkspaceHash": "7AC93FE13CE10BB590625D1213D0291AADAC4F8FEA0141C9E1F3253AC0B9362C",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\settings.dart",
+    "OriginalHash": "B1A66ABAB92AA59DADA8CA92B210F9A2361AB3198C844E275D1EFB07CE454182",
+    "WorkspaceHash": "B1A66ABAB92AA59DADA8CA92B210F9A2361AB3198C844E275D1EFB07CE454182",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\snapshot_metadata.dart",
+    "OriginalHash": "B86A2D6EA92244FE3687D23A65E2480EB64657781D944D14D86627F63623130D",
+    "WorkspaceHash": "B86A2D6EA92244FE3687D23A65E2480EB64657781D944D14D86627F63623130D",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\timestamp.dart",
+    "OriginalHash": "E8D8E312D32E6A34796169C6DA6824A690259046E04698427E5B55BE8049303E",
+    "WorkspaceHash": "E8D8E312D32E6A34796169C6DA6824A690259046E04698427E5B55BE8049303E",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\vector_value.dart",
+    "OriginalHash": "F9894F4283897A43D305F5E7927ABD4B2FE7D10E1C2AF8165629B17C720C2DE7",
+    "WorkspaceHash": "F9894F4283897A43D305F5E7927ABD4B2FE7D10E1C2AF8165629B17C720C2DE7",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\internal\\pointer.dart",
+    "OriginalHash": "CCA8BAD727FC4D8877658559B475A36D6F85C12EC2EFA3436A0B82DECEE359D7",
+    "WorkspaceHash": "CCA8BAD727FC4D8877658559B475A36D6F85C12EC2EFA3436A0B82DECEE359D7",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_aggregate_query.dart",
+    "OriginalHash": "AB496B02098ADF7C5826903D50DCA88D3C30CE833AB033AE174ECF4400274B0D",
+    "WorkspaceHash": "AB496B02098ADF7C5826903D50DCA88D3C30CE833AB033AE174ECF4400274B0D",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_collection_reference.dart",
+    "OriginalHash": "4CE9F18723897BAE982C3B83E098669A1EC3E798A16824395064DD7DC07F417D",
+    "WorkspaceHash": "4CE9F18723897BAE982C3B83E098669A1EC3E798A16824395064DD7DC07F417D",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_document_change.dart",
+    "OriginalHash": "B7E901E9197585B5AD5B5B7A51CD50C32FAF228EF2BDEFB7BF226D474F37EA08",
+    "WorkspaceHash": "B7E901E9197585B5AD5B5B7A51CD50C32FAF228EF2BDEFB7BF226D474F37EA08",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_document_reference.dart",
+    "OriginalHash": "79F0BC64604D999442E360135AEA8E30E07942E1B9613A540E985C203685CF54",
+    "WorkspaceHash": "79F0BC64604D999442E360135AEA8E30E07942E1B9613A540E985C203685CF54",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_field_value_factory.dart",
+    "OriginalHash": "55A06C39409E4FC1614562FC3A955365AC674EA66ACEA514ED88CBB26E78B86E",
+    "WorkspaceHash": "55A06C39409E4FC1614562FC3A955365AC674EA66ACEA514ED88CBB26E78B86E",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_field_value.dart",
+    "OriginalHash": "E2427CA6FFD8E0BED3284EA42BA71B81CD638B32E9D4A5DE181C0875F8C3C4BD",
+    "WorkspaceHash": "E2427CA6FFD8E0BED3284EA42BA71B81CD638B32E9D4A5DE181C0875F8C3C4BD",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_firestore.dart",
+    "OriginalHash": "9051BD26C4F50A5098F142B1233C432B0DFCB2FACDCD7DD4160210C656DB0651",
+    "WorkspaceHash": "351CED7909D4DC043E9C5F8DB3E067FECC2014324BCCD0C7933D54DB2118B5AB",
+    "Unchanged": false
+  },
+  {
+    "File": "src\\method_channel\\method_channel_load_bundle_task.dart",
+    "OriginalHash": "BD75888EBDE215A546EE890A1C3969D14DDC9D7C9991CE66C9274BB41CF21A4C",
+    "WorkspaceHash": "BD75888EBDE215A546EE890A1C3969D14DDC9D7C9991CE66C9274BB41CF21A4C",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_persistent_cache_index_manager.dart",
+    "OriginalHash": "83C35179E1F8C79430F4327CF265E94E659493707706542EA9F2660DA3AF2149",
+    "WorkspaceHash": "83C35179E1F8C79430F4327CF265E94E659493707706542EA9F2660DA3AF2149",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_query_snapshot.dart",
+    "OriginalHash": "EC47DD5FCE7F26F0876F40B705030BECB68B4E291DA2B40D622C3CD3A395E50E",
+    "WorkspaceHash": "EC47DD5FCE7F26F0876F40B705030BECB68B4E291DA2B40D622C3CD3A395E50E",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_query.dart",
+    "OriginalHash": "EAD794BC8A65366B3A3936D3761485D044B50831CECDED08EA52AFF36E2A8204",
+    "WorkspaceHash": "EAD794BC8A65366B3A3936D3761485D044B50831CECDED08EA52AFF36E2A8204",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_transaction.dart",
+    "OriginalHash": "C8ED8B4093321ADEE7E2648DEC71A87E92DB20FAABCA3D7146999FEB6353FB6D",
+    "WorkspaceHash": "C8ED8B4093321ADEE7E2648DEC71A87E92DB20FAABCA3D7146999FEB6353FB6D",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\method_channel_write_batch.dart",
+    "OriginalHash": "886FE9AEF604C3F5C7233454AFD08EB93F07837E409F3D98552D2DBEFBED080D",
+    "WorkspaceHash": "886FE9AEF604C3F5C7233454AFD08EB93F07837E409F3D98552D2DBEFBED080D",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\utils\\auto_id_generator.dart",
+    "OriginalHash": "014BA01B65FC7E314203DEE5F55B94EFD9CE1700CF340FFF50BA37CAAB20F056",
+    "WorkspaceHash": "014BA01B65FC7E314203DEE5F55B94EFD9CE1700CF340FFF50BA37CAAB20F056",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\utils\\exception.dart",
+    "OriginalHash": "6E9B625ADCD026B0FEF5CA4BEA7BD67CAAED3F863B87DD27FD546917CAD3F166",
+    "WorkspaceHash": "6E9B625ADCD026B0FEF5CA4BEA7BD67CAAED3F863B87DD27FD546917CAD3F166",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\utils\\firestore_message_codec.dart",
+    "OriginalHash": "65AC6E84521159BF66DB61077793DA52316AB9C1A15CD732E4DB89B0EDF5B224",
+    "WorkspaceHash": "65AC6E84521159BF66DB61077793DA52316AB9C1A15CD732E4DB89B0EDF5B224",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\utils\\maps.dart",
+    "OriginalHash": "11BED05319E31AC4214A3A7339F283484D96D84764629CE46F0103AED2F66ED2",
+    "WorkspaceHash": "11BED05319E31AC4214A3A7339F283484D96D84764629CE46F0103AED2F66ED2",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\method_channel\\utils\\source.dart",
+    "OriginalHash": "4465C16CF853BDA2F48804B8AD89449B68B81BD53DB89F3EA94F6971644210E5",
+    "WorkspaceHash": "4465C16CF853BDA2F48804B8AD89449B68B81BD53DB89F3EA94F6971644210E5",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\pigeon\\messages.pigeon.dart",
+    "OriginalHash": "8BAEB0E1AC1309F54B0CA26F8E574661A73E4CEBAF486F997D865A0B2AED5E7C",
+    "WorkspaceHash": "8BAEB0E1AC1309F54B0CA26F8E574661A73E4CEBAF486F997D865A0B2AED5E7C",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_aggregate_query_snapshot.dart",
+    "OriginalHash": "DF31315F2B2CCD7E3298856959FCBA70E879A614003B61B6AFC4E6A8A43BAD31",
+    "WorkspaceHash": "DF31315F2B2CCD7E3298856959FCBA70E879A614003B61B6AFC4E6A8A43BAD31",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_aggregate_query.dart",
+    "OriginalHash": "F1608F8EF88CC678B6CB80C3A60BDD4D0452A3F1551006698CBDB4D5151C5719",
+    "WorkspaceHash": "F1608F8EF88CC678B6CB80C3A60BDD4D0452A3F1551006698CBDB4D5151C5719",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_collection_reference.dart",
+    "OriginalHash": "7631060D419265211B03442BDF2EE7B299C012324804345FEF8DFE7775159D0F",
+    "WorkspaceHash": "7631060D419265211B03442BDF2EE7B299C012324804345FEF8DFE7775159D0F",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_document_change.dart",
+    "OriginalHash": "492BDABE58B5C690071173310B371674B073C4AE6B8A49220117C8BA8BF8C5A7",
+    "WorkspaceHash": "492BDABE58B5C690071173310B371674B073C4AE6B8A49220117C8BA8BF8C5A7",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_document_reference.dart",
+    "OriginalHash": "685947B745FEA5D8D17A3A990E1B8F8E688EA6FF64C8BAD6F206AFA291506A2B",
+    "WorkspaceHash": "685947B745FEA5D8D17A3A990E1B8F8E688EA6FF64C8BAD6F206AFA291506A2B",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_document_snapshot.dart",
+    "OriginalHash": "0FC8766F9D96994636D1976C0B7304CE00DDB5765051D5EA4DC78398DA41CC54",
+    "WorkspaceHash": "0FC8766F9D96994636D1976C0B7304CE00DDB5765051D5EA4DC78398DA41CC54",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_field_value_factory.dart",
+    "OriginalHash": "4C1E9316B930FAD909EB916D47E156C11A711FCE5F863E56386D5B8BD38DDFB6",
+    "WorkspaceHash": "4C1E9316B930FAD909EB916D47E156C11A711FCE5F863E56386D5B8BD38DDFB6",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_field_value.dart",
+    "OriginalHash": "B410CAE6FC6B7D0A413098C6115E983B13FF5DEFF917FBA0F5DE33149A9E76BF",
+    "WorkspaceHash": "B410CAE6FC6B7D0A413098C6115E983B13FF5DEFF917FBA0F5DE33149A9E76BF",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_firestore.dart",
+    "OriginalHash": "5B6DFA22660EFC86BCE2DFE700DC0170CDACEDA6A6046577113A13169978A7BE",
+    "WorkspaceHash": "5B6DFA22660EFC86BCE2DFE700DC0170CDACEDA6A6046577113A13169978A7BE",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_index_definitions.dart",
+    "OriginalHash": "561A0FF4AD5F8608C1D467DCFC5128A4F4AA9A969C03F84E104A845FA8CAE556",
+    "WorkspaceHash": "561A0FF4AD5F8608C1D467DCFC5128A4F4AA9A969C03F84E104A845FA8CAE556",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_load_bundle_task_snapshot.dart",
+    "OriginalHash": "01323AFF725A88AB522CC0F1FB9E63A09565CB6E829A495EBB7CAC8C09E3C6E3",
+    "WorkspaceHash": "01323AFF725A88AB522CC0F1FB9E63A09565CB6E829A495EBB7CAC8C09E3C6E3",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_load_bundle_task.dart",
+    "OriginalHash": "701B2F82A6A27A3EB3FE2F584DC9102516BABB51C79C4490ECF0CF84033B7B57",
+    "WorkspaceHash": "701B2F82A6A27A3EB3FE2F584DC9102516BABB51C79C4490ECF0CF84033B7B57",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_persistent_cache_index_manager.dart",
+    "OriginalHash": "EBCD3BAC2BA74010D3D7E1B2B644C35670A433C0F19B0A7ECE1200E8B88DDB77",
+    "WorkspaceHash": "EBCD3BAC2BA74010D3D7E1B2B644C35670A433C0F19B0A7ECE1200E8B88DDB77",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_query_snapshot.dart",
+    "OriginalHash": "0DFDD3184DF6B37F75D02D9343E445D445473119C6FBF506E77CFD74BB4F9FDB",
+    "WorkspaceHash": "0DFDD3184DF6B37F75D02D9343E445D445473119C6FBF506E77CFD74BB4F9FDB",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_query.dart",
+    "OriginalHash": "DEDB26F18CE6D1CC87F30E265C518161CA89248A545CB142F7ED90943E763F69",
+    "WorkspaceHash": "DEDB26F18CE6D1CC87F30E265C518161CA89248A545CB142F7ED90943E763F69",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_transaction.dart",
+    "OriginalHash": "7D13787A14ED44D912649BABD68E7FD975AB5B61558B1AB30223EC5C3D58ECE4",
+    "WorkspaceHash": "7D13787A14ED44D912649BABD68E7FD975AB5B61558B1AB30223EC5C3D58ECE4",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\platform_interface_write_batch.dart",
+    "OriginalHash": "1048976D04DFCA98B5FC001A003F56C5BF8BC0709E35347F4324ABD30CD5979D",
+    "WorkspaceHash": "1048976D04DFCA98B5FC001A003F56C5BF8BC0709E35347F4324ABD30CD5979D",
+    "Unchanged": true
+  },
+  {
+    "File": "src\\platform_interface\\utils\\load_bundle_task_state.dart",
+    "OriginalHash": "C584461AD44E726960519A2C6ABB510614AD0A0B0B4F559781C83C93AF158A5B",
+    "WorkspaceHash": "C584461AD44E726960519A2C6ABB510614AD0A0B0B4F559781C83C93AF158A5B",
+    "Unchanged": true
+  }
+]

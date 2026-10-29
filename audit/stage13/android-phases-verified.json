@@ -1,0 +1,16 @@
+{
+  "completedPhases": [
+    "TerminalOwner registered and verified",
+    "TerminalOther registered and verified",
+    "Auth profile real SDK terminal denial recovered through visible Retry Account Profile",
+    "grocery item real SDK terminal denial recovered through visible Retry",
+    "grocery parent real SDK terminal denial recovered through visible Retry",
+    "open grocery editor rejected an obsolete draft after native A B A without changing stored groceries",
+    "saved-plan parent denial exposes safe Retry and nested denial is surfaced",
+    "nested saved-plan real SDK terminal denial recovered through visible Retry with exact plan identity",
+    "stale saved-plan deletion confirmation rejected after native A B A with original plan intact",
+    "delayed logout cleanup rejected obsolete completion without signing out new native account",
+    "failing delayed grocery initialization and pending add rejected after real native A B A transitions"
+  ],
+  "sdkPermissionDenials": 7
+}

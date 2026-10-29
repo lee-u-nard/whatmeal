@@ -1,0 +1,61 @@
+--------- beginning of main
+I/whatmeal.aitest( 2873): Late-enabling -Xcheck:jni
+I/whatmeal.aitest( 2873): Using CollectorTypeCMC GC.
+W/whatmeal.aitest( 2873): Unexpected CPU variant for x86: x86_64.
+W/whatmeal.aitest( 2873): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+D/nativeloader( 2873): Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+D/ApplicationLoaders( 2873): Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+D/ApplicationLoaders( 2873): Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+W/ziparchive( 2873): Unable to open '/data/app/~~6wzYQznnzNdqZqRf5gh9ag==/com.example.whatmeal.aitest-4cnfaBZClvQLqqf_IR2_wQ==/base.dm': No such file or directory
+W/ziparchive( 2873): Unable to open '/data/app/~~6wzYQznnzNdqZqRf5gh9ag==/com.example.whatmeal.aitest-4cnfaBZClvQLqqf_IR2_wQ==/base.dm': No such file or directory
+D/nativeloader( 2873): Configuring clns-7 for other apk /data/app/~~6wzYQznnzNdqZqRf5gh9ag==/com.example.whatmeal.aitest-4cnfaBZClvQLqqf_IR2_wQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~6wzYQznnzNdqZqRf5gh9ag==/com.example.whatmeal.aitest-4cnfaBZClvQLqqf_IR2_wQ==/lib/x86_64:/data/app/~~6wzYQznnzNdqZqRf5gh9ag==/com.example.whatmeal.aitest-4cnfaBZClvQLqqf_IR2_wQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.example.whatmeal.aitest
+V/GraphicsEnvironment( 2873): Currently set values for:
+V/GraphicsEnvironment( 2873):   angle_gl_driver_selection_pkgs=[]
+V/GraphicsEnvironment( 2873):   angle_gl_driver_selection_values=[]
+V/GraphicsEnvironment( 2873): Global.Settings values are invalid: number of packages: 0, number of values: 0
+V/GraphicsEnvironment( 2873): Neither updatable production driver nor prerelease driver is supported.
+I/FirebaseApp( 2873): Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+I/FirebaseInitProvider( 2873): FirebaseApp initialization successful
+D/FLTFireContextHolder( 2873): received application context.
+W/Metadata( 2873): Failed to find package android.content.pm.PackageManager$NameNotFoundException: com.google.android.gms
+D/FlutterJNI( 2873): Beginning load of flutter...
+I/ResourceExtractor( 2873): Found extracted resources res_timestamp-1-1792355490438
+D/nativeloader( 2873): Load /data/app/~~6wzYQznnzNdqZqRf5gh9ag==/com.example.whatmeal.aitest-4cnfaBZClvQLqqf_IR2_wQ==/base.apk!/lib/x86_64/libflutter.so using ns clns-7 from class loader (caller=/data/app/~~6wzYQznnzNdqZqRf5gh9ag==/com.example.whatmeal.aitest-4cnfaBZClvQLqqf_IR2_wQ==/base.apk): ok
+D/FlutterJNI( 2873): flutter (null) was loaded normally!
+D/skia    ( 2873): [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+W/whatmeal.aitest( 2873): type=1400 audit(0.0:41): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=13176 scontext=u:r:untrusted_app:s0:c150,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.example.whatmeal.aitest
+I/EGL_emulation( 2873): Opening libGLESv1_CM_emulation.so
+I/EGL_emulation( 2873): Opening libGLESv2_emulation.so
+I/flutter ( 2873): The Dart VM service is listening on http://127.0.0.1:37817/Lfs2Ets2F-k=/
+I/flutter ( 2873): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FLTFireContextHolder( 2873): received application context.
+W/whatmeal.aitest( 2873): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/whatmeal.aitest( 2873): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/whatmeal.aitest( 2873): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/whatmeal.aitest( 2873): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 2873): Width is zero. 0,0
+W/HWUI    ( 2873): Unknown dataspace 0
+I/WindowExtensionsImpl( 2873): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 2873): Width is zero. 0,0
+D/FlutterJNI( 2873): Sending viewport metrics to the engine.
+W/HWUI    ( 2873): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 2873): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Gralloc4( 2873): mapper 4.x is not supported
+I/whatmeal.aitest( 2873): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 2873): Skipped 48 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 2873): Sending viewport metrics to the engine.
+I/whatmeal.aitest( 2873): Compiler allocated 5417KB to compile void android.view.ViewRootImpl.performTraversals()
+D/com.google.firebase.appcheck.debug.internal.DebugAppCheckProvider( 2873): Enter this debug secret into the allow list in the Firebase Console for your project: [REDACTED]
+I/Choreographer( 2873): Skipped 60 frames!  The application may be doing too much work on its main thread.
+D/ProfileInstaller( 2873): Installing profile for com.example.whatmeal.aitest
+D/FlutterJNI( 2873): Sending viewport metrics to the engine.
+D/EGL_emulation( 2873): app_time_stats: avg=631.62ms min=69.67ms max=1193.56ms count=2
+D/EGL_emulation( 2873): app_time_stats: avg=1154.50ms min=1154.50ms max=1154.50ms count=1
+D/EGL_emulation( 2873): app_time_stats: avg=1144.59ms min=1131.71ms max=1157.47ms count=2
+D/EGL_emulation( 2873): app_time_stats: avg=640.94ms min=26.42ms max=1255.47ms count=2
+D/TrafficStats( 2873): tagSocket(125) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2873): app_time_stats: avg=23.45ms min=3.27ms max=62.87ms count=37
+D/EGL_emulation( 2873): app_time_stats: avg=17580.23ms min=17580.23ms max=17580.23ms count=1
+D/EGL_emulation( 2873): app_time_stats: avg=423.70ms min=1.83ms max=14426.48ms count=36
+D/EGL_emulation( 2873): app_time_stats: avg=1026.22ms min=1026.22ms max=1026.22ms count=1
+D/EGL_emulation( 2873): app_time_stats: avg=1046.30ms min=1046.30ms max=1046.30ms count=1

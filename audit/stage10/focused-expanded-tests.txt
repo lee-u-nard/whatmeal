@@ -1,0 +1,36 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: manual grocery controls fit narrow screen with enlarged text
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: FlutterError:<A RenderFlex overflowed by 35 pixels on the right.>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/grocery_editor_test.dart:27:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/grocery_editor_test.dart line 27
+The test description was:
+  manual grocery controls fit narrow screen with enlarged text
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: manual grocery controls fit narrow screen with enlarged text [E]
+  Test failed. See exception logs above.
+  The test description was: manual grocery controls fit narrow screen with enlarged text
+  
+00:01 +0 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: blank item shows validation; missing quantity remains unknown
+00:02 +1 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: pending write submits once and failed write retains draft for retry
+00:02 +2 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: editor scrolls at enlarged text with keyboard inset
+00:02 +3 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: clear purchased items requires explicit confirmation
+00:13 +4 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_inbox_test.dart: loading and listener error are distinct from empty inbox; retry works
+00:14 +5 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_inbox_test.dart: mark-all failure is visible and sanitized; tapping receives exact target
+00:14 +6 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: manual grocery controls fit narrow screen with enlarged text

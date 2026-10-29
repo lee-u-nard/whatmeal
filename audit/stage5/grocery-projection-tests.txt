@@ -1,0 +1,9 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_grocery_projection_test.dart
+00:00 +0: acceptance calculates only missing amount, including unit conversion
+00:00 +1: shared ingredients retain remaining meal provenance after deletion
+00:00 +2: pantry growth removes purchase need without removing meal requirement
+00:00 +3: replacement and skipped/completed meals no longer require shopping
+00:00 +4: repeated projection is idempotent and purchase receipt remains checked
+00:00 +5: unknown quantities and incompatible units never claim sufficient pantry
+00:00 +6: expired and used stock are excluded
+00:00 +7: All tests passed!

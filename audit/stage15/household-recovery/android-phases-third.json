@@ -1,0 +1,10 @@
+{
+  "phases": [
+    "create SDK offline failure retained draft and visible retry"
+  ],
+  "normalLoginPreserved": false,
+  "sdkFailureCodes": [
+    "unavailable"
+  ],
+  "scope": "Named secondary Firebase app; disposable local accounts only"
+}

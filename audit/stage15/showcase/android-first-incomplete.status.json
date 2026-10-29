@@ -1,0 +1,5 @@
+{
+  "CompletedCheckpoints": 14,
+  "Exit": 1,
+  "Outcome": "Incomplete: driver reported VM service disappearance; later device/backend were stopped. No completed workflow pass."
+}

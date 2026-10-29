@@ -1,0 +1,403 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage10\relay-integration.apk...                1,147ms
+I/Choreographer( 1885): Skipped 69 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 1885): Sending viewport metrics to the engine.
+D/ProfileInstaller( 1885): Installing profile for com.example.whatmeal.local
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:58235/XAQYCIjYT1c=/
+VMServiceFlutterDriver: Isolate found with number: 4868470554751591
+VMServiceFlutterDriver: Isolate 4868470554751591 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 1885): 00:00 +0: local Android shared groceries and verified transport recovery
+VMServiceFlutterDriver: Connected to Flutter application.
+D/FlutterJNI( 1885): Sending viewport metrics to the engine.
+D/EGL_emulation( 1885): app_time_stats: avg=517.74ms min=285.43ms max=725.22ms count=3
+D/FirebaseAuth( 1885): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1885): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 1885): app_time_stats: avg=207.76ms min=115.75ms max=315.02ms count=6
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=94.72ms min=16.98ms max=216.30ms count=12
+D/EGL_emulation( 1885): app_time_stats: avg=98.54ms min=10.41ms max=242.85ms count=11
+D/EGL_emulation( 1885): app_time_stats: avg=112.83ms min=15.73ms max=247.31ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=96.36ms min=7.67ms max=236.57ms count=11
+I/FirebaseAuth( 1885): Creating user with groceryowner-1792130366634568@example.test with empty reCAPTCHA token
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1885): tagSocket(137) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1885): app_time_stats: avg=125.64ms min=12.89ms max=217.83ms count=8
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1885): Notifying id token listeners about user ( JooTibuaFGebAjO0xHYeChDY3ijP ).
+D/FirebaseAuth( 1885): Notifying auth state listeners about user ( JooTibuaFGebAjO0xHYeChDY3ijP ).
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/GooglePlayServicesUtil( 1885): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1885): GooglePlayServices not available due to error 9
+W/Firestore( 1885): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1885): tagSocket(149) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1885): app_time_stats: avg=459.77ms min=215.28ms max=1098.37ms count=4
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=118.70ms min=10.65ms max=226.89ms count=9
+I/flutter ( 1885): Local UI checkpoint: GroceryOwner registered and verified
+D/EGL_emulation( 1885): app_time_stats: avg=122.27ms min=22.35ms max=215.63ms count=9
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=121.87ms min=9.77ms max=233.46ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=111.32ms min=29.81ms max=215.51ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=102.96ms min=13.74ms max=247.45ms count=11
+D/EGL_emulation( 1885): app_time_stats: avg=137.62ms min=12.19ms max=367.43ms count=8
+D/EGL_emulation( 1885): app_time_stats: avg=111.17ms min=51.10ms max=212.51ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=216.79ms min=212.79ms max=219.81ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.86ms min=211.24ms max=220.99ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=219.95ms min=216.21ms max=231.66ms count=5
+I/flutter ( 1885): Local UI checkpoint: invitation copied
+D/EGL_emulation( 1885): app_time_stats: avg=128.75ms min=17.63ms max=267.00ms count=8
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=110.07ms min=2.13ms max=211.90ms count=9
+D/FirebaseAuth( 1885): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1885): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1885): (25.1.4) [Firestore]: Listen for Query(target=Query(users/JooTibuaFGebAjO0xHYeChDY3ijP/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1885): false for 'list' @ L207, cause=null}
+W/Firestore( 1885): (25.1.4) [Firestore]: Listen for Query(target=Query(users/JooTibuaFGebAjO0xHYeChDY3ijP/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1885): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1885): app_time_stats: avg=137.45ms min=26.21ms max=219.17ms count=8
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=111.08ms min=18.52ms max=215.31ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=103.16ms min=12.84ms max=264.13ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=103.36ms min=13.28ms max=248.93ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=103.55ms min=14.15ms max=251.33ms count=10
+I/FirebaseAuth( 1885): Creating user with grocerymember-1792130388016395@example.test with empty reCAPTCHA token
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1885): tagSocket(132) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1885): app_time_stats: avg=94.94ms min=9.25ms max=267.84ms count=13
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1885): Notifying id token listeners about user ( XD7PFFqPLOY3rq6Mz03AraHBlhjl ).
+D/FirebaseAuth( 1885): Notifying auth state listeners about user ( XD7PFFqPLOY3rq6Mz03AraHBlhjl ).
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1885): app_time_stats: avg=417.27ms min=215.79ms max=1182.83ms count=5
+W/System  ( 1885): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1885): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=112.29ms min=20.73ms max=214.59ms count=9
+I/flutter ( 1885): Local UI checkpoint: GroceryMember registered and verified
+D/EGL_emulation( 1885): app_time_stats: avg=122.20ms min=17.55ms max=216.81ms count=9
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=125.98ms min=17.54ms max=217.49ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=111.60ms min=28.08ms max=217.14ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=104.76ms min=8.60ms max=268.02ms count=10
+I/flutter ( 1885): Local UI checkpoint: fresh demo member joined expected shared grocery household
+D/EGL_emulation( 1885): app_time_stats: avg=147.84ms min=15.51ms max=337.47ms count=8
+D/EGL_emulation( 1885): app_time_stats: avg=122.15ms min=22.08ms max=226.02ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=122.51ms min=11.02ms max=237.13ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=173.39ms min=115.45ms max=217.00ms count=7
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=111.48ms min=13.57ms max=232.57ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=121.96ms min=13.50ms max=249.23ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=100.54ms min=1.62ms max=236.87ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=101.67ms min=13.47ms max=238.08ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=145.67ms min=25.08ms max=314.79ms count=8
+D/EGL_emulation( 1885): app_time_stats: avg=216.82ms min=215.27ms max=218.43ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.69ms min=215.29ms max=217.41ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.54ms min=215.60ms max=218.09ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.50ms min=214.10ms max=221.78ms count=5
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=122.37ms min=13.72ms max=232.64ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=100.53ms min=12.64ms max=269.06ms count=12
+D/EGL_emulation( 1885): app_time_stats: avg=103.01ms min=11.92ms max=267.42ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=103.28ms min=13.28ms max=215.75ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=215.77ms min=212.22ms max=217.23ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.79ms min=215.92ms max=217.45ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.30ms min=215.26ms max=217.85ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=217.02ms min=214.56ms max=220.28ms count=5
+I/flutter ( 1885): Local UI checkpoint: manual grocery add and normalized duplicate prevention
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=133.29ms min=11.10ms max=232.90ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=104.40ms min=13.21ms max=269.71ms count=11
+D/EGL_emulation( 1885): app_time_stats: avg=103.19ms min=10.39ms max=265.44ms count=11
+D/EGL_emulation( 1885): app_time_stats: avg=129.20ms min=17.10ms max=262.53ms count=8
+D/EGL_emulation( 1885): app_time_stats: avg=122.12ms min=14.20ms max=250.49ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=123.86ms min=16.28ms max=263.20ms count=9
+I/flutter ( 1885): Local UI checkpoint: manual grocery edit quantity check and uncheck persisted
+D/EGL_emulation( 1885): app_time_stats: avg=133.37ms min=8.21ms max=233.34ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=145.79ms min=116.02ms max=216.99ms count=7
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=98.03ms min=6.88ms max=254.98ms count=11
+D/EGL_emulation( 1885): app_time_stats: avg=101.44ms min=13.52ms max=261.53ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=111.61ms min=14.20ms max=265.11ms count=10
+D/EGL_emulation( 1885): app_time_stats: avg=127.13ms min=26.44ms max=250.41ms count=8
+D/EGL_emulation( 1885): app_time_stats: avg=216.61ms min=215.67ms max=218.09ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.33ms min=213.71ms max=219.67ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.66ms min=216.37ms max=217.05ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=225.29ms min=206.61ms max=268.96ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=151.12ms min=114.37ms max=216.34ms count=7
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=98.97ms min=14.34ms max=268.55ms count=11
+W/Firestore( 1885): (25.1.4) [WatchStream]: (f1f203e) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+W/Firestore( 1885): (25.1.4) [WriteStream]: (4f6f5a1) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+D/TrafficStats( 1885): tagSocket(137) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1885): app_time_stats: avg=444.53ms min=13.67ms max=1532.22ms count=4
+I/.whatmeal.local( 1885): Background concurrent mark compact GC freed 4476KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 4582KB/9164KB, paused 70us,5.732ms total 31.165ms
+D/EGL_emulation( 1885): app_time_stats: avg=366.91ms min=12.62ms max=2015.49ms count=7
+I/flutter ( 1885): Local UI checkpoint: verified relay outage retained pending edit and disabled duplicate submit
+D/EGL_emulation( 1885): app_time_stats: avg=1999.45ms min=1999.45ms max=1999.45ms count=1
+D/EGL_emulation( 1885): app_time_stats: avg=216.59ms min=213.35ms max=221.19ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=217.89ms min=214.38ms max=223.39ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=215.21ms min=209.67ms max=217.05ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.86ms min=216.05ms max=217.82ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=217.38ms min=215.01ms max=220.44ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.02ms min=212.24ms max=217.46ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.47ms min=214.67ms max=217.47ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.49ms min=216.11ms max=216.87ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.92ms min=216.49ms max=217.48ms count=5
+W/GooglePlayServicesUtil( 1885): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1885): GooglePlayServices not available due to error 9
+W/Firestore( 1885): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/Firestore( 1885): (25.1.4) [WatchStream]: (f1f203e) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+D/TrafficStats( 1885): tagSocket(134) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 1885): tagSocket(153) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1885): app_time_stats: avg=185.58ms min=116.39ms max=225.77ms count=6
+I/flutter ( 1885): Local UI checkpoint: visible transaction failure retained draft and ordinary retry requested
+I/flutter ( 1885): Local UI checkpoint: grocery transaction recovered after verified transport reconnect without duplicate
+D/EGL_emulation( 1885): app_time_stats: avg=137.10ms min=11.04ms max=267.24ms count=8
+D/EGL_emulation( 1885): app_time_stats: avg=135.60ms min=16.22ms max=248.74ms count=8
+D/EGL_emulation( 1885): app_time_stats: avg=217.51ms min=216.10ms max=220.08ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=215.83ms min=213.13ms max=220.63ms count=5
+I/flutter ( 1885): Local UI checkpoint: grocery missing quantity retained and native clipboard sharing verified
+D/EGL_emulation( 1885): app_time_stats: avg=216.71ms min=211.33ms max=220.59ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.81ms min=215.02ms max=218.38ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.49ms min=213.83ms max=219.16ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=216.17ms min=213.58ms max=217.37ms count=5
+D/EGL_emulation( 1885): app_time_stats: avg=217.03ms min=216.57ms max=217.54ms count=5
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=133.37ms min=11.12ms max=265.46ms count=9
+D/EGL_emulation( 1885): app_time_stats: avg=121.90ms min=9.22ms max=267.36ms count=9
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=100.79ms min=12.43ms max=273.46ms count=12
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=132.24ms min=10.19ms max=265.33ms count=9
+I/flutter ( 1885): Local UI checkpoint: grocery clearing required confirmation and retained unchecked item then delete succeeded
+D/EGL_emulation( 1885): app_time_stats: avg=122.02ms min=16.93ms max=259.13ms count=9
+W/WindowOnBackDispatcher( 1885): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1885): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1885): app_time_stats: avg=100.02ms min=7.65ms max=269.83ms count=12
+D/EGL_emulation( 1885): app_time_stats: avg=69.38ms min=2.19ms max=148.72ms count=14
+D/EGL_emulation( 1885): app_time_stats: avg=60.72ms min=8.09ms max=122.25ms count=17
+D/EGL_emulation( 1885): app_time_stats: avg=87.46ms min=14.66ms max=117.98ms count=12
+I/flutter ( 1885): ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+I/flutter ( 1885): The following assertion was thrown during layout:
+I/flutter ( 1885): A RenderFlex overflowed by 5.6 pixels on the right.
+I/flutter ( 1885): 
+I/flutter ( 1885): The relevant error-causing widget was:
+I/flutter ( 1885):   Row
+I/flutter ( 1885):   Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/ai_settings/pages/ai_settings_page.dart:297:35
+I/flutter ( 1885): 
+I/flutter ( 1885): The overflowing RenderFlex has an orientation of Axis.horizontal.
+I/flutter ( 1885): The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+I/flutter ( 1885): black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+I/flutter ( 1885): Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+I/flutter ( 1885): RenderFlex to fit within the available space instead of being sized to their natural size.
+I/flutter ( 1885): This is considered an error condition because it indicates that there is content that cannot be
+I/flutter ( 1885): seen. If the content is legitimately bigger than the available space, consider clipping it with a
+I/flutter ( 1885): ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+I/flutter ( 1885): like a ListView.
+I/flutter ( 1885): The specific RenderFlex in question is: RenderFlex#81ff1 relayoutBoundary=up12 OVERFLOWING:
+I/flutter ( 1885):   creator: Row ← Column ← Padding ← DecoratedBox ← ConstrainedBox ← Container ← Column ← Padding ←
+I/flutter ( 1885):     DecoratedBox ← Container ← RepaintBoundary ← IndexedSemantics ← ⋯
+I/flutter ( 1885):   parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+I/flutter ( 1885):   constraints: BoxConstraints(0.0<=w<=214.0, 0.0<=h<=Infinity)
+I/flutter ( 1885):   size: Size(214.0, 20.0)
+I/flutter ( 1885):   direction: horizontal
+I/flutter ( 1885):   mainAxisAlignment: start
+I/flutter ( 1885):   mainAxisSize: max
+I/flutter ( 1885):   crossAxisAlignment: center
+I/flutter ( 1885):   textDirection: ltr
+I/flutter ( 1885):   verticalDirection: down
+I/flutter ( 1885):   spacing: 0.0
+I/flutter ( 1885): ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+I/flutter ( 1885): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1885): ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+I/flutter ( 1885): The following assertion was thrown during layout:
+I/flutter ( 1885): A RenderFlex overflowed by 72 pixels on the right.
+I/flutter ( 1885): 
+I/flutter ( 1885): The relevant error-causing widget was:
+I/flutter ( 1885):   Row
+I/flutter ( 1885):   Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/ai_settings/pages/ai_settings_page.dart:652:31
+I/flutter ( 1885): 
+I/flutter ( 1885): The overflowing RenderFlex has an orientation of Axis.horizontal.
+I/flutter ( 1885): The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+I/flutter ( 1885): black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+I/flutter ( 1885): Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+I/flutter ( 1885): RenderFlex to fit within the available space instead of being sized to their natural size.
+I/flutter ( 1885): This is considered an error condition because it indicates that there is content that cannot be
+I/flutter ( 1885): seen. If the content is legitimately bigger than the available space, consider clipping it with a
+I/flutter ( 1885): ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+I/flutter ( 1885): like a ListView.
+I/flutter ( 1885): The specific RenderFlex in question is: RenderFlex#232ab relayoutBoundary=up10 OVERFLOWING:
+I/flutter ( 1885):   creator: Row ← Column ← Expanded ← Row ← Column ← Padding ← DecoratedBox ← Container ←
+I/flutter ( 1885):     RepaintBoundary ← IndexedSemantics ← _SelectionKeepAlive ←
+I/flutter ( 1885):     NotificationListener<KeepAliveNotification> ← ⋯
+I/flutter ( 1885):   parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+I/flutter ( 1885):   constraints: BoxConstraints(0.0<=w<=88.4, 0.0<=h<=Infinity)
+I/flutter ( 1885):   size: Size(88.4, 19.0)
+I/flutter ( 1885):   direction: horizontal
+I/flutter ( 1885):   mainAxisAlignment: start
+I/flutter ( 1885):   mainAxisSize: max
+I/flutter ( 1885):   crossAxisAlignment: center
+I/flutter ( 1885):   textDirection: ltr
+I/flutter ( 1885):   verticalDirection: down
+I/flutter ( 1885):   spacing: 0.0
+I/flutter ( 1885): ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+I/flutter ( 1885): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1885): Local UI checkpoint: AI settings opened with account default configuration without live provider calls
+D/EGL_emulation( 1885): app_time_stats: avg=83.81ms min=1.91ms max=266.88ms count=13
+I/flutter ( 1885): Local UI checkpoint: local AI service guard refused live request without quota mutation
+I/flutter ( 1885): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 1885): The following TestFailure was thrown running a test:
+I/flutter ( 1885): Expected: null
+I/flutter ( 1885):   Actual: 'Multiple exceptions (2) were detected during the running of the current test, and at
+I/flutter ( 1885): least one was unexpected.'
+I/flutter ( 1885): 
+I/flutter ( 1885): When the exception was thrown, this was the stack:
+I/flutter ( 1885): #4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_grocery_recovery_test.dart:397:5)
+I/flutter ( 1885): <asynchronous suspension>
+I/flutter ( 1885): #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 1885): <asynchronous suspension>
+I/flutter ( 1885): #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 1885): <asynchronous suspension>
+I/flutter ( 1885): #7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 1885): <asynchronous suspension>
+I/flutter ( 1885): 
+I/flutter ( 1885): This was caught by the test expectation on the following line:
+I/flutter ( 1885):   file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_grocery_recovery_test.dart line 397
+I/flutter ( 1885): The test description was:
+I/flutter ( 1885):   local Android shared groceries and verified transport recovery
+I/flutter ( 1885): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1885): 01:58 +0: local Android shared groceries and verified transport recovery [E]
+I/flutter ( 1885):   Test failed. See exception logs above.
+I/flutter ( 1885):   The test description was: local Android shared groceries and verified transport recovery
+I/flutter ( 1885):   
+I/flutter ( 1885): 01:58 +0 -1: (tearDownAll)
+I/flutter ( 1885): 01:58 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: local Android shared groceries and verified transport recovery
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: 'Multiple exceptions (2) were detected during the
+running of the current test, and at least one was unexpected.'
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_grocery_recovery_test.dart:397:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_grocery_recovery_test.dart line 397
+The test description was:
+  local Android shared groceries and verified transport recovery
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+

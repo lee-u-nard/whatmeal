@@ -1,0 +1,1 @@
+/sdcard/stage10-tester-startup.png: 1 file pulled, 0 skipped. 9.4 MB/s (28749 bytes in 0.003s)

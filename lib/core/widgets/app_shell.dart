@@ -7,9 +7,16 @@ import '../../features/family/data/family_repository.dart';
 import '../services/notification_service.dart';
 
 class AppShell extends StatelessWidget {
-  const AppShell({super.key, required this.navigationShell});
+  const AppShell({
+    super.key,
+    required this.navigationShell,
+    this.familyRepository,
+    this.notificationService,
+  });
 
   final StatefulNavigationShell navigationShell;
+  final FamilyRepository? familyRepository;
+  final NotificationService? notificationService;
 
   static const _titles = [
     'WhatMeal',
@@ -22,18 +29,22 @@ class AppShell extends StatelessWidget {
   static Widget? _fabForTab(int index, BuildContext context) {
     if (index != 2) return null;
     return FloatingActionButton(
+      tooltip: 'Add pantry item',
       backgroundColor: AppColors.primary,
       shape: const CircleBorder(),
       elevation: 4,
       onPressed: () async {
-        final result = await showModalBottomSheet<NewPantryItem>(
+        final scope = PantryRepository.instance.scopeVersion;
+        await showModalBottomSheet<NewPantryItem>(
           context: context,
           isScrollControlled: true,
-          builder: (_) => const AddPantryItemSheet(),
+          builder: (_) => AddPantryItemSheet(onSave: (added) async {
+            if (scope != PantryRepository.instance.scopeVersion) {
+              throw StateError('Workspace changed.');
+            }
+            await PantryRepository.instance.addItem(added.category, added.item);
+          }),
         );
-        if (result != null && context.mounted) {
-          PantryRepository.instance.addItem(result.category, result.item);
-        }
       },
       child: const Icon(Icons.add, color: Colors.white),
     );
@@ -60,25 +71,34 @@ class AppShell extends StatelessWidget {
               child: const Icon(Icons.eco, color: Colors.white, size: 16),
             ),
             const SizedBox(width: 8),
-            Text(
+            Flexible(
+                child: Text(
               _titles[currentIndex],
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.w800,
                 fontSize: 20,
               ),
-            ),
+            )),
           ],
         ),
         actions: [
           // Notification bell with unread badge
           ValueListenableBuilder<List<dynamic>>(
-            valueListenable: NotificationService.instance,
+            valueListenable:
+                notificationService ?? NotificationService.instance,
             builder: (context, notifications, _) {
-              final unread = NotificationService.instance.unreadCount;
+              final unread =
+                  (notificationService ?? NotificationService.instance)
+                      .unreadCount;
               return Stack(
                 children: [
                   IconButton(
+                    tooltip: unread == 0
+                        ? 'Notifications'
+                        : 'Notifications, $unread unread',
                     icon: const Icon(Icons.notifications_none,
                         color: AppColors.textPrimary),
                     onPressed: () => context.push('/notifications'),
@@ -87,7 +107,9 @@ class AppShell extends StatelessWidget {
                     Positioned(
                       right: 8,
                       top: 8,
-                      child: Container(
+                      child: ExcludeSemantics(
+                          child: Container(
+                        key: const ValueKey('notification-unread-badge'),
                         padding: const EdgeInsets.all(3),
                         decoration: const BoxDecoration(
                           color: AppColors.danger,
@@ -104,7 +126,7 @@ class AppShell extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                      ),
+                      )),
                     ),
                 ],
               );
@@ -112,38 +134,43 @@ class AppShell extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 16),
-            child: GestureDetector(
-              onTap: () => navigationShell.goBranch(4),
-              child: ValueListenableBuilder(
-                valueListenable: FamilyRepository.instance,
-                builder: (context, space, _) {
-                  final hasSpace = space != null;
-                  return Stack(
-                    children: [
-                      const CircleAvatar(
-                        radius: 16,
-                        backgroundColor: AppColors.primaryLight,
-                        child: Icon(Icons.person,
-                            size: 20, color: AppColors.primary),
-                      ),
-                      if (hasSpace)
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Container(
-                            width: 10,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              shape: BoxShape.circle,
-                              border:
-                                  Border.all(color: Colors.white, width: 1.5),
+            child: Semantics(
+              label: 'Open family profiles',
+              button: true,
+              child: GestureDetector(
+                onTap: () => navigationShell.goBranch(4),
+                child: ValueListenableBuilder(
+                  valueListenable:
+                      familyRepository ?? FamilyRepository.instance,
+                  builder: (context, space, _) {
+                    final hasSpace = space != null;
+                    return Stack(
+                      children: [
+                        const CircleAvatar(
+                          radius: 16,
+                          backgroundColor: AppColors.primaryLight,
+                          child: Icon(Icons.person,
+                              size: 20, color: AppColors.primary),
+                        ),
+                        if (hasSpace)
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Container(
+                              width: 10,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                color: AppColors.primary,
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(color: Colors.white, width: 1.5),
+                              ),
                             ),
                           ),
-                        ),
-                    ],
-                  );
-                },
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           ),
@@ -151,42 +178,45 @@ class AppShell extends StatelessWidget {
       ),
       floatingActionButton: _fabForTab(currentIndex, context),
       body: navigationShell,
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.cardSurface,
-          border: Border(top: BorderSide(color: AppColors.border, width: 1)),
-        ),
-        height: 64,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildNavItem(context,
-                index: 0,
-                icon: Icons.home_outlined,
-                activeIcon: Icons.home,
-                label: 'Home'),
-            _buildNavItem(context,
-                index: 1,
-                icon: Icons.calendar_today_outlined,
-                activeIcon: Icons.calendar_today,
-                label: 'Meal Plan'),
-            _buildNavItem(context,
-                index: 2,
-                icon: Icons.inventory_2_outlined,
-                activeIcon: Icons.inventory_2,
-                label: 'Pantry'),
-            _buildNavItem(context,
-                index: 3,
-                icon: Icons.shopping_cart_outlined,
-                activeIcon: Icons.shopping_cart,
-                label: 'Grocery'),
-            _buildNavItem(context,
-                index: 4,
-                icon: Icons.person_outline,
-                activeIcon: Icons.person,
-                label: 'Profile'),
-          ],
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Container(
+          decoration: const BoxDecoration(
+            color: AppColors.cardSurface,
+            border: Border(top: BorderSide(color: AppColors.border, width: 1)),
+          ),
+          height: 64,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(context,
+                  index: 0,
+                  icon: Icons.home_outlined,
+                  activeIcon: Icons.home,
+                  label: 'Home'),
+              _buildNavItem(context,
+                  index: 1,
+                  icon: Icons.calendar_today_outlined,
+                  activeIcon: Icons.calendar_today,
+                  label: 'Meal Plan'),
+              _buildNavItem(context,
+                  index: 2,
+                  icon: Icons.inventory_2_outlined,
+                  activeIcon: Icons.inventory_2,
+                  label: 'Pantry'),
+              _buildNavItem(context,
+                  index: 3,
+                  icon: Icons.shopping_cart_outlined,
+                  activeIcon: Icons.shopping_cart,
+                  label: 'Grocery'),
+              _buildNavItem(context,
+                  index: 4,
+                  icon: Icons.person_outline,
+                  activeIcon: Icons.person,
+                  label: 'Profile'),
+            ],
+          ),
         ),
       ),
     );
@@ -201,7 +231,8 @@ class AppShell extends StatelessWidget {
   }) {
     final isSelected = navigationShell.currentIndex == index;
 
-    return InkWell(
+    return Expanded(
+        child: InkWell(
       onTap: () => navigationShell.goBranch(
         index,
         initialLocation: index == navigationShell.currentIndex,
@@ -233,6 +264,6 @@ class AppShell extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

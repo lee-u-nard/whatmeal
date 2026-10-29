@@ -1,0 +1,10 @@
+
+┌─────────────────────────────────────────────────────────┐
+│ A new version of Flutter is available!                  │
+│                                                         │
+│ To update to the latest version, run "flutter upgrade". │
+└─────────────────────────────────────────────────────────┘
+Running Gradle task 'assembleLocalDebug'...                     
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage9"
+Running Gradle task 'assembleLocalDebug'...                       133.8s
+√ Built build\app\outputs\flutter-apk\app-local-debug.apk

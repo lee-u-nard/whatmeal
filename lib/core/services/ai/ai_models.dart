@@ -1,4 +1,5 @@
 import '../../models/llm_config.dart';
+import 'ingredient_restrictions.dart';
 import '../../../features/meal/models/meal.dart';
 
 // ---------------------------------------------------------------------------
@@ -33,6 +34,31 @@ class AiMealPlanRequest {
   final List<String> preferences;
   final String? budget;
 
+  /// Reject partial, duplicated, or out-of-range plans before they reach the UI.
+  void validateMeals(List<AiMealResponse> meals) {
+    if (numberOfDays < 1 ||
+        mealTypes.isEmpty ||
+        meals.length != numberOfDays * mealTypes.length) {
+      throw const FormatException(
+          'AI returned an incomplete meal plan. Please retry.');
+    }
+    final allowedTypes = mealTypes.map((type) => type.toLowerCase()).toSet();
+    final slots = <String>{};
+    for (final meal in meals) {
+      final type = meal.mealType.trim().toLowerCase();
+      if (meal.dayIndex < 0 ||
+          meal.dayIndex >= numberOfDays ||
+          !allowedTypes.contains(type) ||
+          !slots.add('${meal.dayIndex}:$type')) {
+        throw const FormatException(
+            'AI returned invalid or duplicate meal slots. Please retry.');
+      }
+      meal.validateRecipe();
+      IngredientRestrictions.validate(
+          meal.ingredients.map((i) => i.name), restrictions);
+    }
+  }
+
   /// Compiles a clear, structured prompt instructing the model to return
   /// only a strictly formatted JSON array of meals.
   String buildPrompt() {
@@ -45,14 +71,12 @@ class AiMealPlanRequest {
         ? 'any cuisine (no specific preference)'
         : cuisinePreferences.join(', ');
 
-    final allAvailable = {
-      ...pantryItems,
-      ...groceryItems,
-    }.toList();
-
-    final availableNote = allAvailable.isNotEmpty
-        ? 'Available ingredients (pantry + grocery): ${allAvailable.join(', ')}.'
-        : 'No specific pantry/grocery ingredients listed.';
+    final availableNote = pantryItems.isNotEmpty
+        ? 'Available ingredients (pantry only): ${pantryItems.join(', ')}.'
+        : 'No available pantry ingredients listed.';
+    final shoppingNote = groceryItems.isNotEmpty
+        ? 'Shopping list (NOT available yet): ${groceryItems.join(', ')}. Do not classify these as pantry stock.'
+        : '';
 
     final pantryPriorityNote = prioritizePantry && pantryItems.isNotEmpty
         ? 'PRIORITY: Use these pantry items first to reduce food waste: ${pantryItems.join(', ')}.'
@@ -74,6 +98,7 @@ class AiMealPlanRequest {
 
     return '''
 You are WhatMeal's expert family meal planning AI.
+Do not invent nutrition facts. Leave nutrition strings empty when no reliable estimate is available; label estimates explicitly.
 Create a practical, healthy, family-friendly $numberOfDays-day meal plan.
 
 Household Members: $memberDetails
@@ -84,6 +109,7 @@ $restrictionsNote
 $preferencesNote
 $budgetNote
 $availableNote
+$shoppingNote
 $pantryPriorityNote
 
 Instructions:
@@ -147,10 +173,12 @@ Schema for each meal object:
         ? 'any cuisine'
         : cuisinePreferences.join(', ');
 
-    final allAvailable = {...pantryItems, ...groceryItems}.toList();
-    final availableNote = allAvailable.isEmpty
-        ? 'Pantry/grocery: none listed.'
-        : 'Available: ${allAvailable.take(40).join(', ')}.';
+    final availableNote = pantryItems.isEmpty
+        ? 'Pantry: none listed.'
+        : 'Available pantry stock: ${pantryItems.take(40).join(', ')}.';
+    final shoppingNote = groceryItems.isEmpty
+        ? ''
+        : 'Shopping list (NOT available): ${groceryItems.take(40).join(', ')}.';
     final pantryPriorityNote = prioritizePantry && pantryItems.isNotEmpty
         ? 'Prefer pantry first: ${pantryItems.take(20).join(', ')}.'
         : '';
@@ -171,6 +199,7 @@ Schema for each meal object:
 
     return '''
 Create $expected family meals as JSON for WhatMeal.
+Leave unknown nutrition blank; explicitly label any estimates.
 Members: $memberDetails
 Meal types per day: ${mealTypes.join(', ')}
 Days: $dayHint ($dayCount day(s))
@@ -179,6 +208,7 @@ $restrictionsNote
 $preferencesNote
 $budgetNote
 $availableNote
+$shoppingNote
 $pantryPriorityNote
 
 Return ONLY a JSON object (the word JSON is required):
@@ -187,7 +217,7 @@ Return ONLY a JSON object (the word JSON is required):
 Each meal object keys:
 title, subtitle, cuisine, mealType, dayIndex, prepTime, cookTime, servings,
 calories, protein, carbs, fats, badgeText, tags, reasoning,
-ingredients (array of short strings like "2 cups rice"),
+ingredients (array of objects like {"name":"rice","amount":"2 cups"}),
 instructions (max 3 short strings),
 availableIngredients, missingIngredients,
 imageSearchQuery, youtubeSearchQuery
@@ -207,12 +237,14 @@ class AiMealReplacementRequest {
     this.cuisinePreferences = const [],
     this.restrictions = const [],
     this.pantryItems = const [],
+    this.preferences = const [],
   });
 
   final Meal currentMeal;
   final List<String> cuisinePreferences;
   final List<String> restrictions;
   final List<String> pantryItems;
+  final List<String> preferences;
 
   String buildPrompt() {
     final pantryNote = pantryItems.isNotEmpty
@@ -233,6 +265,7 @@ Day Index: ${currentMeal.dayIndex}
 Cuisine Preferences: $cuisineNote
 $restrictionsNote
 $pantryNote
+Household preferences: ${preferences.join(', ')}
 
 Return ONLY a single valid JSON object with these exact keys:
 {
@@ -312,6 +345,18 @@ class AiMealResponse {
   final String? reasoning;
   final String? imageSearchQuery;
   final String? youtubeSearchQuery;
+
+  void validateRecipe() {
+    if (title.trim().isEmpty ||
+        ingredients.isEmpty ||
+        instructions.isEmpty ||
+        ingredients.any(
+            (item) => item.name.trim().isEmpty || item.amount.trim().isEmpty) ||
+        instructions.any((step) => step.trim().isEmpty)) {
+      throw const FormatException(
+          'AI returned an incomplete recipe. Please retry.');
+    }
+  }
 
   Meal toCoreMeal({int fallbackIndex = 0}) {
     return Meal(
@@ -562,10 +607,14 @@ class AiMealPlanResponse {
 // ---------------------------------------------------------------------------
 
 enum TestConnectionStatus {
+  failed,
   connected,
   invalidKey,
   invalidModel,
   invalidEndpoint,
+  configurationError,
+  authenticationRequired,
+  permissionDenied,
   rateLimited,
   networkError,
   providerUnavailable,

@@ -1,0 +1,4 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_edit_test.dart
+00:00 +0: editing category retains identity, author, creation and exact expiry
+00:01 +1: expired ingredient opens date picker without an invalid-date crash
+00:01 +2: All tests passed!

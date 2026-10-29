@@ -1,0 +1,25 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_identity_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_identity_test.dart: duplicate IDs stay within selected plan through favorite, status and replacement
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_identity_test.dart: meal and notification routes preserve explicit plan identity
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_identity_test.dart: replacement cycles and missing successors fail closed
+00:03 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/saved_plan_account_scope_test.dart: generated plan commit preserves meal identity, dates and participants
+00:03 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/saved_plan_account_scope_test.dart: A logout B login A reentry clears state and rejects stale scope mutations
+00:03 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_activity_store_test.dart: shared event retries are idempotent and do not write private fan-out
+00:03 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_activity_store_test.dart: feed uses own receipts; cancellation prevents stale household events
+00:04 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: household ownership compares the caller UID with its creator
+00:04 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance replacement can preserve the requested day and meal type
+00:04 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance accepts one complete recipe per requested slot
+00:04 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects partial plans
+00:04 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects duplicates, unknown types, and wrong dates
+00:04 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects recipes with no ingredients or instructions
+00:04 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI diagnostics never log raw errors or URL credentials
+00:04 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.openAi drops credentials and endpoint
+00:04 +15: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.gemini drops credentials and endpoint
+00:04 +16: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.claude drops credentials and endpoint
+00:04 +17: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.custom drops credentials and endpoint
+00:04 +18: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries reselecting the same provider preserves configuration
+00:04 +19: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes handles flattened backend payload
+00:04 +20: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes handles string encoded legacy parameters
+00:04 +21: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes opens saved plans instead of an empty generated draft
+00:04 +22: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes malformed parameters and untrusted routes safely fall back
+00:04 +23: All tests passed!

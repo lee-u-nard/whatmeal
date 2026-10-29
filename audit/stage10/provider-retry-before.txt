@@ -1,0 +1,36 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart
+test/ai_provider_retry_test.dart:16:73: Error: '_' is already declared in this scope.
+      readConfig: (_) async => LlmConfig.defaultConfig, saveConfig: (_, _) async {});
+                                                                        ^
+test/ai_provider_retry_test.dart:16:70: Context: Previous declaration of '_'.
+      readConfig: (_) async => LlmConfig.defaultConfig, saveConfig: (_, _) async {});
+                                                                     ^
+test/ai_provider_retry_test.dart:25:27: Error: Cannot invoke a non-'const' constructor where a const expression is expected.
+Try using a constructor or factory that is 'const'.
+    feeds['a']!.add(const LlmConfig(provider: LlmProvider.groq)); await tester.pump();
+                          ^^^^^^^^^
+test/ai_provider_retry_test.dart:28:27: Error: Cannot invoke a non-'const' constructor where a const expression is expected.
+Try using a constructor or factory that is 'const'.
+    feeds['a']!.add(const LlmConfig(provider: LlmProvider.anthropic)); await tester.pump();
+                          ^^^^^^^^^
+00:00 +0 -1: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart [E]
+  Failed to load "C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart":
+  Compilation failed for testPath=C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart: test/ai_provider_retry_test.dart:16:73: Error: '_' is already declared in this scope.
+        readConfig: (_) async => LlmConfig.defaultConfig, saveConfig: (_, _) async {});
+                                                                          ^
+  test/ai_provider_retry_test.dart:16:70: Context: Previous declaration of '_'.
+        readConfig: (_) async => LlmConfig.defaultConfig, saveConfig: (_, _) async {});
+                                                                       ^
+  test/ai_provider_retry_test.dart:25:27: Error: Cannot invoke a non-'const' constructor where a const expression is expected.
+  Try using a constructor or factory that is 'const'.
+      feeds['a']!.add(const LlmConfig(provider: LlmProvider.groq)); await tester.pump();
+                            ^^^^^^^^^
+  test/ai_provider_retry_test.dart:28:27: Error: Cannot invoke a non-'const' constructor where a const expression is expected.
+  Try using a constructor or factory that is 'const'.
+      feeds['a']!.add(const LlmConfig(provider: LlmProvider.anthropic)); await tester.pump();
+                            ^^^^^^^^^
+  .
+00:00 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart

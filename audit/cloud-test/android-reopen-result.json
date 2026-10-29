@@ -1,0 +1,19 @@
+{
+  "projectId": "whatmeal-gemini-test-20261019",
+  "phase": "reopen",
+  "functionalWorkflowsPassed": 1,
+  "checkpointCount": 5,
+  "checkpoints": [
+    "owner signed in through normal UI to the approved cloud project",
+    "server reads corroborated exact plan meal identity dates and complete recipe",
+    "saved-plan Load and meal-detail UI retained exact persisted identities",
+    "outsider normal UI excluded owner data and server denied the exact owner plan",
+    "owner session restored with the actual generated plan intact"
+  ],
+  "generationButtonTaps": 0,
+  "serverPersistenceVerified": true,
+  "outsiderDenied": true,
+  "sourceReportSha256": "29049acafaa8749cbb0adc391f8deb8350bb17007969cb9ee79e4799a7abb301",
+  "workflowExit": 0,
+  "note": "Separate cold process; no new AI generation. Framework teardown is not an additional functional pass."
+}

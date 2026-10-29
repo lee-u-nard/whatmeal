@@ -1,0 +1,210 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: provider notification waits for successful persistence and rejects failed saves
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: remote provider changes and deletion reach active settings
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: pending edits survive old echoes and reconcile after serialized writes
+00:00 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: removal reports failed persistence and allows retry
+00:00 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: A logout B login detaches feed and does not block B behind A save
+00:00 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: A B A ignores completion of first A session
+00:00 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: new remote snapshot wins over delayed reconciliation read
+00:00 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: listener error clears stale credentials without exposing error
+00:00 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: remove dialog waits for save and reports failure truthfully
+00:01 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: remote custom endpoint updates existing settings field
+00:08 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Normalized Request & Prompt Builder builds comprehensive prompt with all WhatMeal context
+00:08 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses clean JSON array of meals
+00:08 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation strips markdown code fences before parsing
+00:08 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation handles wrapped JSON object with "meals" key
+00:08 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses single replacement meal
+00:08 +15: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses JSON with alternative field names (name, dish, recipe, prep_time)
+00:08 +16: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses nested days structure from LLM
+00:08 +17: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation throws FormatException on malformed non-JSON response
+00:08 +18: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Logger Credential Protection redacts Bearer tokens, OpenAI keys, Groq keys, Claude keys, and query secrets
+00:08 +19: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Provider Factory & Adapter Isolation creates distinct adapters with correct provider types and endpoints
+00:08 +20: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic default LlmConfig has Gemini with no custom key
+00:08 +21: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic AiProviderConfig masks saved API keys in UI
+00:08 +22: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic reverting provider config produces default Gemini config
+00:36 +23: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_quota_store_test.dart: reservation consumes capacity before dispatch and cannot exceed limit
+00:37 +24: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_quota_store_test.dart: day rollover resets the existing schema
+00:37 +25: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_quota_store_test.dart: malformed current counter fails closed
+00:41 +26: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: household ownership compares the caller UID with its creator
+00:41 +27: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance replacement can preserve the requested day and meal type
+00:41 +28: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance accepts one complete recipe per requested slot
+00:41 +29: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects partial plans
+00:41 +30: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects duplicates, unknown types, and wrong dates
+00:41 +31: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects recipes with no ingredients or instructions
+00:41 +32: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI diagnostics never log raw errors or URL credentials
+00:41 +33: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.openAi drops credentials and endpoint
+00:41 +34: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.gemini drops credentials and endpoint
+00:41 +35: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.claude drops credentials and endpoint
+00:41 +36: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.custom drops credentials and endpoint
+00:41 +37: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries reselecting the same provider preserves configuration
+00:41 +38: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes handles flattened backend payload
+00:41 +39: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes handles string encoded legacy parameters
+00:41 +40: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes opens saved plans instead of an empty generated draft
+00:41 +41: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes malformed parameters and untrusted routes safely fall back
+00:45 +42: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_architecture_test.dart: Auth Architecture & UID Identity Tests UserModel maps Firebase UID as primary id and contains isEmailVerified
+00:45 +43: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_architecture_test.dart: Auth Architecture & UID Identity Tests AppUser maintains UID isolation and household association
+00:45 +44: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_architecture_test.dart: Auth Architecture & UID Identity Tests Collection path generation enforces UID for private and familyId for shared
+00:54 +45: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle pending meal is not accepted and not completed
+00:54 +46: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle accepted meal contributes to grocery projection
+00:54 +47: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle replaced meal does NOT contribute to grocery projection
+00:54 +48: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle completed meal does NOT contribute to grocery projection
+00:54 +49: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle notCompleted meal does NOT contribute to grocery projection
+00:54 +50: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle only accepted meals among mixed statuses contribute
+00:54 +51: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle MealStatus round-trips through fromString
+00:54 +52: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: A — Meal lifecycle activeMeals excludes replaced meals
+00:54 +53: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: B — Pantry ↔ Grocery projection fully covered pantry item shows available status
+00:54 +54: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: B — Pantry ↔ Grocery projection partially covered item shows remaining needed amount
+00:54 +55: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: B — Pantry ↔ Grocery projection item not in pantry shows full amount needed
+00:54 +56: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: B — Pantry ↔ Grocery projection pantry growth makes item available without removing requirement
+00:54 +57: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: B — Pantry ↔ Grocery projection alias normalization: red/white onion merges with onion
+00:54 +58: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: C — Grocery consolidation and cleanup same ingredient from two plans consolidates to single entry
+00:54 +59: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: C — Grocery consolidation and cleanup deleting one plan leaves the other plan's requirement intact
+00:54 +60: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: C — Grocery consolidation and cleanup grocery item ID is stable across identical plan projections
+00:54 +61: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: D — AI prompt context correctness (R040) buildPrompt labels grocery items as NOT available
+00:54 +62: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: D — AI prompt context correctness (R040) buildCompactPrompt labels grocery items as NOT available
+00:54 +63: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: D — AI prompt context correctness (R040) pantry and grocery items appear in separate prompt sections
+00:54 +64: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: D — AI prompt context correctness (R040) restrictions always appear prominently in prompt
+00:54 +65: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: D — AI prompt context correctness (R040) empty grocery list does not add NOT available line to prompt
+00:54 +66: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: D — AI prompt context correctness (R040) meal replacement prompt preserves cuisine and restrictions
+00:54 +67: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: E — Plan deletion grocery recalculation (R065) removing a plan removes its meal contributions from projection
+00:54 +68: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: E — Plan deletion grocery recalculation (R065) shared ingredient survives partial plan deletion
+00:54 +69: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: E — Plan deletion grocery recalculation (R065) deleting the last plan fully removes all grocery requirements
+00:54 +70: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: F — Participant identity (R024) GeneratedPlanDraft keeps selectedMemberIds separate from display names
+00:54 +71: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: F — Participant identity (R024) SavedMealPlan.fromFirestore reads selectedMemberIds correctly
+00:54 +72: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: F — Participant identity (R024) saved plan familyMembers only contains IDs not display names
+00:54 +73: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: G — Home page date filtering (R067) dateForMeal returns correct date using startDate + dayIndex
+00:54 +74: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: G — Home page date filtering (R067) meals outside current week are excluded
+00:54 +75: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: G — Home page date filtering (R067) today meals only match meals on the current calendar date
+00:54 +76: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: G — Home page date filtering (R067) dayIndex 0 always maps to Monday of that week
+00:54 +77: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: H — Notification route validation (R077) mealId routes to /meal/:id
+00:54 +78: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: H — Notification route validation (R077) planId without mealId routes to /saved-meal-plans
+00:54 +79: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: H — Notification route validation (R077) route /generated-plan with planId goes to /saved-meal-plans
+00:54 +80: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: H — Notification route validation (R077) known routes map directly
+00:54 +81: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: H — Notification route validation (R077) unknown route falls back to /home
+00:54 +82: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: H — Notification route validation (R077) mealId with path separator is rejected (path traversal guard)
+00:54 +83: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: I — Grocery item edit guards (R034) manual grocery item has empty sourceMealPaths
+00:54 +84: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: I — Grocery item edit guards (R034) meal-sourced projection item has non-empty sourceMealPaths
+00:54 +85: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: I — Grocery item edit guards (R034) copyWith preserves sourceMealPaths when not overridden
+00:54 +86: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: I — Grocery item edit guards (R034) GroceryItem category is stored and retrievable as section
+00:54 +87: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: J — Multi-meal shared ingredient resolution three meals needing same ingredient consolidate to single entry
+00:54 +88: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: J — Multi-meal shared ingredient resolution replacing one of three meals reduces consolidated requirement
+00:54 +89: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: J — Multi-meal shared ingredient resolution stable grocery item ID is consistent across projections
+00:54 +90: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: J — Multi-meal shared ingredient resolution two accepted meals with same ingredient double the requirement
+00:54 +91: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: K — Expired/used pantry exclusion expired pantry item does not count as available stock
+00:54 +92: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: K — Expired/used pantry exclusion used pantry item does not count as available stock
+00:54 +93: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: K — Expired/used pantry exclusion needed status pantry item does not count as available stock
+00:54 +94: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: K — Expired/used pantry exclusion valid non-expired pantry item fully covers requirement
+00:54 +95: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: K — Expired/used pantry exclusion mix of expired and valid stock: only valid counts
+00:54 +96: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: L — Replaced-meal grocery contribution removed replacing a meal removes its grocery contributions
+00:54 +97: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: L — Replaced-meal grocery contribution removed replacement meal's ingredients are added to grocery
+00:54 +98: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: L — Replaced-meal grocery contribution removed pre-replacement plan has beef requirement
+00:55 +99: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: M — Grocery feedback correctness (R035) meal-sourced grocery item has sourceMealPaths set
+00:55 +100: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: M — Grocery feedback correctness (R035) manual grocery item is eligible for deletion (no source paths)
+00:55 +101: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: M — Grocery feedback correctness (R035) GroceryStatus ordering: needed → available → used
+00:55 +102: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: M — Grocery feedback correctness (R035) isPurchased is true only for used status or checked flag
+00:55 +103: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: M — Grocery feedback correctness (R035) grocery projection quantity string is human-readable
+00:55 +104: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/cross_feature_workflow_test.dart: M — Grocery feedback correctness (R035) duplicate add returns false to signal no-op without throwing
+00:57 +105: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: base URL preserves query and exact URL mode preserves path
+00:57 +106: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: rejects embedded credentials and non-HTTP endpoints
+00:57 +107: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: test connection requires chat response and sends bearer header
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 200 in 44ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 200 in 1ms
+00:57 +108: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: HTTP and transport errors never echo response or credentials
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 401 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 403 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 404 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 429 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 500 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom][ERROR]  | _Exception
+00:57 +109: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: parser and public provider exceptions omit arbitrary sensitive text
+01:02 +110: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: bootstrap uses canonical membership/index without private-user writes
+01:02 +111: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: wrong recipient leaves token and membership untouched
+01:02 +112: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: second household blocked by existing index
+01:02 +113: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: tokens have 192-bit encoding and legacy codes are rejected
+01:02 +114: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: single-use invitation creates member/index and consumption together
+01:02 +115: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: revoked and expired invitations fail before local membership writes
+01:02 +116: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: removal preserves private account and archival retains nested data
+01:02 +117: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/family_service_v2_test.dart: ownership requires offer acceptance; creator remains immutable
+01:20 +118: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_card_test.dart: accepted meal actions fit narrow card at text scale 1.0
+01:22 +119: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_card_test.dart: accepted meal actions fit narrow card at text scale 2.0
+01:25 +120: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generation_failure_test.dart: default Gemini never inherits a bundled or another adapter credential
+01:25 +121: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generation_failure_test.dart: provider failures retain distinct safe categories
+01:29 +122: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_store_test.dart: manual rename preserves fields, rejects collisions and frees old name
+01:29 +123: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_store_test.dart: initialization is stable and preserves legacy list
+01:29 +124: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_store_test.dart: normalizes duplicate names and preserves existing quantities and status
+01:29 +125: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_store_test.dart: legacy random-ID duplicates are detected without migrating records
+01:29 +126: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_store_test.dart: deleted list cannot acquire orphan items
+01:34 +127: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_toolbar_test.dart: grocery count and actions fit narrow screen at scale 1.0
+01:35 +128: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_toolbar_test.dart: grocery count and actions fit narrow screen at scale 2.0
+01:38 +129: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_activity_store_test.dart: shared event retries are idempotent and do not write private fan-out
+01:38 +130: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_activity_store_test.dart: feed uses own receipts; cancellation prevents stale household events
+01:42 +131: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_repository_workflow_test.dart: create invite join remove rejoin and A-B-A reload canonical membership
+01:42 +132: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_sync_and_notifications_test.dart: Household Notifications & Recipient Filtering Tests Household recipient determination respects household boundaries
+01:42 +133: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_repository_workflow_test.dart: profile/auth UID mismatch refuses mutation and retry reloads state
+01:42 +134: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_repository_workflow_test.dart: profile/auth UID mismatch refuses mutation and retry reloads state
+01:42 +135: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_repository_workflow_test.dart: profile/auth UID mismatch refuses mutation and retry reloads state
+01:43 +136: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +137: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +138: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +139: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +140: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +141: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +142: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +143: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +144: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:43 +145: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 1.0
+01:44 +146: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: pantry explanation wraps beside usable switch at 1.0
+01:44 +147: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: participant selection paints above card background at 1.0
+01:44 +148: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: profile card keeps long name and actions visible at 2.0
+01:44 +149: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: pantry explanation wraps beside usable switch at 2.0
+01:44 +150: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_creator_ui_test.dart: participant selection paints above card background at 2.0
+01:46 +151: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_identity_test.dart: duplicate IDs stay within selected plan through favorite, status and replacement
+01:46 +152: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_identity_test.dart: meal and notification routes preserve explicit plan identity
+01:46 +153: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_identity_test.dart: replacement cycles and missing successors fail closed
+01:52 +154: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 1: Meal Acceptance, Replacement, and Completion Lifecycle MealStatus string parsing and legacy backwards compatibility
+01:52 +155: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 1: Meal Acceptance, Replacement, and Completion Lifecycle Meal model lifecycle transitions and getters
+01:52 +156: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 1: Meal Acceptance, Replacement, and Completion Lifecycle Replacement flow tracks old vs new active meal
+01:52 +157: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 2: Household Owner and Authorized Member RBAC Role capabilities align with permission matrix
+01:52 +158: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 2: Household Owner and Authorized Member RBAC FamilySpace helper methods evaluate user permissions correctly
+01:56 +159: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_replacement_store_test.dart: commits both links and retains original day and slot
+01:56 +160: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_replacement_store_test.dart: same operation is idempotent and competing successor is rejected
+01:56 +161: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_replacement_store_test.dart: missing parent does not resurrect deleted plan
+01:56 +162: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_replacement_store_test.dart: existing destination never overwritten
+01:56 +163: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_replacement_store_test.dart: generated document ID is returned and stored in predecessor
+02:04 +164: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_workflow_store_test.dart: persisted acceptance reaches independent nested listeners and grocery calculation
+02:04 +165: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_workflow_store_test.dart: failed meal operation creates neither status nor activity
+02:04 +166: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_workflow_store_test.dart: replacement commits one event and old grocery contribution disappears
+02:09 +167: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/member_identity_test.dart: member name and role wrap at narrow width, scale 1.0
+02:09 +168: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/member_identity_test.dart: member name and role wrap at narrow width, scale 2.0
+02:12 +169: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests PantryItem computes expiration correctly
+02:12 +170: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests GroceryItem default values
+02:12 +171: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests FamilyMember displayName and fields
+02:12 +172: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests Meal and Ingredient mapping
+02:12 +173: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests Family inviteCode and fields
+02:12 +174: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests AppUser copyWith familyId
+02:16 +175: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_edit_test.dart: editing category retains identity, author, creation and exact expiry
+02:17 +176: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_edit_test.dart: expired ingredient opens date picker without an invalid-date crash
+02:17 +177: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_edit_test.dart: expired ingredient opens date picker without an invalid-date crash
+02:17 +178: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_edit_test.dart: expired ingredient opens date picker without an invalid-date crash
+02:17 +179: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_edit_test.dart: expired ingredient opens date picker without an invalid-date crash
+02:17 +180: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_edit_test.dart: expired ingredient opens date picker without an invalid-date crash
+02:18 +181: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/plan_saved_snack_bar_test.dart: saved-plan feedback expires and releases later feedback
+02:18 +182: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/profile_headings_test.dart: profile headings fit narrow cards at text scale 1.0
+02:19 +183: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions
+02:19 +184: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions
+02:19 +185: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions
+02:20 +186: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions
+02:20 +187: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions
+02:20 +188: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions
+02:20 +189: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions
+02:20 +190: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/shared_meal_pantry_workflow_test.dart: shared accept replace pantry and deletion flow preserves remaining needs and receipts
+02:21 +191: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/widget_test.dart: meal status remains readable without relying on color
+02:21 +192: All tests passed!

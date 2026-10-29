@@ -1,0 +1,57 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart
+00:00 +0: registration preserves safe errors and permits retry without exposing exceptions
+══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+The following assertion was thrown:
+ListTile background color or ink splashes may be invisible.
+The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+effects.
+To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+intermediate DecoratedBox.
+
+ListTile:
+  ListTile(selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets.zero, onTap: Closure: () => void from Function '_handleValueChange@1086134056':.)
+DecoratedBox:
+  DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(20.0)))
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+The following assertion was thrown:
+ListTile background color or ink splashes may be invisible.
+The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+effects.
+To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+intermediate DecoratedBox.
+
+ListTile:
+  ListTile(selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets.zero, onTap: Closure: () => void from Function '_handleValueChange@1086134056':.)
+DecoratedBox:
+  DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(20.0)))
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+The following assertion was thrown:
+ListTile background color or ink splashes may be invisible.
+The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+effects.
+To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+intermediate DecoratedBox.
+
+ListTile:
+  ListTile(selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets.zero, onTap: Closure: () => void from Function '_handleValueChange@1086134056':.)
+DecoratedBox:
+  DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(20.0)))
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following message was thrown:
+Multiple exceptions (3) were detected during the running of the current test, and at least one was
+unexpected.
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +0 -1: registration preserves safe errors and permits retry without exposing exceptions [E]
+  Test failed. See exception logs above.
+  The test description was: registration preserves safe errors and permits retry without exposing exceptions
+  
+00:03 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/register_failure_feedback_test.dart: registration preserves safe errors and permits retry without exposing exceptions

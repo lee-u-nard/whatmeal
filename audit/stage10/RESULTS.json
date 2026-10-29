@@ -1,0 +1,82 @@
+{
+  "stage": 10,
+  "date": "2026-10-16",
+  "flutter": {
+    "passed": 206,
+    "exit": 0,
+    "log": "flutter-tests-final.txt"
+  },
+  "analysis": {
+    "exit": 0,
+    "issues": 0,
+    "log": "flutter-analyze-clean.txt"
+  },
+  "security": {
+    "passed": 65,
+    "total": 65,
+    "exit": 0,
+    "log": "security-acceptance-rerun.txt",
+    "initialAttempt": {
+      "passed": 64,
+      "total": 65,
+      "exit": 1,
+      "failure": "Initial fixture reset HTTP 499 before owner-read assertion",
+      "log": "security-acceptance.txt"
+    }
+  },
+  "android": {
+    "workflowsPassed": 1,
+    "checkpoints": 13,
+    "phases": [
+      "GroceryOwner registered and verified",
+      "invitation copied",
+      "GroceryMember registered and verified",
+      "fresh demo member joined expected shared grocery household",
+      "manual grocery add and normalized duplicate prevention",
+      "manual grocery edit quantity check and uncheck persisted",
+      "verified relay outage retained pending edit and disabled duplicate submit",
+      "visible transaction failure retained draft and ordinary retry requested",
+      "grocery transaction recovered after verified transport reconnect without duplicate",
+      "grocery missing quantity retained and native clipboard sharing verified",
+      "grocery clearing required confirmation and retained unchecked item then delete succeeded",
+      "AI settings opened with account default configuration without live provider calls",
+      "local AI service guard refused live request without quota mutation"
+    ],
+    "exit": 0,
+    "log": "android-recovery-layout-fixed.txt",
+    "typing": "Flutter test handler; actual AOSP rendering/navigation/clipboard/Firebase SDKs",
+    "accounts": "Two sequential disposable demo accounts; not simultaneous devices"
+  },
+  "apk": {
+    "path": "build/stage10/whatmeal-local-tester.apk",
+    "package": "com.example.whatmeal.local",
+    "project": "demo-whatmeal-audit",
+    "version": "1.0.0+1",
+    "minSdk": 24,
+    "targetSdk": 36,
+    "bytes": 57879145,
+    "sha256": "B2BD5AB7C69FF52A27CDE727350521FB9826DF05591D2917B4EF7B5F9BAC5D88",
+    "signing": "Existing debug tester certificate; not production signing",
+    "buildExit": 0,
+    "verificationExit": 0,
+    "installExit": 0,
+    "coldStartExit": 0,
+    "coldStartMilliseconds": 1151,
+    "startupScreenshot": "tester-startup.png",
+    "anr": "None since boot"
+  },
+  "approvedLiveAiProject": null,
+  "production": {
+    "read": false,
+    "modified": false,
+    "deployed": false
+  },
+  "cleanup": "Test relay, dedicated AVD and demo backend stopped; no test listeners remain",
+  "limitations": [
+    "Live AI/provider compatibility unverified",
+    "Native push disabled and unverified",
+    "Simultaneous devices unverified",
+    "Broader UI/offline/native-keyboard coverage incomplete",
+    "Production signing/configuration/migration not approved"
+  ]
+}

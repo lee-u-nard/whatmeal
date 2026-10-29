@@ -1,0 +1,10 @@
+Analyzing whatmeal...                                           
+
+warning - Unused import: '../widgets/clear_used_dialog.dart'. Try removing the import directive - lib\features\grocery\pages\grocery_page.dart:8:8 - unused_import
+   info - Use interpolation to compose strings and values. Try using string interpolation to build the composite string - lib\features\grocery\pages\grocery_page.dart:86:27 - prefer_interpolation_to_compose_strings
+   info - Use interpolation to compose strings and values. Try using string interpolation to build the composite string - lib\features\grocery\pages\grocery_page.dart:412:20 - prefer_interpolation_to_compose_strings
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\grocery\widgets\grocery_item_editor.dart:55:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\notifications\pages\notifications_page.dart:61:9 - curly_braces_in_flow_control_structures
+   info - Use interpolation to compose strings and values. Try using string interpolation to build the composite string - lib\features\notifications\pages\notifications_page.dart:101:33 - prefer_interpolation_to_compose_strings
+
+6 issues found. (ran in 42.3s)

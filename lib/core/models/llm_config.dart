@@ -1,3 +1,5 @@
+import '../services/ai/model_registry.dart';
+
 /// Supported AI providers for meal-plan generation.
 ///
 /// Each value carries its own display metadata and hard-coded API endpoint
@@ -34,13 +36,13 @@ enum LlmProvider {
   String get description {
     switch (this) {
       case LlmProvider.gemini:
-        return 'Free, built in — works right away';
+        return 'Built-in Gemini — configured provider quotas apply';
       case LlmProvider.openai:
         return 'Bring your own account — billed by OpenAI';
       case LlmProvider.anthropic:
         return 'Bring your own account — billed by Anthropic';
       case LlmProvider.groq:
-        return 'Ultra-fast inference — billed by Groq';
+        return 'Bring your own Groq account — tier limits apply';
       case LlmProvider.custom:
         return 'Any OpenAI-compatible endpoint you host';
     }
@@ -175,6 +177,6 @@ class LlmConfig {
   /// Default config: built-in Gemini, no custom key.
   static LlmConfig get defaultConfig => LlmConfig(
         provider: LlmProvider.gemini,
-        model: 'gemini-3.8-flash',
+        model: AiModelRegistry.defaultGemini,
       );
 }

@@ -1,0 +1,8 @@
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'android/app/src/main/AndroidManifest.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/core/services/ai/ai_logger.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/core/services/unsplash_service.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/auth/data/auth_repository.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/meal/models/meal.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/meal/pages/meal_detail_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/widget_test.dart', LF will be replaced by CRLF the next time Git touches it

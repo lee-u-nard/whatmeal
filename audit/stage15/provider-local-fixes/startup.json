@@ -1,0 +1,11 @@
+{
+  "AppForeground": true,
+  "HomeVisible": true,
+  "DemoHouseholdVisible": true,
+  "SystemAnrVisible": false,
+  "FatalRuntimeError": false,
+  "OriginalApkUnchanged": true,
+  "ProtectedFilesUnchanged": true,
+  "OriginalDataClearedOrSignedOut": false,
+  "Scope": "Actual cold-started showcase release app; original APK identity/hash only, no original cache read."
+}

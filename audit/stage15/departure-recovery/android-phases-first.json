@@ -1,0 +1,11 @@
+{
+  "phases": [
+    "two authorized native SDK clients loaded the same household",
+    "owner removal committed while invited member transport was offline",
+    "reconnect revoked member UI and server access without stale household exposure",
+    "removed member legitimately rejoined using a fresh invitation through UI"
+  ],
+  "normalLoginPreserved": false,
+  "departureErrors": [],
+  "scope": "Two named Firebase clients on one AVD; disposable accounts only; not simultaneous devices"
+}

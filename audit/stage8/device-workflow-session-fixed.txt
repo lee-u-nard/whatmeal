@@ -1,0 +1,37 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart
+Running Gradle task 'assembleLocalDebug'...                     
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage8"
+Running Gradle task 'assembleLocalDebug'...                       173.0s
+√ Built build\app\outputs\flutter-apk\app-local-debug.apk
+Installing build\app\outputs\flutter-apk\app-local-debug.apk...        24.0s
+00:00 +0: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: not null
+  Actual: <null>
+Successful copy must make the invitation available
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:111:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart line 111
+The test description was:
+  local Android UI registration, verification, household and account switching
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:33 +0 -1: local Android UI registration, verification, household and account switching [E]
+  Test failed. See exception logs above.
+  The test description was: local Android UI registration, verification, household and account switching
+  
+00:33 +0 -1: (tearDownAll)
+00:40 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart: local Android UI registration, verification, household and account switching

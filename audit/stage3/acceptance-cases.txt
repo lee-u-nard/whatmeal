@@ -1,0 +1,61 @@
+owner shared read
+owner shared write
+admin shared read
+admin shared write
+member shared read
+member shared write
+viewer shared read
+viewer shared write
+outsider shared read
+outsider shared write
+unauthenticated shared read
+unauthenticated shared write
+family and invitation listing denied
+outsider cannot read household or invitation refs
+canonical membership only: legacy pointer/array does not grant access
+atomic initial owner bootstrap
+bootstrap missing index denied
+self-join without capability denied
+index creation alone denied
+owner issues invitation and outsider redeems atomically
+member and viewer cannot issue tokens
+admin limited to member/viewer invitations
+short and excessive-lifetime invitations denied
+revoked invitation cannot be redeemed
+expired invitation cannot be read/redeemed
+recipient binding and invitation-role tampering denied
+consumption without membership/index denied
+single use survives leave: same token cannot rejoin
+concurrent redeemers: exactly one wins
+one user concurrent joins different families: exactly one wins
+owner cannot self-change role
+admin cannot self-change role
+member cannot self-change role
+viewer cannot self-change role
+owner may promote member, admin may not promote member to admin
+creator and direct owner mutation denied
+ownership offer accepted atomically
+owner removes/leaves member
+admin removes/leaves member
+admin removes/leaves owner
+member removes/leaves viewer
+viewer removes/leaves viewer
+member removes/leaves member
+owner removes/leaves owner
+partial removal and private-user cross-write denied
+archive blocks data, member can leave, owner can restore
+hard delete denied even owner
+cross-household reads/writes and private secrets denied
+field injection into membership, household, shared data denied
+activity actor identity immutable and no arbitrary payload
+notification receipts private to viewer; no fan-out writes
+removed member immediately loses shared reads and writes
+demoted invitation issuer loses ability to admit members
+invitation expiry extension and field injection denied
+join races with revocation without half-created membership
+owner can leave archived household; never active last owner
+wrong recipient cannot accept transfer and incomplete transfer denied
+type and oversized string validation
+representative complete recipe and nested schema injection
+replacement requires reciprocal links and immutable successor
+60 acceptance cases

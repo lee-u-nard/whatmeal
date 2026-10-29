@@ -1,0 +1,49 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: household ownership compares the caller UID with its creator
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance replacement can preserve the requested day and meal type
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance accepts one complete recipe per requested slot
+00:00 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects partial plans
+00:00 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects duplicates, unknown types, and wrong dates
+00:00 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI response acceptance rejects recipes with no ingredients or instructions
+00:00 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: AI diagnostics never log raw errors or URL credentials
+00:00 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.openAi drops credentials and endpoint
+00:00 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.gemini drops credentials and endpoint
+00:00 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.claude drops credentials and endpoint
+00:00 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries switching to AiProviderType.custom drops credentials and endpoint
+00:00 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Provider credential boundaries reselecting the same provider preserves configuration
+00:00 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Normalized Request & Prompt Builder builds comprehensive prompt with all WhatMeal context
+00:00 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Normalized Request & Prompt Builder builds comprehensive prompt with all WhatMeal context
+00:00 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Normalized Request & Prompt Builder builds comprehensive prompt with all WhatMeal context
+00:00 +15: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Normalized Request & Prompt Builder builds comprehensive prompt with all WhatMeal context
+00:00 +16: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/audit_regression_test.dart: Notification routes malformed parameters and untrusted routes safely fall back
+00:00 +17: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses clean JSON array of meals
+00:00 +18: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation strips markdown code fences before parsing
+00:00 +19: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation handles wrapped JSON object with "meals" key
+00:00 +20: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses single replacement meal
+00:00 +21: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses JSON with alternative field names (name, dish, recipe, prep_time)
+00:00 +22: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses nested days structure from LLM
+00:00 +23: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation throws FormatException on malformed non-JSON response
+00:00 +24: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Logger Credential Protection redacts Bearer tokens, OpenAI keys, Groq keys, Claude keys, and query secrets
+00:00 +25: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Provider Factory & Adapter Isolation creates distinct adapters with correct provider types and endpoints
+00:00 +26: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic default LlmConfig has Gemini with no custom key
+00:00 +27: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic AiProviderConfig masks saved API keys in UI
+00:00 +28: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic reverting provider config produces default Gemini config
+00:00 +29: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_architecture_test.dart: Auth Architecture & UID Identity Tests UserModel maps Firebase UID as primary id and contains isEmailVerified
+00:00 +30: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_architecture_test.dart: Auth Architecture & UID Identity Tests AppUser maintains UID isolation and household association
+00:00 +31: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_architecture_test.dart: Auth Architecture & UID Identity Tests Collection path generation enforces UID for private and familyId for shared
+00:02 +32: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_sync_and_notifications_test.dart: Household Notifications & Recipient Filtering Tests Household recipient determination respects household boundaries
+00:02 +33: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_sync_and_notifications_test.dart: Household Notifications & Recipient Filtering Tests AppNotification serializes and deserializes accurately
+00:02 +34: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_sync_and_notifications_test.dart: Real-Time Meal Status & Reactive Detail Resolution Tests SavedMealPlan correctly updates and finds active vs replaced meals
+00:03 +35: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 1: Meal Acceptance, Replacement, and Completion Lifecycle MealStatus string parsing and legacy backwards compatibility
+00:03 +36: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 1: Meal Acceptance, Replacement, and Completion Lifecycle Meal model lifecycle transitions and getters
+00:03 +37: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 1: Meal Acceptance, Replacement, and Completion Lifecycle Replacement flow tracks old vs new active meal
+00:03 +38: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 2: Household Owner and Authorized Member RBAC Role capabilities align with permission matrix
+00:03 +39: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/meal_lifecycle_and_rbac_test.dart: Problem 2: Household Owner and Authorized Member RBAC FamilySpace helper methods evaluate user permissions correctly
+00:03 +40: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests PantryItem computes expiration correctly
+00:03 +41: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests GroceryItem default values
+00:03 +42: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests FamilyMember displayName and fields
+00:03 +43: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests Meal and Ingredient mapping
+00:03 +44: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests Family inviteCode and fields
+00:03 +45: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/models_test.dart: Model Serialization & Logic Tests AppUser copyWith familyId
+00:03 +46: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/widget_test.dart: meal status remains readable without relying on color
+00:04 +47: All tests passed!

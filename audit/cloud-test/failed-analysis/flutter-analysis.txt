@@ -1,0 +1,13 @@
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - audit\cloud-test\capture_ai_heap.dart:43:7 - curly_braces_in_flow_control_structures
+  error - The argument type 'String?' can't be assigned to the parameter type 'String'.  - audit\cloud-test\failed-draft-recovery-compile\generated_plan_persistence_test.dart:108:22 - argument_type_not_assignable
+  error - The argument type 'String?' can't be assigned to the parameter type 'String'.  - audit\cloud-test\failed-draft-recovery-compile\generated_plan_persistence_test.dart:127:22 - argument_type_not_assignable
+   info - The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/foundation.dart'. Try removing the import directive - integration_test\support\firestore_batch_capture.dart:1:8 - unnecessary_import
+   info - The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive - integration_test\support\firestore_batch_capture.dart:2:8 - unnecessary_import
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - integration_test\support\firestore_batch_capture.dart:99:53 - curly_braces_in_flow_control_structures
+  error - The argument type 'String?' can't be assigned to the parameter type 'String'.  - lib\features\meal_plan\pages\meal_plan_page.dart:321:24 - argument_type_not_assignable
+   info - The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/foundation.dart'. Try removing the import directive - test\firestore_batch_capture_test.dart:2:8 - unnecessary_import
+   info - The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive - test\firestore_batch_capture_test.dart:3:8 - unnecessary_import
+
+9 issues found. (ran in 58.0s)

@@ -1,0 +1,27 @@
+
+TimeCreated : 10/13/2026 2:56:02 PM
+Message     : Faulting application name: qemu-system-x86_64-headless.exe, version: 0.0.0.0, time stamp: 0x6ab43b80
+              Faulting module name: unknown, version: 0.0.0.0, time stamp: 0x00000000
+              Exception code: 0xc0000005
+              Fault offset: 0x000002146fbdc684
+              Faulting process id: 0x7EB8
+              Faulting application start time: 0x1DD5ADF58BA58D2
+              Faulting application path: C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\build\android-sdk-audit\emulator\qemu\windows-x86_64\qemu-system-x86_64-headless.exe
+              Faulting module path: unknown
+              Report Id: e8472e28-9976-411a-980f-c51bde313080
+              Faulting package full name: 
+              Faulting package-relative application ID: 
+
+TimeCreated : 10/12/2026 8:41:14 PM
+Message     : Faulting application name: qemu-system-x86_64-headless.exe, version: 0.0.0.0, time stamp: 0x6ab43b80
+              Faulting module name: unknown, version: 0.0.0.0, time stamp: 0x00000000
+              Exception code: 0xc0000005
+              Fault offset: 0x00000194d4c66684
+              Faulting process id: 0x5DFC
+              Faulting application start time: 0x1DD5A43B52DBCA7
+              Faulting application path: C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\build\android-sdk-audit\emulator\qemu\windows-x86_64\qemu-system-x86_64-headless.exe
+              Faulting module path: unknown
+              Report Id: 53cf0a9f-77bf-4971-b125-76d2b6cf452a
+              Faulting package full name: 
+              Faulting package-relative application ID: 
+

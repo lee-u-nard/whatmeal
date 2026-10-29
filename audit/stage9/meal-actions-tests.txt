@@ -1,0 +1,96 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_card_test.dart
+00:00 +0: accepted meal actions fit narrow card at text scale 1.0
+00:00 +1: accepted meal actions fit narrow card at text scale 2.0
+══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 167 pixels on the right.
+
+The relevant error-causing widget was:
+  Row
+  Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/meal_plan/pages/generated_meal_plan_page.dart:1282:19
+
+The overflowing RenderFlex has an orientation of Axis.horizontal.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#5f2a2 relayoutBoundary=up21 OVERFLOWING:
+  creator: Row ← Column ← Padding ← Listener ← RawGestureDetector ← GestureDetector ← Semantics ←
+    DefaultSelectionStyle ← Builder ← MouseRegion ← Semantics ← _FocusInheritedScope ← ⋯
+  parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+  constraints: BoxConstraints(0.0<=w<=254.0, 0.0<=h<=Infinity)
+  size: Size(254.0, 34.6)
+  direction: horizontal
+  mainAxisAlignment: spaceBetween
+  mainAxisSize: max
+  crossAxisAlignment: center
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 0.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 154 pixels on the right.
+
+The relevant error-causing widget was:
+  Row
+  Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/meal_plan/pages/generated_meal_plan_page.dart:1380:22
+
+The overflowing RenderFlex has an orientation of Axis.horizontal.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#50c3c relayoutBoundary=up20 OVERFLOWING:
+  creator: Row ← Padding ← Listener ← RawGestureDetector ← GestureDetector ← Semantics ←
+    DefaultSelectionStyle ← Builder ← MouseRegion ← Semantics ← _FocusInheritedScope ← Focus ← ⋯
+  parentData: offset=Offset(12.0, 6.0) (can use size)
+  constraints: BoxConstraints(0.0<=w<=254.0, 0.0<=h<=Infinity)
+  size: Size(254.0, 34.0)
+  direction: horizontal
+  mainAxisAlignment: start
+  mainAxisSize: max
+  crossAxisAlignment: center
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 0.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: 'Multiple exceptions (2) were detected during the running of the current test, and at
+least one was unexpected.'
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/generated_meal_card_test.dart:43:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/generated_meal_card_test.dart line 43
+The test description was:
+  accepted meal actions fit narrow card at text scale 2.0
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +1 -1: accepted meal actions fit narrow card at text scale 2.0 [E]
+  Test failed. See exception logs above.
+  The test description was: accepted meal actions fit narrow card at text scale 2.0
+  
+00:00 +1 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_card_test.dart: accepted meal actions fit narrow card at text scale 2.0

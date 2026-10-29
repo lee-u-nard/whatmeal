@@ -1,0 +1,7 @@
+{
+  "Reason": "Only demo backend and AVD stopped unexpectedly; exact cause unconfirmed.",
+  "PreviousPrimaryPreserved": true,
+  "OnlyProject": "demo-whatmeal-showcase",
+  "Source": "build/showcase-private/provider-before",
+  "Target": "build/showcase-private/backend"
+}

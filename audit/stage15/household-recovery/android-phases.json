@@ -1,0 +1,19 @@
+{
+  "phases": [
+    "create SDK offline failure retained draft and visible retry",
+    "same create draft retried and committed through SDK",
+    "disposable member account sees no owner household",
+    "legacy invitation validation retains join editor",
+    "revoked invitation denied by rules; editor and draft retained",
+    "join SDK offline failure retained exact invitation draft",
+    "join retry committed once with member role and two total members",
+    "normal app login unchanged by all secondary-client operations"
+  ],
+  "normalLoginPreserved": true,
+  "sdkFailureCodes": [
+    "unavailable",
+    "permission-denied",
+    "unavailable"
+  ],
+  "scope": "Named secondary Firebase app; disposable local accounts only"
+}

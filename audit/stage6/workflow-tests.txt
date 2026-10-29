@@ -1,0 +1,11 @@
+
+┌─────────────────────────────────────────────────────────┐
+│ A new version of Flutter is available!                  │
+│                                                         │
+│ To update to the latest version, run "flutter upgrade". │
+└─────────────────────────────────────────────────────────┘
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/shared_meal_pantry_workflow_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/shared_meal_pantry_workflow_test.dart: shared accept replace pantry and deletion flow preserves remaining needs and receipts
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/shared_meal_pantry_workflow_test.dart: shared accept replace pantry and deletion flow preserves remaining needs and receipts
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_repository_workflow_test.dart: profile/auth UID mismatch refuses mutation and retry reloads state
+00:00 +3: All tests passed!

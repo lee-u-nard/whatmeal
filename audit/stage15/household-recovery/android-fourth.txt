@@ -1,0 +1,262 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  [local-token-redacted] 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  [local-token-redacted] 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage15\household-recovery\integration.apk...         4.4s
+I/flutter ( 2002): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FLTFireContextHolder( 2002): received application context.
+W/.whatmeal.local( 2002): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/.whatmeal.local( 2002): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 2002): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 2002): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 2002): Width is zero. 0,0
+W/HWUI    ( 2002): Unknown dataspace 0
+I/WindowExtensionsImpl( 2002): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 2002): Width is zero. 0,0
+D/FlutterJNI( 2002): Sending viewport metrics to the engine.
+I/Gralloc4( 2002): mapper 4.x is not supported
+W/HWUI    ( 2002): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 2002): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/.whatmeal.local( 2002): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 2002): Skipped 35 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 2002): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:58315/XPDcV5F99hg=/
+VMServiceFlutterDriver: Isolate found with number: 6144103257390487
+VMServiceFlutterDriver: Isolate 6144103257390487 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 2002): 00:00 +0: disposable local SDK create/join failure recovery preserves normal login
+VMServiceFlutterDriver: Connected to Flutter application.
+D/ProfileInstaller( 2002): Installing profile for com.example.whatmeal.local
+D/FirebaseAuth( 2002): Notifying id token listeners about user ([uid-redacted]).
+I/FirebaseApp( 2002): Device unlocked: initializing all Firebase APIs for app household-recovery-1792259725838708
+W/Metadata( 2002): Failed to find package android.content.pm.PackageManager$NameNotFoundException: com.google.android.gms
+I/FirebaseAuth( 2002): Creating user with recovery-owner-1792259725838708@example.test with empty reCAPTCHA token
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2002): tagSocket(138) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2002): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2002): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+I/.whatmeal.local( 2002): Background concurrent mark compact GC freed 4951KB AllocSpace bytes, 56(2144KB) LOS objects, 49% free, 3546KB/7092KB, paused 199us,8.430ms total 78.365ms
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2002): Notifying id token listeners about user ([uid-redacted]).
+W/GooglePlayServicesUtil( 2002): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2002): GooglePlayServices not available due to error 9
+W/Firestore( 2002): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 2002): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 2002): tagSocket(145) with statsTag=0xffffffff, statsUid=-1
+D/FlutterJNI( 2002): Sending viewport metrics to the engine.
+D/EGL_emulation( 2002): app_time_stats: avg=2596.01ms min=193.95ms max=6659.35ms count=3
+W/WindowOnBackDispatcher( 2002): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2002): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/TrafficStats( 2002): tagSocket(123) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2002): app_time_stats: avg=214.64ms min=117.81ms max=511.06ms count=6
+D/EGL_emulation( 2002): app_time_stats: avg=103.45ms min=31.74ms max=176.11ms count=10
+D/EGL_emulation( 2002): app_time_stats: avg=116.62ms min=114.73ms max=117.89ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.71ms min=115.68ms max=117.99ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.49ms min=112.70ms max=119.37ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.84ms min=114.29ms max=118.65ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.56ms min=114.90ms max=117.74ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.71ms min=113.65ms max=118.63ms count=9
+W/Firestore( 2002): (25.1.4) [OnlineStateTracker]: Could not reach Cloud Firestore backend. Backend didn't respond within 10 seconds
+W/Firestore( 2002): 
+W/Firestore( 2002): This typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.
+D/EGL_emulation( 2002): app_time_stats: avg=116.45ms min=114.79ms max=117.13ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.82ms min=115.10ms max=118.35ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.45ms min=114.47ms max=119.10ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.69ms min=114.65ms max=118.21ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.69ms min=113.46ms max=119.77ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.69ms min=113.86ms max=118.97ms count=9
+D/EGL_emulation( 2002): app_time_stats: avg=116.91ms min=108.48ms max=124.35ms count=9
+W/GooglePlayServicesUtil( 2002): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2002): GooglePlayServices not available due to error 9
+W/Firestore( 2002): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/Firestore( 2002): (25.1.4) [WatchStream]: (5ddf6b3) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+D/TrafficStats( 2002): tagSocket(147) with statsTag=0xffffffff, statsUid=-1
+I/flutter ( 2002): Local recovery safe create feedback: The household service is unavailable. Check your connection and retry.
+I/flutter ( 2002): Local recovery checkpoint: create SDK offline failure retained draft and visible retry
+D/EGL_emulation( 2002): app_time_stats: avg=1508.65ms min=1006.42ms max=2010.88ms count=2
+D/EGL_emulation( 2002): app_time_stats: avg=1017.97ms min=1017.97ms max=1017.97ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1015.66ms min=1015.66ms max=1015.66ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1016.81ms min=1016.81ms max=1016.81ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1016.38ms min=1016.38ms max=1016.38ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1017.24ms min=1017.24ms max=1017.24ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1015.89ms min=1015.89ms max=1015.89ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1015.87ms min=1015.87ms max=1015.87ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1017.70ms min=1017.70ms max=1017.70ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1018.50ms min=1018.50ms max=1018.50ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1015.31ms min=1015.31ms max=1015.31ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1021.65ms min=1021.65ms max=1021.65ms count=1
+W/Firestore( 2002): (25.1.4) [WatchStream]: (5ddf6b3) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 2002): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2002): GooglePlayServices not available due to error 9
+W/Firestore( 2002): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 2002): tagSocket(164) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 2002): tagSocket(168) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2002): app_time_stats: avg=1009.47ms min=1009.47ms max=1009.47ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=1016.16ms min=1016.16ms max=1016.16ms count=1
+D/EGL_emulation( 2002): app_time_stats: avg=101.76ms min=11.02ms max=202.78ms count=10
+I/flutter ( 2002): Local recovery checkpoint: same create draft retried and committed through SDK
+D/FirebaseAuth( 2002): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2002): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 2002): Creating user with [local-token-redacted]@example.test with empty reCAPTCHA token
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2002): tagSocket(138) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2002): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2002): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2002): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2002): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2002): Notifying id token listeners about user ([uid-redacted]).
+D/EGL_emulation( 2002): app_time_stats: avg=555.68ms min=117.63ms max=1542.70ms count=4
+D/FirebaseAuth( 2002): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2002): Notifying auth state listeners about a sign-out event.
+I/flutter ( 2002): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 2002): The following TestFailure was thrown running a test:
+I/flutter ( 2002): Expected: no matching candidates
+I/flutter ( 2002):   Actual: _TextWidgetFinder:<Found 1 widget with text "Disposable recovery 1792259725838708": [
+I/flutter ( 2002):             Text("Disposable recovery 1792259725838708", inherit: true, color: Color(alpha: 1.0000,
+I/flutter ( 2002): red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), size: 18.0, weight: 800,
+I/flutter ( 2002): dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+I/flutter ( 2002):           ]>
+I/flutter ( 2002):    Which: means one was found but none were expected
+I/flutter ( 2002): 
+I/flutter ( 2002): When the exception was thrown, this was the stack:
+I/flutter ( 2002): #4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/household_submit_recovery_test.dart:261:7)
+I/flutter ( 2002): <asynchronous suspension>
+I/flutter ( 2002): #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 2002): <asynchronous suspension>
+I/flutter ( 2002): #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 2002): <asynchronous suspension>
+I/flutter ( 2002): #7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 2002): <asynchronous suspension>
+I/flutter ( 2002): 
+I/flutter ( 2002): This was caught by the test expectation on the following line:
+I/flutter ( 2002):   file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/household_submit_recovery_test.dart line 261
+I/flutter ( 2002): The test description was:
+I/flutter ( 2002):   disposable local SDK create/join failure recovery preserves normal login
+I/flutter ( 2002): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 2002): 00:44 +0: disposable local SDK create/join failure recovery preserves normal login [E]
+I/flutter ( 2002):   Test failed. See exception logs above.
+I/flutter ( 2002):   The test description was: disposable local SDK create/join failure recovery preserves normal login
+I/flutter ( 2002):   
+I/flutter ( 2002): 00:44 +0 -1: (tearDownAll)
+D/EGL_emulation( 2002): app_time_stats: avg=14691.54ms min=29.20ms max=24182.30ms count=3
+I/flutter ( 2002): 00:44 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: disposable local SDK create/join failure recovery preserves normal login
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Expected: no matching candidates
+  Actual: _TextWidgetFinder:<Found 1 widget with text "Disposable
+recovery 1792259725838708": [
+            Text("Disposable recovery 1792259725838708", inherit:
+true, color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,
+blue: 1.0000, colorSpace: ColorSpace.sRGB), size: 18.0, weight:
+800, dependencies: [DefaultSelectionStyle, DefaultTextStyle,
+MediaQuery]),
+          ]>
+   Which: means one was found but none were expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/household_submit_recovery_test.dart:261:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/household_submit_recovery_test.dart line 261
+The test description was:
+  disposable local SDK create/join failure recovery preserves
+  normal login
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+
+Leaving the application running.

@@ -1,0 +1,312 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.2 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.1 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.1 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.0.2 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.17 available)
+  google_sign_in_ios 5.9.0 (6.3.6 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.6.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.1 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage9\household-integration.apk...             1,352ms
+W/.whatmeal.local( 1837): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 1837): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 1837): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 1837): Width is zero. 0,0
+W/HWUI    ( 1837): Unknown dataspace 0
+I/WindowExtensionsImpl( 1837): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 1837): Width is zero. 0,0
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/Gralloc4( 1837): mapper 4.x is not supported
+W/HWUI    ( 1837): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Choreographer( 1837): Skipped 37 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/.whatmeal.local( 1837): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:54877/5sJnV_On_IA=/
+VMServiceFlutterDriver: Isolate found with number: 7758165210662195
+VMServiceFlutterDriver: Isolate 7758165210662195 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 1837): 00:00 +0: local Android UI registration, verification, household and account switching
+VMServiceFlutterDriver: Connected to Flutter application.
+I/Choreographer( 1837): Skipped 34 frames!  The application may be doing too much work on its main thread.
+D/ProfileInstaller( 1837): Installing profile for com.example.whatmeal.local
+W/.whatmeal.local( 1837): Long monitor contention with owner Firebase Background Thread #3 (1899) at java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController()(DefaultHeartBeatController.java:70) waiters=0 in java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController() for 912ms
+W/.whatmeal.local( 1837): Long monitor contention with owner Firebase Background Thread #3 (1899) at java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController()(DefaultHeartBeatController.java:70) waiters=1 in java.lang.Void com.google.firebase.heartbeatinfo.DefaultHeartBeatController.lambda$registerHeartBeat$0$com-google-firebase-heartbeatinfo-DefaultHeartBeatController() for 969ms
+D/EGL_emulation( 1837): app_time_stats: avg=719.60ms min=20.12ms max=1479.86ms count=3
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FirebaseAuth( 1837): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1837): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 1837): app_time_stats: avg=1581.51ms min=1581.51ms max=1581.51ms count=1
+W/WindowOnBackDispatcher( 1837): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1837): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1837): app_time_stats: avg=171.20ms min=49.99ms max=338.50ms count=6
+I/ImeTracker( 1837): com.example.whatmeal.local:157c8ef7: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F....ID 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+I/ImeTracker( 1837): com.example.whatmeal.local:af9457eb: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/InputConnectionAdaptor( 1837): The input method toggled cursor monitoring on
+D/EGL_emulation( 1837): app_time_stats: avg=97.46ms min=16.97ms max=197.80ms count=11
+I/ImeTracker( 1837): com.example.whatmeal.local:a2e88279: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+W/RemoteInputConnectionImpl( 1837): getTextAfterCursor on inactive InputConnection
+D/InsetsController( 1837): show(ime(), fromIme=true)
+W/InteractionJankMonitor( 1837): Initializing without READ_DEVICE_CONFIG permission. enabled=true, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=com.example.whatmeal.local
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/EGL_emulation( 1837): app_time_stats: avg=3056.17ms min=1134.66ms max=4977.69ms count=2
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/ImeTracker( 1837): com.example.whatmeal.local:51da579: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/InputConnectionAdaptor( 1837): The input method toggled cursor monitoring on
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/ImeTracker( 1837): com.example.whatmeal.local:af9457eb: onShown
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/InsetsController( 1837): show(ime(), fromIme=true)
+I/ImeTracker( 1837): com.example.whatmeal.local:51da579: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/EGL_emulation( 1837): app_time_stats: avg=122.63ms min=47.55ms max=230.71ms count=9
+I/ImeTracker( 1837): com.example.whatmeal.local:a49c3ae8: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/InputConnectionAdaptor( 1837): The input method toggled cursor monitoring on
+D/InsetsController( 1837): show(ime(), fromIme=true)
+I/ImeTracker( 1837): com.example.whatmeal.local:a49c3ae8: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14308, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14317, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14325, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14347, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:PREDICTION_ERROR, 14356, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:PREDICTION_ERROR, 14378, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:PREDICTION_ERROR, 14393, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed App frame:UNKNOWN: 24, 14408, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 24, 14408, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14415, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14430, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14445, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 80, 14460, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed App frame:UNKNOWN: 88, 14482, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1837): Missed SF frame:UNKNOWN: 88, 14482, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+V/PerfettoTrigger( 1837): Not triggering com.android.telemetry.interaction-jank-monitor-80 - not enough time since last trigger
+I/ImeTracker( 1837): com.example.whatmeal.local:d3d430d1: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/InsetsController( 1837): show(ime(), fromIme=true)
+I/ImeTracker( 1837): com.example.whatmeal.local:d3d430d1: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/EGL_emulation( 1837): app_time_stats: avg=103.23ms min=22.97ms max=208.32ms count=10
+I/ImeTracker( 1837): com.example.whatmeal.local:10158217: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/InputConnectionAdaptor( 1837): The input method toggled cursor monitoring on
+D/InsetsController( 1837): show(ime(), fromIme=true)
+I/ImeTracker( 1837): com.example.whatmeal.local:10158217: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/ImeTracker( 1837): com.example.whatmeal.local:657018ec: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/InsetsController( 1837): show(ime(), fromIme=true)
+I/ImeTracker( 1837): com.example.whatmeal.local:657018ec: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/FirebaseAuth( 1837): Creating user with owner-1791950602661016@example.test with empty reCAPTCHA token
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1837): app_time_stats: avg=83.68ms min=2.44ms max=245.74ms count=12
+D/TrafficStats( 1837): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1837): Notifying id token listeners about user ( SRoAThKaHffaZyZ8UkgWpqIfCPlD ).
+D/FirebaseAuth( 1837): Notifying auth state listeners about user ( SRoAThKaHffaZyZ8UkgWpqIfCPlD ).
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1837): Notifying id token listeners about user ( SRoAThKaHffaZyZ8UkgWpqIfCPlD ).
+W/GooglePlayServicesUtil( 1837): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1837): GooglePlayServices not available due to error 9
+W/Firestore( 1837): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/EGL_emulation( 1837): app_time_stats: avg=223.41ms min=154.49ms max=312.64ms count=5
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+I/.whatmeal.local( 1837): Background concurrent mark compact GC freed 2388KB AllocSpace bytes, 19(796KB) LOS objects, 49% free, 4215KB/8431KB, paused 2.619ms,4.345ms total 141.585ms
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1837): tagSocket(158) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 1837): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1837): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/ImeTracker( 1837): com.example.whatmeal.local:63363c5b: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false
+D/InsetsController( 1837): hide(ime(), fromIme=true)
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/EGL_emulation( 1837): app_time_stats: avg=285.94ms min=1.83ms max=3697.94ms count=14
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/ImeTracker( 1837): com.example.whatmeal.local:cf89076a: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT_ON_ANIMATION_STATE_CHANGED fromUser false
+I/ImeTracker( 1837): com.example.whatmeal.local:63363c5b: onHidden
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1837): app_time_stats: avg=671.46ms min=365.44ms max=977.48ms count=2
+W/System  ( 1837): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1837): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1837): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1837): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1837): Local UI checkpoint: Owner registered and verified
+D/EGL_emulation( 1837): app_time_stats: avg=153.48ms min=9.96ms max=419.11ms count=7
+D/EGL_emulation( 1837): app_time_stats: avg=103.03ms min=36.10ms max=130.59ms count=10
+W/WindowOnBackDispatcher( 1837): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1837): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1837): app_time_stats: avg=122.62ms min=23.61ms max=213.23ms count=9
+I/ImeTracker( 1837): com.example.whatmeal.local:7dcd1080: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/EGL_emulation( 1837): app_time_stats: avg=112.43ms min=10.74ms max=230.81ms count=10
+D/InputConnectionAdaptor( 1837): The input method toggled cursor monitoring on
+D/InsetsController( 1837): show(ime(), fromIme=true)
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/EGL_emulation( 1837): app_time_stats: avg=295.23ms min=1.31ms max=5024.73ms count=18
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/ImeTracker( 1837): com.example.whatmeal.local:ed59c06d: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1837): showSoftInput() view=io.flutter.embedding.android.FlutterView{86a3fdc VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/InsetsController( 1837): show(ime(), fromIme=true)
+I/ImeTracker( 1837): com.example.whatmeal.local:ed59c06d: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/ImeTracker( 1837): com.example.whatmeal.local:7dcd1080: onShown
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+D/FlutterJNI( 1837): Sending viewport metrics to the engine.
+I/flutter ( 1837): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 1837): The following TestFailure was thrown running a test:
+I/flutter ( 1837): Expected: true
+I/flutter ( 1837):   Actual: <false>
+I/flutter ( 1837): Entered field must retain input; never print its value
+I/flutter ( 1837): 
+I/flutter ( 1837): When the exception was thrown, this was the stack:
+I/flutter ( 1837): #4      main.<anonymous closure>.enter (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:66:7)
+I/flutter ( 1837): <asynchronous suspension>
+I/flutter ( 1837): #5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:171:5)
+I/flutter ( 1837): <asynchronous suspension>
+I/flutter ( 1837): #6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 1837): <asynchronous suspension>
+I/flutter ( 1837): #7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 1837): <asynchronous suspension>
+I/flutter ( 1837): #8      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 1837): <asynchronous suspension>
+I/flutter ( 1837): 
+I/flutter ( 1837): This was caught by the test expectation on the following line:
+I/flutter ( 1837):   file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart line 66
+I/flutter ( 1837): The test description was:
+I/flutter ( 1837):   local Android UI registration, verification, household and account switching
+I/flutter ( 1837): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1837): 00:18 +0: local Android UI registration, verification, household and account switching [E]
+I/flutter ( 1837):   Test failed. See exception logs above.
+I/flutter ( 1837):   The test description was: local Android UI registration, verification, household and account switching
+I/flutter ( 1837):   
+I/flutter ( 1837): 00:18 +0 -1: (tearDownAll)
+I/flutter ( 1837): 00:18 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+Entered field must retain input; never print its value
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure>.enter (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:66:7)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:171:5)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart line 66
+The test description was:
+  local Android UI registration, verification, household and
+  account switching
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+

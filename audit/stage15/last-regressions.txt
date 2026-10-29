@@ -1,0 +1,10 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: dismissed creation sheet cannot pop a new accounts screen on late completion
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: dismissed creation sheet cannot pop a new accounts screen on late completion
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: index terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:00 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: family terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:01 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: members terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:01 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: delayed invitation result cannot refill token after native-style A B A
+00:01 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: late departure denial cannot start orphan cleanup under another account
+00:01 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: old archive confirmation cannot archive the new accounts household
+00:01 +8: All tests passed!

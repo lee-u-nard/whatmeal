@@ -1,0 +1,13 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:00 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:01 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:01 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending sheet hides its draft across account switch and ABA
+00:01 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create empty and invalid input is visible without dispatch
+00:01 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join failure retains draft and retry commits once
+00:02 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join pending submit is disabled; dismissed failure cannot navigate
+00:02 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join pending sheet hides its draft across account switch and ABA
+00:02 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join empty and invalid input is visible without dispatch
+00:02 +11: All tests passed!

@@ -1,0 +1,428 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart
+lib/features/auth/pages/forgot_password_page.dart:28:17: Error: String starting with r' must end with '.
+    if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:28:16: Error: Can't find ')' to match '('.
+    if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+               ^
+lib/features/auth/pages/forgot_password_page.dart:28:8: Error: Can't find ')' to match '('.
+    if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+       ^
+lib/features/auth/pages/forgot_password_page.dart:38:14: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+    setState(() => _isLoading = true);
+             ^
+lib/features/auth/pages/forgot_password_page.dart:38:17: Error: Expected ')' before this.
+    setState(() => _isLoading = true);
+                ^^
+lib/features/auth/pages/forgot_password_page.dart:39:5: Error: Expected a class member, but got 'try'.
+    try {
+    ^^^
+lib/features/auth/pages/forgot_password_page.dart:39:9: Error: Expected an identifier, but got '{'.
+Try inserting an identifier before '{'.
+    try {
+        ^
+lib/features/auth/pages/forgot_password_page.dart:39:9: Error: A method declaration needs an explicit list of parameters.
+Try adding a parameter list to the method declaration.
+    try {
+        ^
+lib/features/auth/pages/forgot_password_page.dart:46:7: Error: Expected a class member, but got 'catch'.
+    } catch (e) {
+      ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:46:13: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+    } catch (e) {
+            ^
+lib/features/auth/pages/forgot_password_page.dart:213:1: Error: Expected a declaration, but got '}'.
+}
+^
+lib/features/auth/pages/forgot_password_page.dart:214:1: Error: Expected a declaration, but got ')'.
+).hasMatch(email)) {
+^
+lib/features/auth/pages/forgot_password_page.dart:214:2: Error: Expected a declaration, but got '.'.
+).hasMatch(email)) {
+ ^
+lib/features/auth/pages/forgot_password_page.dart:214:18: Error: Expected '{' before this.
+).hasMatch(email)) {
+                 ^
+lib/features/auth/pages/forgot_password_page.dart:214:18: Error: Expected a declaration, but got ')'.
+).hasMatch(email)) {
+                 ^
+lib/features/auth/pages/forgot_password_page.dart:214:20: Error: Expected a declaration, but got '{'.
+).hasMatch(email)) {
+                   ^
+lib/features/auth/pages/forgot_password_page.dart:224:14: Error: Expected an identifier, but got '('.
+Try inserting an identifier before '('.
+    setState(() => _isLoading = true);
+             ^
+lib/features/auth/pages/forgot_password_page.dart:224:17: Error: Expected ')' before this.
+    setState(() => _isLoading = true);
+                ^^
+lib/features/auth/pages/forgot_password_page.dart:224:38: Error: Expected a function body or '=>'.
+Try adding {}.
+    setState(() => _isLoading = true);
+                                     ^
+lib/features/auth/pages/forgot_password_page.dart:225:5: Error: 'try' can't be used as an identifier because it's a keyword.
+Try renaming this to be an identifier that isn't a keyword.
+    try {
+    ^^^
+lib/features/auth/pages/forgot_password_page.dart:225:5: Error: A function declaration needs an explicit list of parameters.
+Try adding a parameter list to the function declaration.
+    try {
+    ^^^
+lib/features/auth/pages/forgot_password_page.dart:232:7: Error: 'catch' can't be used as an identifier because it's a keyword.
+Try renaming this to be an identifier that isn't a keyword.
+    } catch (e) {
+      ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:244:3: Error: Expected a declaration, but got '}'.
+  }
+  ^
+lib/features/auth/pages/forgot_password_page.dart:400:1: Error: Expected a declaration, but got '}'.
+}
+^
+lib/features/auth/pages/forgot_password_page.dart:247:10: Error: 'build' is already declared in this scope.
+  Widget build(BuildContext context) {
+         ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:60:10: Context: Previous declaration of 'build'.
+  Widget build(BuildContext context) {
+         ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:14:7: Error: The non-abstract class '_ForgotPasswordPageState' is missing implementations for these members:
+ - State.build
+Try to either
+ - provide an implementation,
+ - inherit an implementation from a superclass or mixin,
+ - mark the class as abstract, or
+ - provide a 'noSuchMethod' implementation.
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+      ^^^^^^^^^^^^^^^^^^^^^^^^
+../../../../../flutter_windows_3.44.5-stable/flutter/packages/flutter/lib/src/widgets/framework.dart:1461:10: Context: 'State.build' is defined here.
+  Widget build(BuildContext context);
+         ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:38:5: Error: The method '_ForgotPasswordPageState.setState' has fewer positional arguments than those of overridden method 'State.setState'.
+    setState(() => _isLoading = true);
+    ^
+../../../../../flutter_windows_3.44.5-stable/flutter/packages/flutter/lib/src/widgets/framework.dart:1160:8: Context: This is the overridden method ('setState').
+  void setState(VoidCallback fn) {
+       ^
+lib/features/auth/pages/forgot_password_page.dart:14:7: Error: The implementation of 'setState' in the non-abstract class '_ForgotPasswordPageState' does not conform to its interface.
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+      ^^^^^^^^^^^^^^^^^^^^^^^^
+../../../../../flutter_windows_3.44.5-stable/flutter/packages/flutter/lib/src/widgets/framework.dart:1160:8: Context: The method 'State.setState' has more required arguments than those of overridden method '_ForgotPasswordPageState.setState'.
+  void setState(VoidCallback fn) {
+       ^
+lib/features/auth/pages/forgot_password_page.dart:38:5: Context: This is the overridden method ('setState').
+    setState(() => _isLoading = true);
+    ^
+lib/features/auth/pages/forgot_password_page.dart:29:7: Error: Expected ',' before this.
+      ScaffoldMessenger.of(context).showSnackBar(
+      ^^^^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:28:16: Error: Too many positional arguments: 1 allowed, but 2 found.
+Try removing the extra positional arguments.
+    if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+               ^
+org-dartlang-sdk:///flutter/third_party/dart/sdk/lib/_internal/vm/lib/regexp_patch.dart:10:11: Context: Found this candidate, but the arguments don't match.
+  factory RegExp(
+          ^
+lib/features/auth/pages/forgot_password_page.dart:101:19: Error: Undefined name '_sent'.
+              if (_sent) ...[
+                  ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:129:40: Error: Undefined name '_emailController'.
+                              'Check ${_emailController.text.trim()} for instructions to reset your password.',
+                                       ^^^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:163:37: Error: Undefined name '_emailController'.
+                        controller: _emailController,
+                                    ^^^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:165:35: Error: Undefined name '_isLoading'.
+                        enabled: !_isLoading,
+                                  ^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:180:38: Error: Undefined name '_isLoading'.
+                          onPressed: _isLoading ? null : _sendResetLink,
+                                     ^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:180:58: Error: Undefined name '_sendResetLink'.
+                          onPressed: _isLoading ? null : _sendResetLink,
+                                                         ^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:188:34: Error: Undefined name '_isLoading'.
+                          child: _isLoading
+                                 ^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:226:14: Error: Undefined name 'widget'.
+      await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+             ^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:226:39: Error: Undefined name 'email'.
+      await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+                                      ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:226:96: Error: Undefined name 'email'.
+      await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+                                                                                          ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:226:7: Error: Method not found: 'await'.
+      await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+      ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:227:12: Error: Undefined name 'mounted'.
+      if (!mounted) return;
+           ^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:229:9: Error: Setter not found: '_sent'.
+        _sent = true;
+        ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:230:9: Error: Setter not found: '_isLoading'.
+        _isLoading = false;
+        ^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:228:15: Error: Too many positional arguments: 0 allowed, but 1 found.
+Try removing the extra positional arguments.
+      setState(() {
+              ^
+lib/features/auth/pages/forgot_password_page.dart:224:5: Context: Found this candidate, but the arguments don't match.
+    setState(() => _isLoading = true);
+    ^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:233:12: Error: Undefined name 'mounted'.
+      if (!mounted) return;
+           ^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:234:22: Error: Setter not found: '_isLoading'.
+      setState(() => _isLoading = false);
+                     ^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:234:15: Error: Too many positional arguments: 0 allowed, but 1 found.
+Try removing the extra positional arguments.
+      setState(() => _isLoading = false);
+              ^
+lib/features/auth/pages/forgot_password_page.dart:224:5: Context: Found this candidate, but the arguments don't match.
+    setState(() => _isLoading = true);
+    ^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:237:28: Error: Undefined name 'context'.
+      ScaffoldMessenger.of(context).showSnackBar(
+                           ^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:288:19: Error: Undefined name '_sent'.
+              if (_sent) ...[
+                  ^^^^^
+lib/features/auth/pages/forgot_password_page.dart:316:40: Error: Undefined name '_emailController'.
+                              'Check ${_emailController.text.trim()} for instructions to reset your password.',
+                                       ^^^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:350:37: Error: Undefined name '_emailController'.
+                        controller: _emailController,
+                                    ^^^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:352:35: Error: Undefined name '_isLoading'.
+                        enabled: !_isLoading,
+                                  ^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:367:38: Error: Undefined name '_isLoading'.
+                          onPressed: _isLoading ? null : _sendResetLink,
+                                     ^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:367:58: Error: Undefined name '_sendResetLink'.
+                          onPressed: _isLoading ? null : _sendResetLink,
+                                                         ^^^^^^^^^^^^^^
+lib/features/auth/pages/forgot_password_page.dart:375:34: Error: Undefined name '_isLoading'.
+                          child: _isLoading
+                                 ^^^^^^^^^^
+00:00 +0 -1: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart [E]
+  Failed to load "C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart":
+  Compilation failed for testPath=C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: lib/features/auth/pages/forgot_password_page.dart:28:17: Error: String starting with r' must end with '.
+      if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:28:16: Error: Can't find ')' to match '('.
+      if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+                 ^
+  lib/features/auth/pages/forgot_password_page.dart:28:8: Error: Can't find ')' to match '('.
+      if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+         ^
+  lib/features/auth/pages/forgot_password_page.dart:38:14: Error: Expected an identifier, but got '('.
+  Try inserting an identifier before '('.
+      setState(() => _isLoading = true);
+               ^
+  lib/features/auth/pages/forgot_password_page.dart:38:17: Error: Expected ')' before this.
+      setState(() => _isLoading = true);
+                  ^^
+  lib/features/auth/pages/forgot_password_page.dart:39:5: Error: Expected a class member, but got 'try'.
+      try {
+      ^^^
+  lib/features/auth/pages/forgot_password_page.dart:39:9: Error: Expected an identifier, but got '{'.
+  Try inserting an identifier before '{'.
+      try {
+          ^
+  lib/features/auth/pages/forgot_password_page.dart:39:9: Error: A method declaration needs an explicit list of parameters.
+  Try adding a parameter list to the method declaration.
+      try {
+          ^
+  lib/features/auth/pages/forgot_password_page.dart:46:7: Error: Expected a class member, but got 'catch'.
+      } catch (e) {
+        ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:46:13: Error: Expected an identifier, but got '('.
+  Try inserting an identifier before '('.
+      } catch (e) {
+              ^
+  lib/features/auth/pages/forgot_password_page.dart:213:1: Error: Expected a declaration, but got '}'.
+  }
+  ^
+  lib/features/auth/pages/forgot_password_page.dart:214:1: Error: Expected a declaration, but got ')'.
+  ).hasMatch(email)) {
+  ^
+  lib/features/auth/pages/forgot_password_page.dart:214:2: Error: Expected a declaration, but got '.'.
+  ).hasMatch(email)) {
+   ^
+  lib/features/auth/pages/forgot_password_page.dart:214:18: Error: Expected '{' before this.
+  ).hasMatch(email)) {
+                   ^
+  lib/features/auth/pages/forgot_password_page.dart:214:18: Error: Expected a declaration, but got ')'.
+  ).hasMatch(email)) {
+                   ^
+  lib/features/auth/pages/forgot_password_page.dart:214:20: Error: Expected a declaration, but got '{'.
+  ).hasMatch(email)) {
+                     ^
+  lib/features/auth/pages/forgot_password_page.dart:224:14: Error: Expected an identifier, but got '('.
+  Try inserting an identifier before '('.
+      setState(() => _isLoading = true);
+               ^
+  lib/features/auth/pages/forgot_password_page.dart:224:17: Error: Expected ')' before this.
+      setState(() => _isLoading = true);
+                  ^^
+  lib/features/auth/pages/forgot_password_page.dart:224:38: Error: Expected a function body or '=>'.
+  Try adding {}.
+      setState(() => _isLoading = true);
+                                       ^
+  lib/features/auth/pages/forgot_password_page.dart:225:5: Error: 'try' can't be used as an identifier because it's a keyword.
+  Try renaming this to be an identifier that isn't a keyword.
+      try {
+      ^^^
+  lib/features/auth/pages/forgot_password_page.dart:225:5: Error: A function declaration needs an explicit list of parameters.
+  Try adding a parameter list to the function declaration.
+      try {
+      ^^^
+  lib/features/auth/pages/forgot_password_page.dart:232:7: Error: 'catch' can't be used as an identifier because it's a keyword.
+  Try renaming this to be an identifier that isn't a keyword.
+      } catch (e) {
+        ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:244:3: Error: Expected a declaration, but got '}'.
+    }
+    ^
+  lib/features/auth/pages/forgot_password_page.dart:400:1: Error: Expected a declaration, but got '}'.
+  }
+  ^
+  lib/features/auth/pages/forgot_password_page.dart:247:10: Error: 'build' is already declared in this scope.
+    Widget build(BuildContext context) {
+           ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:60:10: Context: Previous declaration of 'build'.
+    Widget build(BuildContext context) {
+           ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:14:7: Error: The non-abstract class '_ForgotPasswordPageState' is missing implementations for these members:
+   - State.build
+  Try to either
+   - provide an implementation,
+   - inherit an implementation from a superclass or mixin,
+   - mark the class as abstract, or
+   - provide a 'noSuchMethod' implementation.
+  class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  ../../../../../flutter_windows_3.44.5-stable/flutter/packages/flutter/lib/src/widgets/framework.dart:1461:10: Context: 'State.build' is defined here.
+    Widget build(BuildContext context);
+           ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:38:5: Error: The method '_ForgotPasswordPageState.setState' has fewer positional arguments than those of overridden method 'State.setState'.
+      setState(() => _isLoading = true);
+      ^
+  ../../../../../flutter_windows_3.44.5-stable/flutter/packages/flutter/lib/src/widgets/framework.dart:1160:8: Context: This is the overridden method ('setState').
+    void setState(VoidCallback fn) {
+         ^
+  lib/features/auth/pages/forgot_password_page.dart:14:7: Error: The implementation of 'setState' in the non-abstract class '_ForgotPasswordPageState' does not conform to its interface.
+  class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  ../../../../../flutter_windows_3.44.5-stable/flutter/packages/flutter/lib/src/widgets/framework.dart:1160:8: Context: The method 'State.setState' has more required arguments than those of overridden method '_ForgotPasswordPageState.setState'.
+    void setState(VoidCallback fn) {
+         ^
+  lib/features/auth/pages/forgot_password_page.dart:38:5: Context: This is the overridden method ('setState').
+      setState(() => _isLoading = true);
+      ^
+  lib/features/auth/pages/forgot_password_page.dart:29:7: Error: Expected ',' before this.
+        ScaffoldMessenger.of(context).showSnackBar(
+        ^^^^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:28:16: Error: Too many positional arguments: 1 allowed, but 2 found.
+  Try removing the extra positional arguments.
+      if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+ {
+                 ^
+  org-dartlang-sdk:///flutter/third_party/dart/sdk/lib/_internal/vm/lib/regexp_patch.dart:10:11: Context: Found this candidate, but the arguments don't match.
+    factory RegExp(
+            ^
+  lib/features/auth/pages/forgot_password_page.dart:101:19: Error: Undefined name '_sent'.
+                if (_sent) ...[
+                    ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:129:40: Error: Undefined name '_emailController'.
+                                'Check ${_emailController.text.trim()} for instructions to reset your password.',
+                                         ^^^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:163:37: Error: Undefined name '_emailController'.
+                          controller: _emailController,
+                                      ^^^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:165:35: Error: Undefined name '_isLoading'.
+                          enabled: !_isLoading,
+                                    ^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:180:38: Error: Undefined name '_isLoading'.
+                            onPressed: _isLoading ? null : _sendResetLink,
+                                       ^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:180:58: Error: Undefined name '_sendResetLink'.
+                            onPressed: _isLoading ? null : _sendResetLink,
+                                                           ^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:188:34: Error: Undefined name '_isLoading'.
+                            child: _isLoading
+                                   ^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:226:14: Error: Undefined name 'widget'.
+        await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+               ^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:226:39: Error: Undefined name 'email'.
+        await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+                                        ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:226:96: Error: Undefined name 'email'.
+        await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+                                                                                                 ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:226:7: Error: Method not found: 'await'.
+        await (widget.onSendReset?.call(email) ?? AuthRepository.instance.sendPasswordResetEmail(email));
+        ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:227:12: Error: Undefined name 'mounted'.
+        if (!mounted) return;
+             ^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:229:9: Error: Setter not found: '_sent'.
+          _sent = true;
+          ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:230:9: Error: Setter not found: '_isLoading'.
+          _isLoading = false;
+          ^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:228:15: Error: Too many positional arguments: 0 allowed, but 1 found.
+  Try removing the extra positional arguments.
+        setState(() {
+                ^
+  lib/features/auth/pages/forgot_password_page.dart:224:5: Context: Found this candidate, but the arguments don't match.
+      setState(() => _isLoading = true);
+      ^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:233:12: Error: Undefined name 'mounted'.
+        if (!mounted) return;
+             ^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:234:22: Error: Setter not found: '_isLoading'.
+        setState(() => _isLoading = false);
+                       ^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:234:15: Error: Too many positional arguments: 0 allowed, but 1 found.
+  Try removing the extra positional arguments.
+        setState(() => _isLoading = false);
+                ^
+  lib/features/auth/pages/forgot_password_page.dart:224:5: Context: Found this candidate, but the arguments don't match.
+      setState(() => _isLoading = true);
+      ^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:237:28: Error: Undefined name 'context'.
+        ScaffoldMessenger.of(context).showSnackBar(
+                             ^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:288:19: Error: Undefined name '_sent'.
+                if (_sent) ...[
+                    ^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:316:40: Error: Undefined name '_emailController'.
+                                'Check ${_emailController.text.trim()} for instructions to reset your password.',
+                                         ^^^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:350:37: Error: Undefined name '_emailController'.
+                          controller: _emailController,
+                                      ^^^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:352:35: Error: Undefined name '_isLoading'.
+                          enabled: !_isLoading,
+                                    ^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:367:38: Error: Undefined name '_isLoading'.
+                            onPressed: _isLoading ? null : _sendResetLink,
+                                       ^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:367:58: Error: Undefined name '_sendResetLink'.
+                            onPressed: _isLoading ? null : _sendResetLink,
+                                                           ^^^^^^^^^^^^^^
+  lib/features/auth/pages/forgot_password_page.dart:375:34: Error: Undefined name '_isLoading'.
+                            child: _isLoading
+                                   ^^^^^^^^^^
+  .
+00:00 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart

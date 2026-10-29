@@ -27,7 +27,16 @@ class GeneratedMeal {
     this.replacedByMealId,
     this.replacedMealId,
     this.isFavorite = false,
-  });
+    Meal? sourceMeal,
+    bool preserveSourceIngredients = false,
+  })  : _sourceMeal = sourceMeal,
+        _preserveSourceIngredients = preserveSourceIngredients;
+
+  // Display strings are intentionally retained for the editor, while an
+  // untouched SDK recipe keeps its original structured ingredient quantities.
+  // Neither field is persisted as extra Firestore schema data.
+  final Meal? _sourceMeal;
+  final bool _preserveSourceIngredients;
 
   final String id;
   final String title;
@@ -90,13 +99,13 @@ class GeneratedMeal {
       badgeText: meal.badgeText ?? '',
       imageUrl: meal.imageUrl ?? '',
       ingredients: meal.ingredients
-          .map((i) => '${i.name} ${i.amount}'.trim())
+          .map((i) => '${i.amount} ${i.name}'.trim())
           .where((s) => s.isNotEmpty)
           .toList(),
       macros: {
-        'Protein': meal.protein ?? '0g',
-        'Carbs': meal.carbs ?? '0g',
-        'Fats': meal.fats ?? '0g',
+        'Protein': meal.protein ?? '',
+        'Carbs': meal.carbs ?? '',
+        'Fats': meal.fats ?? '',
       },
       availableIngredients: meal.availableIngredients,
       missingIngredients: meal.missingIngredients,
@@ -112,7 +121,17 @@ class GeneratedMeal {
       replacedByMealId: meal.replacedByMealId,
       replacedMealId: meal.replacedMealId,
       isFavorite: meal.isFavorite,
+      sourceMeal: meal,
+      preserveSourceIngredients: true,
     );
+  }
+
+  static bool _sameIngredientText(List<String> first, List<String> second) {
+    if (first.length != second.length) return false;
+    for (var i = 0; i < first.length; i++) {
+      if (first[i] != second[i]) return false;
+    }
+    return true;
   }
 
   Map<String, dynamic> toFirestore() => {
@@ -147,9 +166,19 @@ class GeneratedMeal {
       };
 
   Meal toCore() {
+    final source = _sourceMeal;
+    final sourceText = source?.ingredients
+        .map((ingredient) => '${ingredient.amount} ${ingredient.name}'.trim())
+        .where((text) => text.isNotEmpty)
+        .toList();
+    final keepStructuredIngredients = _preserveSourceIngredients &&
+        sourceText != null &&
+        _sameIngredientText(ingredients, sourceText);
     return Meal(
       id: id,
       title: title,
+      subtitle: source?.subtitle,
+      cuisine: source?.cuisine,
       mealType: type,
       dayIndex: dayIndex,
       prepTime: prepTime,
@@ -158,8 +187,9 @@ class GeneratedMeal {
       calories: calories,
       badgeText: badgeText,
       imageUrl: imageUrl,
-      ingredients:
-          ingredients.map((i) => Ingredient(name: i, amount: '')).toList(),
+      ingredients: keepStructuredIngredients && source != null
+          ? List.of(source.ingredients)
+          : ingredients.map((i) => Ingredient(name: i, amount: '')).toList(),
       instructions: instructions,
       tags: tags,
       reasoning: reasoning,
@@ -175,6 +205,7 @@ class GeneratedMeal {
       replacedByMealId: replacedByMealId,
       replacedMealId: replacedMealId,
       isFavorite: isFavorite,
+      createdAt: source != null && source.id == id ? source.createdAt : null,
     );
   }
 
@@ -203,6 +234,8 @@ class GeneratedMeal {
     String? replacedMealId,
     bool? isFavorite,
   }) {
+    final dishChanged = title != null &&
+        title.trim().toLowerCase() != this.title.trim().toLowerCase();
     return GeneratedMeal(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -210,7 +243,7 @@ class GeneratedMeal {
       prepTime: prepTime ?? this.prepTime,
       calories: calories ?? this.calories,
       badgeText: badgeText ?? this.badgeText,
-      imageUrl: imageUrl ?? this.imageUrl,
+      imageUrl: imageUrl ?? (dishChanged ? '' : this.imageUrl),
       ingredients: ingredients ?? this.ingredients,
       macros: macros ?? this.macros,
       availableIngredients: availableIngredients ?? this.availableIngredients,
@@ -220,13 +253,18 @@ class GeneratedMeal {
       servings: servings ?? this.servings,
       cookTime: cookTime ?? this.cookTime,
       reasoning: reasoning ?? this.reasoning,
-      imageSearchQuery: imageSearchQuery ?? this.imageSearchQuery,
+      imageSearchQuery: imageSearchQuery ??
+          (dishChanged ? title.trim() : this.imageSearchQuery),
       youtubeSearchQuery: youtubeSearchQuery ?? this.youtubeSearchQuery,
       dayIndex: dayIndex ?? this.dayIndex,
       status: status ?? this.status,
       replacedByMealId: replacedByMealId ?? this.replacedByMealId,
       replacedMealId: replacedMealId ?? this.replacedMealId,
       isFavorite: isFavorite ?? this.isFavorite,
+      sourceMeal: _sourceMeal,
+      preserveSourceIngredients: _preserveSourceIngredients &&
+          (ingredients == null ||
+              _sameIngredientText(this.ingredients, ingredients)),
     );
   }
 }
@@ -239,13 +277,112 @@ class GeneratedPlanDraft {
     required this.numberOfDays,
     this.startDate,
     this.title,
+    this.planPath,
+    this.selectedMemberIds = const [],
+    this.cuisinePreferences = const [],
+    this.prioritizePantry = true,
+    this.initialSaveFailed = false,
+    this.sourceSessionVersion,
+    this.initialDayIndex,
+    this.isManual = false,
   });
+
+  factory GeneratedPlanDraft.fromSaved(SavedMealPlan plan,
+      {bool reuse = false,
+      DateTime? today,
+      DateTime? selectedDate,
+      int? sourceSessionVersion}) {
+    final seed = DateTime.now().microsecondsSinceEpoch;
+    final mealDays = plan.meals.isEmpty
+        ? 1
+        : plan.meals
+            .map((meal) => meal.dayIndex + 1)
+            .reduce((a, b) => a > b ? a : b);
+    final declaredDays = plan.numberOfDays ??
+        (plan.startDate != null && plan.endDate != null
+            ? DateTime.utc(plan.endDate!.year, plan.endDate!.month,
+                        plan.endDate!.day)
+                    .difference(DateTime.utc(plan.startDate!.year,
+                        plan.startDate!.month, plan.startDate!.day))
+                    .inDays +
+                1
+            : plan.meals.isEmpty
+                ? 7
+                : mealDays);
+    final days = declaredDays > mealDays ? declaredDays : mealDays;
+    return GeneratedPlanDraft(
+      isManual: plan.meals.isEmpty,
+      sourceSessionVersion: sourceSessionVersion,
+      initialDayIndex: selectedDate == null || reuse
+          ? null
+          : DateTime.utc(
+                  selectedDate.year, selectedDate.month, selectedDate.day)
+              .difference(DateTime.utc(
+                  (plan.startDate ?? plan.weekStart).year,
+                  (plan.startDate ?? plan.weekStart).month,
+                  (plan.startDate ?? plan.weekStart).day))
+              .inDays
+              .clamp(0, (days < 7 ? 7 : days) - 1),
+      meals: reuse
+          ? plan.activeMeals
+              .asMap()
+              .entries
+              .map((entry) => GeneratedMeal.fromCore(entry.value
+                      .toCore()
+                      .copyWith(
+                          status: MealStatus.pending,
+                          clearReplacementLinks: true))
+                  .copyWith(id: 'reuse_${seed}_${entry.key}'))
+              .toList()
+          : plan.activeMeals,
+      familyMembers: plan.familyMembers,
+      selectedMemberIds: plan.familyMembers,
+      numberOfDays: days,
+      startDate: reuse
+          ? WeekCalendar.mondayOf(today ?? DateTime.now())
+          : plan.startDate ?? plan.weekStart,
+      title: plan.title,
+      planPath: reuse ? null : plan.sourcePath,
+      cuisinePreferences: plan.cuisinePreferences,
+    );
+  }
 
   final List<GeneratedMeal> meals;
   final List<String> familyMembers;
   final int numberOfDays;
   final DateTime? startDate;
   final String? title;
+  final String? planPath;
+  final List<String> selectedMemberIds;
+  final List<String> cuisinePreferences;
+  final bool prioritizePantry;
+  final bool initialSaveFailed;
+  final int? sourceSessionVersion;
+  final int? initialDayIndex;
+  // Editor-only intent; never written as an extra Firestore schema field.
+  final bool isManual;
+
+  /// Unfilled manual slots are a template, not accepted meals. Keep partially
+  /// entered recipes so normal name validation cannot silently discard them.
+  List<GeneratedMeal> mealsForSaving(Iterable<GeneratedMeal> current) =>
+      current.where((meal) => !isManual || !_unfilledSlot(meal)).toList();
+
+  static bool _unfilledSlot(GeneratedMeal meal) =>
+      meal.title.trim().isEmpty &&
+      meal.prepTime.trim().isEmpty &&
+      meal.calories.trim().isEmpty &&
+      meal.imageUrl.trim().isEmpty &&
+      meal.ingredients.every((value) => value.trim().isEmpty) &&
+      meal.macros.values.every((value) => value.trim().isEmpty) &&
+      meal.instructions.every((value) => value.trim().isEmpty) &&
+      meal.availableIngredients.every((value) => value.trim().isEmpty) &&
+      meal.missingIngredients.every((value) => value.trim().isEmpty) &&
+      meal.tags.every((value) => value.trim().isEmpty) &&
+      (meal.servings?.trim().isEmpty ?? true) &&
+      (meal.cookTime?.trim().isEmpty ?? true) &&
+      (meal.reasoning?.trim().isEmpty ?? true) &&
+      (meal.imageSearchQuery?.trim().isEmpty ?? true) &&
+      (meal.youtubeSearchQuery?.trim().isEmpty ?? true);
 }
 
 class SavedMealPlan {
@@ -260,8 +397,13 @@ class SavedMealPlan {
     this.createdAt,
     this.startDate,
     this.endDate,
+    this.numberOfDays,
+    this.sourcePath,
+    this.cuisinePreferences = const [],
   });
 
+  final List<String> cuisinePreferences;
+  final String? sourcePath;
   final String id;
   final String title;
   final String dates;
@@ -272,6 +414,7 @@ class SavedMealPlan {
   final DateTime? createdAt;
   final DateTime? startDate;
   final DateTime? endDate;
+  final int? numberOfDays;
 
   /// Monday of this plan's week (falls back to createdAt / today).
   DateTime get weekStart {
@@ -283,8 +426,10 @@ class SavedMealPlan {
   }
 
   /// Absolute calendar date for a meal using startDate + dayIndex.
-  DateTime dateForMeal(GeneratedMeal meal) =>
-      WeekCalendar.dateForDayIndex(weekStart, meal.dayIndex);
+  DateTime dateForMeal(GeneratedMeal meal) {
+    final start = startDate ?? weekStart;
+    return DateTime(start.year, start.month, start.day + meal.dayIndex);
+  }
 
   factory SavedMealPlan.fromFirestore(
       String id, Map<String, dynamic> data, List<GeneratedMeal> meals) {
@@ -299,6 +444,8 @@ class SavedMealPlan {
     return SavedMealPlan(
       id: id,
       title: data['title'] as String? ?? 'Meal Plan',
+      cuisinePreferences:
+          List<String>.from(data['cuisinePreferences'] ?? const []),
       dates: dates,
       mealsCount: meals.length,
       estCost: data['estimatedCost'] as String? ?? '\$0.00',
@@ -308,6 +455,8 @@ class SavedMealPlan {
       createdAt: (data['createdAt'] as Timestamp?)?.toDate(),
       startDate: startDate,
       endDate: endDate,
+      numberOfDays:
+          data['numberOfDays'] is int ? data['numberOfDays'] as int : null,
     );
   }
 
@@ -340,6 +489,9 @@ class SavedMealPlan {
     DateTime? createdAt,
     DateTime? startDate,
     DateTime? endDate,
+    int? numberOfDays,
+    String? sourcePath,
+    List<String>? cuisinePreferences,
   }) {
     return SavedMealPlan(
       id: id ?? this.id,
@@ -352,6 +504,9 @@ class SavedMealPlan {
       createdAt: createdAt ?? this.createdAt,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
+      numberOfDays: numberOfDays ?? this.numberOfDays,
+      sourcePath: sourcePath ?? this.sourcePath,
+      cuisinePreferences: cuisinePreferences ?? this.cuisinePreferences,
     );
   }
 }

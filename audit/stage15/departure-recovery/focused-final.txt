@@ -1,0 +1,113 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: removal has pending feedback, safe failure and ordinary retry
+00:01 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: departure has pending feedback, safe failure and ordinary retry
+00:01 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: terminal index unavailable uses household-specific feedback and retry
+00:01 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: terminal index permission-denied uses household-specific feedback and retry
+00:04 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: dismissed creation sheet cannot pop a new accounts screen on late completion
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_final_recovery_test.dart:140:5)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  dismissed creation sheet cannot pop a new accounts screen on late completion
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:08 +4 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:08 +4 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: dismissed creation sheet cannot pop a new accounts screen on late completion [E]
+  Test failed. See exception logs above.
+  The test description was: dismissed creation sheet cannot pop a new accounts screen on late completion
+  
+00:08 +5 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:08 +6 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:09 +7 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:09 +8 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:09 +9 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:09 +10 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+00:09 +11 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:11 +12 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:11 +13 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:11 +14 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +15 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +16 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +17 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +18 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +19 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +20 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +21 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:12 +22 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:13 +23 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:133:7)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  create pending submit is disabled; dismissed failure cannot navigate
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:13 +23 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate [E]
+  Test failed. See exception logs above.
+  The test description was: create pending submit is disabled; dismissed failure cannot navigate
+  
+00:13 +23 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending sheet hides its draft across account switch and ABA
+00:13 +24 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create empty and invalid input is visible without dispatch
+00:13 +25 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join failure retains draft and retry commits once
+00:13 +26 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join pending submit is disabled; dismissed failure cannot navigate
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:133:7)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  join pending submit is disabled; dismissed failure cannot navigate
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:15 +26 -3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join pending submit is disabled; dismissed failure cannot navigate [E]
+  Test failed. See exception logs above.
+  The test description was: join pending submit is disabled; dismissed failure cannot navigate
+  
+00:15 +26 -3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join pending sheet hides its draft across account switch and ABA
+00:15 +27 -3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join empty and invalid input is visible without dispatch
+00:15 +28 -3: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: dismissed creation sheet cannot pop a new accounts screen on late completion
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join pending submit is disabled; dismissed failure cannot navigate

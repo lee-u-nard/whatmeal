@@ -1,0 +1,1 @@
+/sdcard/whatmeal-provider-ready.png: 1 file pulled, 0 skipped. 20.5 MB/s (41630 bytes in 0.002s)

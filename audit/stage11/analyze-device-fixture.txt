@@ -1,0 +1,8 @@
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - integration_test\stage11_recovery_test.dart:301:11 - curly_braces_in_flow_control_structures
+warning - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator - integration_test\stage11_recovery_test.dart:312:26 - unnecessary_non_null_assertion
+warning - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator - integration_test\stage11_recovery_test.dart:314:66 - unnecessary_non_null_assertion
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\profile\widgets\edit_profile_sheet.dart:137:9 - curly_braces_in_flow_control_structures
+
+4 issues found. (ran in 22.8s)

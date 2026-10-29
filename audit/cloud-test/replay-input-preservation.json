@@ -1,0 +1,7 @@
+{
+  "StableInput": "build/cloudtest-private/evidence/original-rule-budget-capture.json",
+  "SHA256": "31516D6DC0087EEBBF7CC5D1CBD897A2CDD435343BD60CBAC7DE038635D3FE4E",
+  "MatchingPreSuccessArchives": 1,
+  "CapturedDataScope": "Original failed disposable cloud-test recipe only; not original user data",
+  "InputPreservedByteForByte": true
+}

@@ -1,0 +1,4 @@
+warning: in the working copy of 'lib/features/grocery/data/grocery_repository.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/pantry/data/pantry_repository.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pubspec.yaml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/meal_replacement_store_test.dart', LF will be replaced by CRLF the next time Git touches it

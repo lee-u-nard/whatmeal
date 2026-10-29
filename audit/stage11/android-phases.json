@@ -1,0 +1,27 @@
+{
+  "completedPhases": [
+    "RecoveryOwner registered and verified",
+    "invitation copied",
+    "wrong current password retained draft and prevented name changes",
+    "password and display name changed with no password stored in Firestore",
+    "obsolete password rejected after password change",
+    "literal whitespace password login and persisted display name verified",
+    "reset requested through UI; SDK completed demo email action; invalid and reused actions rejected; reset login passed",
+    "dietary profile edited with stable identity allergy preference and creation timestamp",
+    "pantry category and quantity edited on same document with exact expiry author and creation retained",
+    "pantry status cycle and selected expiration date persisted",
+    "RecoveryMember registered and verified",
+    "second account isolated before joining then saw authorized pantry and dietary profile changes",
+    "real pantry transport outage retained edit draft",
+    "authorized server read confirmed SDK transport restored before ordinary retry",
+    "pantry edit recovered after reconnect without identity or quantity loss",
+    "pantry deletion cancellation and confirmed deletion passed",
+    "dietary profile deletion cancellation and confirmed deletion passed"
+  ],
+  "recoveryTransport": {
+    "serverReadSucceeded": true,
+    "unavailableReads": 1,
+    "scopeUnchanged": true,
+    "householdUnchanged": true
+  }
+}

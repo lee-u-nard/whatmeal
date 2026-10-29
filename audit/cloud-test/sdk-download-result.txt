@@ -1,0 +1,1 @@
+CLI wrote config then exited 1 (Node libuv assertion). Independently parsed and validated project and matching cloudtest client among two registered clients; no keys printed.

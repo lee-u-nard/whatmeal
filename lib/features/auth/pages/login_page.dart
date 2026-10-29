@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
       // Router redirect handles navigation after successful sign-in.
     } catch (e) {
       if (!mounted) return;
-      final msg = _friendlyAuthError(e.toString());
+      final msg = _friendlyAuthError(e is String ? e : '');
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -168,10 +168,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           validator: (v) {
-                            if (v == null || v.isEmpty)
+                            if (v == null || v.isEmpty) {
                               return 'Please enter your email';
-                            if (!v.contains('@'))
+                            }
+                            if (!v.contains('@')) {
                               return 'Enter a valid email address';
+                            }
                             return null;
                           },
                         ),

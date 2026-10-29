@@ -1,0 +1,4 @@
+
+  mCurrentFocus=Window{60febfe u0 com.example.whatmeal.local/com.example.whatmeal.MainActivity}
+  mFocusedApp=ActivityRecord{8087c2c u0 com.example.whatmeal.local/com.example.whatmeal.MainActivity t26}
+

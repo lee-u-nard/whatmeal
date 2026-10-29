@@ -1,0 +1,6 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart
+Running Gradle task 'assembleLocalDebug'...                     
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage8"
+Running Gradle task 'assembleLocalDebug'...                       285.7s
+√ Built build\app\outputs\flutter-apk\app-local-debug.apk
+Installing build\app\outputs\flutter-apk\app-local-debug.apk...        53.7s

@@ -1,0 +1,296 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage12\restart-integration.apk...              1,048ms
+I/flutter ( 2024): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FLTFireContextHolder( 2024): received application context.
+W/.whatmeal.local( 2024): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/.whatmeal.local( 2024): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 2024): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 2024): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 2024): Width is zero. 0,0
+W/HWUI    ( 2024): Unknown dataspace 0
+I/Choreographer( 2024): Skipped 119 frames!  The application may be doing too much work on its main thread.
+I/WindowExtensionsImpl( 2024): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 2024): Width is zero. 0,0
+D/FlutterJNI( 2024): Sending viewport metrics to the engine.
+I/Gralloc4( 2024): mapper 4.x is not supported
+W/HWUI    ( 2024): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 2024): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/.whatmeal.local( 2024): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+D/FlutterJNI( 2024): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:63401/usU5L1sR4KQ=/
+VMServiceFlutterDriver: Isolate found with number: 7103366501479423
+VMServiceFlutterDriver: Isolate 7103366501479423 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 2024): 00:00 +0: local Android persistent restart terminal listener and rapid account acceptance
+VMServiceFlutterDriver: Connected to Flutter application.
+D/FlutterJNI( 2024): Sending viewport metrics to the engine.
+W/GooglePlayServicesUtil( 2024): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2024): GooglePlayServices not available due to error 9
+W/Firestore( 2024): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 2024): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2024): app_time_stats: avg=641.80ms min=329.95ms max=912.58ms count=3
+W/WindowOnBackDispatcher( 2024): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2024): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/ProfileInstaller( 2024): Installing profile for com.example.whatmeal.local
+D/EGL_emulation( 2024): app_time_stats: avg=352.17ms min=224.62ms max=567.99ms count=3
+D/EGL_emulation( 2024): app_time_stats: avg=179.36ms min=47.99ms max=511.72ms count=6
+D/EGL_emulation( 2024): app_time_stats: avg=102.31ms min=4.21ms max=211.53ms count=11
+D/EGL_emulation( 2024): app_time_stats: avg=134.86ms min=15.52ms max=229.70ms count=9
+D/EGL_emulation( 2024): app_time_stats: avg=216.29ms min=214.96ms max=218.01ms count=5
+D/EGL_emulation( 2024): app_time_stats: avg=216.70ms min=215.10ms max=218.26ms count=5
+D/EGL_emulation( 2024): app_time_stats: avg=216.66ms min=215.28ms max=218.14ms count=5
+D/EGL_emulation( 2024): app_time_stats: avg=216.69ms min=215.84ms max=217.03ms count=5
+W/Firestore( 2024): (25.1.4) [OnlineStateTracker]: Could not reach Cloud Firestore backend. Backend didn't respond within 10 seconds
+W/Firestore( 2024): 
+W/Firestore( 2024): This typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.
+I/flutter ( 2024): Local UI checkpoint: Firestore offline process restart restored Auth household pantry grocery and profile cache through UI
+D/EGL_emulation( 2024): app_time_stats: avg=233.86ms min=215.91ms max=300.81ms count=5
+D/EGL_emulation( 2024): app_time_stats: avg=1714.27ms min=1714.27ms max=1714.27ms count=1
+D/EGL_emulation( 2024): app_time_stats: avg=1015.61ms min=1015.61ms max=1015.61ms count=1
+D/EGL_emulation( 2024): app_time_stats: avg=1015.36ms min=1015.36ms max=1015.36ms count=1
+W/Firestore( 2024): (25.1.4) [WatchStream]: (78488e5) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 2024): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2024): GooglePlayServices not available due to error 9
+W/Firestore( 2024): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 2024): tagSocket(148) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 2024): tagSocket(150) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2024): app_time_stats: avg=1016.05ms min=1016.05ms max=1016.05ms count=1
+D/EGL_emulation( 2024): app_time_stats: avg=1019.42ms min=1019.42ms max=1019.42ms count=1
+I/flutter ( 2024): Local UI checkpoint: authorized server read confirmed reconnect after offline restart
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/stage12-forbidden-outsider/pantryItems order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L207, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/stage12-forbidden-outsider/familyMembers order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L212, cause=null}
+I/flutter ( 2024): Local UI checkpoint: actual SDK terminal permission denials cleared feeds; explicit resubscription restored authorized data
+D/FirebaseAuth( 2024): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2024): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L207, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 2024): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2024): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/FirebaseAuth( 2024): Logging in as restartother-1792140092925319@example.test with empty reCAPTCHA token
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2024): tagSocket(145) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2024): Notifying id token listeners about user ( 0sT6NqjMhhqpyBsZBVnnpHqKSKZZ ).
+D/FirebaseAuth( 2024): Notifying auth state listeners about user ( 0sT6NqjMhhqpyBsZBVnnpHqKSKZZ ).
+D/EGL_emulation( 2024): app_time_stats: avg=495.68ms min=213.13ms max=1216.37ms count=4
+W/WindowOnBackDispatcher( 2024): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2024): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 2024): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2024): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+I/FirebaseAuth( 2024): Logging in as restartowner-1792140058926339@example.test with empty reCAPTCHA token
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L311, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L345, cause=null}
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L103, cause=null}
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2024): Notifying id token listeners about user ( R6CtY9Jn4hruQ41XVkVhnZn58l3o ).
+D/FirebaseAuth( 2024): Notifying auth state listeners about user ( R6CtY9Jn4hruQ41XVkVhnZn58l3o ).
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L207, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L212, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L330, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L228, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/0sT6NqjMhhqpyBsZBVnnpHqKSKZZ/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L221, cause=null}
+D/FirebaseAuth( 2024): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2024): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L221, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L311, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L221, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L345, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/R6CtY9Jn4hruQ41XVkVhnZn58l3o order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L103, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L330, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L146, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L158, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/ownershipTransfers/pending order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L188, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L197, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L320, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L207, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L212, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L207, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 2024): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2024): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/FirebaseAuth( 2024): Logging in as restartother-1792140092925319@example.test with empty reCAPTCHA token
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2024): Notifying id token listeners about user ( 0sT6NqjMhhqpyBsZBVnnpHqKSKZZ ).
+D/FirebaseAuth( 2024): Notifying auth state listeners about user ( 0sT6NqjMhhqpyBsZBVnnpHqKSKZZ ).
+D/EGL_emulation( 2024): app_time_stats: avg=317.47ms min=264.22ms max=405.33ms count=4
+W/WindowOnBackDispatcher( 2024): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2024): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 2024): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2024): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 2024): Logging in as restartowner-1792140058926339@example.test with empty reCAPTCHA token
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2024): Notifying id token listeners about user ( R6CtY9Jn4hruQ41XVkVhnZn58l3o ).
+D/FirebaseAuth( 2024): Notifying auth state listeners about user ( R6CtY9Jn4hruQ41XVkVhnZn58l3o ).
+I/.whatmeal.local( 2024): Background concurrent mark compact GC freed 4244KB AllocSpace bytes, 20(912KB) LOS objects, 49% free, 4962KB/9925KB, paused 644us,1.685ms total 132.418ms
+D/FirebaseAuth( 2024): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2024): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L221, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L311, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L221, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L345, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/R6CtY9Jn4hruQ41XVkVhnZn58l3o order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L103, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L228, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L330, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L146, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L158, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/ownershipTransfers/pending order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'get' @ L188, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L197, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L320, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L207, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L228, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UrAu4qeajBx0tfoAV1Mo/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L212, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L217, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L207, cause=null}
+W/Firestore( 2024): (25.1.4) [Firestore]: Listen for Query(target=Query(users/R6CtY9Jn4hruQ41XVkVhnZn58l3o/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2024): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 2024): app_time_stats: avg=309.29ms min=216.58ms max=462.46ms count=4
+W/WindowOnBackDispatcher( 2024): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2024): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/FirebaseAuth( 2024): Logging in as restartother-1792140092925319@example.test with empty reCAPTCHA token
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2024): Notifying id token listeners about user ( 0sT6NqjMhhqpyBsZBVnnpHqKSKZZ ).
+D/FirebaseAuth( 2024): Notifying auth state listeners about user ( 0sT6NqjMhhqpyBsZBVnnpHqKSKZZ ).
+W/WindowOnBackDispatcher( 2024): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2024): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 2024): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2024): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 2024): Logging in as restartowner-1792140058926339@example.test with empty reCAPTCHA token
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2024): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2024): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2024): Notifying id token listeners about user ( R6CtY9Jn4hruQ41XVkVhnZn58l3o ).
+D/FirebaseAuth( 2024): Notifying auth state listeners about user ( R6CtY9Jn4hruQ41XVkVhnZn58l3o ).
+D/EGL_emulation( 2024): app_time_stats: avg=284.88ms min=215.07ms max=353.01ms count=4
+I/flutter ( 2024): Local UI checkpoint: three rapid native SDK A logout B logout A cycles isolated data and recovered owner UI
+I/flutter ( 2024): 00:24 +1: (tearDownAll)
+I/flutter ( 2024): 00:24 +2: All tests passed!
+All tests passed.
+Leaving the application running.

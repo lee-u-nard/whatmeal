@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../../core/theme/app_theme.dart';
 import '../data/grocery_repository.dart';
 import '../models/grocery_item.dart';
+import '../widgets/grocery_toolbar.dart';
+import '../widgets/grocery_item_editor.dart';
+import '../widgets/clear_used_dialog.dart';
 
 class GroceryPage extends StatefulWidget {
-  const GroceryPage({super.key});
+  const GroceryPage({super.key, this.repository});
+  final GroceryRepository? repository;
 
   @override
   State<GroceryPage> createState() => _GroceryPageState();
 }
 
 class _GroceryPageState extends State<GroceryPage> {
-  final _nameController = TextEditingController();
-  final _qtyController = TextEditingController();
-  String _selectedSection = 'PRODUCE AISLE';
-
-  static const _sectionsList = [
-    'PRODUCE AISLE',
-    'MEAT & SEAFOOD',
-    'PANTRY STAPLES',
-    'DAIRY & REFRIGERATED',
-  ];
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _qtyController.dispose();
-    super.dispose();
+  GroceryRepository get _repo =>
+      widget.repository ?? GroceryRepository.instance;
+  Future<void> _runMutation(Future<void> Function() operation) async {
+    try {
+      await operation();
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Change was not saved. Check your permissions and connection. Meal requirements must be changed in their source meal.')));
+      }
+    }
   }
 
   void _confirmDeleteItem(String itemName, String itemId) {
+    final scope = _repo.scopeVersion;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -44,12 +46,17 @@ class _GroceryPageState extends State<GroceryPage> {
                 style: TextStyle(color: AppColors.textSecondary)),
           ),
           ElevatedButton(
-            onPressed: () {
-              GroceryRepository.instance.deleteItem(itemId);
-              Navigator.pop(ctx);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Removed $itemName from grocery list')),
-              );
+            onPressed: () async {
+              await _runMutation(() async {
+                if (scope != _repo.scopeVersion) {
+                  throw StateError('Workspace changed.');
+                }
+                await _repo.deleteItem(itemId);
+                if (!mounted || !ctx.mounted) return;
+                Navigator.pop(ctx);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Removed $itemName from grocery list')));
+              });
             },
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
             child: const Text('Delete',
@@ -61,135 +68,40 @@ class _GroceryPageState extends State<GroceryPage> {
     );
   }
 
-  void _showAddGroceryModal() {
-    _nameController.clear();
-    _qtyController.clear();
+  void _showAddGroceryModal([GroceryItem? existing]) {
+    final scope = _repo.scopeVersion;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: AppColors.cardSurface,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (ctx) {
-        return Padding(
-          padding: EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: MediaQuery.of(ctx).viewInsets.bottom + 20,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Add Grocery Item',
-                    style: TextStyle(
-                      color: AppColors.textPrimary,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 18,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.close, color: AppColors.textMuted),
-                    tooltip: 'Close',
-                    onPressed: () => Navigator.pop(ctx),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: 'Item Name',
-                  hintText: 'e.g. Organic Milk',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _qtyController,
-                decoration: InputDecoration(
-                  labelText: 'Quantity',
-                  hintText: 'e.g. 2 Gallons, 500g',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
-              ),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                initialValue: _selectedSection,
-                decoration: InputDecoration(
-                  labelText: 'Aisle / Category',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                ),
-                items: _sectionsList
-                    .map((s) => DropdownMenuItem(value: s, child: Text(s)))
-                    .toList(),
-                onChanged: (v) => setState(() => _selectedSection = v!),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if (_nameController.text.trim().isEmpty) return;
-                    final item = GroceryItem(
-                      id: 'g_${DateTime.now().millisecondsSinceEpoch}',
-                      name: _nameController.text.trim(),
-                      quantity: _qtyController.text.trim().isEmpty
-                          ? '1 unit'
-                          : _qtyController.text.trim(),
-                      section: _selectedSection,
-                    );
-                    try {
-                      await GroceryRepository.instance.addItem(
-                        _selectedSection,
-                        item,
-                      );
-                      if (!ctx.mounted) return;
-                      Navigator.pop(ctx);
-                      if (!mounted) return;
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Added ${item.name} to grocery list.'),
-                        ),
-                      );
-                    } catch (e) {
-                      if (!mounted) return;
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Could not save grocery item: $e'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  child: const Text('Add to List',
-                      style: TextStyle(fontWeight: FontWeight.w700)),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (_) => GroceryItemEditor(
+          existing: existing,
+          isSessionCurrent: () => scope == _repo.scopeVersion,
+          onSave: (item) async {
+            if (scope != _repo.scopeVersion) {
+              throw StateError('Workspace changed.');
+            }
+            var added = true;
+            if (existing == null) {
+              added = await _repo.addItem(item.category, item);
+            } else {
+              await _repo.updateItem(item);
+            }
+            if (!mounted) return;
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(!added
+                    ? 'This item is already on your list.'
+                    : existing == null
+                        ? 'Added ${item.name} to grocery list.'
+                        : 'Grocery item updated.')));
+          }),
     );
   }
 
-  void _shareGroceryList(Map<String, List<GroceryItem>> sections) {
+  Future<void> _shareGroceryList(
+      Map<String, List<GroceryItem>> sections) async {
     final buffer = StringBuffer();
     buffer.writeln('🛒 WhatMeal Grocery Shopping List:');
     buffer.writeln();
@@ -205,14 +117,23 @@ class _GroceryPageState extends State<GroceryPage> {
       }
       buffer.writeln();
     }
-    // Copy to clipboard via flutter/services if needed; using SnackBar for simplicity
+    try {
+      await Clipboard.setData(ClipboardData(text: buffer.toString()));
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Could not copy the list.')));
+      }
+      return;
+    }
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Row(
           children: [
             Icon(Icons.check_circle, color: Colors.white, size: 18),
             SizedBox(width: 8),
-            Text('Grocery list copied to clipboard!'),
+            Expanded(child: Text('Grocery list copied to clipboard!')),
           ],
         ),
         backgroundColor: AppColors.primary,
@@ -223,11 +144,11 @@ class _GroceryPageState extends State<GroceryPage> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Map<String, List<GroceryItem>>>(
-      valueListenable: GroceryRepository.instance,
+      valueListenable: _repo,
       builder: (context, sections, _) {
         final remainingCount = sections.values
             .expand((items) => items)
-            .where((i) => i.status != GroceryStatus.used)
+            .where((i) => i.status == GroceryStatus.needed)
             .length;
         final totalItems = sections.values.expand((items) => items).length;
 
@@ -236,175 +157,174 @@ class _GroceryPageState extends State<GroceryPage> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: AppColors.primary,
             tooltip: 'Add grocery item',
-            onPressed: _showAddGroceryModal,
+            onPressed: () => _showAddGroceryModal(),
             child: const Icon(Icons.add, color: Colors.white),
           ),
-          body: totalItems == 0
-              ? _buildEmptyState(context)
-              : ListView(
-                  padding: const EdgeInsets.all(20),
-                  children: [
-                    if (GroceryRepository.instance.isShared)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryLight,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                color:
-                                    AppColors.primary.withValues(alpha: 0.3)),
-                          ),
-                          child: const Row(
-                            children: [
-                              Icon(Icons.groups,
-                                  size: 18, color: AppColors.primary),
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  'Shared family grocery list — updates sync for household members.',
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
+          body: _repo.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : _repo.error != null
+                  ? Center(
+                      child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child:
+                              Column(mainAxisSize: MainAxisSize.min, children: [
+                            Text(_repo.error!, textAlign: TextAlign.center),
+                            const SizedBox(height: 12),
+                            ElevatedButton(
+                                onPressed: _repo.retry,
+                                child: const Text('Retry')),
+                          ])))
+                  : totalItems == 0
+                      ? _buildEmptyState(context)
+                      : ListView(
+                          padding: const EdgeInsets.all(20),
+                          children: [
+                            if (_repo.isShared)
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primaryLight,
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        color: AppColors.primary
+                                            .withValues(alpha: 0.3)),
+                                  ),
+                                  child: const Row(
+                                    children: [
+                                      Icon(Icons.groups,
+                                          size: 18, color: AppColors.primary),
+                                      SizedBox(width: 8),
+                                      Expanded(
+                                        child: Text(
+                                          'Shared family grocery list — updates sync for household members.',
+                                          style: TextStyle(
+                                            color: AppColors.primary,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    // Status legend banner
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: AppColors.cardSurface,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.border),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          _LegendDot(
-                            color: AppColors.danger,
-                            label: 'Needed',
-                            subtitle: 'unchecked',
-                          ),
-                          _LegendDot(
-                            color: AppColors.info,
-                            label: 'Available',
-                            subtitle: 'tap chip',
-                          ),
-                          _LegendDot(
-                            color: AppColors.primary,
-                            label: 'Purchased',
-                            subtitle: 'checkbox ✓',
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 14),
-
-                    // Subheader row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '$remainingCount remaining items',
-                          style: const TextStyle(
-                            color: AppColors.textPrimary,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            TextButton.icon(
-                              onPressed: () => _shareGroceryList(sections),
-                              icon: const Icon(Icons.share,
-                                  size: 14, color: AppColors.primary),
-                              label: const Text(
-                                'Share List',
-                                style: TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 13,
-                                ),
+                            // Status legend banner
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 10),
+                              decoration: BoxDecoration(
+                                color: AppColors.cardSurface,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: AppColors.border),
+                              ),
+                              child: Wrap(
+                                alignment: WrapAlignment.spaceAround,
+                                spacing: 12,
+                                runSpacing: 8,
+                                children: [
+                                  _LegendDot(
+                                    color: AppColors.danger,
+                                    label: 'Needed',
+                                    subtitle: 'unchecked',
+                                  ),
+                                  _LegendDot(
+                                    color: AppColors.info,
+                                    label: 'Available',
+                                    subtitle: 'tap chip',
+                                  ),
+                                  _LegendDot(
+                                    color: AppColors.primary,
+                                    label: 'Purchased',
+                                    subtitle: 'checkbox ✓',
+                                  ),
+                                ],
                               ),
                             ),
-                            TextButton.icon(
-                              onPressed: () =>
-                                  GroceryRepository.instance.clearUsed(),
-                              icon: const Icon(Icons.cleaning_services_outlined,
-                                  size: 14, color: AppColors.danger),
-                              label: const Text(
-                                'Clear Used',
-                                style: TextStyle(
-                                  color: AppColors.danger,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
+                            const SizedBox(height: 14),
 
-                    for (final entry in sections.entries) ...[
-                      if (entry.value.isNotEmpty) ...[
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(top: 8, bottom: 8, left: 4),
-                          child: Text(
-                            entry.key,
-                            style: const TextStyle(
-                              color: AppColors.textMuted,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12,
-                              letterSpacing: 0.5,
+                            // Subheader row
+                            GroceryToolbar(
+                              remainingCount: remainingCount,
+                              onShare: () => _shareGroceryList(sections),
+                              onClearUsed: () async {
+                                final scope = _repo.scopeVersion;
+                                if (await confirmClearUsed(context) &&
+                                    mounted) {
+                                  await _runMutation(() async {
+                                    if (scope != _repo.scopeVersion) {
+                                      throw StateError('Workspace changed.');
+                                    }
+                                    await _repo.clearUsed();
+                                  });
+                                }
+                              },
                             ),
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.cardSurface,
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: AppColors.border),
-                          ),
-                          child: Column(
-                            children: [
-                              for (var i = 0; i < entry.value.length; i++) ...[
-                                _GroceryItemTile(
-                                  item: entry.value[i],
-                                  onTogglePurchased: (purchased) =>
-                                      GroceryRepository.instance.setPurchased(
-                                          entry.value[i].id!, purchased),
-                                  onCycleStatus: () => GroceryRepository
-                                      .instance
-                                      .cycleStatus(entry.value[i].id!),
-                                  onDelete: () => _confirmDeleteItem(
-                                      entry.value[i].name, entry.value[i].id!),
+                            const SizedBox(height: 12),
+
+                            for (final entry in sections.entries) ...[
+                              if (entry.value.isNotEmpty) ...[
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8, bottom: 8, left: 4),
+                                  child: Text(
+                                    entry.key,
+                                    style: const TextStyle(
+                                      color: AppColors.textMuted,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
                                 ),
-                                if (i != entry.value.length - 1)
-                                  const Divider(
-                                      height: 1,
-                                      indent: 16,
-                                      endIndent: 16,
-                                      color: AppColors.border),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: AppColors.cardSurface,
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(color: AppColors.border),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      for (var i = 0;
+                                          i < entry.value.length;
+                                          i++) ...[
+                                        GroceryItemTile(
+                                          key: ValueKey(entry.value[i].id),
+                                          item: entry.value[i],
+                                          onTogglePurchased: (purchased) =>
+                                              _runMutation(() =>
+                                                  _repo.setPurchased(
+                                                      entry.value[i].id!,
+                                                      purchased)),
+                                          onCycleStatus: () => _runMutation(
+                                              () => _repo.cycleStatus(
+                                                  entry.value[i].id!)),
+                                          onEdit: entry.value[i].sourceMealPaths
+                                                  .isEmpty
+                                              ? () => _showAddGroceryModal(
+                                                  entry.value[i])
+                                              : null,
+                                          onDelete: () => _confirmDeleteItem(
+                                              entry.value[i].name,
+                                              entry.value[i].id!),
+                                        ),
+                                        if (i != entry.value.length - 1)
+                                          const Divider(
+                                              height: 1,
+                                              indent: 16,
+                                              endIndent: 16,
+                                              color: AppColors.border),
+                                      ],
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
                               ],
                             ],
-                          ),
+                          ],
                         ),
-                        const SizedBox(height: 12),
-                      ],
-                    ],
-                  ],
-                ),
         );
       },
     );
@@ -437,7 +357,7 @@ class _GroceryPageState extends State<GroceryPage> {
             ),
             const SizedBox(height: 24),
             ElevatedButton.icon(
-              onPressed: _showAddGroceryModal,
+              onPressed: () => _showAddGroceryModal(),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
@@ -461,18 +381,21 @@ class _GroceryPageState extends State<GroceryPage> {
 // Grocery Item Tile — 3-state status chip (FR-08)
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _GroceryItemTile extends StatelessWidget {
-  const _GroceryItemTile({
+class GroceryItemTile extends StatelessWidget {
+  const GroceryItemTile({
+    super.key,
     required this.item,
     required this.onTogglePurchased,
     required this.onCycleStatus,
     required this.onDelete,
+    this.onEdit,
   });
 
   final GroceryItem item;
   final ValueChanged<bool> onTogglePurchased;
   final VoidCallback onCycleStatus;
   final VoidCallback onDelete;
+  final VoidCallback? onEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -480,77 +403,56 @@ class _GroceryItemTile extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      child: Row(
-        children: [
-          // Purchase checkbox
-          Checkbox(
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Checkbox(
             value: isPurchased,
             activeColor: AppColors.primary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-            onChanged: (v) => onTogglePurchased(v ?? false),
-          ),
-          const SizedBox(width: 4),
-
-          // Name + quantity
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.name,
-                  style: TextStyle(
-                    color: isPurchased
-                        ? AppColors.textMuted
-                        : AppColors.textPrimary,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    decoration: isPurchased ? TextDecoration.lineThrough : null,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      item.quantity,
-                      style: const TextStyle(
-                          color: AppColors.textMuted, fontSize: 12),
-                    ),
-                    if (item.tag != null && isPurchased) ...[
-                      const SizedBox(width: 6),
-                      Text(
-                        '(${item.tag})',
-                        style: const TextStyle(
-                          color: AppColors.textMuted,
-                          fontSize: 12,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ],
-            ),
-          ),
-
-          // Optional status chip (long-press / tap to cycle needed/available)
-          Tooltip(
-            message: 'Tap to change availability status',
-            child: GestureDetector(
-              onTap: onCycleStatus,
-              child: _StatusChip(status: item.status),
-            ),
-          ),
-          const SizedBox(width: 4),
-
-          // Delete
-          IconButton(
-            icon: const Icon(Icons.close, size: 16, color: AppColors.textMuted),
-            tooltip: 'Remove item',
-            onPressed: onDelete,
-          ),
-        ],
-      ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+            onChanged: item.status == GroceryStatus.available
+                ? null
+                : (v) => onTogglePurchased(v ?? false)),
+        const SizedBox(width: 4),
+        Expanded(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(item.name,
+              style: TextStyle(
+                  color:
+                      isPurchased ? AppColors.textMuted : AppColors.textPrimary,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  decoration: isPurchased ? TextDecoration.lineThrough : null)),
+          Wrap(spacing: 6, runSpacing: 2, children: [
+            Text(item.quantity,
+                style:
+                    const TextStyle(color: AppColors.textMuted, fontSize: 12)),
+            if (item.tag != null)
+              Text('(${item.tag!})',
+                  style: const TextStyle(
+                      color: AppColors.textMuted,
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic)),
+          ]),
+          Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
+            Tooltip(
+                message: 'Tap to change availability status',
+                child: GestureDetector(
+                    onTap: onCycleStatus,
+                    child: _StatusChip(status: item.status))),
+            if (onEdit != null)
+              IconButton(
+                  icon: const Icon(Icons.edit_outlined, size: 16),
+                  tooltip: 'Edit item',
+                  onPressed: onEdit),
+            IconButton(
+                icon: const Icon(Icons.close,
+                    size: 16, color: AppColors.textMuted),
+                tooltip: 'Remove item',
+                onPressed: onDelete),
+          ]),
+        ])),
+      ]),
     );
   }
 }

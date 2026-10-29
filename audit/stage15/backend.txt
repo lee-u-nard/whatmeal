@@ -1,0 +1,40 @@
+i  emulators: Starting emulators: auth, firestore
+i  emulators: Detected demo project ID "demo-whatmeal-audit", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
++  firestore: Firestore Emulator was started in standard edition.
++  firestore: Firestore Emulator UI websocket is running on 9150.
+(node:6160) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+    at urlParse (node:url:136:13)
+    at Object.urlResolve [as resolve] (node:url:725:10)
+    at $RefParser.parse (C:\Users\ASUS V16\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@apidevtools\json-schema-ref-parser\lib\index.js:103:19)
+    at $RefParser.resolve (C:\Users\ASUS V16\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@apidevtools\json-schema-ref-parser\lib\index.js:184:16)
+    at $RefParser.bundle (C:\Users\ASUS V16\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@apidevtools\json-schema-ref-parser\lib\index.js:227:16)
+    at bundle (C:\Users\ASUS V16\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\exegesis\lib\index.js:55:22)
+    at C:\Users\ASUS V16\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\exegesis\lib\index.js:60:34
+    at Generator.next (<anonymous>)
+    at C:\Users\ASUS V16\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\exegesis\lib\index.js:22:71
+    at new Promise (<anonymous>)
+!  emulators: The Emulator UI is not starting because none of the running emulators have a UI component.
+
+[90m┌─────────────────────────────────────────────────────────────┐[39m
+[90m│[39m ✔  All emulators ready! It is now safe to connect your app. [90m│[39m
+[90m└─────────────────────────────────────────────────────────────┘[39m
+
+[90m┌────────────────[39m[90m┬────────────────┐[39m
+[90m│[39m[33m Emulator       [39m[90m│[39m[33m Host:Port      [39m[90m│[39m
+[90m├────────────────[39m[90m┼────────────────┤[39m
+[90m│[39m Authentication [90m│[39m 127.0.0.1:9099 [90m│[39m
+[90m├────────────────[39m[90m┼────────────────┤[39m
+[90m│[39m Firestore      [90m│[39m 127.0.0.1:8180 [90m│[39m
+[90m└────────────────[39m[90m┴────────────────┘[39m
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500, 9150
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[redacted emulator email action]
+[redacted emulator email action]
+[redacted emulator email action]
+[redacted emulator email action]

@@ -1,0 +1,26 @@
+[
+  {
+    "Port": 8180,
+    "Listening": false
+  },
+  {
+    "Port": 9099,
+    "Listening": false
+  },
+  {
+    "Port": 8183,
+    "Listening": false
+  },
+  {
+    "Port": 8184,
+    "Listening": false
+  },
+  {
+    "Port": 9180,
+    "Listening": false
+  },
+  {
+    "Port": 9199,
+    "Listening": false
+  }
+]

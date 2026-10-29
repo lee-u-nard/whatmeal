@@ -1,0 +1,123 @@
+{
+  "stage": 14,
+  "scope": "Only demo-whatmeal-audit local Auth/Firestore; live AI pending approval",
+  "findings": {
+    "medium": 3,
+    "low": 1,
+    "total": 4,
+    "reproducedBeforeRepair": 3,
+    "sourceTracedWithRegression": 1
+  },
+  "flutter": {
+    "passed": 243,
+    "added": 6,
+    "exit": 0,
+    "seconds": 65,
+    "log": "flutter-tests.txt",
+    "kind": "Mocks, controlled streams and widgets"
+  },
+  "analysis": {
+    "issues": 0,
+    "exit": 0,
+    "seconds": 3.3,
+    "log": "analyze-clean.txt"
+  },
+  "security": {
+    "rerun": false,
+    "priorPassed": 65,
+    "total": 65,
+    "priorLog": "../stage11/security-acceptance-rerun.txt",
+    "rulesChanged": false,
+    "protectedFilesUnchanged": true
+  },
+  "android": {
+    "exit": 0,
+    "seconds": 42,
+    "combinedWorkflows": 1,
+    "completedPhases": [
+      "InboxOwner registered and verified",
+      "InboxOther registered and verified",
+      "household created through ordinary UI for authorized shared activity",
+      "personal notification SDK denial recovered through visible Retry without changing session",
+      "shared SDK denial recovered and UI mark-all persisted personal read and own shared receipt",
+      "native account switch clears previous inbox and queued routing; stale read rejected",
+      "native A B A restores correct persisted read state while rejecting old session",
+      "provider settings SDK denial recovered through visible Retry Settings without live AI call",
+      "metadata-only settings persisted and remained isolated through native A B A"
+    ],
+    "permissionDeniedObservations": 4,
+    "observationsAreNotSecurityAcceptanceCases": true,
+    "log": "android-inbox.txt",
+    "screenshot": "notification-recovered.png",
+    "screenshotVisuallyInspected": true,
+    "anr": false,
+    "kind": "Actual AOSP Android UI with injected query boundaries and real Firebase emulator SDK denials; Flutter simulated typing",
+    "simultaneousDevices": false
+  },
+  "apk": {
+    "path": "build/stage14/whatmeal-local-tester.apk",
+    "sha256": "81BA3903697881E2173E577EC46827DDD693379E101971A5FF01E9249466772D",
+    "bytes": 57895529,
+    "buildExit": 0,
+    "buildSeconds": 79.1,
+    "verificationExit": 0,
+    "package": "com.example.whatmeal.local",
+    "project": "demo-whatmeal-audit",
+    "signing": "Existing debug tester certificate, not production signing",
+    "runtime": "Verified clean install and cold start",
+    "installExit": 0,
+    "resetExit": 0,
+    "coldStartExit": 0,
+    "coldStartMilliseconds": 1156,
+    "screenshot": "tester-startup.png",
+    "screenshotVisuallyInspected": true,
+    "anr": false
+  },
+  "failuresPreserved": [
+    {
+      "log": "notification-reproduced.txt",
+      "exit": 1,
+      "kind": "Fixture compile error; no cases ran"
+    },
+    {
+      "log": "notification-reproduced-valid.txt",
+      "exit": 1,
+      "passed": 0,
+      "failed": 3,
+      "kind": "Actual pre-fix product regressions"
+    },
+    {
+      "log": "analyze-initial.txt",
+      "exit": 1,
+      "issues": 1
+    },
+    {
+      "log": "analyze.txt",
+      "exit": 1,
+      "issues": 1
+    }
+  ],
+  "limitations": [
+    "No live AI/provider calls or approved live test project",
+    "No native FCM/push permission, initialization or token-lifecycle acceptance",
+    "No physical or simultaneous devices, native keyboard, live email or production certification",
+    "Receipt-specific terminal-source variant, household role variants, revocation during outage and native Auth RPC overlap remain",
+    "Already-dispatched SDK writes cannot be cancelled by client scope checks"
+  ],
+  "productionAccess": false,
+  "productionModified": false,
+  "deployed": false,
+  "cleanup": {
+    "dedicatedAvdStopped": true,
+    "backendIntentionallyStopped": true,
+    "dedicatedPortsClosed": true,
+    "evidence": "cleanup-ports.json"
+  },
+  "evidenceChecks": {
+    "uniqueRequirements": 89,
+    "protectedFilesUnchanged": 5,
+    "authoritativeChildExitFilesChecked": 10,
+    "apkHashMatched": true,
+    "diffCheckExit": 0
+  }
+}

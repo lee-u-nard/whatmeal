@@ -1,0 +1,25 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: untouched core/display/core preserves quantities and recipe metadata
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: obsolete source session prevents the persistence call entirely
+00:00 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: missing workspace null prevents persistence and draft exposure
+00:00 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: missing workspace  prevents persistence and draft exposure
+00:00 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: account/household change discards delayed success
+00:00 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: account/household change discards delayed failure
+00:00 +15: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: A to B to A switching still rejects the old generated draft
+00:00 +16: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: invalid empty persistence identity remains explicitly unsaved
+00:00 +17: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_batch_capture_test.dart: outgoing Pigeon payload preserves integers and timestamp sentinels
+00:00 +18: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_batch_capture_test.dart: public summaries contain schema sizes but no recipe or account strings
+00:00 +19: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_batch_capture_test.dart: only the requested disposable owner plan scope is captured
+00:00 +20: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_batch_capture_test.dart: observer forwards exact native bytes and permission denial unchanged
+00:00 +21: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_batch_capture_test.dart: unsupported diagnostic bytes never suppress the native operation
+00:00 +22: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_batch_capture_test.dart: an undecodable native reply is also forwarded unchanged
+00:00 +23: All tests passed!

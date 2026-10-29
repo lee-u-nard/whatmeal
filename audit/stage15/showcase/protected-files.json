@@ -1,0 +1,18 @@
+[
+  {
+    "File": "firestore.rules",
+    "Unchanged": true
+  },
+  {
+    "File": "security_acceptance.mjs",
+    "Unchanged": true
+  },
+  {
+    "File": "AndroidManifest.xml",
+    "Unchanged": true
+  },
+  {
+    "File": "google-services.json",
+    "Unchanged": true
+  }
+]

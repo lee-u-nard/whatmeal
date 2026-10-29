@@ -1,0 +1,3 @@
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage13"
+Stopping Daemon(s)
+1 Daemon stopped

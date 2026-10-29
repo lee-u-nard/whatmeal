@@ -1,0 +1,1 @@
+Stopped after confirmed Profile/meal-planning render and Material failures. Household checkpoints completed; combined test interrupted and not passed.

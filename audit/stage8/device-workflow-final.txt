@@ -1,0 +1,42 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart
+Running Gradle task 'assembleLocalDebug'...                     
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage8"
+Running Gradle task 'assembleLocalDebug'...                       317.9s
+√ Built build\app\outputs\flutter-apk\app-local-debug.apk
+Installing build\app\outputs\flutter-apk\app-local-debug.apk...        19.5s
+00:00 +0: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.first (dart:core/iterable.dart:663:7)
+#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)
+#3      Iterable.single (dart:core/iterable.dart:694:13)
+#4      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+#5      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2389:32)
+#6      main.<anonymous closure>.tap (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:33:20)
+<asynchronous suspension>
+#7      main.<anonymous closure>.register (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:49:7)
+<asynchronous suspension>
+#8      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:87:5)
+<asynchronous suspension>
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 2 frames from dart:async-patch and package:stack_trace)
+
+The test description was:
+  local Android UI registration, verification, household and account switching
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:06 +0 -1: local Android UI registration, verification, household and account switching [E]
+  Test failed. See exception logs above.
+  The test description was: local Android UI registration, verification, household and account switching
+  
+01:06 +0 -1: (tearDownAll)
+01:52 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart: local Android UI registration, verification, household and account switching

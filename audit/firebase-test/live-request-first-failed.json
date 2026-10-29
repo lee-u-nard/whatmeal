@@ -1,0 +1,9 @@
+{
+  "RequestedAt": "2026-10-18T20:33:30.7144148Z",
+  "Project": "whatmeal-gemini-test-20261019",
+  "RequestedModel": "gemini-3.8-flash",
+  "BoundedAttempts": 1,
+  "Fixture": "Synthetic two adults, one dinner, pantry rice and carrot, peanut restriction",
+  "AuthenticationDataUsed": false,
+  "ExistingHouseholdDataUsed": false
+}

@@ -1,0 +1,1 @@
+/sdcard/stage15-tester.png: 1 file pulled, 0 skipped. 9.1 MB/s (28730 bytes in 0.003s)

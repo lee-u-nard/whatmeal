@@ -1,0 +1,66 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart
+00:00 +0: loading pantry cannot publish an inflated complete shopping requirement
+00:00 +0 -1: loading pantry cannot publish an inflated complete shopping requirement [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\pantry_grocery_dependency_test.dart 78:5       main.<fn>
+  
+00:00 +0 -1: pantry failure is visible in grocery UI and Retry restores the real shortage
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "Pantry stock could not be loaded. Please
+retry.": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/pantry_grocery_dependency_test.dart:97:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/pantry_grocery_dependency_test.dart line 97
+The test description was:
+  pantry failure is visible in grocery UI and Retry restores the real shortage
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -2: pantry failure is visible in grocery UI and Retry restores the real shortage [E]
+  Test failed. See exception logs above.
+  The test description was: pantry failure is visible in grocery UI and Retry restores the real shortage
+  
+00:00 +0 -2: delayed purchase callback cannot persist an inflated receipt after pantry denial
+00:00 +0 -3: delayed purchase callback cannot persist an inflated receipt after pantry denial [E]
+  Expected: throws <Instance of 'StateError'>
+    Actual: <Instance of 'Future<void>'>
+     Which: emitted <null>
+  
+  package:matcher                                    expectLater
+  package:flutter_test/src/widget_tester.dart 507:8  expectLater
+  test\pantry_grocery_dependency_test.dart 123:11    main.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                         _CustomZone.registerUnaryCallback
+  test\pantry_grocery_dependency_test.dart 116:5     main.<fn>
+  
+00:00 +0 -3: obsolete pantry callback cannot recover a terminal feed without Retry
+00:00 +0 -4: obsolete pantry callback cannot recover a terminal feed without Retry [E]
+  Expected: not null
+    Actual: <null>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\pantry_grocery_dependency_test.dart 137:5      main.<fn>
+  
+00:00 +0 -4: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: delayed purchase callback cannot persist an inflated receipt after pantry denial
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: loading pantry cannot publish an inflated complete shopping requirement
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: obsolete pantry callback cannot recover a terminal feed without Retry
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: pantry failure is visible in grocery UI and Retry restores the real shortage

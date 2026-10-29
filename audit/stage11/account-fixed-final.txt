@@ -1,0 +1,7 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart
+00:00 +0: password change preserves literal whitespace
+00:01 +1: missing current password prevents any profile write
+00:01 +2: failed reauthentication retains draft without changing name
+00:01 +3: stale account editor cannot dispatch mutations
+00:01 +4: recovery form scrolls above keyboard at narrow enlarged size
+00:01 +5: All tests passed!

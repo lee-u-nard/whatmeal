@@ -1,0 +1,22 @@
+[
+  {
+    "File": "firestore.rules",
+    "Sha256": "DB759E4941F8B9C06B097FB7C4FE9F148F7C2ADCBB52DA6AAC9B4ED9E5F7BE77"
+  },
+  {
+    "File": "audit/stage3/security_acceptance.mjs",
+    "Sha256": "BB8D6F91D9BE1D08AE9320149000C03E79B9614965726CC7B923D80A7B7E696A"
+  },
+  {
+    "File": "android/app/src/local/AndroidManifest.xml",
+    "Sha256": "1B78576F7D1666B495C1F5B10F845F6CFC93B5692C0B6050A6225F3A9A760A8D"
+  },
+  {
+    "File": "android/app/src/local/google-services.json",
+    "Sha256": "57B82FB302B92102F948AC13DA114D8AE6657344313BC1A7DF13296658E28990"
+  },
+  {
+    "File": "build/private-state-snapshots/20261018-household-interruption/manifest.json",
+    "Sha256": "AF6F2EBB4D063984FCDB94E2B7B7D85BB01140CEC1256771CA260957F2F0B406"
+  }
+]

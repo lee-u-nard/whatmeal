@@ -1,0 +1,13 @@
+Computing fixes in whatmeal...
+Applying fixes...
+
+lib\features\auth\data\auth_repository.dart
+  curly_braces_in_flow_control_structures - 3 fixes
+
+lib\features\grocery\data\grocery_repository.dart
+  curly_braces_in_flow_control_structures - 1 fix
+
+lib\features\profile\pages\profile_page.dart
+  curly_braces_in_flow_control_structures - 1 fix
+
+5 fixes made in 3 files.

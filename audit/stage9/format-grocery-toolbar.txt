@@ -1,0 +1,4 @@
+Formatted lib/features/grocery/widgets/grocery_toolbar.dart
+Formatted lib/features/grocery/pages/grocery_page.dart
+Formatted test/grocery_toolbar_test.dart
+Formatted 3 files (3 changed) in 0.02 seconds.

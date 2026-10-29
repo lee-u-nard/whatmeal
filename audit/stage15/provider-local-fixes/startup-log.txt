@@ -1,0 +1,328 @@
+--------- beginning of main
+I/atmeal.showcase( 1911): Using CollectorTypeCMC GC.
+W/atmeal.showcase( 1911): Unexpected CPU variant for x86: x86_64.
+W/atmeal.showcase( 1911): Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, default
+E/atmeal.showcase( 1911): Not starting debugger since process cannot load the jdwp agent.
+D/nativeloader( 1911): Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+D/ApplicationLoaders( 1911): Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+D/ApplicationLoaders( 1911): Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+D/nativeloader( 1911): Configuring clns-7 for other apk /data/app/~~6RhnE0HGE_gVDqtar39PrQ==/com.example.whatmeal.showcase-VCmzSzVP2JlrD8UShAL_5A==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~6RhnE0HGE_gVDqtar39PrQ==/com.example.whatmeal.showcase-VCmzSzVP2JlrD8UShAL_5A==/lib/x86_64:/data/app/~~6RhnE0HGE_gVDqtar39PrQ==/com.example.whatmeal.showcase-VCmzSzVP2JlrD8UShAL_5A==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.example.whatmeal.showcase
+V/GraphicsEnvironment( 1911): Currently set values for:
+V/GraphicsEnvironment( 1911):   angle_gl_driver_selection_pkgs=[]
+V/GraphicsEnvironment( 1911):   angle_gl_driver_selection_values=[]
+V/GraphicsEnvironment( 1911): Global.Settings values are invalid: number of packages: 0, number of values: 0
+V/GraphicsEnvironment( 1911): Neither updatable production driver nor prerelease driver is supported.
+W/ComponentDiscovery( 1911): Invalid component registrar.
+W/ComponentDiscovery( 1911): j90: Could not instantiate com.google.firebase.installations.FirebaseInstallationsKtxRegistrar
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:99)
+W/ComponentDiscovery( 1911): 	at dg.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:149)
+W/ComponentDiscovery( 1911): 	at fs.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:331)
+W/ComponentDiscovery( 1911): 	at fs.i(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:111)
+W/ComponentDiscovery( 1911): 	at fs.j(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:40)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.onCreate(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:12)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2644)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2613)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.attachInfo(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:16)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installProvider(ActivityThread.java:8292)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:7807)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7488)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2416)
+W/ComponentDiscovery( 1911): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loop(Looper.java:317)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+W/ComponentDiscovery( 1911): 	at java.lang.reflect.Method.invoke(Native Method)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+W/ComponentDiscovery( 1911): Caused by: java.lang.NoSuchMethodException: com.google.firebase.installations.FirebaseInstallationsKtxRegistrar.<init> []
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getConstructor0(Class.java:3395)
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getDeclaredConstructor(Class.java:3077)
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:42)
+W/ComponentDiscovery( 1911): 	... 20 more
+W/ComponentDiscovery( 1911): Invalid component registrar.
+W/ComponentDiscovery( 1911): j90: Could not instantiate com.google.firebase.appcheck.debug.FirebaseAppCheckDebugRegistrar
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:99)
+W/ComponentDiscovery( 1911): 	at dg.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:149)
+W/ComponentDiscovery( 1911): 	at fs.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:331)
+W/ComponentDiscovery( 1911): 	at fs.i(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:111)
+W/ComponentDiscovery( 1911): 	at fs.j(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:40)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.onCreate(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:12)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2644)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2613)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.attachInfo(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:16)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installProvider(ActivityThread.java:8292)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:7807)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7488)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2416)
+W/ComponentDiscovery( 1911): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loop(Looper.java:317)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+W/ComponentDiscovery( 1911): 	at java.lang.reflect.Method.invoke(Native Method)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+W/ComponentDiscovery( 1911): Caused by: java.lang.NoSuchMethodException: com.google.firebase.appcheck.debug.FirebaseAppCheckDebugRegistrar.<init> []
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getConstructor0(Class.java:3395)
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getDeclaredConstructor(Class.java:3077)
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:42)
+W/ComponentDiscovery( 1911): 	... 20 more
+W/ComponentDiscovery( 1911): Invalid component registrar.
+W/ComponentDiscovery( 1911): j90: Could not instantiate com.google.firebase.appcheck.playintegrity.FirebaseAppCheckPlayIntegrityRegistrar
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:99)
+W/ComponentDiscovery( 1911): 	at dg.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:149)
+W/ComponentDiscovery( 1911): 	at fs.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:331)
+W/ComponentDiscovery( 1911): 	at fs.i(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:111)
+W/ComponentDiscovery( 1911): 	at fs.j(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:40)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.onCreate(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:12)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2644)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2613)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.attachInfo(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:16)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installProvider(ActivityThread.java:8292)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:7807)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7488)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2416)
+W/ComponentDiscovery( 1911): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loop(Looper.java:317)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+W/ComponentDiscovery( 1911): 	at java.lang.reflect.Method.invoke(Native Method)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+W/ComponentDiscovery( 1911): Caused by: java.lang.NoSuchMethodException: com.google.firebase.appcheck.playintegrity.FirebaseAppCheckPlayIntegrityRegistrar.<init> []
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getConstructor0(Class.java:3395)
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getDeclaredConstructor(Class.java:3077)
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:42)
+W/ComponentDiscovery( 1911): 	... 20 more
+W/ComponentDiscovery( 1911): Invalid component registrar.
+W/ComponentDiscovery( 1911): j90: Could not instantiate com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:99)
+W/ComponentDiscovery( 1911): 	at dg.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:149)
+W/ComponentDiscovery( 1911): 	at fs.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:331)
+W/ComponentDiscovery( 1911): 	at fs.i(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:111)
+W/ComponentDiscovery( 1911): 	at fs.j(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:40)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.onCreate(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:12)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2644)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2613)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.attachInfo(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:16)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installProvider(ActivityThread.java:8292)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:7807)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7488)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2416)
+W/ComponentDiscovery( 1911): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loop(Looper.java:317)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+W/ComponentDiscovery( 1911): 	at java.lang.reflect.Method.invoke(Native Method)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+W/ComponentDiscovery( 1911): Caused by: java.lang.NoSuchMethodException: com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar.<init> []
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getConstructor0(Class.java:3395)
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getDeclaredConstructor(Class.java:3077)
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:42)
+W/ComponentDiscovery( 1911): 	... 20 more
+W/ComponentDiscovery( 1911): Invalid component registrar.
+W/ComponentDiscovery( 1911): j90: Could not instantiate com.google.firebase.appcheck.FirebaseAppCheckRegistrar
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:99)
+W/ComponentDiscovery( 1911): 	at dg.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:149)
+W/ComponentDiscovery( 1911): 	at fs.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:331)
+W/ComponentDiscovery( 1911): 	at fs.i(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:111)
+W/ComponentDiscovery( 1911): 	at fs.j(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:40)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.onCreate(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:12)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2644)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2613)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.attachInfo(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:16)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installProvider(ActivityThread.java:8292)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:7807)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7488)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2416)
+W/ComponentDiscovery( 1911): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loop(Looper.java:317)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+W/ComponentDiscovery( 1911): 	at java.lang.reflect.Method.invoke(Native Method)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+W/ComponentDiscovery( 1911): Caused by: java.lang.NoSuchMethodException: com.google.firebase.appcheck.FirebaseAppCheckRegistrar.<init> []
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getConstructor0(Class.java:3395)
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getDeclaredConstructor(Class.java:3077)
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:42)
+W/ComponentDiscovery( 1911): 	... 20 more
+W/ComponentDiscovery( 1911): Invalid component registrar.
+W/ComponentDiscovery( 1911): j90: Could not instantiate com.google.firebase.appcheck.safetynet.FirebaseAppCheckSafetyNetRegistrar
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:99)
+W/ComponentDiscovery( 1911): 	at dg.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:149)
+W/ComponentDiscovery( 1911): 	at fs.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:331)
+W/ComponentDiscovery( 1911): 	at fs.i(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:111)
+W/ComponentDiscovery( 1911): 	at fs.j(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:40)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.onCreate(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:12)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2644)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2613)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.attachInfo(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:16)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installProvider(ActivityThread.java:8292)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:7807)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7488)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2416)
+W/ComponentDiscovery( 1911): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loop(Looper.java:317)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+W/ComponentDiscovery( 1911): 	at java.lang.reflect.Method.invoke(Native Method)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+W/ComponentDiscovery( 1911): Caused by: java.lang.NoSuchMethodException: com.google.firebase.appcheck.safetynet.FirebaseAppCheckSafetyNetRegistrar.<init> []
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getConstructor0(Class.java:3395)
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getDeclaredConstructor(Class.java:3077)
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:42)
+W/ComponentDiscovery( 1911): 	... 20 more
+W/ComponentDiscovery( 1911): Invalid component registrar.
+W/ComponentDiscovery( 1911): j90: Could not instantiate com.google.firebase.messaging.FirebaseMessagingKtxRegistrar
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:99)
+W/ComponentDiscovery( 1911): 	at dg.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:149)
+W/ComponentDiscovery( 1911): 	at fs.<init>(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:331)
+W/ComponentDiscovery( 1911): 	at fs.i(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:111)
+W/ComponentDiscovery( 1911): 	at fs.j(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:40)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.onCreate(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:12)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2644)
+W/ComponentDiscovery( 1911): 	at android.content.ContentProvider.attachInfo(ContentProvider.java:2613)
+W/ComponentDiscovery( 1911): 	at com.google.firebase.provider.FirebaseInitProvider.attachInfo(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:16)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installProvider(ActivityThread.java:8292)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.installContentProviders(ActivityThread.java:7807)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:7488)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(Unknown Source:0)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2416)
+W/ComponentDiscovery( 1911): 	at android.os.Handler.dispatchMessage(Handler.java:107)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loopOnce(Looper.java:232)
+W/ComponentDiscovery( 1911): 	at android.os.Looper.loop(Looper.java:317)
+W/ComponentDiscovery( 1911): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+W/ComponentDiscovery( 1911): 	at java.lang.reflect.Method.invoke(Native Method)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+W/ComponentDiscovery( 1911): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+W/ComponentDiscovery( 1911): Caused by: java.lang.NoSuchMethodException: com.google.firebase.messaging.FirebaseMessagingKtxRegistrar.<init> []
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getConstructor0(Class.java:3395)
+W/ComponentDiscovery( 1911): 	at java.lang.Class.getDeclaredConstructor(Class.java:3077)
+W/ComponentDiscovery( 1911): 	at zf.get(r8-map-id-4e5419961c8c599091c2c8de64074c33e7b73e6b4815fe7f58222dbab4aecfbd:42)
+W/ComponentDiscovery( 1911): 	... 20 more
+I/FirebaseApp( 1911): Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+I/FirebaseInitProvider( 1911): FirebaseApp initialization successful
+D/FLTFireContextHolder( 1911): received application context.
+W/Metadata( 1911): Failed to find package android.content.pm.PackageManager$NameNotFoundException: com.google.android.gms
+D/nativeloader( 1911): Load /data/app/~~6RhnE0HGE_gVDqtar39PrQ==/com.example.whatmeal.showcase-VCmzSzVP2JlrD8UShAL_5A==/base.apk!/lib/x86_64/libflutter.so using ns clns-7 from class loader (caller=/data/app/~~6RhnE0HGE_gVDqtar39PrQ==/com.example.whatmeal.showcase-VCmzSzVP2JlrD8UShAL_5A==/base.apk): ok
+D/skia    ( 1911): [SkFontMgr Android Parser] '/product/etc/fonts_customization.xml' could not be opened
+W/atmeal.showcase( 1911): type=1400 audit(0.0:32): avc:  denied  { read } for  name="max_map_count" dev="proc" ino=13176 scontext=u:r:untrusted_app:s0:c149,c256,c512,c768 tcontext=u:object_r:proc_max_map_count:s0 tclass=file permissive=0 app=com.example.whatmeal.showcase
+I/EGL_emulation( 1911): Opening libGLESv1_CM_emulation.so
+I/EGL_emulation( 1911): Opening libGLESv2_emulation.so
+D/FLTFireContextHolder( 1911): received application context.
+I/flutter ( 1911): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+W/HWUI    ( 1911): Unknown dataspace 0
+I/WindowExtensionsImpl( 1911): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+W/HWUI    ( 1911): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 1911): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Gralloc4( 1911): mapper 4.x is not supported
+I/Choreographer( 1911): Skipped 42 frames!  The application may be doing too much work on its main thread.
+W/System  ( 1911): Ignoring header X-Firebase-Locale because its value was null.
+W/GooglePlayServicesUtil( 1911): com.example.whatmeal.showcase requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1911): GooglePlayServices not available due to error 9
+W/Firestore( 1911): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: r30
+D/TrafficStats( 1911): tagSocket(123) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 1911): tagSocket(129) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 1911): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1911): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 1911): Notifying id token listeners about user ([uid-redacted]).
+D/ProfileInstaller( 1911): Installing profile for com.example.whatmeal.showcase
+D/EGL_emulation( 1911): app_time_stats: avg=1028.94ms min=11.16ms max=8015.34ms count=8
+D/EGL_emulation( 1911): app_time_stats: avg=4742.05ms min=17.43ms max=22810.36ms count=5
+D/EGL_emulation( 1911): app_time_stats: avg=1047.16ms min=1047.16ms max=1047.16ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=16510.15ms min=1126.30ms max=31894.01ms count=2
+W/wn0     ( 1911): vn0@bec3c98: Received GOAWAY with ENHANCE_YOUR_CALM. Debug data: too_many_pings
+W/x4      ( 1911): Increased {0} to {1}
+D/TrafficStats( 1911): tagSocket(143) with statsTag=0xffffffff, statsUid=-1
+W/Firestore( 1911): (25.1.4) [te1]: (ee0848c) Stream closed with status: z41{code=RESOURCE_EXHAUSTED, description=HTTP/2 error code: ENHANCE_YOUR_CALM (Bandwidth exhausted)
+W/Firestore( 1911): Received Goaway
+W/Firestore( 1911): too_many_pings, cause=null}.
+I/atmeal.showcase( 1911): Background concurrent mark compact GC freed 3111KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 3523KB/7046KB, paused 1.099ms,765us total 101.145ms
+D/EGL_emulation( 1911): app_time_stats: avg=97790.71ms min=97790.71ms max=97790.71ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=48938.47ms min=86.42ms max=97790.53ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=1022.80ms min=1022.80ms max=1022.80ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1019.43ms min=1019.43ms max=1019.43ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=83785.66ms min=83785.66ms max=83785.66ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=83787.45ms min=83787.45ms max=83787.45ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1097.60ms min=1097.60ms max=1097.60ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1170.38ms min=1170.38ms max=1170.38ms count=1
+W/WindowOnBackDispatcher( 1911): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1911): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1911): app_time_stats: avg=1402.47ms min=80.02ms max=2724.91ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=3240.66ms min=3240.66ms max=3240.66ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=502.58ms min=10.53ms max=1030.19ms count=3
+D/EGL_emulation( 1911): app_time_stats: avg=1020.60ms min=1020.60ms max=1020.60ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=36026.66ms min=36026.66ms max=36026.66ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=36045.08ms min=36045.08ms max=36045.08ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1024.82ms min=1024.82ms max=1024.82ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1049.99ms min=1049.99ms max=1049.99ms count=1
+W/WindowOnBackDispatcher( 1911): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1911): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1911): app_time_stats: avg=622.73ms min=22.94ms max=1222.52ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=2042.90ms min=2042.90ms max=2042.90ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=608.31ms min=5.43ms max=1010.21ms count=3
+D/EGL_emulation( 1911): app_time_stats: avg=1029.54ms min=1029.54ms max=1029.54ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=83.51ms min=1.98ms max=569.28ms count=12
+W/WindowOnBackDispatcher( 1911): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1911): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1911): app_time_stats: avg=1801.07ms min=1801.07ms max=1801.07ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=290.74ms min=9.65ms max=1024.21ms count=6
+D/EGL_emulation( 1911): app_time_stats: avg=1032.17ms min=1032.17ms max=1032.17ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1197.81ms min=1197.81ms max=1197.81ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1910.14ms min=1910.14ms max=1910.14ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1021.71ms min=1021.71ms max=1021.71ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=69.84ms min=1.30ms max=1020.51ms count=23
+D/EGL_emulation( 1911): app_time_stats: avg=33585.67ms min=33585.67ms max=33585.67ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=33584.33ms min=33584.33ms max=33584.33ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1019.30ms min=1019.30ms max=1019.30ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1071.17ms min=1071.17ms max=1071.17ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=621.39ms min=66.13ms max=1176.66ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=2162.30ms min=2162.30ms max=2162.30ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1029.89ms min=1029.89ms max=1029.89ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=62.10ms min=3.22ms max=1023.16ms count=32
+D/EGL_emulation( 1911): app_time_stats: avg=1403.26ms min=1403.26ms max=1403.26ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1409.04ms min=1409.04ms max=1409.04ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1007.25ms min=1007.25ms max=1007.25ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1031.73ms min=1031.73ms max=1031.73ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=135.23ms min=1.01ms max=910.63ms count=7
+D/EGL_emulation( 1911): app_time_stats: avg=1920.85ms min=1920.85ms max=1920.85ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=73.77ms min=1.14ms max=1024.62ms count=25
+D/EGL_emulation( 1911): app_time_stats: avg=1045.68ms min=1045.68ms max=1045.68ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1385.68ms min=1385.68ms max=1385.68ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=702.77ms min=20.57ms max=1384.98ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=1011.66ms min=1011.66ms max=1011.66ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1029.07ms min=1029.07ms max=1029.07ms count=1
+W/WindowOnBackDispatcher( 1911): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1911): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1911): app_time_stats: avg=333.67ms min=1.35ms max=980.57ms count=3
+D/EGL_emulation( 1911): app_time_stats: avg=1891.52ms min=1891.52ms max=1891.52ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=953.40ms min=893.52ms max=1013.27ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=1027.40ms min=1027.40ms max=1027.40ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=28414.14ms min=12.54ms max=56815.74ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=57252.76ms min=57252.76ms max=57252.76ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=506.87ms min=23.29ms max=1085.00ms count=3
+D/EGL_emulation( 1911): app_time_stats: avg=1094.33ms min=1094.33ms max=1094.33ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=593.88ms min=19.66ms max=1168.11ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=2117.35ms min=2117.35ms max=2117.35ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=52.79ms min=7.29ms max=1013.80ms count=37
+D/EGL_emulation( 1911): app_time_stats: avg=1035.28ms min=1035.28ms max=1035.28ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1864.38ms min=1864.38ms max=1864.38ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=943.11ms min=20.66ms max=1865.56ms count=2
+D/EGL_emulation( 1911): app_time_stats: avg=1015.57ms min=1015.57ms max=1015.57ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1013.27ms min=1013.27ms max=1013.27ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=143.06ms min=11.54ms max=904.20ms count=7
+D/EGL_emulation( 1911): app_time_stats: avg=1885.31ms min=1885.31ms max=1885.31ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=55.86ms min=15.21ms max=1013.62ms count=34
+D/EGL_emulation( 1911): app_time_stats: avg=1031.56ms min=1031.56ms max=1031.56ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1234.25ms min=1234.25ms max=1234.25ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1251.36ms min=1251.36ms max=1251.36ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1019.08ms min=1019.08ms max=1019.08ms count=1
+D/EGL_emulation( 1911): app_time_stats: avg=1036.28ms min=1036.28ms max=1036.28ms count=1

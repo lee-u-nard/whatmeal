@@ -45,6 +45,7 @@ class SharedSpaceMember {
     required this.email,
     required this.role,
     this.avatarUrl,
+    this.joinedAt,
   });
 
   final String id;
@@ -52,6 +53,7 @@ class SharedSpaceMember {
   final String email;
   final FamilyRole role;
   final String? avatarUrl;
+  final DateTime? joinedAt;
 
   SharedSpaceMember copyWith({
     String? id,
@@ -66,6 +68,7 @@ class SharedSpaceMember {
       email: email ?? this.email,
       role: role ?? this.role,
       avatarUrl: avatarUrl ?? this.avatarUrl,
+      joinedAt: joinedAt,
     );
   }
 }

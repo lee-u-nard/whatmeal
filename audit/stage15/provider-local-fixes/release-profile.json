@@ -1,0 +1,22 @@
+{
+  "Action": "Profile",
+  "VisibleLabels": [
+    "Family Profiles",
+    "Notifications",
+    "Open family profiles",
+    "Owner\nowner-1792334786607350@example.test",
+    "Edit Profile",
+    "Sign Out",
+    "Active\nFamily Sharing\nDemo Household",
+    "Configure\nAI Settings\nGoogle Gemini",
+    "Family Profiles & Dietary Preferences",
+    "Add",
+    "Keep track of your family's dynamic food preferences and severe allergy restrictions so our AI can plan safe meals.",
+    "Home",
+    "Meal Plan",
+    "Pantry",
+    "Grocery",
+    "Profile"
+  ],
+  "Screen": "release-profile"
+}

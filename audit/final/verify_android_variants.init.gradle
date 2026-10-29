@@ -1,0 +1,31 @@
+gradle.taskGraph.whenReady { graph ->
+    def app = gradle.rootProject.findProject(':app')
+    if (app == null) return
+    def checks = 0
+    ['Aitest', 'Cloudtest'].each { flavor ->
+        ['Release', 'Profile'].each { mode ->
+            ['assemble', 'bundle'].each { action ->
+                def forbidden = action + flavor + mode
+                if (app.tasks.findByName(forbidden) != null) {
+                    throw new GradleException('Forbidden variant exists: ' + forbidden)
+                }
+                println('VARIANT_CHECK PASS absent ' + forbidden)
+                checks++
+            }
+        }
+        def allowed = 'assemble' + flavor + 'Debug'
+        if (app.tasks.findByName(allowed) == null) {
+            throw new GradleException('Required debug variant missing: ' + allowed)
+        }
+        println('VARIANT_CHECK PASS available ' + allowed)
+        checks++
+    }
+    def forbiddenTasks = graph.allTasks.findAll { task ->
+        task.project.path == ':app' &&
+        task.name.toLowerCase().matches('.*(aitest|cloudtest).*(release|profile).*')
+    }
+    if (!forbiddenTasks.empty) throw new GradleException('Forbidden tasks in showcase graph: ' + forbiddenTasks)
+    if (!graph.hasTask(':app:assembleShowcaseRelease')) throw new GradleException('Showcase release graph missing')
+    checks++
+    println('VARIANT_VERIFICATION PASS ' + checks + ' checks; showcase release graph excludes prohibited test variants')
+}

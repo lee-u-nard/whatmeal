@@ -1,0 +1,22 @@
+[
+  {
+    "File": "firestore.rules",
+    "Unchanged": true
+  },
+  {
+    "File": "audit/stage3/security_acceptance.mjs",
+    "Unchanged": true
+  },
+  {
+    "File": "android/app/src/local/AndroidManifest.xml",
+    "Unchanged": true
+  },
+  {
+    "File": "android/app/src/local/google-services.json",
+    "Unchanged": true
+  },
+  {
+    "File": "build/private-state-snapshots/20261018-household-interruption/manifest.json",
+    "Unchanged": true
+  }
+]

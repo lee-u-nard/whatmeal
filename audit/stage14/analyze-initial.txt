@@ -1,0 +1,5 @@
+Analyzing whatmeal...                                           
+
+warning - The member 'hasListeners' can only be used within instance members of subclasses of 'ChangeNotifier' - test\notification_recovery_test.dart:189:24 - invalid_use_of_protected_member
+
+1 issue found. (ran in 56.4s)

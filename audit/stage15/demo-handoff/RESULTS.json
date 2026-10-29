@@ -1,0 +1,84 @@
+{
+  "Date": "2026-10-18",
+  "ProductCodeChanged": false,
+  "NewIntegrationWorkflow": 1,
+  "AndroidCheckpoints": 10,
+  "AndroidExit": 0,
+  "AndroidSeconds": 56,
+  "AndroidScope": "Two named Firebase clients on one AVD; real GroceryPage/NotificationsPage and SDK household/meal/pantry/grocery operations; not two devices",
+  "Phases": {
+    "phases": [
+      "two verified disposable accounts created and joined household through actual SDK services",
+      "saved dates and two accepted meals synchronized with exact consolidated pantry shortage",
+      "member private-account query denied and visible Grocery Retry recovered without disrupting owner",
+      "owner pantry update survived member interruption and failed meal transaction did not commit",
+      "member Grocery checkbox persisted receipt and owner listener received purchase provenance",
+      "concurrent household grocery additions produced one shared manual item",
+      "household notification history loaded and member read receipts remained private",
+      "ordinary meal retry completed and deletion preserved the other accepted meal source",
+      "removal cleared shared food and inbox access; fresh invitation legitimately restored household",
+      "normal cached login unchanged after two-account recovery acceptance"
+    ],
+    "rpcFailures": [
+      "unavailable"
+    ],
+    "normalLoginPreserved": true,
+    "scope": "Two named native Firebase clients on one AVD; disposable household; real GroceryPage/NotificationsPage; not two devices or full routed app demo"
+  },
+  "FlutterPassed": 294,
+  "FlutterExit": 0,
+  "AnalysisExit": 0,
+  "BuildExit": 0,
+  "ApkPath": "C:\\Users\\ASUS V16\\Desktop\\jabez_projects\\3RD_YEAR_SUBJECTS\\App Dev\\whatmeal\\build\\stage15\\demo-handoff\\whatmeal-local-tester.apk",
+  "Sha256": "D80D00FB8A7D2652B6B2558A84D5CD4059A220B90C7709125C1B8A349F3FB06B",
+  "Package": "com.example.whatmeal.local",
+  "Project": "demo-whatmeal-audit",
+  "Startup": {
+    "AppForeground": true,
+    "HomeVisible": true,
+    "SignInVisible": false,
+    "RetryVisible": false,
+    "SystemAnrVisible": false,
+    "PrimaryAuthListening": false,
+    "PrimaryFirestoreListening": false,
+    "UiReadyWithinBound": true,
+    "DataCleared": false,
+    "Scope": "Standalone local tester startup with former primary backend unavailable; not recovered server-data evidence"
+  },
+  "ProtectedFiles": [
+    {
+      "File": "firestore.rules",
+      "Unchanged": true
+    },
+    {
+      "File": "security_acceptance.mjs",
+      "Unchanged": true
+    },
+    {
+      "File": "AndroidManifest.xml",
+      "Unchanged": true
+    },
+    {
+      "File": "google-services.json",
+      "Unchanged": true
+    },
+    {
+      "File": "main.dart",
+      "Unchanged": true
+    }
+  ],
+  "FixturePreservation": {
+    "BeforeCount": 14,
+    "AfterCount": 16,
+    "PreviousDisposableUsersRetained": true,
+    "NormalAccountAbsent": true,
+    "ExportExit": 0
+  },
+  "HistoricalSecurityCases": 65,
+  "SecurityCasesRerun": false,
+  "PrivateBackupModified": false,
+  "OriginalBackendRestored": false,
+  "CompleteOriginalAccountDemoReady": false,
+  "LiveAiPending": true,
+  "ProductionAccessedOrModified": false
+}

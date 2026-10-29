@@ -1,0 +1,382 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.78 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (7.0.0 available)
+! cloud_firestore_platform_interface 6.6.12 from path third_party\cloud_firestore_platform_interface (overridden)
+  cloud_firestore_web 4.4.12 (5.7.4 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (5.0.0 available)
+  firebase_app_check 0.3.2+10 (0.5.0 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.5.0+2 available)
+  firebase_app_check_web 0.2.0+14 (0.3.0+2 available)
+  firebase_auth 5.7.0 (7.0.0 available)
+  [local-token-redacted] 7.7.3 (9.1.1 available)
+  firebase_auth_web 5.15.3 (6.3.1 available)
+  firebase_core 3.15.2 (5.0.0 available)
+  [local-token-redacted] 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (4.0.0 available)
+  firebase_messaging 15.2.10 (17.0.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.11.0 available)
+  firebase_messaging_web 3.10.10 (4.3.0 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.8 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  vm_service 15.3.0 (15.4.0 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage15\showcase\integration.apk...                6.2s
+W/HWUI    ( 2239): Unknown dataspace 0
+I/WindowExtensionsImpl( 2239): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 2239): Width is zero. 0,0
+D/FlutterJNI( 2239): Sending viewport metrics to the engine.
+I/Gralloc4( 2239): mapper 4.x is not supported
+W/HWUI    ( 2239): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 2239): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Choreographer( 2239): Skipped 97 frames!  The application may be doing too much work on its main thread.
+D/ProfileInstaller( 2239): Installing profile for com.example.whatmeal.showcase
+D/FlutterJNI( 2239): Sending viewport metrics to the engine.
+I/atmeal.showcase( 2239): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:61002/[vm-session-redacted]/
+VMServiceFlutterDriver: Isolate found with number: 3009047775225171
+VMServiceFlutterDriver: Isolate 3009047775225171 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 2239): 00:00 +0: local Android UI registration, verification, household and account switching
+I/Choreographer( 2239): Skipped 46 frames!  The application may be doing too much work on its main thread.
+W/atmeal.showcase( 2239): Verification of com.google.firebase.auth.internal.zzaf com.google.android.gms.internal.firebase-auth-api.zzach.zza(com.google.firebase.FirebaseApp, com.google.android.gms.internal.firebase-auth-api.zzahc) took 139.865ms (800.77 bytecodes/s) (4288B approximate peak alloc)
+VMServiceFlutterDriver: Connected to Flutter application.
+I/HWUI    ( 2239): Davey! duration=1152ms; Flags=1, FrameTimelineVsyncId=158829, IntendedVsync=1605703399277, Vsync=1605853399271, InputEventId=0, HandleInputStart=1605875852609, AnimationStart=1605875853541, PerformTraversalsStart=1605875853849, DrawStart=1606094605686, FrameDeadline=1605720065943, FrameInterval=1605864475191, FrameStartTime=16666666, SyncQueued=1606146574445, SyncStart=1606161149146, IssueDrawCommandsStart=1606219629887, SwapBuffers=1606712302455, FrameCompleted=1606870090213, DequeueBufferDuration=154531596, QueueBufferDuration=289062, GpuCompleted=1606793795645, SwapBuffersCompleted=1606870090213, DisplayPresentTime=72904454231359566, CommandSubmissionCompleted=1606712302455, 
+D/EGL_emulation( 2239): app_time_stats: avg=597.30ms min=12.16ms max=1182.44ms count=2
+W/atmeal.showcase( 2239): Verification of void com.google.android.gms.common.util.IOUtils.closeQuietly(android.os.ParcelFileDescriptor) took 120.894ms (74.44 bytecodes/s) (2400B approximate peak alloc)
+W/atmeal.showcase( 2239): Verification of void com.google.android.gms.internal.firebase-auth-api.zzf.<init>() took 150.376ms (26.60 bytecodes/s) (2136B approximate peak alloc)
+D/EGL_emulation( 2239): app_time_stats: avg=345.02ms min=146.57ms max=522.52ms count=3
+D/EGL_emulation( 2239): app_time_stats: avg=1292.69ms min=1292.69ms max=1292.69ms count=1
+D/FlutterJNI( 2239): Sending viewport metrics to the engine.
+D/EGL_emulation( 2239): app_time_stats: avg=1137.36ms min=1137.36ms max=1137.36ms count=1
+D/FirebaseAuth( 2239): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2239): Notifying auth state listeners about a sign-out event.
+I/atmeal.showcase( 2239): Background concurrent mark compact GC freed 3048KB AllocSpace bytes, 7(268KB) LOS objects, 49% free, 3214KB/6428KB, paused 269us,32.399ms total 470.848ms
+D/EGL_emulation( 2239): app_time_stats: avg=215.47ms min=115.10ms max=404.84ms count=5
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=155.79ms min=35.99ms max=458.75ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=119.39ms min=23.18ms max=210.71ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=117.35ms min=18.58ms max=230.02ms count=10
+D/EGL_emulation( 2239): app_time_stats: avg=109.34ms min=19.36ms max=219.30ms count=10
+D/EGL_emulation( 2239): app_time_stats: avg=105.14ms min=14.25ms max=225.59ms count=10
+I/FirebaseAuth( 2239): Creating user with owner-1792327832009725@example.test with empty reCAPTCHA token
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2239): app_time_stats: avg=153.19ms min=22.55ms max=253.94ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=222.54ms min=214.04ms max=235.06ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=218.29ms min=209.84ms max=223.78ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=215.50ms min=82.78ms max=343.56ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=215.05ms min=204.06ms max=224.31ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=221.03ms min=214.10ms max=229.78ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=216.90ms min=212.81ms max=223.14ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=219.22ms min=200.89ms max=232.54ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=219.60ms min=213.98ms max=231.94ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=216.87ms min=210.02ms max=220.98ms count=5
+D/SharedPreferencesImpl( 2239): Time required to fsync /data/user/0/com.example.whatmeal.showcase/shared_prefs/com.google.firebase.auth.api.Store.W0RFRkFVTFRd+MToxMjM6YW5kcm9pZDphYmNkZWYxMjM0NTY3ODkw.xml: [<1: 0, <2: 0, <4: 0, <8: 0, <16: 0, <32: 0, <64: 0, <128: 0, <256: 0, <512: 0, <1024: 0, <2048: 0, <4096: 0, <8192: 0, <16384: 1, >=16384: 0]
+D/EGL_emulation( 2239): app_time_stats: avg=216.31ms min=211.71ms max=219.80ms count=5
+D/SharedPreferencesImpl( 2239): Time required to fsync /data/user/0/com.example.whatmeal.showcase/shared_prefs/FirebaseHeartBeatW0RFRkFVTFRd+MToxMjM6YW5kcm9pZDphYmNkZWYxMjM0NTY3ODkw.xml: [<1: 0, <2: 0, <4: 0, <8: 1, <16: 0, <32: 0, <64: 0, <128: 0, <256: 0, <512: 0, <1024: 0, <2048: 0, <4096: 0, <8192: 0, <16384: 1, >=16384: 0]
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2239): app_time_stats: avg=219.62ms min=215.13ms max=230.77ms count=5
+D/TrafficStats( 2239): tagSocket(138) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2239): app_time_stats: avg=225.12ms min=214.43ms max=237.88ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=222.97ms min=192.97ms max=268.29ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=220.11ms min=169.72ms max=272.74ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=216.38ms min=208.55ms max=222.31ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=221.68ms min=208.47ms max=239.99ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=214.50ms min=177.36ms max=241.00ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=215.57ms min=211.22ms max=218.34ms count=5
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2239): app_time_stats: avg=216.40ms min=199.06ms max=231.70ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=216.75ms min=214.12ms max=218.69ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=217.11ms min=210.13ms max=227.34ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=222.11ms min=218.69ms max=228.19ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=223.94ms min=211.39ms max=241.05ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=217.25ms min=208.59ms max=226.09ms count=5
+D/SharedPreferencesImpl( 2239): Time required to fsync /data/user/0/com.example.whatmeal.showcase/shared_prefs/FirebaseHeartBeatW0RFRkFVTFRd+MToxMjM6YW5kcm9pZDphYmNkZWYxMjM0NTY3ODkw.xml: [<1: 0, <2: 0, <4: 0, <8: 1, <16: 0, <32: 0, <64: 0, <128: 0, <256: 0, <512: 0, <1024: 0, <2048: 0, <4096: 0, <8192: 1, <16384: 1, >=16384: 0]
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2239): tagSocket(125) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2239): app_time_stats: avg=221.62ms min=210.32ms max=231.05ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=216.11ms min=206.94ms max=225.49ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=215.43ms min=209.51ms max=220.74ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=219.08ms min=208.25ms max=223.61ms count=5
+D/FirebaseAuth( 2239): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2239): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2239): app_time_stats: avg=401.12ms min=221.15ms max=759.26ms count=3
+W/GooglePlayServicesUtil( 2239): com.example.whatmeal.showcase requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2239): GooglePlayServices not available due to error 9
+W/Firestore( 2239): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+I/atmeal.showcase( 2239): Background concurrent mark compact GC freed 2125KB AllocSpace bytes, 23(1004KB) LOS objects, 49% free, 3957KB/7914KB, paused 1.357ms,15.346ms total 375.371ms
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2239): tagSocket(140) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2239): app_time_stats: avg=327.62ms min=211.51ms max=759.65ms count=5
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2239): app_time_stats: avg=1472.44ms min=1472.44ms max=1472.44ms count=1
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=272.65ms min=34.94ms max=798.96ms count=5
+I/flutter ( 2239): Local UI checkpoint: Owner registered and verified
+D/EGL_emulation( 2239): app_time_stats: avg=114.21ms min=9.05ms max=242.31ms count=9
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=116.46ms min=30.18ms max=221.69ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=179.70ms min=113.30ms max=219.81ms count=6
+D/EGL_emulation( 2239): app_time_stats: avg=112.11ms min=7.18ms max=270.54ms count=9
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=125.01ms min=67.16ms max=216.88ms count=8
+I/flutter ( 2239): Local UI checkpoint: household created
+D/EGL_emulation( 2239): app_time_stats: avg=294.52ms min=25.62ms max=964.34ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=172.74ms min=102.03ms max=369.25ms count=6
+D/EGL_emulation( 2239): app_time_stats: avg=2244.44ms min=2244.44ms max=2244.44ms count=1
+I/flutter ( 2239): Local UI checkpoint: invitation copied
+D/EGL_emulation( 2239): app_time_stats: avg=538.31ms min=41.15ms max=1637.75ms count=4
+D/EGL_emulation( 2239): app_time_stats: avg=125.20ms min=18.38ms max=237.98ms count=8
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=126.32ms min=6.01ms max=204.09ms count=8
+D/FirebaseAuth( 2239): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2239): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=178.94ms min=50.79ms max=496.09ms count=6
+W/Firestore( 2239): (25.1.4) [Firestore]: Listen for Query(target=Query(users/Jtw0dKZ17c3ieeoTXt13Fzcap28d/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2239): false for 'list' @ L207, cause=null}
+W/Firestore( 2239): (25.1.4) [Firestore]: Listen for Query(target=Query(users/Jtw0dKZ17c3ieeoTXt13Fzcap28d/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2239): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 2239): app_time_stats: avg=175.35ms min=114.62ms max=240.92ms count=6
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=99.55ms min=23.30ms max=228.73ms count=12
+D/EGL_emulation( 2239): app_time_stats: avg=98.98ms min=9.50ms max=235.65ms count=11
+D/EGL_emulation( 2239): app_time_stats: avg=101.12ms min=11.98ms max=247.28ms count=10
+D/EGL_emulation( 2239): app_time_stats: avg=106.71ms min=10.20ms max=228.12ms count=10
+I/FirebaseAuth( 2239): Creating user with member-1792327890826768@example.test with empty reCAPTCHA token
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2239): tagSocket(125) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2239): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2239): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2239): app_time_stats: avg=136.00ms min=17.70ms max=240.06ms count=9
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+I/atmeal.showcase( 2239): Background concurrent mark compact GC freed 3522KB AllocSpace bytes, 21(932KB) LOS objects, 49% free, 4918KB/9837KB, paused 1.887ms,16.637ms total 122.466ms
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2239): app_time_stats: avg=636.88ms min=228.29ms max=1268.44ms count=3
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 2239): Local UI checkpoint: Member registered and verified
+I/flutter ( 2239): Local UI checkpoint: new account has no household
+D/EGL_emulation( 2239): app_time_stats: avg=116.52ms min=24.85ms max=216.17ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=125.20ms min=15.62ms max=226.79ms count=8
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=118.04ms min=10.68ms max=223.52ms count=10
+D/EGL_emulation( 2239): app_time_stats: avg=111.63ms min=21.85ms max=229.81ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=102.62ms min=14.43ms max=225.80ms count=10
+D/EGL_emulation( 2239): app_time_stats: avg=152.06ms min=47.58ms max=387.17ms count=8
+I/flutter ( 2239): Local UI checkpoint: member joined shared household
+D/EGL_emulation( 2239): app_time_stats: avg=142.87ms min=32.20ms max=251.84ms count=7
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=111.18ms min=18.74ms max=219.01ms count=9
+D/FirebaseAuth( 2239): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2239): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 2239): app_time_stats: avg=143.82ms min=14.04ms max=258.07ms count=7
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 2239): (25.1.4) [Firestore]: Listen for Query(target=Query(users/b7k4GrKygy9gwTatbhDDZ46zLCm5/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2239): false for 'list' @ L207, cause=null}
+W/Firestore( 2239): (25.1.4) [Firestore]: Listen for Query(target=Query(users/b7k4GrKygy9gwTatbhDDZ46zLCm5/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2239): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 2239): app_time_stats: avg=120.04ms min=25.85ms max=227.57ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=107.05ms min=25.25ms max=216.67ms count=11
+I/FirebaseAuth( 2239): Logging in as owner-1792327832009725@example.test with empty reCAPTCHA token
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2239): tagSocket(153) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2239): app_time_stats: avg=113.12ms min=13.69ms max=221.14ms count=10
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2239): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2239): Notifying auth state listeners about user ([uid-redacted]).
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=275.14ms min=151.93ms max=370.32ms count=4
+D/EGL_emulation( 2239): app_time_stats: avg=109.81ms min=5.34ms max=211.72ms count=10
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=157.37ms min=16.19ms max=307.51ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=120.98ms min=13.81ms max=284.65ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=106.22ms min=7.69ms max=231.51ms count=10
+I/flutter ( 2239): Local UI checkpoint: owner removed member
+D/EGL_emulation( 2239): app_time_stats: avg=114.99ms min=2.35ms max=276.48ms count=10
+D/EGL_emulation( 2239): app_time_stats: avg=131.33ms min=26.39ms max=216.58ms count=8
+D/EGL_emulation( 2239): app_time_stats: avg=217.32ms min=200.46ms max=236.44ms count=5
+D/EGL_emulation( 2239): app_time_stats: avg=219.97ms min=214.05ms max=230.06ms count=5
+I/flutter ( 2239): Local UI checkpoint: invitation copied
+D/EGL_emulation( 2239): app_time_stats: avg=285.81ms min=235.62ms max=377.26ms count=4
+D/EGL_emulation( 2239): app_time_stats: avg=127.33ms min=3.75ms max=262.25ms count=8
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=127.85ms min=2.36ms max=272.74ms count=8
+D/FirebaseAuth( 2239): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2239): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 2239): app_time_stats: avg=267.71ms min=130.92ms max=484.79ms count=4
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=194.99ms min=60.67ms max=322.08ms count=6
+W/Firestore( 2239): (25.1.4) [Firestore]: Listen for Query(target=Query(users/Jtw0dKZ17c3ieeoTXt13Fzcap28d/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2239): false for 'list' @ L207, cause=null}
+W/Firestore( 2239): (25.1.4) [Firestore]: Listen for Query(target=Query(users/Jtw0dKZ17c3ieeoTXt13Fzcap28d/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2239): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 2239): app_time_stats: avg=106.59ms min=12.07ms max=216.16ms count=10
+I/FirebaseAuth( 2239): Logging in as member-1792327890826768@example.test with empty reCAPTCHA token
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2239): app_time_stats: avg=90.25ms min=11.62ms max=241.61ms count=11
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2239): tagSocket(6) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2239): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2239): Notifying auth state listeners about user ([uid-redacted]).
+D/EGL_emulation( 2239): app_time_stats: avg=213.12ms min=11.42ms max=381.06ms count=6
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/atmeal.showcase( 2239): Background concurrent mark compact GC freed 4262KB AllocSpace bytes, 10(456KB) LOS objects, 49% free, 4938KB/9877KB, paused 349us,50.686ms total 389.648ms
+D/EGL_emulation( 2239): app_time_stats: avg=215.87ms min=126.72ms max=339.24ms count=5
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=114.77ms min=2.53ms max=335.07ms count=9
+I/flutter ( 2239): Local UI checkpoint: removed account has no household access
+D/EGL_emulation( 2239): app_time_stats: avg=143.50ms min=26.96ms max=227.16ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=111.62ms min=38.48ms max=206.54ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=150.10ms min=28.80ms max=280.34ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=154.10ms min=52.59ms max=298.28ms count=7
+I/flutter ( 2239): Local UI checkpoint: legitimate rejoin
+D/EGL_emulation( 2239): app_time_stats: avg=264.01ms min=221.12ms max=368.70ms count=4
+D/EGL_emulation( 2239): app_time_stats: avg=114.11ms min=5.30ms max=223.60ms count=9
+I/flutter ( 2239): Local UI checkpoint: member departed
+D/EGL_emulation( 2239): app_time_stats: avg=149.94ms min=36.64ms max=323.95ms count=8
+D/EGL_emulation( 2239): app_time_stats: avg=359.52ms min=292.27ms max=405.13ms count=3
+D/EGL_emulation( 2239): app_time_stats: avg=161.25ms min=4.47ms max=589.56ms count=7
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=118.19ms min=34.97ms max=214.96ms count=9
+D/FirebaseAuth( 2239): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2239): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=155.93ms min=74.73ms max=256.00ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=58756.78ms min=9256.20ms max=108257.36ms count=2
+D/EGL_emulation( 2239): app_time_stats: avg=119.69ms min=30.51ms max=301.70ms count=9
+D/EGL_emulation( 2239): app_time_stats: avg=135.86ms min=109.41ms max=213.73ms count=8
+I/FirebaseAuth( 2239): Logging in as owner-1792327832009725@example.test with empty reCAPTCHA token
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2239): app_time_stats: avg=118.21ms min=43.25ms max=291.32ms count=9
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2239): tagSocket(6) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2239): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2239): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2239): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2239): Notifying auth state listeners about user ([uid-redacted]).
+D/EGL_emulation( 2239): app_time_stats: avg=191.03ms min=32.16ms max=568.46ms count=7
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/atmeal.showcase( 2239): Background concurrent mark compact GC freed 4682KB AllocSpace bytes, 12(560KB) LOS objects, 49% free, 5027KB/10054KB, paused 951us,13.358ms total 563.217ms
+D/EGL_emulation( 2239): app_time_stats: avg=143.90ms min=9.80ms max=252.26ms count=7
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=147.17ms min=106.64ms max=233.44ms count=8
+I/flutter ( 2239): Local UI checkpoint: owner session restored with one member
+I/flutter ( 2239): Local UI checkpoint: household UI workflow completed
+D/EGL_emulation( 2239): app_time_stats: avg=180.60ms min=10.54ms max=329.79ms count=6
+D/EGL_emulation( 2239): app_time_stats: avg=101.56ms min=10.77ms max=234.00ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=629.16ms min=114.70ms max=1143.62ms count=2
+W/WindowOnBackDispatcher( 2239): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2239): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2239): app_time_stats: avg=149.14ms min=57.77ms max=301.19ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=149.21ms min=33.52ms max=350.46ms count=7
+D/EGL_emulation( 2239): app_time_stats: avg=130.92ms min=41.56ms max=204.41ms count=8
+D/EGL_emulation( 2239): app_time_stats: avg=305.79ms min=223.44ms max=529.79ms count=4
+I/flutter ( 2239): Local UI checkpoint: dietary profile created through UI
+D/EGL_emulation( 2239): app_time_stats: avg=150.68ms min=19.04ms max=218.55ms count=7
+Unhandled exception:
+DriverError: Failed to fulfill RequestData due to remote error
+Original error: ext.flutter.driver: (112) Service has disappeared
+Original stack trace:
+#0      new _OutstandingRequest (package:vm_service/src/vm_service.dart:278:34)
+#1      VmService._call.<anonymous closure> (package:vm_service/src/vm_service.dart:1960:25)
+#2      VmService._call (package:vm_service/src/vm_service.dart:1972:8)
+#3      VmService.callServiceExtension (package:vm_service/src/vm_service.dart:1911:14)
+#4      VMServiceFlutterDriver.sendCommand (package:flutter_driver/src/driver/vmservice_driver.dart:327:12)
+#5      FlutterDriver.requestData (package:flutter_driver/src/driver/driver.dart:585:13)
+#6      integrationDriver (package:integration_test/integration_test_driver.dart:71:42)
+<asynchronous suspension>
+
+
+#0      VMServiceFlutterDriver.sendCommand (package:flutter_driver/src/driver/vmservice_driver.dart:340:7)
+<asynchronous suspension>
+#1      FlutterDriver.requestData (package:flutter_driver/src/driver/driver.dart:585:7)
+<asynchronous suspension>
+#2      integrationDriver (package:integration_test/integration_test_driver.dart:71:29)
+<asynchronous suspension>
+Leaving the application running.

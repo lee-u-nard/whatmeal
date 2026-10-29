@@ -1,0 +1,411 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.78 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (7.0.0 available)
+! cloud_firestore_platform_interface 6.6.12 from path third_party\cloud_firestore_platform_interface (overridden)
+  cloud_firestore_web 4.4.12 (5.7.4 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (5.0.0 available)
+  firebase_app_check 0.3.2+10 (0.5.0 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.5.0+2 available)
+  firebase_app_check_web 0.2.0+14 (0.3.0+2 available)
+  firebase_auth 5.7.0 (7.0.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.1 available)
+  firebase_auth_web 5.15.3 (6.3.1 available)
+  firebase_core 3.15.2 (5.0.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (4.0.0 available)
+  firebase_messaging 15.2.10 (17.0.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.11.0 available)
+  firebase_messaging_web 3.10.10 (4.3.0 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.8 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  vm_service 15.3.0 (15.4.0 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol connection requires real completed text and correct credentials
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 14ms
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 200 with malformed or empty output is not connected
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 1ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 1ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 1ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol refusal and incomplete finish reasons do not count as a connection
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 1ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+00:00 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol missing key performs no request for probe or generation
+00:00 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 400 errors are classified and never echo provider data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 400 in 3ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 400 in 2ms
+00:00 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 401 errors are classified and never echo provider data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 401 in 1ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 401 in 1ms
+00:00 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 403 errors are classified and never echo provider data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 403 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 403 in 1ms
+00:00 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 404 errors are classified and never echo provider data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 404 in 2ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 404 in 2ms
+00:00 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 429 errors are classified and never echo provider data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 429 in 1ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 429 in 0ms
+00:00 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 500 errors are classified and never echo provider data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 500 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 500 in 2ms
+00:00 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol HTTP 529 errors are classified and never echo provider data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 529 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 529 in 0ms
+00:00 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol timeout and transport errors have useful redacted recovery messages
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+00:00 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol complete generation and replacement preserve requested meal data
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 2ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+00:00 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI injected HTTP protocol truncated but parseable recipe is rejected before parser salvage
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 2ms
+00:00 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol connection requires real completed text and correct credentials
+00:00 +15: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 200 with malformed or empty output is not connected
+00:00 +16: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol refusal and incomplete finish reasons do not count as a connection
+00:00 +17: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol missing key performs no request for probe or generation
+00:00 +18: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 400 errors are classified and never echo provider data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 400 in 10ms
+00:00 +19: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 401 errors are classified and never echo provider data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 401 in 0ms
+00:00 +20: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 403 errors are classified and never echo provider data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 403 in 1ms
+00:00 +21: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 404 errors are classified and never echo provider data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 404 in 2ms
+00:00 +22: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 429 errors are classified and never echo provider data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 429 in 2ms
+00:00 +23: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 500 errors are classified and never echo provider data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 500 in 1ms
+00:00 +24: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol HTTP 529 errors are classified and never echo provider data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 529 in 1ms
+00:00 +25: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol timeout and transport errors have useful redacted recovery messages
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+00:00 +26: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol complete generation and replacement preserve requested meal data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 200 in 2ms
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 200 in 2ms
+00:00 +27: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq injected HTTP protocol truncated but parseable recipe is rejected before parser salvage
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 200 in 2ms
+00:00 +28: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol connection requires real completed text and correct credentials
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 0ms
+00:00 +29: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 200 with malformed or empty output is not connected
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 0ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+00:00 +30: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol refusal and incomplete finish reasons do not count as a connection
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 0ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 0ms
+00:00 +31: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol missing key performs no request for probe or generation
+00:00 +32: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 400 errors are classified and never echo provider data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 400 in 2ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 400 in 0ms
+00:00 +33: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 401 errors are classified and never echo provider data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 401 in 2ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 401 in 2ms
+00:00 +34: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 403 errors are classified and never echo provider data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 403 in 2ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 403 in 1ms
+00:00 +35: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 404 errors are classified and never echo provider data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 404 in 3ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 404 in 2ms
+00:00 +36: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 429 errors are classified and never echo provider data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 429 in 0ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 429 in 1ms
+00:00 +37: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 500 errors are classified and never echo provider data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 500 in 1ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 500 in 0ms
+00:00 +38: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol HTTP 529 errors are classified and never echo provider data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 529 in 1ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 529 in 1ms
+00:00 +39: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol timeout and transport errors have useful redacted recovery messages
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+00:00 +40: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol complete generation and replacement preserve requested meal data
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+00:00 +41: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude injected HTTP protocol truncated but parseable recipe is rejected before parser salvage
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 1ms
+00:00 +42: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: OpenAI reasoning probe uses supported token field without temperature
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 1ms
+[AI][OpenAI] -> Outgoing request | Endpoint: https://api.openai.com
+[AI][OpenAI] <- Response HTTP 200 in 0ms
+00:00 +43: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Claude combines text blocks after reasoning without losing recipe JSON
+[AI][Claude] -> Outgoing request | Endpoint: https://api.anthropic.com
+[AI][Claude] <- Response HTTP 200 in 0ms
+00:00 +44: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq large plan never restarts after auth, quota, or truncation failures
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 401 in 1ms
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 429 in 0ms
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 200 in 1ms
+00:00 +45: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq retries explicit JSON mode error once without accepting failed data
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 400 in 1ms
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 200 in 1ms
+00:00 +46: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq repeated JSON rejection stops after one retry with redacted error
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 400 in 0ms
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 400 in 0ms
+00:00 +47: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/provider_http_regression_test.dart: Groq ordinary bad request never retries based on echoed message text
+[AI][Groq] -> Outgoing request | Endpoint: https://api.groq.com
+[AI][Groq] <- Response HTTP 400 in 2ms
+00:19 +48: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: discovery never replaces or persists an unavailable saved model
+00:19 +49: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: empty or non-reviewed discovery does not become a static live list
+00:19 +50: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: built-in Gemini does not pretend to discover a live catalogue
+00:19 +51: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: anonymous custom endpoint can be checked and discovered explicitly
+00:19 +52: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: connection check does not claim meal generation is verified
+00:19 +53: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: model edit clears a prior connection result and persists the exact ID
+00:19 +54: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: key and endpoint edits clear stale discovered models
+00:19 +55: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: delayed successful connection cannot notify or update the next account
+00:19 +56: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: delayed failed connection is ignored after A B A session changes
+00:19 +57: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: delayed model discovery cannot leak across accounts
+00:19 +58: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: model change supersedes discovery already in flight
+00:19 +59: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: duplicate connection taps do not issue duplicate requests
+00:19 +60: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: failed checks redact thrown details and recover on retry
+00:19 +61: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: failed discovery redacts details and succeeds on retry
+00:19 +62: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: dropdown retains absent model and follows remote model changes
+00:20 +63: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: custom model draft survives rebuild and clears on account switch
+00:21 +64: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: old-account successful key save cannot show feedback in next session
+00:21 +65: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_settings_recovery_test.dart: old-account failed key save cannot show feedback in next session
+00:25 +66: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: construction does not initialize Firebase
+00:25 +67: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: custom success keeps requested provider/model and household context
+00:25 +68: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: built-in success reserves once and reports actual requested model
+00:25 +69: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: custom failure discloses fallback provider/model and reserves once
+[AI][Groq][ERROR]  | TimeoutException
+00:25 +70: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: replacement keeps saved slot and exact custom model identity
+00:25 +71: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: replacement fallback uses the same explicit notice as plan fallback
+[AI][Groq][ERROR]  | GenerationFailure
+00:25 +72: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: invalid gemini/not-a-reviewed-model spends no quota
+00:25 +73: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: invalid gemini/gemini-3.1-pro-preview spends no quota
+00:25 +74: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: invalid anthropic/claude-3-5-haiku-20241022 spends no quota
+00:25 +75: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: invalid groq/openai/gpt-oss-20b spends no quota
+00:25 +76: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: adapter construction failure spends no built-in quota
+00:25 +77: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: Incomplete plan is rejected by both provider routes
+[AI][Groq][ERROR]  | FormatException
+00:25 +78: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: Duplicate-slot plan is rejected by both provider routes
+[AI][Groq][ERROR]  | FormatException
+00:25 +79: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: unsafe primary plan is discarded and safe fallback can recover
+[AI][Groq][ERROR]  | FormatException
+00:25 +80: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: allergy-conflicting plan and fallback never reach generated results
+[AI][Groq][ERROR]  | FormatException
+00:25 +81: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: allergy-conflicting replacements are rejected on both provider routes
+[AI][Groq][ERROR]  | FormatException
+00:25 +82: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: fallback failure shows both safe classifications without private text
+[AI][Groq][ERROR]  | _Exception
+00:25 +83: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: fallback quota exhaustion is reported and performs no Gemini request
+[AI][Groq][ERROR]  | TimeoutException
+00:25 +84: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: built-in quota exhaustion never invokes generation
+00:25 +85: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_generation_routing_test.dart: overlapping accounts keep their own config and result identity
+00:26 +86: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/model_registry_test.dart: reviewed models have unique provider identities and central UI choices
+00:26 +87: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/model_registry_test.dart: retired and billing restricted choices are retained only as metadata
+00:26 +88: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/model_registry_test.dart: deprecated choices stop being offered on the published retirement date
+00:26 +89: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/model_registry_test.dart: model discovery never confuses text capabilities with an ID prefix
+00:26 +90: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/model_registry_test.dart: factory rejects retired, wrong provider, unknown and invalid model IDs
+00:26 +91: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/model_registry_test.dart: all notes distinguish documented access from live verification
+00:28 +92: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini REST uses exact model and header credentials, never URL credentials
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 19ms
+00:28 +93: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini joins all text parts and excludes thought parts
+00:28 +94: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini rejects MAX_TOKENS even with parsable meal JSON
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 2ms
+00:28 +95: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini rejects SAFETY even with parsable meal JSON
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 0ms
+00:28 +96: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini rejects RECITATION even with parsable meal JSON
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 1ms
+00:28 +97: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini rejects OTHER even with parsable meal JSON
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 1ms
+00:28 +98: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini connection does not claim success for HTML, empty or blocked HTTP200
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 0ms
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 1ms
+[AI][Gemini][ERROR]  | GenerationFailure
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 1ms
+[AI][Gemini][ERROR]  | GenerationFailure
+[AI][Gemini (REST)] -> Outgoing request | Endpoint: https://generativelanguage.googleapis.com
+[AI][Gemini (REST)] <- Response HTTP 200 in 0ms
+[AI][Gemini][ERROR]  | GenerationFailure
+00:28 +99: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Firebase SDK response checks completion metadata before parsing
+00:28 +100: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: Gemini catalogue filters capabilities, restricted and unknown IDs across pages
+00:28 +101: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: custom rejects incomplete completion and preserves rate limit category
+[AI][Custom] -> Outgoing request | Endpoint: https://endpoint.test
+[AI][Custom] <- Response HTTP 200 in 1ms
+[AI][Custom] -> Outgoing request | Endpoint: https://endpoint.test
+[AI][Custom] <- Response HTTP 429 in 0ms
+00:28 +102: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: safe typed failures retain malformed, safety, quota and timeout categories
+00:28 +103: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/gemini_custom_protocol_test.dart: custom transport failure recovers on next explicit attempt
+[AI][Custom] -> Outgoing request | Endpoint: https://endpoint.test
+[AI][Custom] -> Outgoing request | Endpoint: https://endpoint.test
+[AI][Custom] <- Response HTTP 200 in 0ms
+00:32 +104: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: base URL preserves query and exact URL mode preserves path
+00:32 +105: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: rejects embedded credentials and non-HTTP endpoints
+00:32 +106: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: test connection requires chat response and sends bearer header
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 200 in 13ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 200 in 0ms
+00:33 +107: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: HTTP and transport errors never echo response or credentials
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 401 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 403 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 404 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 429 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+[AI][Custom] <- Response HTTP 500 in 0ms
+[AI][Custom] -> Outgoing request | Endpoint: https://example.test
+00:33 +108: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/custom_adapter_test.dart: parser and public provider exceptions omit arbitrary sensitive text
+00:34 +109: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Normalized Request & Prompt Builder builds comprehensive prompt with all WhatMeal context
+00:34 +110: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses clean JSON array of meals
+00:34 +111: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation strips markdown code fences before parsing
+00:34 +112: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation handles wrapped JSON object with "meals" key
+00:34 +113: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses single replacement meal
+00:34 +114: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses JSON with alternative field names (name, dish, recipe, prep_time)
+00:34 +115: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation parses nested days structure from LLM
+00:34 +116: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI JSON Parser & Validation throws FormatException on malformed non-JSON response
+00:34 +117: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Logger Credential Protection redacts Bearer tokens, OpenAI keys, Groq keys, Claude keys, and query secrets
+00:34 +118: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: AI Provider Factory & Adapter Isolation creates distinct adapters with correct provider types and endpoints
+00:34 +119: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic default LlmConfig has Gemini with no custom key
+00:34 +120: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic AiProviderConfig masks saved API keys in UI
+00:34 +121: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_test.dart: Provider Switching & Reverting Logic reverting provider config produces default Gemini config
+00:38 +122: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: provider notification waits for successful persistence and rejects failed saves
+00:38 +123: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: remote provider changes and deletion reach active settings
+00:38 +124: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: pending edits survive old echoes and reconcile after serialized writes
+00:38 +125: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: removal reports failed persistence and allows retry
+00:38 +126: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: A logout B login detaches feed and does not block B behind A save
+00:38 +127: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: A B A ignores completion of first A session
+00:38 +128: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: new remote snapshot wins over delayed reconciliation read
+00:38 +129: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: listener error clears stale credentials without exposing error
+00:38 +130: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: remove dialog waits for save and reports failure truthfully
+00:40 +131: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart: remote custom endpoint updates existing settings field
+00:43 +132: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart: provider settings retry resubscribes and isolates old account feed
+00:44 +133: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart: default provider settings fit 320 pixels at text scale 1.0
+00:44 +134: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart: default provider settings fit 320 pixels at text scale 2.0
+00:50 +135: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generation_failure_test.dart: default Gemini never inherits a bundled or another adapter credential
+00:50 +136: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generation_failure_test.dart: provider failures retain distinct safe categories
+00:53 +137: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/live_ai_policy_test.dart: demo mode refuses external AI with a safe actionable error
+00:53 +138: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/live_ai_policy_test.dart: policy does not replace normal provider behavior with fake results
+00:53 +139: All tests passed!

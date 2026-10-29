@@ -1,0 +1,5 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_retry_test.dart
+00:00 +0: provider settings retry resubscribes and isolates old account feed
+00:00 +1: default provider settings fit 320 pixels at text scale 1.0
+00:00 +2: default provider settings fit 320 pixels at text scale 2.0
+00:01 +3: All tests passed!

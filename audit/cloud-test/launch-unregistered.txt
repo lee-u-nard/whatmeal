@@ -1,0 +1,6 @@
+Starting: Intent { cmp=com.example.whatmeal.cloudtest/com.example.whatmeal.MainActivity }
+Status: timeout
+LaunchState: UNKNOWN (-1)
+Activity: com.example.whatmeal.cloudtest/com.example.whatmeal.MainActivity
+WaitTime: 17904
+Complete

@@ -1,29 +1,36 @@
+import '../../../core/routing/meal_route.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_theme.dart';
-import '../../../core/services/unsplash_service.dart';
 import '../../../core/services/llm_service.dart';
+import '../../../core/services/ai/generation_failure.dart';
+import '../../../core/services/ai/pantry_prompt_context.dart';
+import '../../../core/widgets/ai_generation_snack_bar.dart';
 import '../../../core/utils/family_permissions.dart';
 import '../../../core/utils/week_calendar.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../pantry/data/pantry_repository.dart';
+import '../../profile/data/family_member_repository.dart';
 import '../../meal_plan/models/saved_meal_plan.dart';
 import '../../meal_plan/data/saved_plans_repository.dart';
 import '../models/meal.dart';
 import '../widgets/meal_status_badge.dart';
 import '../widgets/meal_network_image.dart';
+import '../widgets/meal_ingredients_panel.dart';
 
 class MealDetailPage extends StatefulWidget {
   const MealDetailPage({
     super.key,
     required this.mealId,
     this.meal,
+    this.planPath,
   });
 
   final String mealId;
+  final String? planPath;
 
   /// The full meal object passed from the previous screen via router `extra`.
   /// When null the page tries to resolve the meal from SavedPlansRepository.
@@ -35,23 +42,22 @@ class MealDetailPage extends StatefulWidget {
 
 class _MealDetailPageState extends State<MealDetailPage> {
   late String _currentMealId;
+  late final int _openedSession;
+  String? _planPath;
+  bool get _sessionActive =>
+      _openedSession == SavedPlansRepository.instance.sessionVersion;
   GeneratedMeal? _meal;
   bool _isFavorite = false;
   bool _loading = true;
-
-  // Image state
-  String? _imageUrl;
-  String? _photographerName;
-  String? _photographerUrl;
-  String? _unsplashPageUrl;
-  bool _showAttribution = false;
 
   @override
   void initState() {
     super.initState();
     _currentMealId = widget.mealId;
+    _planPath = widget.planPath;
+    _openedSession = SavedPlansRepository.instance.sessionVersion;
     SavedPlansRepository.instance.addListener(_onPlansChanged);
-    _resolveMeal(initial: true);
+    _resolveMeal();
   }
 
   @override
@@ -67,88 +73,24 @@ class _MealDetailPageState extends State<MealDetailPage> {
 
   // ── Resolve meal ─────────────────────────────────────────────────────────────
 
-  void _resolveMeal({bool initial = false}) {
-    // Search across all saved plans for the latest meal record by current id or replacement
-    final all = SavedPlansRepository.instance.value
-        .expand((plan) => plan.meals)
-        .toList();
-
-    GeneratedMeal? found = all.cast<GeneratedMeal?>().firstWhere(
-          (m) => m?.id == _currentMealId,
-          orElse: () => null,
-        );
-
-    // If not found by direct ID, check if replacedByMealId exists on existing _meal
-    if (found == null &&
-        _meal?.replacedByMealId != null &&
-        _meal!.replacedByMealId!.isNotEmpty) {
-      found = all.cast<GeneratedMeal?>().firstWhere(
-            (m) => m?.id == _meal!.replacedByMealId,
-            orElse: () => null,
-          );
-      if (found != null) {
-        _currentMealId = found.id;
-      }
+  void _resolveMeal() {
+    final resolved = resolveSavedMeal(SavedPlansRepository.instance.value,
+        mealId: _currentMealId,
+        planPath: _planPath,
+        openedSession: _openedSession,
+        currentSession: SavedPlansRepository.instance.sessionVersion);
+    final found = resolved?.meal;
+    if (resolved != null) {
+      _planPath = resolved.plan.sourcePath;
+      _currentMealId = resolved.meal.id;
     }
-
-    // If found meal is already marked replaced, follow the chain to the latest active replacement
-    if (found != null &&
-        found.replacedByMealId != null &&
-        found.replacedByMealId!.isNotEmpty) {
-      final replacement = all.cast<GeneratedMeal?>().firstWhere(
-            (m) => m?.id == found!.replacedByMealId,
-            orElse: () => null,
-          );
-      if (replacement != null) {
-        found = replacement;
-        _currentMealId = replacement.id;
-      }
-    }
-
-    if (found == null && initial && widget.meal != null) {
-      found = widget.meal;
-    }
-
-    final previousTitle = _meal?.title;
 
     setState(() {
       _meal = found;
       _isFavorite = found?.isFavorite ?? false;
       _loading = false;
     });
-
-    if (found != null && (initial || previousTitle != found.title)) {
-      _fetchImage();
-    }
   }
-
-  // ── Image fetching ───────────────────────────────────────────────────────────
-
-  Future<void> _fetchImage() async {
-    final meal = _meal;
-    if (meal == null) return;
-
-    if (meal.imageUrl.isNotEmpty) {
-      if (mounted) setState(() => _imageUrl = meal.imageUrl);
-      return;
-    }
-
-    final photo = await UnsplashService.instance.fetchMealImage(
-      meal.imageSearchQuery,
-      mealTitle: meal.title,
-    );
-    if (photo != null && mounted) {
-      setState(() {
-        _imageUrl = photo.regularUrl;
-        _photographerName = photo.photographerName;
-        _photographerUrl = photo.photographerProfileUrl;
-        _unsplashPageUrl = photo.unsplashPageUrl;
-        _showAttribution = photo.showUnsplashAttribution;
-      });
-    }
-  }
-
-  // ── URL launcher ─────────────────────────────────────────────────────────────
 
   Future<void> _openUrl(String url) async {
     final uri = Uri.tryParse(url);
@@ -169,7 +111,7 @@ class _MealDetailPageState extends State<MealDetailPage> {
 
   Future<void> _updateStatus(MealStatus newStatus) async {
     final meal = _meal;
-    if (meal == null) return;
+    if (meal == null || !_sessionActive) return;
 
     if ((newStatus == MealStatus.accepted ||
             newStatus == MealStatus.completed ||
@@ -191,10 +133,12 @@ class _MealDetailPageState extends State<MealDetailPage> {
         confirmMessage = 'Are you sure you want to accept this meal?';
         break;
       case MealStatus.completed:
-        confirmMessage = 'Are you sure you want to mark this meal as completed?';
+        confirmMessage =
+            'Confirm you have checked the recipe quantities and cooked this meal.';
         break;
       case MealStatus.notCompleted:
-        confirmMessage = 'Are you sure you want to mark this meal as not completed?';
+        confirmMessage =
+            'Are you sure you want to mark this meal as not completed?';
         break;
       default:
         break;
@@ -204,7 +148,8 @@ class _MealDetailPageState extends State<MealDetailPage> {
       final confirmed = await showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           title: Text(_getStatusTitle(newStatus)),
           content: Text(confirmMessage!),
           actions: [
@@ -215,7 +160,8 @@ class _MealDetailPageState extends State<MealDetailPage> {
             ),
             ElevatedButton(
               onPressed: () => Navigator.pop(ctx, true),
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
+              style:
+                  ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
               child: const Text('Confirm',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.w700)),
@@ -223,11 +169,31 @@ class _MealDetailPageState extends State<MealDetailPage> {
           ],
         ),
       );
-      if (confirmed != true) return;
+      if (confirmed != true || !mounted || !_sessionActive) return;
+    }
+
+    if (newStatus == MealStatus.completed) {
+      final problem = mealCookingProblem(meal, PantryRepository.instance,
+          expectedScope: SavedPlansRepository.instance.workspacePath);
+      if (problem != null) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(problem)));
+        return;
+      }
     }
 
     // No optimistic update - let Firestore listener update state after write
-    await SavedPlansRepository.instance.updateMealStatus(meal.id, newStatus);
+    try {
+      await SavedPlansRepository.instance.updateMealStatus(meal.id, newStatus,
+          planPath: _planPath, expectedSession: _openedSession);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content:
+                Text('Meal status was not saved. Reopen the plan and retry.')));
+      }
+      return;
+    }
 
     if (!mounted) return;
     String message = '';
@@ -277,8 +243,9 @@ class _MealDetailPageState extends State<MealDetailPage> {
   }
 
   Future<void> _replaceWithAi() async {
+    final session = SavedPlansRepository.instance.sessionVersion;
     final meal = _meal;
-    if (meal == null) return;
+    if (meal == null || !_sessionActive) return;
 
     if (!FamilyPermissions.canReplaceMeal) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -322,45 +289,75 @@ class _MealDetailPageState extends State<MealDetailPage> {
         ],
       ),
     );
-    if (confirmed != true) return;
+    if (confirmed != true || !mounted || !_sessionActive) return;
 
     if (!mounted) return;
+    BuildContext? loadingContext;
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        content: const Row(
-          children: [
-            CircularProgressIndicator(color: AppColors.primary),
-            SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                'Asking AI for a replacement recipe…',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+      builder: (ctx) {
+        loadingContext = ctx;
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          content: const Row(
+            children: [
+              CircularProgressIndicator(color: AppColors.primary),
+              SizedBox(width: 20),
+              Expanded(
+                child: Text(
+                  'Asking AI for a replacement recipe…',
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
 
     try {
-      final pantryNames = PantryRepository.instance.items.values
-          .expand((list) => list)
-          .map((item) => item.name)
+      final pantryContext = pantryPromptContext(
+          PantryRepository.instance.items.values.expand((items) => items),
+          now: DateTime.now());
+      final selectedIds = SavedPlansRepository.instance.value
+              .where((p) => p.sourcePath == _planPath)
+              .singleOrNull
+              ?.familyMembers ??
+          const <String>[];
+      final participants = FamilyMemberRepository.instance.members
+          .where((m) => selectedIds.contains(m.id))
           .toList();
+      if (participants.isEmpty ||
+          participants.length != selectedIds.toSet().length) {
+        throw StateError(
+            'Plan participants are unavailable. Reopen or recreate the plan with current profiles.');
+      }
 
       final result = await context.read<LlmService>().replaceMeal(
             uid: uid,
             currentMeal: meal.toCore(),
-            pantryItems: pantryNames,
+            preferences:
+                participants.expand((m) => m.preferences).toSet().toList(),
+            cuisinePreferences: SavedPlansRepository.instance.value
+                    .where((p) => p.sourcePath == _planPath)
+                    .firstOrNull
+                    ?.cuisinePreferences ??
+                const [],
+            pantryItems: pantryContext,
+            restrictions: participants
+                .expand((member) => member.restrictions)
+                .toSet()
+                .toList(),
           );
 
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
+      if (loadingContext?.mounted == true) Navigator.of(loadingContext!).pop();
+      loadingContext = null;
 
-      final replacement = GeneratedMeal.fromCore(
+      if (session != SavedPlansRepository.instance.sessionVersion) return;
+      var replacement = GeneratedMeal.fromCore(
         result.data,
         fallbackIndex: meal.dayIndex,
       ).copyWith(
@@ -369,28 +366,30 @@ class _MealDetailPageState extends State<MealDetailPage> {
         replacedMealId: meal.id,
       );
 
-      await SavedPlansRepository.instance.replaceMeal(meal.id, replacement);
+      replacement = await SavedPlansRepository.instance.replaceMeal(
+          meal.id, replacement,
+          planPath: _planPath, expectedSession: _openedSession);
 
-      if (!mounted) return;
+      if (!mounted || !_sessionActive) return;
       _currentMealId = replacement.id;
       setState(() {
         _meal = replacement;
       });
-      _fetchImage();
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-              'Meal replaced with "${replacement.title}". Status is now Pending.'),
-          backgroundColor: AppColors.primary,
+        AiGenerationSnackBar(
+          result: result,
+          successMessage:
+              'Meal replaced with "${replacement.title}". Status is now Pending.',
         ),
       );
     } catch (e) {
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
+      if (loadingContext?.mounted == true) Navigator.of(loadingContext!).pop();
+      loadingContext = null;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Could not replace meal: $e'),
+          content: Text(GenerationFailure.from(e).toString()),
           backgroundColor: AppColors.danger,
         ),
       );
@@ -444,14 +443,21 @@ class _MealDetailPageState extends State<MealDetailPage> {
                   onPressed: () async {
                     final messenger = ScaffoldMessenger.of(context);
                     final next = !_isFavorite;
-                    setState(() {
-                      _isFavorite = next;
-                      if (_meal != null) {
-                        _meal = _meal!.copyWith(isFavorite: next);
+                    final meal = _meal;
+                    if (meal == null || !_sessionActive) return;
+                    try {
+                      await SavedPlansRepository.instance.toggleFavorite(
+                          meal.id, next,
+                          planPath: _planPath, expectedSession: _openedSession);
+                    } catch (_) {
+                      if (mounted && _sessionActive) {
+                        messenger.showSnackBar(const SnackBar(
+                            content:
+                                Text('Favorite was not saved. Please retry.')));
                       }
-                    });
-                    await SavedPlansRepository.instance
-                        .toggleFavorite(widget.mealId, next);
+                      return;
+                    }
+                    if (!mounted || !_sessionActive) return;
                     messenger.showSnackBar(
                       SnackBar(
                         content: Text(next
@@ -544,14 +550,11 @@ class _MealDetailPageState extends State<MealDetailPage> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    _imageUrl != null
-                        ? MealNetworkImage(
-                            url: _imageUrl!,
-                            fit: BoxFit.cover,
-                          )
-                        : _imagePlaceholder(),
+                    MealNetworkImage(
+                        url: meal.imageUrl,
+                        mealTitle: meal.title,
+                        fit: BoxFit.cover),
 
-                    // Meal type badge on image
                     Positioned(
                       left: 16,
                       bottom: 16,
@@ -574,43 +577,6 @@ class _MealDetailPageState extends State<MealDetailPage> {
                     ),
 
                     // Unsplash attribution overlay (only when using Unsplash)
-                    if (_showAttribution && _photographerName != null)
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          color: Colors.black.withValues(alpha: 0.5),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text(
-                                'Photo by ',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 9),
-                              ),
-                              GestureDetector(
-                                onTap: () => _openUrl(
-                                    _photographerUrl ?? _unsplashPageUrl ?? ''),
-                                child: Text(
-                                  _photographerName!,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 9,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ),
-                              const Text(
-                                ' on Unsplash',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 9),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                   ],
                 ),
               ),
@@ -902,59 +868,8 @@ class _MealDetailPageState extends State<MealDetailPage> {
                     ),
                     const SizedBox(height: 10),
 
-                    // Available (pantry) ingredients
-                    if (meal.availableIngredients.isNotEmpty) ...[
-                      _buildIngredientSection(
-                        label: '✅ Already in pantry',
-                        labelColor: AppColors.primary,
-                        items: meal.availableIngredients,
-                        chipBg: AppColors.primaryLight,
-                        chipText: AppColors.primary,
-                      ),
-                      const SizedBox(height: 12),
-                    ],
+                    MealIngredientsPanel(meal: meal),
 
-                    // Missing ingredients
-                    if (meal.missingIngredients.isNotEmpty) ...[
-                      _buildIngredientSection(
-                        label: '🛒 Need to buy',
-                        labelColor: AppColors.danger,
-                        items: meal.missingIngredients,
-                        chipBg: AppColors.dangerLight,
-                        chipText: AppColors.danger,
-                      ),
-                      const SizedBox(height: 12),
-                    ],
-
-                    // Full ingredient list (flat strings from AI)
-                    if (meal.availableIngredients.isEmpty &&
-                        meal.missingIngredients.isEmpty &&
-                        meal.ingredients.isNotEmpty) ...[
-                      Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.cardSurface,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: AppColors.border),
-                        ),
-                        child: Column(
-                          children: [
-                            for (int i = 0;
-                                i < meal.ingredients.length;
-                                i++) ...[
-                              _buildIngredientRow(meal.ingredients[i], ''),
-                              if (i < meal.ingredients.length - 1)
-                                const Divider(
-                                    height: 1,
-                                    indent: 16,
-                                    endIndent: 16,
-                                    color: AppColors.border),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ],
-
-                    // ── Cooking instructions ─────────────────────────────────
                     if (meal.instructions.isNotEmpty) ...[
                       const SizedBox(height: 24),
                       const Text(
@@ -1036,193 +951,197 @@ class _MealDetailPageState extends State<MealDetailPage> {
             color: AppColors.cardSurface,
             border: Border(top: BorderSide(color: AppColors.border)),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Primary lifecycle action row
-              if (meal.isPending) ...[
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: _replaceWithAi,
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.primary,
-                          side: const BorderSide(
-                              color: AppColors.primary, width: 1.5),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
+          child: SafeArea(
+            top: false,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Primary lifecycle action row
+                if (meal.isPending) ...[
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: _replaceWithAi,
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.primary,
+                            side: const BorderSide(
+                                color: AppColors.primary, width: 1.5),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.refresh, size: 18),
+                          label: const Text('Replace Meal',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 13)),
                         ),
-                        icon: const Icon(Icons.refresh, size: 18),
-                        label: const Text('Replace Meal',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 13)),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      flex: 2,
-                      child: ElevatedButton.icon(
-                        onPressed: () => _updateStatus(MealStatus.accepted),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        flex: 2,
+                        child: ElevatedButton.icon(
+                          onPressed: () => _updateStatus(MealStatus.accepted),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.check, size: 18),
+                          label: const Text('Accept Meal',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 13)),
                         ),
-                        icon: const Icon(Icons.check, size: 18),
-                        label: const Text('Accept Meal',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 13)),
                       ),
-                    ),
-                  ],
-                ),
-              ] else if (meal.isAccepted) ...[
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () => _updateStatus(MealStatus.notCompleted),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.danger,
-                          side: const BorderSide(
-                              color: AppColors.danger, width: 1.2),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
+                    ],
+                  ),
+                ] else if (meal.isAccepted) ...[
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () =>
+                              _updateStatus(MealStatus.notCompleted),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.danger,
+                            side: const BorderSide(
+                                color: AppColors.danger, width: 1.2),
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.close, size: 18),
+                          label: const Text('Not Completed',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 12)),
                         ),
-                        icon: const Icon(Icons.close, size: 18),
-                        label: const Text('Not Completed',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 12)),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      flex: 2,
-                      child: ElevatedButton.icon(
-                        onPressed: () => _updateStatus(MealStatus.completed),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF2E7D32),
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        flex: 2,
+                        child: ElevatedButton.icon(
+                          onPressed: () => _updateStatus(MealStatus.completed),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF2E7D32),
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.task_alt, size: 18),
+                          label: const Text('Mark Completed',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 13)),
                         ),
-                        icon: const Icon(Icons.task_alt, size: 18),
-                        label: const Text('Mark Completed',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 13)),
                       ),
-                    ),
-                  ],
-                ),
-              ] else if (meal.isCompleted) ...[
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () => _updateStatus(MealStatus.accepted),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.primary,
-                          side: const BorderSide(color: AppColors.border),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
+                    ],
+                  ),
+                ] else if (meal.isCompleted) ...[
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () => _updateStatus(MealStatus.accepted),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.primary,
+                            side: const BorderSide(color: AppColors.border),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.undo, size: 16),
+                          label: const Text('Undo / Mark Accepted',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 12)),
                         ),
-                        icon: const Icon(Icons.undo, size: 16),
-                        label: const Text('Undo / Mark Accepted',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 12)),
                       ),
-                    ),
-                  ],
-                ),
-              ] else if (meal.isNotCompleted) ...[
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: () => _updateStatus(MealStatus.accepted),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppColors.primary,
-                          side: const BorderSide(color: AppColors.primary),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
+                    ],
+                  ),
+                ] else if (meal.isNotCompleted) ...[
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: () => _updateStatus(MealStatus.accepted),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.primary,
+                            side: const BorderSide(color: AppColors.primary),
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.refresh, size: 16),
+                          label: const Text('Re-accept',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 12)),
                         ),
-                        icon: const Icon(Icons.refresh, size: 16),
-                        label: const Text('Re-accept',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 12)),
                       ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () => _updateStatus(MealStatus.completed),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF2E7D32),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () => _updateStatus(MealStatus.completed),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF2E7D32),
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
+                          icon: const Icon(Icons.task_alt, size: 16),
+                          label: const Text('Mark Done',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 12)),
                         ),
-                        icon: const Icon(Icons.task_alt, size: 16),
-                        label: const Text('Mark Done',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 12)),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
 
-              // Secondary actions row (Tutorial & Replacement options)
-              if (!meal.isReplaced) ...[
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (meal.youtubeSearchQuery != null &&
-                        meal.youtubeSearchQuery!.isNotEmpty) ...[
-                      TextButton.icon(
-                        onPressed: _openYouTube,
-                        icon: const Icon(Icons.play_circle_fill,
-                            size: 16, color: Colors.red),
-                        label: const Text(
-                          'Watch Tutorial',
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12),
+                // Secondary actions row (Tutorial & Replacement options)
+                if (!meal.isReplaced) ...[
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (meal.youtubeSearchQuery != null &&
+                          meal.youtubeSearchQuery!.isNotEmpty) ...[
+                        TextButton.icon(
+                          onPressed: _openYouTube,
+                          icon: const Icon(Icons.play_circle_fill,
+                              size: 16, color: Colors.red),
+                          label: const Text(
+                            'Watch Tutorial',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12),
+                          ),
                         ),
-                      ),
-                    ],
-                    if (meal.isAccepted || meal.isNotCompleted) ...[
-                      const SizedBox(width: 8),
-                      TextButton.icon(
-                        onPressed: _replaceWithAi,
-                        icon: const Icon(Icons.auto_awesome,
-                            size: 16, color: AppColors.primary),
-                        label: const Text(
-                          'Replace with AI',
-                          style: TextStyle(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12),
+                      ],
+                      if (meal.isAccepted || meal.isNotCompleted) ...[
+                        const SizedBox(width: 8),
+                        TextButton.icon(
+                          onPressed: _replaceWithAi,
+                          icon: const Icon(Icons.auto_awesome,
+                              size: 16, color: AppColors.primary),
+                          label: const Text(
+                            'Replace with AI',
+                            style: TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12),
+                          ),
                         ),
-                      ),
+                      ],
                     ],
-                  ],
-                ),
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ],
@@ -1230,15 +1149,6 @@ class _MealDetailPageState extends State<MealDetailPage> {
   }
 
   // ── Helper widgets ───────────────────────────────────────────────────────────
-
-  Widget _imagePlaceholder() {
-    return Container(
-      color: AppColors.primaryLight,
-      child: const Center(
-        child: Icon(Icons.restaurant, size: 64, color: AppColors.primary),
-      ),
-    );
-  }
 
   Widget _buildSpecCard(String label, String value) {
     return Container(
@@ -1279,77 +1189,6 @@ class _MealDetailPageState extends State<MealDetailPage> {
               TextStyle(color: text, fontWeight: FontWeight.w700, fontSize: 12),
           overflow: TextOverflow.ellipsis,
         ),
-      ),
-    );
-  }
-
-  Widget _buildIngredientSection({
-    required String label,
-    required Color labelColor,
-    required List<String> items,
-    required Color chipBg,
-    required Color chipText,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-              color: labelColor, fontWeight: FontWeight.w700, fontSize: 13),
-        ),
-        const SizedBox(height: 6),
-        Wrap(
-          spacing: 6,
-          runSpacing: 6,
-          children: items
-              .map(
-                (i) => Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: chipBg,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(i,
-                      style: TextStyle(
-                          color: chipText,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600)),
-                ),
-              )
-              .toList(),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildIngredientRow(String name, String amount) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Text(
-              name,
-              style: const TextStyle(
-                color: AppColors.textPrimary,
-                fontWeight: FontWeight.w600,
-                fontSize: 14,
-              ),
-            ),
-          ),
-          if (amount.isNotEmpty)
-            Text(
-              amount,
-              style: const TextStyle(
-                color: AppColors.primary,
-                fontWeight: FontWeight.w700,
-                fontSize: 13,
-              ),
-            ),
-        ],
       ),
     );
   }

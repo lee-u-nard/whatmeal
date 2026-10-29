@@ -1,0 +1,77 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage9\household-integration.apk...             1,321ms
+I/.whatmeal.local( 1875): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:60082/JLJtM3af4wU=/
+VMServiceFlutterDriver: Isolate found with number: 8800389683249103
+VMServiceFlutterDriver: The isolate 8800389683249103 is taking unusually long time to initialize. It still reports None as pause event which is incorrect.
+I/.whatmeal.local( 1875): Background concurrent mark compact GC freed 2243KB AllocSpace bytes, 7(268KB) LOS objects, 49% free, 2965KB/5930KB, paused 718us,25.332ms total 4.861s
+VMServiceFlutterDriver: Isolate 8800389683249103 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+W/.whatmeal.local( 1875): Verification of void androidx.profileinstaller.ProfileInstaller.<clinit>() took 458.186ms (32.74 bytecodes/s) (2552B approximate peak alloc)
+W/.whatmeal.local( 1875): Verification of boolean androidx.profileinstaller.ProfileInstaller.deleteProfileWrittenFor(java.io.File) took 118.668ms (101.12 bytecodes/s) (2304B approximate peak alloc)
+W/.whatmeal.local( 1875): Verification of boolean androidx.profileinstaller.ProfileInstaller.hasAlreadyWrittenProfileForThisInstall(android.content.pm.PackageInfo, java.io.File, androidx.profileinstaller.ProfileInstaller$DiagnosticsCallback) took 320.307ms (187.32 bytecodes/s) (4160B approximate peak alloc)
+D/ProfileInstaller( 1875): Installing profile for com.example.whatmeal.local
+W/.whatmeal.local( 1875): Verification of java.lang.Object kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED() took 176.304ms (17.02 bytecodes/s) (2160B approximate peak alloc)
+W/.whatmeal.local( 1875): Verification of void androidx.profileinstaller.ProfileVerifier.<clinit>() took 306.787ms (55.41 bytecodes/s) (2456B approximate peak alloc)
+I/Choreographer( 1875): Skipped 1480 frames!  The application may be doing too much work on its main thread.
+W/.whatmeal.local( 1875): Verification of void androidx.concurrent.futures.AbstractResolvableFuture.<clinit>() took 512.068ms (210.91 bytecodes/s) (4296B approximate peak alloc)
+D/FlutterJNI( 1875): Sending viewport metrics to the engine.
+I/.whatmeal.local( 1875): Compiler allocated 5417KB to compile void android.view.ViewRootImpl.performTraversals()
+VMServiceFlutterDriver: Flutter Driver extension is taking a long time to become available. Ensure your test app (often "lib/main.dart") imports "package:flutter_driver/driver_extension.dart" and calls enableFlutterDriverExtension() as the first call in main().
+I/.whatmeal.local( 1875): Background concurrent mark compact GC freed 2852KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 2993KB/5986KB, paused 880us,9.306ms total 169.686ms
+I/.whatmeal.local( 1875): Background concurrent mark compact GC freed 2912KB AllocSpace bytes, 0(0B) LOS objects, 49% free, 2993KB/5986KB, paused 866us,3.434ms total 107.005ms

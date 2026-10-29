@@ -1,0 +1,34 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart
+Running Gradle task 'assembleLocalDebug'...                     
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage8"
+Running Gradle task 'assembleLocalDebug'...                       167.4s
+√ Built build\app\outputs\flutter-apk\app-local-debug.apk
+Installing build\app\outputs\flutter-apk\app-local-debug.apk...         7.0s
+00:00 +0: local Android UI registration, verification, household and account switching
+01:24 +0: local Android UI registration, verification, household and account switching - did not complete [E]
+01:24 +0: (tearDownAll) - did not complete [E]
+01:24 +0: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart: (tearDownAll) (did not complete)
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart: local Android UI registration, verification, household and account switching (did not complete)
+No tests were found.
+adb.exe: device offline
+adb uninstall failed: ProcessException: Process exited abnormally with exit code 1:
+adb.exe: device 'emulator-5554' not found
+  Command: C:\Android\Sdk\platform-tools\adb.exe -s emulator-5554 uninstall com.example.whatmeal.local
+unhandled error during finalization of test:
+C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart
+PathNotFoundException: Deletion failed, path = 'C:\Users\ASUSV1~1\AppData\Local\Temp\flutter_tools.739cd075\flutter_test_listener.7e9875ac' (OS Error: The system cannot find the path specified, errno = 3)
+#0      _Directory._deleteSync (dart:io/directory_impl.dart:216:7)
+#1      FileSystemEntity.deleteSync (dart:io/file_system_entity.dart:425:7)
+#2      ForwardingFileSystemEntity.deleteSync (package:file/src/forwarding/forwarding_file_system_entity.dart:70:16)
+#3      ErrorHandlingDirectory.deleteSync.<anonymous closure> (package:flutter_tools/src/base/error_handling_io.dart:715:22)
+#4      _runSync (package:flutter_tools/src/base/error_handling_io.dart:1116:16)
+#5      ErrorHandlingDirectory.deleteSync (package:flutter_tools/src/base/error_handling_io.dart:714:12)
+#6      FlutterPlatform._createListenerDart.<anonymous closure> (package:flutter_tools/src/test/flutter_platform.dart:787:15)
+#7      FlutterPlatform._startTest.finalize (package:flutter_tools/src/test/flutter_platform.dart:592:26)
+<asynchronous suspension>
+#8      FlutterPlatform._startTest (package:flutter_tools/src/test/flutter_platform.dart:763:7)
+<asynchronous suspension>
+

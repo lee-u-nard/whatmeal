@@ -1,0 +1,24 @@
+{
+  "score": 1,
+  "summary": "Release posture remains critical and unverified: Stage 1 C01/C02 production findings are not changed by local edits. The local v2 redesign is implemented but its emulator suite could not execute. This is not a verified security score for the new rules.",
+  "findings": [
+    {
+      "check": "Authority source and overlapping permissions",
+      "severity": "critical",
+      "issue": "C01/C02 remain open until the new rules actually execute and pass acceptance tests. No production rule change has been made.",
+      "recommendation": "Run and pass the isolated emulator acceptance suite before any claim of remediation; keep production migration/deployment separately gated."
+    },
+    {
+      "check": "Business logic vs rules; create/update invariants",
+      "severity": "major",
+      "issue": "Rule compilation, atomic membership/index coupling, ownership transitions, concurrent joins and schema compatibility are not runtime-verified because Java selector initialization blocks the emulator.",
+      "recommendation": "Execute the 60 prepared acceptance cases on a working emulator, then test the actual Flutter flows."
+    },
+    {
+      "check": "Storage abuse, type safety and resource limits",
+      "severity": "moderate",
+      "issue": "Local rules include bounded fields and element validation, but maximum document shapes and rule evaluation/access-call budgets have not been exercised.",
+      "recommendation": "Add and execute maximum-size, malformed nested field, and large-batch fixtures before release."
+    }
+  ]
+}

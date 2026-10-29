@@ -1,0 +1,20 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: loading pantry cannot publish an inflated complete shopping requirement
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: pantry failure is visible in grocery UI and Retry restores the real shortage
+00:01 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: delayed purchase callback cannot persist an inflated receipt after pantry denial
+00:01 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: obsolete pantry callback cannot recover a terminal feed without Retry
+00:01 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: pantry A B A cannot publish stock from a cancelled account feed
+00:01 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: delayed delete cannot erase a purchase receipt while pantry stock is unknown
+00:05 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: failed saved-plan dependency is visible in groceries and Retry reopens both feeds
+00:05 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: old remove and clear confirmations cannot mutate the newly active grocery list
+00:06 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: an open grocery editor cannot submit its old draft into B or a later A session
+00:07 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: grocery item and parent terminal feeds reopen, publish safe failures, and dispose sources
+00:07 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: delayed successful or failing A initialization and add cannot attach or write after A B A
+00:09 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: pantry reopens a terminal feed and ignores first A session after A B A
+00:09 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: pantry publishes the new scope atomically during rapid account switches
+00:09 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: pantry publishes a safe failure before notifying observers
+00:09 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: dietary profiles reopens a terminal feed and ignores first A session after A B A
+00:09 +15: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: dietary profiles publishes the new scope atomically during rapid account switches
+00:09 +16: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: dietary profiles publishes a safe failure before notifying observers
+00:09 +17: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/shared_meal_pantry_workflow_test.dart: shared accept replace pantry and deletion flow preserves remaining needs and receipts
+00:10 +18: All tests passed!

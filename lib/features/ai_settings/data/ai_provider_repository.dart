@@ -5,65 +5,230 @@ import '../../../core/models/llm_config.dart';
 import '../../../core/models/app_notification.dart';
 import '../../../core/services/llm_service.dart';
 import '../../../core/services/ai/ai_models.dart';
+import '../../../core/services/ai/generation_failure.dart';
+import '../../../core/services/ai/model_registry.dart';
 import '../../../core/services/notification_service.dart';
 import '../../../core/services/household_notification_service.dart';
-import '../../auth/data/auth_repository.dart';
 import '../models/ai_provider.dart';
 
+typedef ValidateAiConnection = Future<KeyValidationResult> Function(
+    LlmConfig config);
+typedef LoadAiModels = Future<List<String>> Function(LlmConfig config);
+typedef AiConnectionNotification = void Function(
+    String uid, String title, String message, AppNotificationType type);
+
 class AiProviderRepository extends ValueNotifier<AiProviderConfig> {
-  AiProviderRepository._()
-      : super(
-          const AiProviderConfig(
-            providerType: AiProviderType.gemini,
-            selectedModel: 'gemini-3.8-flash',
-            status: ApiConnectionStatus.connected,
-            statusMessage: 'Using built-in Gemini (no key required)',
-          ),
-        ) {
-    _authSub = FirebaseAuth.instance.authStateChanges().listen((user) {
-      _uid = user?.uid;
-      if (_uid != null) {
-        _loadFromFirestore();
-      } else {
-        value = const AiProviderConfig(
+  /// Injectable account and storage boundaries; tests never need live Firebase.
+  AiProviderRepository({
+    required Stream<String?> userIds,
+    required Stream<LlmConfig> Function(String) watchConfig,
+    required Future<LlmConfig> Function(String) readConfig,
+    required Future<void> Function(String, LlmConfig) saveConfig,
+    void Function(AiProviderType)? onProviderChanged,
+    ValidateAiConnection? validateConnection,
+    LoadAiModels? loadModels,
+    AiConnectionNotification? onConnectionResult,
+  })  : _watchConfig = watchConfig,
+        _readConfig = readConfig,
+        _saveConfig = saveConfig,
+        _onProviderChanged = onProviderChanged,
+        _validateConnection = validateConnection ?? _validateWithService,
+        _loadModels = loadModels ?? _loadWithService,
+        _onConnectionResult = onConnectionResult,
+        super(AiProviderConfig(
           providerType: AiProviderType.gemini,
-          selectedModel: 'gemini-3.8-flash',
-          status: ApiConnectionStatus.connected,
-          statusMessage: 'Using built-in Gemini (no key required)',
-        );
-      }
+          selectedModel: AiProviderType.gemini.defaultModel,
+          statusMessage: 'Loading provider settings...',
+        )) {
+    _authSub = userIds.distinct().listen(_setAccount);
+  }
+
+  static final instance = AiProviderRepository(
+    userIds: FirebaseAuth.instance.authStateChanges().map((user) => user?.uid),
+    watchConfig: (uid) => LlmService().activeConfigStream(uid),
+    readConfig: (uid) => LlmService().getLlmConfig(uid),
+    saveConfig: (uid, config) => LlmService().saveLlmConfig(uid, config),
+    onProviderChanged: (type) =>
+        HouseholdNotificationService.instance.notifyAiProviderChanged(
+      action: 'changed',
+      providerName: type.displayName,
+    ),
+    onConnectionResult: (uid, title, message, type) =>
+        NotificationService.instance.push(uid, title, message, type),
+  );
+
+  static Future<KeyValidationResult> _validateWithService(LlmConfig config) =>
+      LlmService().validateKey(config.provider, config.apiKey ?? '',
+          model: config.model,
+          customEndpoint: config.customEndpoint,
+          isOpenAiCompatible: config.isOpenAiCompatible);
+
+  static Future<List<String>> _loadWithService(LlmConfig config) =>
+      LlmService().fetchAvailableModels(
+          provider: config.provider,
+          apiKey: config.apiKey ?? '',
+          customEndpoint: config.customEndpoint,
+          isOpenAiCompatible: config.isOpenAiCompatible);
+
+  final Stream<LlmConfig> Function(String) _watchConfig;
+  final Future<LlmConfig> Function(String) _readConfig;
+  final Future<void> Function(String, LlmConfig) _saveConfig;
+  final void Function(AiProviderType)? _onProviderChanged;
+  final ValidateAiConnection _validateConnection;
+  final LoadAiModels _loadModels;
+  final AiConnectionNotification? _onConnectionResult;
+  String? _uid;
+  StreamSubscription<String?>? _authSub;
+  StreamSubscription<LlmConfig>? _configSub;
+  int _revision = 0;
+  int _session = 0;
+  int _editRevision = 0;
+  int _remoteRevision = 0;
+  int _pendingWrites = 0;
+  bool _disposed = false;
+  Future<void> _pendingSave = Future<void>.value();
+  AiProviderConfig? _persistedSelection;
+
+  bool get isSaving => _pendingWrites > 0;
+
+  /// Never request an older saved provider while the screen shows a new one.
+  /// Connection-test failures do not invalidate an otherwise saved selection.
+  String? get generationReadinessError {
+    if (_disposed || _uid == null) {
+      return 'Sign in before generating a meal plan.';
+    }
+    if (isSaving) {
+      return 'AI settings are still saving. Wait, then generate again.';
+    }
+    final saved = _persistedSelection;
+    if (saved == null ||
+        saved.providerType != value.providerType ||
+        saved.selectedModel != value.selectedModel ||
+        (saved.apiKey ?? '') != (value.apiKey ?? '') ||
+        (saved.customEndpoint ?? '') != (value.customEndpoint ?? '') ||
+        saved.isOpenAiCompatible != value.isOpenAiCompatible) {
+      return 'AI settings are not synchronized. Open AI Settings and retry saving '
+          'your provider before generating.';
+    }
+    return null;
+  }
+
+  /// Changes even when the same account signs out and back in.
+  int get sessionRevision => _session;
+
+  void retry() {
+    if (_disposed || isSaving || _uid == null) return;
+    // Reopen the actual subscription; reopening a page alone leaves a failed
+    // singleton listener unchanged. Never discard an outstanding settings write.
+    _setAccount(_uid);
+  }
+
+  void _setAccount(String? uid) {
+    _uid = uid;
+    _persistedSelection = null;
+    final session = ++_session;
+    ++_revision;
+    ++_editRevision;
+    ++_remoteRevision;
+    _pendingWrites = 0;
+    // An old account's slow write must not hold up this account's queue.
+    _pendingSave = Future<void>.value();
+    _configSub?.cancel();
+    _configSub = null;
+    value = _fromLlmConfig(LlmConfig.defaultConfig);
+    if (uid == null) return;
+    _configSub = _watchConfig(uid).listen((config) {
+      if (!_isCurrent(uid, session)) return;
+      ++_remoteRevision;
+      // Firestore emits local and remote snapshots while saves are pending.
+      // Re-read after the queue drains instead of applying an older echo.
+      if (isSaving) return;
+      ++_revision;
+      final selected = _fromLlmConfig(config);
+      _persistedSelection = selected;
+      value = selected;
+    }, onError: (Object _) {
+      if (!_isCurrent(uid, session)) return;
+      _persistedSelection = null;
+      ++_remoteRevision;
+      ++_revision;
+      // Clear stale credentials on a denied/failed listener.
+      value = _fromLlmConfig(LlmConfig.defaultConfig).copyWith(
+        status: ApiConnectionStatus.failed,
+        statusMessage: 'Provider settings could not be loaded. Retry settings.',
+      );
     });
   }
 
-  static final instance = AiProviderRepository._();
+  bool _isCurrent(String uid, int session) =>
+      !_disposed && _uid == uid && _session == session;
 
-  final _llm = LlmService();
-  String? _uid;
-  StreamSubscription<User?>? _authSub;
-
-  Future<void> _loadFromFirestore() async {
-    if (_uid == null) return;
-    try {
-      final config = await _llm.getLlmConfig(_uid!);
-      value = _fromLlmConfig(config);
-    } catch (e) {
-      debugPrint('[AiProviderRepo] Load failed: $e');
+  Future<bool> _saveToFirestore(LlmConfig config) async {
+    final uid = _uid;
+    final session = _session;
+    final edit = ++_editRevision;
+    ++_revision;
+    if (uid == null || _disposed) return false;
+    ++_pendingWrites;
+    notifyListeners();
+    var saved = false;
+    final operation = _pendingSave.then((_) async {
+      if (!_isCurrent(uid, session)) return;
+      try {
+        await _saveConfig(uid, config);
+        saved = true;
+      } catch (_) {
+        if (_isCurrent(uid, session) && edit == _editRevision) {
+          value = value.copyWith(
+            status: ApiConnectionStatus.failed,
+            statusMessage:
+                'Settings could not be saved. Check your connection and retry.',
+          );
+        }
+      } finally {
+        if (_isCurrent(uid, session)) {
+          --_pendingWrites;
+          notifyListeners();
+        }
+      }
+    });
+    _pendingSave = operation;
+    await operation;
+    if (!_isCurrent(uid, session)) return false;
+    if (saved && edit == _editRevision && !isSaving) {
+      final remote = _remoteRevision;
+      try {
+        final current = await _readConfig(uid);
+        if (_isCurrent(uid, session) &&
+            edit == _editRevision &&
+            remote == _remoteRevision &&
+            !isSaving) {
+          ++_revision;
+          final selected = _fromLlmConfig(current);
+          _persistedSelection = selected;
+          value = selected;
+        }
+      } catch (_) {
+        if (_isCurrent(uid, session) &&
+            edit == _editRevision &&
+            remote == _remoteRevision) {
+          value = value.copyWith(
+            status: ApiConnectionStatus.failed,
+            statusMessage:
+                'Settings saved, but synchronization could not be refreshed.',
+          );
+        }
+      }
     }
-  }
-
-  Future<void> _saveToFirestore(LlmConfig config) async {
-    if (_uid == null) return;
-    try {
-      await _llm.saveLlmConfig(_uid!, config);
-    } catch (e) {
-      debugPrint('[AiProviderRepo] Save failed: $e');
-    }
+    return saved && _isCurrent(uid, session);
   }
 
   AiProviderConfig _fromLlmConfig(LlmConfig config) {
     final type = _uiTypeFrom(config.provider);
     final hasKey = config.apiKey != null && config.apiKey!.isNotEmpty;
     final isBuiltIn = config.provider == LlmProvider.gemini && !config.isCustom;
+    final anonymousCustom = config.provider == LlmProvider.custom &&
+        (config.customEndpoint?.trim().isNotEmpty ?? false);
     return AiProviderConfig(
       providerType: type,
       selectedModel: config.model ?? type.defaultModel,
@@ -71,15 +236,17 @@ class AiProviderRepository extends ValueNotifier<AiProviderConfig> {
       customEndpoint: config.customEndpoint,
       isOpenAiCompatible: config.isOpenAiCompatible ?? true,
       status: isBuiltIn
-          ? ApiConnectionStatus.connected
-          : (hasKey
-              ? ApiConnectionStatus.connected
+          ? ApiConnectionStatus.configured
+          : (hasKey || anonymousCustom
+              ? ApiConnectionStatus.configured
               : ApiConnectionStatus.notConfigured),
       statusMessage: isBuiltIn
           ? 'Using built-in Gemini (no key required)'
-          : (hasKey
-              ? 'API key loaded from saved settings'
-              : 'API Key required for ${type.displayName}'),
+          : (anonymousCustom && !hasKey
+              ? 'Custom endpoint saved. Authentication and compatibility are unverified.'
+              : hasKey
+                  ? 'API key loaded from saved settings'
+                  : 'API Key required for ${type.displayName}'),
     );
   }
 
@@ -98,131 +265,139 @@ class AiProviderRepository extends ValueNotifier<AiProviderConfig> {
     }
   }
 
-  void selectProvider(AiProviderType type) {
+  Future<void> selectProvider(AiProviderType type) async {
     final oldProvider = value.providerType;
-    final llmProvider = type.toLlmProvider;
-    final isGemini = llmProvider == LlmProvider.gemini;
+    value = value.forProvider(type);
+    final saved = await _persist();
 
-    // When switching to Gemini, default to built-in free Gemini (no key required)
-    final keyToKeep = isGemini ? null : value.apiKey;
-    final hasKey = keyToKeep != null && keyToKeep.isNotEmpty;
-
-    value = AiProviderConfig(
-      providerType: type,
-      selectedModel: type.defaultModel,
-      apiKey: keyToKeep,
-      customEndpoint: isGemini ? null : value.customEndpoint,
-      isOpenAiCompatible: value.isOpenAiCompatible,
-      fetchedModels: null,
-      status: isGemini
-          ? ApiConnectionStatus.connected
-          : (hasKey
-              ? ApiConnectionStatus.connected
-              : ApiConnectionStatus.notConfigured),
-      statusMessage: isGemini
-          ? 'Using built-in Gemini (no key required)'
-          : (hasKey
-              ? 'Switched to ${type.displayName}'
-              : 'API Key required for ${type.displayName}'),
-    );
-    _persist();
-
-    // Send household notification when provider changes
-    if (oldProvider != type) {
-      HouseholdNotificationService.instance.notifyAiProviderChanged(
-        action: 'changed',
-        providerName: type.displayName,
-      );
+    // Never announce a failed or stale-session change.
+    if (saved && value.providerType == type && oldProvider != type) {
+      _onProviderChanged?.call(type);
     }
   }
 
-  void setApiKey(String key) {
+  Future<bool> setApiKey(String key) {
     final trimmed = key.trim();
     if (trimmed.isEmpty) {
-      removeKey();
-      return;
+      return removeKey();
     }
     value = value.copyWith(
       apiKey: trimmed,
-      status: ApiConnectionStatus.connected,
-      statusMessage: 'Key saved — tap "Test Connection" to verify',
+      status: ApiConnectionStatus.configured,
+      statusMessage: 'Key updated — save and test the connection to verify.',
+      clearFetchedModels: true,
     );
-    _persist();
+    return _persist();
   }
 
   void setCustomEndpoint(String endpoint) {
-    value = value.copyWith(customEndpoint: endpoint.trim());
+    value = value.copyWith(
+      customEndpoint: endpoint.trim(),
+      clearFetchedModels: true,
+      status: ApiConnectionStatus.configured,
+      statusMessage: 'Endpoint changed. Test the connection again.',
+    );
     _persist();
   }
 
   void setOpenAiCompatible(bool compatible) {
-    value = value.copyWith(isOpenAiCompatible: compatible);
+    value = value.copyWith(
+      isOpenAiCompatible: compatible,
+      clearFetchedModels: true,
+      status: ApiConnectionStatus.configured,
+      statusMessage: 'Endpoint mode changed. Test the connection again.',
+    );
     _persist();
   }
 
-  void updateModel(String model) {
-    value = value.copyWith(selectedModel: model.trim());
-    _persist();
+  Future<bool> updateModel(String model) {
+    final trimmed = model.trim();
+    if (trimmed.isEmpty) return Future.value(false);
+    if (trimmed == value.selectedModel) return Future.value(true);
+    value = value.copyWith(
+      selectedModel: trimmed,
+      status: ApiConnectionStatus.configured,
+      statusMessage: 'Model changed. Test the connection again.',
+    );
+    return _persist();
   }
 
   Future<void> testConnection() async {
+    final uid = _uid;
+    final session = _session;
+    if (uid == null ||
+        _disposed ||
+        isSaving ||
+        value.status == ApiConnectionStatus.testing) {
+      return;
+    }
+    final config = _toLlmConfig();
+    final revision = ++_revision;
     value = value.copyWith(
       status: ApiConnectionStatus.testing,
       statusMessage:
           'Testing connection to ${value.providerType.displayName}...',
     );
-    final llmProvider = value.providerType.toLlmProvider;
-    final apiKey = value.apiKey ?? '';
     try {
-      final result = await _llm.validateKey(
-        llmProvider,
-        apiKey,
-        customEndpoint: value.customEndpoint,
-        model: value.selectedModel,
-        isOpenAiCompatible: value.isOpenAiCompatible,
-      );
+      final result = await _validateConnection(config);
+      if (!_isCurrent(uid, session) || revision != _revision) return;
       if (result.isValid) {
         value = value.copyWith(
           status: ApiConnectionStatus.connected,
           statusMessage:
-              'Connection successful! ${value.providerType.displayName} is ready.',
+              'Connection check passed. Meal generation has not been verified.',
         );
-        final uid = AuthRepository.instance.currentUser?.uid;
-        if (uid != null) {
-          NotificationService.instance.push(
-            uid,
-            'AI Provider Connected',
-            '${value.providerType.displayName} is ready for meal generation.',
-            AppNotificationType.aiSuccess,
-          );
-        }
+        _onConnectionResult?.call(
+          uid,
+          'AI Connection Checked',
+          '${value.providerType.displayName} passed a connection check. Meal generation has not been verified.',
+          AppNotificationType.aiSuccess,
+        );
       } else {
         value = value.copyWith(
           status: _mapStatus(result.status),
           statusMessage: result.errorMessage ?? 'Validation failed.',
         );
-        final uid = AuthRepository.instance.currentUser?.uid;
-        if (uid != null) {
-          NotificationService.instance.push(
-            uid,
-            'AI Provider Connection Failed',
-            result.errorMessage ??
-                'Could not connect to ${value.providerType.displayName}.',
-            AppNotificationType.aiSuccess,
-          );
-        }
+        _onConnectionResult?.call(
+          uid,
+          'AI Provider Connection Failed',
+          result.errorMessage ??
+              'Could not connect to ${value.providerType.displayName}.',
+          AppNotificationType.general,
+        );
       }
-    } catch (_) {
+    } catch (error) {
+      if (!_isCurrent(uid, session) || revision != _revision) return;
+      final failure = GenerationFailure.from(error);
       value = value.copyWith(
-        status: ApiConnectionStatus.networkError,
-        statusMessage:
-            "Couldn't reach the server. Check your internet connection.",
+        status: switch (failure.kind) {
+          GenerationFailureKind.configuration =>
+            ApiConnectionStatus.configurationError,
+          GenerationFailureKind.authentication =>
+            ApiConnectionStatus.authenticationRequired,
+          GenerationFailureKind.permission =>
+            ApiConnectionStatus.permissionDenied,
+          GenerationFailureKind.invalidModel =>
+            ApiConnectionStatus.invalidModel,
+          GenerationFailureKind.quota => ApiConnectionStatus.rateLimited,
+          GenerationFailureKind.appCheck ||
+          GenerationFailureKind.firebase =>
+            ApiConnectionStatus.failed,
+          GenerationFailureKind.network ||
+          GenerationFailureKind.dns ||
+          GenerationFailureKind.timeout =>
+            ApiConnectionStatus.networkError,
+          _ => ApiConnectionStatus.providerUnavailable,
+        },
+        statusMessage: GenerationFailure.connectionCheckMessage(error),
       );
     }
   }
 
   ApiConnectionStatus _mapStatus(TestConnectionStatus status) {
     switch (status) {
+      case TestConnectionStatus.failed:
+        return ApiConnectionStatus.failed;
       case TestConnectionStatus.connected:
         return ApiConnectionStatus.connected;
       case TestConnectionStatus.invalidKey:
@@ -231,6 +406,12 @@ class AiProviderRepository extends ValueNotifier<AiProviderConfig> {
         return ApiConnectionStatus.invalidModel;
       case TestConnectionStatus.invalidEndpoint:
         return ApiConnectionStatus.invalidEndpoint;
+      case TestConnectionStatus.configurationError:
+        return ApiConnectionStatus.configurationError;
+      case TestConnectionStatus.authenticationRequired:
+        return ApiConnectionStatus.authenticationRequired;
+      case TestConnectionStatus.permissionDenied:
+        return ApiConnectionStatus.permissionDenied;
       case TestConnectionStatus.rateLimited:
         return ApiConnectionStatus.rateLimited;
       case TestConnectionStatus.networkError:
@@ -242,8 +423,26 @@ class AiProviderRepository extends ValueNotifier<AiProviderConfig> {
 
   /// Fetches the live list of models from the provider API using the user's actual API key.
   Future<void> fetchModels() async {
+    final uid = _uid;
+    final session = _session;
+    if (uid == null ||
+        _disposed ||
+        isSaving ||
+        value.status == ApiConnectionStatus.testing) {
+      return;
+    }
     final apiKey = value.apiKey ?? '';
-    if (apiKey.isEmpty && value.providerType != AiProviderType.gemini) return;
+    if (apiKey.isEmpty && value.providerType == AiProviderType.gemini) {
+      value = value.copyWith(
+        status: ApiConnectionStatus.configured,
+        statusMessage:
+            'Built-in Gemini uses suggested models. Live model discovery requires your own Gemini API key.',
+      );
+      return;
+    }
+    if (apiKey.isEmpty && value.providerType != AiProviderType.custom) return;
+    final config = _toLlmConfig();
+    final revision = ++_revision;
 
     value = value.copyWith(
       status: ApiConnectionStatus.testing,
@@ -251,70 +450,79 @@ class AiProviderRepository extends ValueNotifier<AiProviderConfig> {
     );
 
     try {
-      final models = await _llm.fetchAvailableModels(
-        provider: value.providerType.toLlmProvider,
-        apiKey: apiKey,
-        customEndpoint: value.customEndpoint,
-        isOpenAiCompatible: value.isOpenAiCompatible,
-      );
+      final models = AiModelRegistry.filterDiscovered(
+          config.provider,
+          (await _loadModels(config))
+              .map((model) => model.trim())
+              .where((model) => model.isNotEmpty)
+              .toSet()
+              .toList());
+      if (!_isCurrent(uid, session) || revision != _revision) return;
 
       if (models.isEmpty) {
         value = value.copyWith(
           status: ApiConnectionStatus.failed,
-          statusMessage: 'No chat models found. Check your API key or plan.',
+          statusMessage:
+              'No reviewed meal-planning models found. Check your provider access and settings.',
           fetchedModels: [],
         );
         return;
       }
 
-      final newModel = models.contains(value.selectedModel)
-          ? value.selectedModel
-          : models.first;
-
+      final selectedAvailable = models.contains(value.selectedModel);
       value = value.copyWith(
         fetchedModels: models,
-        selectedModel: newModel,
-        status: ApiConnectionStatus.connected,
-        statusMessage: 'Found ${models.length} model(s). Using "$newModel".',
+        status: selectedAvailable
+            ? ApiConnectionStatus.configured
+            : ApiConnectionStatus.invalidModel,
+        statusMessage: selectedAvailable
+            ? 'Found ${models.length} model(s). Test the selected model before use.'
+            : 'The saved model is absent from this list. Select a model explicitly or check its availability.',
       );
-      _persist();
     } catch (e) {
+      if (!_isCurrent(uid, session) || revision != _revision) return;
       value = value.copyWith(
         status: ApiConnectionStatus.failed,
-        statusMessage: 'Failed to load models: ${e.toString()}',
+        statusMessage: e is GenerationFailure
+            ? e.toString()
+            : 'Failed to load models. Check your settings and connection.',
       );
     }
   }
 
-  void removeKey() {
-    value = const AiProviderConfig(
+  Future<bool> removeKey() {
+    value = AiProviderConfig(
       providerType: AiProviderType.gemini,
-      selectedModel: 'gemini-3.8-flash',
+      selectedModel: AiProviderType.gemini.defaultModel,
       apiKey: null,
       customEndpoint: null,
       fetchedModels: null,
-      status: ApiConnectionStatus.connected,
+      status: ApiConnectionStatus.configured,
       statusMessage: 'Using built-in Gemini (no key required)',
     );
-    if (_uid != null) {
-      _llm.clearLlmConfig(_uid!);
-    }
-    _persist();
+    return _persist();
   }
 
-  void _persist() {
-    _saveToFirestore(LlmConfig(
-      provider: value.providerType.toLlmProvider,
-      apiKey: value.apiKey,
-      model: value.selectedModel,
-      customEndpoint: value.customEndpoint,
-      isOpenAiCompatible: value.isOpenAiCompatible,
-    ));
+  Future<bool> _persist() {
+    return _saveToFirestore(_toLlmConfig());
   }
+
+  LlmConfig _toLlmConfig() => LlmConfig(
+        provider: value.providerType.toLlmProvider,
+        apiKey: value.apiKey,
+        model: value.selectedModel,
+        customEndpoint: value.customEndpoint,
+        isOpenAiCompatible: value.isOpenAiCompatible,
+      );
 
   @override
   void dispose() {
+    _disposed = true;
+    _persistedSelection = null;
+    ++_session;
+    ++_revision;
     _authSub?.cancel();
+    _configSub?.cancel();
     super.dispose();
   }
 }

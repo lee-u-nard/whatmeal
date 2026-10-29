@@ -1,0 +1,31 @@
+# Stage 13 command ledger
+
+Run from the repository root. Logs retain actual child exit codes in matching .exit files. Interrupted wrappers without a child exit are recorded separately and never counted as passes. No production or live-AI commands.
+
+1. flutter analyze -> analyze-initial.* exit1: five infos/two compile errors. Fixed nullable initializer call and fake UserInfo type; dart fix --apply --code=curly_braces_in_flow_control_structures -> lint-fixes.txt, five fixes/three changed files.
+2. flutter test test/auth_terminal_recovery_test.dart test/saved_plan_recovery_test.dart test/grocery_feed_recovery_test.dart -> recovery-focused.* exit0,7 passed.
+3. flutter test test/auth_terminal_recovery_test.dart test/saved_plan_recovery_test.dart test/grocery_feed_recovery_test.dart test/saved_plan_stream_test.dart test/saved_plan_account_scope_test.dart -> recovery-expanded.* exit0,12 passed.
+4. flutter test -> flutter-tests.* exit0,233 passed,1:51. This predates the additional reproduced stale grocery editor defect.
+5. flutter analyze -> analyze-fixture.* exit1,four unused fixture imports; removed. Fixture-generation/format wrapper was interrupted, no test result. Cached Dart format completed afterward.
+6. flutter analyze -> flutter-analyze.* exit0,clean80.3s. An integration build wrapper started before this completed was stopped; build-integration.txt/interrupted.json have no build pass or claimed APK. The later serialized original build -> build-integration-serial.* exit0,70.8s; this binary is superseded by the subsequent stale-action fix and was not installed.
+7. flutter test test/grocery_feed_recovery_test.dart -> stale-editor-reproduced.* exit1,2 passes/1 failure: old A editor created an item under B. No real user/production data involved.
+8. flutter test test/grocery_feed_recovery_test.dart test/grocery_editor_test.dart -> stale-actions-fixed.* exit0,9 passed after opening-session guards.
+9. flutter test -> flutter-tests-final.* exit0,235 passed,1:26. Ten new cases versus Stage12. Final flutter analyze -> analyze-final.* (result recorded separately).
+
+Android integration command: flutter build apk --debug --flavor local --target integration_test/stage13_terminal_recovery_test.dart --target-platform android-x64 --dart-define=WHATMEAL_EMULATOR_HOST=10.0.2.2. No relay define; default Firestore8180/Auth9099. Each build uses normal platform regeneration; no --no-pub. Build-mode changes remain serialized; AVD stopped during builds.
+
+Process-local Java settings: JAVA_HOME=C:/Program Files/Android/Android Studio/jbr; PATH prepends its bin; JAVA_TOOL_OPTIONS=-Djdk.net.unixdomain.tmpdir="<absolute audit/stage13>"; GRADLE_OPTS=-Dorg.gradle.jvmargs=-Xmx768m; ORG_GRADLE_PROJECT_kotlin.compiler.execution.strategy=in-process. Backend additionally uses -Xmx512m. No global system/security changes.
+
+Backend: firebase emulators:start --only auth,firestore --project demo-whatmeal-audit --config firebase.audit.json; backend.txt redacts generated email-action URLs. No CLI cloud listing/configuration or deployment. Prior Stage11 security65 result retained, suite/rules byte-for-byte protected.
+- Later validation: stale-editor-reproduced.* exit1,2 passes/1 failure; stale-actions-fixed.* exit0,9 passed. flutter-tests-final.* exit0,235 passed,1:26. analyze-final.* exit1,four style/import infos; analyze-clean.* exit0,clean38.0s after style-only fixes.
+- build-integration-final.* exit0,61.2s; normal regeneration and AVD stopped. android-terminal.* exit1,6 checkpoints then missing nested fault timeout. Preserved first-run binary, phases and screenshot. No full pass.
+- flutter test test/saved_plan_stream_test.dart -> nested-hook-reproduced.* exit1,2 passes/1 failure (hook not invoked). Connected the injected source to actual child subscription. flutter-tests-verified.* exit0,236 passed,2:21; analyze-verified.* exit0,clean23.2s.
+- build-integration-verified.* exit0,58.5s. Same drive command below -> android-terminal-verified.* exit0,45s,11 checkpoints,7 captured controlled SDK permission denials. This binary/run predates the later dependency/session fixes; retained as terminal-integration-11-checkpoints.apk.
+- flutter test test/grocery_feed_recovery_test.dart -> dependency-reproduced.* exit1,4 passes/1 failure; dependency-fixed.* exit0,5 passed. flutter test test/saved_plan_recovery_test.dart -> retry-session-reproduced.* exit1,2 passes/1 failure. Fixed independent feed/session generations.
+- flutter test -> flutter-tests-complete.* exit0,237 passed,1:16; then serialized flutter analyze -> analyze-complete.* exit0,clean17.3s. Final source state before final device/release builds.
+- Final acceptance target: integration_test/stage13_terminal_recovery_test.dart; driver:test_driver/stage13_terminal.dart. flutter drive --driver=test_driver/stage13_terminal.dart --target=integration_test/stage13_terminal_recovery_test.dart --use-application-binary=build/stage13/terminal-integration.apk --flavor=local -d emulator-5564 --keep-app-running. pm clear only .local before clean-room runs; never touched production package or unrelated devices. Backend fixture remains in memory until intentional shutdown.
+- AVD uses existing whatmeal-stage9-aosp, workspace build/audit-avds and build/android-sdk-audit, emulator36.6.11 host GPU,1536MB,2cores,no snapshots/audio/window,port5564. Confirm exact name and boot=1 before install. Stop with emu kill only after name check. No permission bypass, automatic ANR dismissal or system changes.
+
+- Final debug integration build: build-integration-complete.* exit 0, 67.0s. Final drive: android-terminal-complete.* exit 0,47s,12 checkpoints. No source changes followed the 237-test/clean-analysis checks.
+- Standalone release command in TESTER.md -> build-tester.* exit 0,94.4s; verify_tester.ps1 -> apk-verification.* exit 0. adb install -r, pm clear (only com.example.whatmeal.local), am start -W -> tester-install/reset/cold-start.* all exit 0. COLD TotalTime2256ms; screenshot inspected, no ANR.
+- Confirmed dedicated AVD name before emu kill -> avd-stop-tester.* exit 0. Backend session deliberately interrupted after evidence collection (wrapper exit1, cleanup only). Final protected hashes/port check recorded separately.

@@ -1,14 +1,17 @@
+import '../../../core/routing/meal_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/utils/family_permissions.dart';
 import '../../../core/utils/week_calendar.dart';
-import '../../../core/services/unsplash_service.dart';
 import '../../meal/models/meal.dart';
 import '../../meal/widgets/meal_status_badge.dart';
 import '../../meal/widgets/meal_network_image.dart';
+import '../../meal/widgets/meal_ingredients_panel.dart';
+import '../../pantry/data/pantry_repository.dart';
 import '../data/saved_plans_repository.dart';
 import '../models/saved_meal_plan.dart';
+import '../models/calendar_plan_day.dart';
 
 /// Monday–Sunday meal calendar workspace (real weekdays + dates).
 ///
@@ -19,25 +22,52 @@ class MealCalendarWorkspace extends StatefulWidget {
     super.key,
     required this.onCreatePlan,
     required this.onGenerateGrocery,
+    this.selectedDate,
+    this.onDateSelected,
+    this.repository,
   });
 
   final VoidCallback onCreatePlan;
   final VoidCallback onGenerateGrocery;
+  final DateTime? selectedDate;
+  final ValueChanged<DateTime>? onDateSelected;
+  final SavedPlansRepository? repository;
 
   @override
   State<MealCalendarWorkspace> createState() => _MealCalendarWorkspaceState();
 }
 
 class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
+  SavedPlansRepository get _repo =>
+      widget.repository ?? SavedPlansRepository.instance;
   late DateTime _weekMonday;
   late int _selectedDayIndex; // 0=Mon … 6=Sun
 
   @override
   void initState() {
     super.initState();
-    final now = DateTime.now();
+    final now = widget.selectedDate ?? DateTime.now();
     _weekMonday = WeekCalendar.mondayOf(now);
-    _selectedDayIndex = WeekCalendar.dayIndexOf(now);
+    _selectedDayIndex =
+        widget.selectedDate == null ? 0 : WeekCalendar.dayIndexOf(now);
+  }
+
+  @override
+  void didUpdateWidget(covariant MealCalendarWorkspace oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final date = widget.selectedDate;
+    if (date != null && date != oldWidget.selectedDate) {
+      _weekMonday = WeekCalendar.mondayOf(date);
+      _selectedDayIndex = WeekCalendar.dayIndexOf(date);
+    }
+  }
+
+  void _selectDate(DateTime date) {
+    setState(() {
+      _weekMonday = WeekCalendar.mondayOf(date);
+      _selectedDayIndex = WeekCalendar.dayIndexOf(date);
+    });
+    widget.onDateSelected?.call(WeekCalendar.dateOnly(date));
   }
 
   DateTime get _selectedDate =>
@@ -45,15 +75,19 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
 
   List<_CalendarMeal> _mealsForWeek(List<SavedMealPlan> plans) {
     final out = <_CalendarMeal>[];
+    final seen = <(String, String)>{};
     for (final plan in plans) {
+      final path = plan.sourcePath;
+      if (path == null || path.isEmpty || plan.startDate == null) continue;
       for (final meal in plan.activeMeals) {
         final date = plan.dateForMeal(meal);
-        if (WeekCalendar.isInWeek(date, _weekMonday)) {
+        if (WeekCalendar.isInWeek(date, _weekMonday) &&
+            seen.add((path, meal.id))) {
           out.add(_CalendarMeal(plan: plan, meal: meal, date: date));
         }
       }
     }
-    // Prefer most recently created plan when same day+type collide.
+    // Keep all saved meals, with the newest plans first for each day and type.
     out.sort((a, b) {
       final byDay = a.date.compareTo(b.date);
       if (byDay != 0) return byDay;
@@ -71,13 +105,7 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
   List<_CalendarMeal> _mealsForSelectedDay(List<_CalendarMeal> weekMeals) {
     final day = WeekCalendar.dateOnly(_selectedDate);
     final forDay = weekMeals.where((m) => WeekCalendar.dateOnly(m.date) == day);
-    // Dedupe by meal type keeping first (newest plan due to sort).
-    final seenTypes = <String>{};
-    final result = <_CalendarMeal>[];
-    for (final m in forDay) {
-      final key = m.meal.type.toLowerCase();
-      if (seenTypes.add(key)) result.add(m);
-    }
+    final result = forDay.toList();
     const order = ['breakfast', 'lunch', 'dinner', 'snack', 'dessert'];
     result.sort((a, b) {
       final ai = order.indexOf(a.meal.type.toLowerCase());
@@ -88,6 +116,15 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
   }
 
   Future<void> _setStatus(_CalendarMeal item, MealStatus status) async {
+    if (status == MealStatus.completed) {
+      final problem = mealCookingProblem(item.meal, PantryRepository.instance,
+          expectedScope: _repo.workspacePath);
+      if (problem != null) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(problem)));
+        return;
+      }
+    }
     if (!FamilyPermissions.canAcceptMeal) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -98,7 +135,19 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
       );
       return;
     }
-    await SavedPlansRepository.instance.updateMealStatus(item.meal.id, status);
+    final repo = _repo;
+    final session = repo.sessionVersion;
+    try {
+      await repo.updateMealStatus(item.meal.id, status,
+          planPath: item.plan.sourcePath, expectedSession: session);
+    } catch (_) {
+      if (mounted && session == repo.sessionVersion) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Meal status was not saved. Please retry.')));
+      }
+      return;
+    }
+    if (session != repo.sessionVersion) return;
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -110,32 +159,28 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
   }
 
   void _openMeal(_CalendarMeal item) {
-    context.push('/meal/${item.meal.id}', extra: item.meal);
+    context.push(mealRoute(item.meal.id, item.plan.sourcePath),
+        extra: item.meal);
   }
 
   void _openFullPlan(SavedMealPlan plan) {
-    final days = plan.meals.isEmpty
-        ? 7
-        : plan.meals.map((m) => m.dayIndex).reduce((a, b) => a > b ? a : b) + 1;
     context.push(
       '/generated-plan',
-      extra: GeneratedPlanDraft(
-        meals: List<GeneratedMeal>.from(plan.meals),
-        familyMembers: List<String>.from(plan.familyMembers),
-        numberOfDays: days.clamp(1, 7),
-        startDate: plan.weekStart,
-        title: plan.title,
-      ),
+      extra: GeneratedPlanDraft.fromSaved(plan,
+          selectedDate: _selectedDate,
+          sourceSessionVersion: _repo.sessionVersion),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<List<SavedMealPlan>>(
-      valueListenable: SavedPlansRepository.instance,
+      valueListenable: _repo,
       builder: (context, plans, _) {
         final weekMeals = _mealsForWeek(plans);
         final dayMeals = _mealsForSelectedDay(weekMeals);
+        final emptyPlans = calendarPlansForDay(plans, _selectedDate)
+            .where((entry) => entry.meals.isEmpty);
         final weekEnd = _weekMonday.add(const Duration(days: 6));
         final isCurrentWeek = WeekCalendar.dateOnly(_weekMonday) ==
             WeekCalendar.mondayOf(DateTime.now());
@@ -186,10 +231,8 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
                 children: [
                   IconButton(
                     tooltip: 'Previous week',
-                    onPressed: () => setState(() {
-                      _weekMonday =
-                          _weekMonday.subtract(const Duration(days: 7));
-                    }),
+                    onPressed: () => _selectDate(
+                        _selectedDate.subtract(const Duration(days: 7))),
                     icon: const Icon(Icons.chevron_left,
                         color: AppColors.textPrimary),
                   ),
@@ -218,19 +261,14 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
                   ),
                   IconButton(
                     tooltip: 'Next week',
-                    onPressed: () => setState(() {
-                      _weekMonday = _weekMonday.add(const Duration(days: 7));
-                    }),
+                    onPressed: () =>
+                        _selectDate(_selectedDate.add(const Duration(days: 7))),
                     icon: const Icon(Icons.chevron_right,
                         color: AppColors.textPrimary),
                   ),
                   if (!isCurrentWeek)
                     TextButton(
-                      onPressed: () => setState(() {
-                        final now = DateTime.now();
-                        _weekMonday = WeekCalendar.mondayOf(now);
-                        _selectedDayIndex = WeekCalendar.dayIndexOf(now);
-                      }),
+                      onPressed: () => _selectDate(DateTime.now()),
                       child: const Text('Today',
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 12)),
@@ -258,7 +296,8 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: InkWell(
-                      onTap: () => setState(() => _selectedDayIndex = index),
+                      key: ValueKey('calendar-day-${date.toIso8601String()}'),
+                      onTap: () => _selectDate(date),
                       borderRadius: BorderRadius.circular(12),
                       child: Container(
                         width: 64,
@@ -344,12 +383,39 @@ class _MealCalendarWorkspaceState extends State<MealCalendarWorkspace> {
             const SizedBox(height: 12),
 
             // ── Day meal cards ────────────────────────────────────────────
-            if (dayMeals.isEmpty)
+            for (final entry in emptyPlans)
+              Container(
+                key: ValueKey('calendar-empty-plan:${entry.plan.sourcePath}'),
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    color: AppColors.cardSurface,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: AppColors.border)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(entry.plan.title,
+                        style: const TextStyle(fontWeight: FontWeight.w700)),
+                    const SizedBox(height: 6),
+                    const Text('No dishes added for this day.',
+                        style: TextStyle(color: AppColors.textSecondary)),
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                            onPressed: () => _openFullPlan(entry.plan),
+                            child: const Text('Edit plan'))),
+                  ],
+                ),
+              ),
+            if (dayMeals.isEmpty && emptyPlans.isEmpty)
               _EmptyDayCard(onCreatePlan: widget.onCreatePlan)
             else
               ...dayMeals.map((item) => Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: _DayMealCard(
+                      key: ValueKey(
+                          '${item.plan.sourcePath}:${item.meal.id}:${item.meal.title}:${item.meal.imageUrl}:${item.meal.imageSearchQuery}'),
                       item: item,
                       onOpen: () => _openMeal(item),
                       onAccept: () => _setStatus(item, MealStatus.accepted),
@@ -471,6 +537,7 @@ class _EmptyDayCard extends StatelessWidget {
 
 class _DayMealCard extends StatefulWidget {
   const _DayMealCard({
+    super.key,
     required this.item,
     required this.onOpen,
     required this.onAccept,
@@ -491,32 +558,6 @@ class _DayMealCard extends StatefulWidget {
 }
 
 class _DayMealCardState extends State<_DayMealCard> {
-  String? _imageUrl;
-  bool _fetched = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadImage();
-  }
-
-  Future<void> _loadImage() async {
-    if (_fetched) return;
-    _fetched = true;
-    final meal = widget.item.meal;
-    if (meal.imageUrl.isNotEmpty) {
-      if (mounted) setState(() => _imageUrl = meal.imageUrl);
-      return;
-    }
-    final photo = await UnsplashService.instance.fetchMealImage(
-      meal.imageSearchQuery,
-      mealTitle: meal.title,
-    );
-    if (photo != null && mounted) {
-      setState(() => _imageUrl = photo.smallUrl);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final meal = widget.item.meal;
@@ -543,13 +584,11 @@ class _DayMealCardState extends State<_DayMealCard> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: _imageUrl != null
-                        ? MealNetworkImage(
-                            url: _imageUrl!,
-                            width: 64,
-                            height: 64,
-                          )
-                        : _placeholder(),
+                    child: MealNetworkImage(
+                        url: meal.imageUrl,
+                        mealTitle: meal.title,
+                        width: 64,
+                        height: 64),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -646,13 +685,6 @@ class _DayMealCardState extends State<_DayMealCard> {
       ),
     );
   }
-
-  Widget _placeholder() => Container(
-        width: 64,
-        height: 64,
-        color: AppColors.primaryLight,
-        child: const Icon(Icons.restaurant, color: AppColors.primary),
-      );
 }
 
 class _ActionChip extends StatelessWidget {

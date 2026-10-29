@@ -1,0 +1,21 @@
+{
+  "VisibleLabels": [
+    "Meal Plan Editor",
+    "Save Plan",
+    "Mon\n12/10",
+    "Tue\n13/10",
+    "Wed\n14/10",
+    "Thu\n15/10",
+    "Fri\n16/10",
+    "Sunday\n2 meals • 1 accepted",
+    "LUNCH\nAccepted\nRice and vegetables\n prep  •  ",
+    "Show ingredients",
+    "Replace",
+    "Edit Dish",
+    "Remove Dish",
+    "Skip",
+    "Done"
+  ],
+  "Screen": "release-plan",
+  "Action": "Load Plan"
+}

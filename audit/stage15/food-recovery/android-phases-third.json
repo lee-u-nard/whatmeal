@@ -1,0 +1,10 @@
+{
+  "phases": [
+    "manual saved plan identity and dates persisted with two pending meals"
+  ],
+  "rpcFailures": [
+    "unknown"
+  ],
+  "normalLoginPreserved": false,
+  "scope": "Disposable personal account; real Android GroceryPage and pantry editor/native SDK; no live AI"
+}

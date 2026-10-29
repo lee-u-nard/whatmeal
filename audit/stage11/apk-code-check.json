@@ -1,0 +1,14 @@
+[
+  {
+    "stage": "stage10",
+    "nativeAppBytes": 7406480,
+    "containsNewAccountMessage": false,
+    "containsPartialSyncMessage": false
+  },
+  {
+    "stage": "stage11",
+    "nativeAppBytes": 7406480,
+    "containsNewAccountMessage": true,
+    "containsPartialSyncMessage": true
+  }
+]

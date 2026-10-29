@@ -1,0 +1,6 @@
+{
+  "AuthPort": 9199,
+  "FirestorePort": 9180,
+  "NormalAuthListening": false,
+  "NormalFirestoreListening": false
+}

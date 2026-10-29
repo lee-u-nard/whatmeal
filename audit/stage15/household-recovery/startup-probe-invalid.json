@@ -1,0 +1,11 @@
+{
+  "AppForeground": true,
+  "HomeVisible": true,
+  "SignInVisible": false,
+  "RetryVisible": false,
+  "SystemAnrVisible": false,
+  "PrimaryAuthListening": false,
+  "PrimaryFirestoreListening": false,
+  "DataCleared": false,
+  "Scope": "Standalone local tester home observed after startup settle; cached-session evidence only; original server data remains unverified"
+}

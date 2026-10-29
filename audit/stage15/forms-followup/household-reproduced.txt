@@ -1,0 +1,256 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart
+00:00 +0: household create avoids bars with keyboard 0.0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: FlutterError:<A RenderFlex overflowed by 320 pixels on the right.>
+
+When the exception was thrown, this was the stack:
+#4      checkButton (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:36:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:97:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart line 36
+The test description was:
+  household create avoids bars with keyboard 0.0
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: household create avoids bars with keyboard 0.0 [E]
+  Test failed. See exception logs above.
+  The test description was: household create avoids bars with keyboard 0.0
+  
+00:00 +0 -1: household join avoids bars with keyboard 0.0
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: FlutterError:<A RenderFlex overflowed by 262 pixels on the right.>
+
+When the exception was thrown, this was the stack:
+#4      checkButton (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:36:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:97:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart line 36
+The test description was:
+  household join avoids bars with keyboard 0.0
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -2: household join avoids bars with keyboard 0.0 [E]
+  Test failed. See exception logs above.
+  The test description was: household join avoids bars with keyboard 0.0
+  
+00:01 +0 -2: household create avoids bars with keyboard 240.0
+══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 320 pixels on the right.
+
+The relevant error-causing widget was:
+  Row
+  Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/family/pages/family_space_page.dart:318:15
+
+The overflowing RenderFlex has an orientation of Axis.horizontal.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#f99bc relayoutBoundary=up9 OVERFLOWING:
+  creator: Row ← Column ← Padding ← NotificationListener<DraggableScrollableNotification> ←
+    DefaultTextStyle ← AnimatedDefaultTextStyle ← _InkFeatures-[GlobalKey#14e03 ink renderer] ←
+    NotificationListener<LayoutChangedNotification> ← CustomPaint ← _ShapeBorderPaint ← PhysicalShape
+    ← _MaterialInterior ← ⋯
+  parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+  constraints: BoxConstraints(0.0<=w<=280.0, 0.0<=h<=Infinity)
+  size: Size(280.0, 48.0)
+  direction: horizontal
+  mainAxisAlignment: spaceBetween
+  mainAxisSize: max
+  crossAxisAlignment: center
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 0.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 150 pixels on the bottom.
+
+The relevant error-causing widget was:
+  Column
+  Column:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/family/pages/family_space_page.dart:314:18
+
+The overflowing RenderFlex has an orientation of Axis.vertical.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#a2486 relayoutBoundary=up8 OVERFLOWING:
+  needs compositing
+  creator: Column ← Padding ← NotificationListener<DraggableScrollableNotification> ← DefaultTextStyle
+    ← AnimatedDefaultTextStyle ← _InkFeatures-[GlobalKey#14e03 ink renderer] ←
+    NotificationListener<LayoutChangedNotification> ← CustomPaint ← _ShapeBorderPaint ← PhysicalShape
+    ← _MaterialInterior ← Material-[GlobalKey#d4aa1 BottomSheet child] ← ⋯
+  parentData: offset=Offset(20.0, 20.0) (can use size)
+  constraints: BoxConstraints(0.0<=w<=280.0, 0.0<=h<=360.0)
+  size: Size(280.0, 360.0)
+  direction: vertical
+  mainAxisAlignment: start
+  mainAxisSize: min
+  crossAxisAlignment: start
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 0.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: 'Multiple exceptions (2) were detected during the running of the current test, and at
+least one was unexpected.'
+
+When the exception was thrown, this was the stack:
+#4      checkButton (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:36:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:97:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart line 36
+The test description was:
+  household create avoids bars with keyboard 240.0
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -3: household create avoids bars with keyboard 240.0 [E]
+  Test failed. See exception logs above.
+  The test description was: household create avoids bars with keyboard 240.0
+  
+00:01 +0 -3: household join avoids bars with keyboard 240.0
+══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 262 pixels on the right.
+
+The relevant error-causing widget was:
+  Row
+  Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/family/pages/family_space_page.dart:213:15
+
+The overflowing RenderFlex has an orientation of Axis.horizontal.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#8fced relayoutBoundary=up9 OVERFLOWING:
+  creator: Row ← Column ← Padding ← NotificationListener<DraggableScrollableNotification> ←
+    DefaultTextStyle ← AnimatedDefaultTextStyle ← _InkFeatures-[GlobalKey#3fd5a ink renderer] ←
+    NotificationListener<LayoutChangedNotification> ← CustomPaint ← _ShapeBorderPaint ← PhysicalShape
+    ← _MaterialInterior ← ⋯
+  parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+  constraints: BoxConstraints(0.0<=w<=280.0, 0.0<=h<=Infinity)
+  size: Size(280.0, 48.0)
+  direction: horizontal
+  mainAxisAlignment: spaceBetween
+  mainAxisSize: max
+  crossAxisAlignment: center
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 0.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+The following assertion was thrown during layout:
+A RenderFlex overflowed by 180 pixels on the bottom.
+
+The relevant error-causing widget was:
+  Column
+  Column:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/family/pages/family_space_page.dart:209:18
+
+The overflowing RenderFlex has an orientation of Axis.vertical.
+The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+RenderFlex to fit within the available space instead of being sized to their natural size.
+This is considered an error condition because it indicates that there is content that cannot be
+seen. If the content is legitimately bigger than the available space, consider clipping it with a
+ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+like a ListView.
+The specific RenderFlex in question is: RenderFlex#901b8 relayoutBoundary=up8 OVERFLOWING:
+  needs compositing
+  creator: Column ← Padding ← NotificationListener<DraggableScrollableNotification> ← DefaultTextStyle
+    ← AnimatedDefaultTextStyle ← _InkFeatures-[GlobalKey#3fd5a ink renderer] ←
+    NotificationListener<LayoutChangedNotification> ← CustomPaint ← _ShapeBorderPaint ← PhysicalShape
+    ← _MaterialInterior ← Material-[GlobalKey#5619b BottomSheet child] ← ⋯
+  parentData: offset=Offset(20.0, 20.0) (can use size)
+  constraints: BoxConstraints(0.0<=w<=280.0, 0.0<=h<=360.0)
+  size: Size(280.0, 360.0)
+  direction: vertical
+  mainAxisAlignment: start
+  mainAxisSize: min
+  crossAxisAlignment: start
+  textDirection: ltr
+  verticalDirection: down
+  spacing: 0.0
+◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+════════════════════════════════════════════════════════════════════════════════════════════════════
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: 'Multiple exceptions (2) were detected during the running of the current test, and at
+least one was unexpected.'
+
+When the exception was thrown, this was the stack:
+#4      checkButton (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:36:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart:97:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/form_system_insets_test.dart line 36
+The test description was:
+  household join avoids bars with keyboard 240.0
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -4: household join avoids bars with keyboard 240.0 [E]
+  Test failed. See exception logs above.
+  The test description was: household join avoids bars with keyboard 240.0
+  
+00:01 +0 -4: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household create avoids bars with keyboard 0.0
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household create avoids bars with keyboard 240.0
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household join avoids bars with keyboard 0.0
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household join avoids bars with keyboard 240.0

@@ -1,0 +1,2 @@
+>     resource 0x7f0f0001 xml/local_network_security
+        () (file) res/M2.xml type=XML

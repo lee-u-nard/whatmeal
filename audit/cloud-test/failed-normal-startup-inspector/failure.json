@@ -1,0 +1,8 @@
+{
+  "Executed": true,
+  "ExitCode": 1,
+  "FailureStage": "PowerShell inspector assigned read-only HOME variable",
+  "APKChanged": false,
+  "RuntimeAcceptancePassed": false,
+  "ScreenshotAndPrivateLogsPreserved": true
+}

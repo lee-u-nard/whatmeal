@@ -1,0 +1,11 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/ai_provider_sync_test.dart
+00:00 +0: remote provider changes and deletion reach active settings
+00:00 +1: pending edits survive old echoes and reconcile after serialized writes
+00:00 +2: removal reports failed persistence and allows retry
+00:00 +3: A logout B login detaches feed and does not block B behind A save
+00:00 +4: A B A ignores completion of first A session
+00:00 +5: new remote snapshot wins over delayed reconciliation read
+00:00 +6: listener error clears stale credentials without exposing error
+00:00 +7: remove dialog waits for save and reports failure truthfully
+00:01 +8: remote custom endpoint updates existing settings field
+00:01 +9: All tests passed!

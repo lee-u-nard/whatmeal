@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-19T04:21:03.635Z",
+  "reviewerFailure": "Selected model is at capacity",
+  "executed": false,
+  "pending": [
+    "exact candidate recipe replay",
+    "71 candidate security acceptance cases",
+    "generated-draft recovery regressions",
+    "full Flutter suite and analysis",
+    "test-project-only verified rule promotion",
+    "final Android generation/reopen and normal APK build"
+  ],
+  "original65CasesRetained": true,
+  "rootRulesRestoredToPreOptimizationSha256": "db759e4941f8b9c06b097fb7c4fe9f148f7c2adcbb52da6aac9b4ed9e5f7be77",
+  "candidateSha256": "20900ba3a56e1e2591393587989386d113dd3e755c442d060dabed816ca5bf40",
+  "productionModified": false
+}

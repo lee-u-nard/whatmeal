@@ -1,0 +1,83 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart
+Running Gradle task 'assembleLocalDebug'...                     
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage8"
+Running Gradle task 'assembleLocalDebug'...                        60.1s
+√ Built build\app\outputs\flutter-apk\app-local-debug.apk
+Installing build\app\outputs\flutter-apk\app-local-debug.apk...        23.8s
+00:00 +0: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+Finder specifies a widget that would not receive pointer events.
+A call to tap() with finder "Found 1 widget with type "ElevatedButton" that are ancestors of widget
+with text "Create Space" (ignoring all but first): [
+  ElevatedButton(style: ButtonStyle#b1ac4(textStyle: WidgetStatePropertyAll(null), backgroundColor:
+WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red:
+0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB)}), foregroundColor:
+WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red:
+1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor:
+WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000,
+blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000,
+green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020,
+red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), elevation:
+WidgetStateMapper<double>({WidgetState.disabled: 0.0, WidgetState.pressed: 6.0, WidgetState.hovered:
+2.0, WidgetState.focused: 2.0, WidgetState.any: 0.0}), padding:
+WidgetStatePropertyAll(EdgeInsets(0.0, 12.0, 0.0, 12.0)), shape:
+WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width: 0.0, style: none),
+BorderRadius.circular(12.0))), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled:
+null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery,
+_InheritedTheme, _LocalizationsScope-[GlobalKey#afcaa], _ScrollableScope], state:
+_ButtonStyleState#aca12),
+]" derived an Offset (Offset(220.5, 370.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot
+receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#b588c relayoutBoundary=up9(creator: Semantics ← ElevatedButton ← Expanded ← Row ← Column ← Padding ← DecoratedBox ← Container ← RepaintBoundary ← IndexedSemantics ← _SelectionKeepAlive ← NotificationListener<KeepAliveNotification> ← ⋯, parentData: offset=Offset(121.0, 0.0); flex=1; fit=FlexFit.tight (can use size), constraints: BoxConstraints(w=109.0, 0.0<=h<=Infinity), semantics node: SemanticsNode#76, semantic boundary, size: Size(109.0, 64.0))
+The hit test result at that offset is: HitTestResult(_RenderInkFeatures#dea18@Offset(220.5, 23.0),
+RenderCustomPaint#d2a02@Offset(220.5, 23.0), RenderPhysicalShape#70551@Offset(220.5, 23.0),
+RenderConstrainedBox#58876@Offset(220.5, 23.0), RenderPositionedBox#42004@Offset(220.5, 23.0),
+RenderPointerListener#fe52b@Offset(220.5, 23.0),
+_RenderBottomSheetLayoutWithSizeListener#2ced4@Offset(220.5, 370.0),
+RenderClipRect#4e771@Offset(220.5, 370.0), RenderSemanticsAnnotations#4c289@Offset(220.5, 370.0),
+RenderPadding#79b8d@Offset(220.5, 370.0), RenderSemanticsAnnotations#374af@Offset(220.5, 370.0),
+RenderRepaintBoundary#81b3b@Offset(220.5, 370.0), RenderIgnorePointer#c6193@Offset(220.5, 370.0),
+RenderRepaintBoundary#30eed@Offset(220.5, 370.0), RenderSemanticsAnnotations#fd5ac@Offset(220.5,
+370.0), RenderOffstage#4bcd0@Offset(220.5, 370.0), RenderSemanticsAnnotations#d35e5@Offset(220.5,
+370.0), _RenderTheater#e78f7@Offset(220.5, 370.0), RenderAbsorbPointer#ff9d3@Offset(220.5, 370.0),
+RenderPointerListener#8474d@Offset(220.5, 370.0), RenderSemanticsAnnotations#39817@Offset(220.5,
+370.0), RenderSemanticsAnnotations#365df@Offset(220.5, 370.0),
+RenderSemanticsAnnotations#95fbe@Offset(220.5, 370.0), RenderTapRegionSurface#3f836@Offset(220.5,
+370.0), RenderSemanticsAnnotations#1f8bd@Offset(220.5, 370.0),
+RenderSemanticsAnnotations#53af2@Offset(220.5, 370.0),
+HitTestEntry<HitTestTarget>#d9c11(_ReusableRenderView#fa27f),
+HitTestEntry<HitTestTarget>#84473(<IntegrationTestWidgetsFlutterBinding>))
+If you expected this target not to be able to receive pointer events, pass "warnIfMissed: false" to
+"tap()".
+To make this error into a non-fatal warning, set WidgetController.hitTestWarningShouldBeFatal to
+false.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2133:11)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure>.tap (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:35:20)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:92:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  local Android UI registration, verification, household and account switching
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:40 +0 -1: local Android UI registration, verification, household and account switching [E]
+  Test failed. See exception logs above.
+  The test description was: local Android UI registration, verification, household and account switching
+  
+00:40 +0 -1: (tearDownAll)
+00:44 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/integration_test/local_workflow_test.dart: local Android UI registration, verification, household and account switching

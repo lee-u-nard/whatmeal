@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-19T19:53:31.9781430+08:00",
+  "command": "./audit/cloud-test/verify_candidate.ps1 -Check security",
+  "reviewerFailure": null,
+  "executed": true,
+  "exitCode": 0,
+  "retryOrBypassAttempted": false,
+  "candidateSha256": "49AA394DC5E125072AA73CB1DCF495CAD9185550D19532BA5037FA03AAC5B999",
+  "exactReplay": {
+    "executed": true,
+    "exitCode": 0,
+    "atomicHttp": 200,
+    "atomicDocumentsPresent": 2,
+    "evidence": "candidate-replay.txt"
+  },
+  "securityAcceptance": {
+    "enumerated": 71,
+    "executed": 71,
+    "passed": 71
+  },
+  "pending": [
+    "complete Flutter suite currently running",
+    "final Flutter analysis",
+    "test-project-only verified rule promotion and source verification",
+    "Android live generation save/reopen and outsider denial",
+    "final normal cloud-test APK build/install/runtime"
+  ],
+  "independentExecutedChecks": [
+    "8 synthetic Node credential-scanner tests passed",
+    "prior normal bootstrap fixture-credential scan exit 0",
+    "prior private integration APK negative control rejected with scanner exit 1",
+    "PowerShell syntax checks passed",
+    "8 protected workspace hashes unchanged"
+  ],
+  "candidateDeployed": false,
+  "original65CasesRetained": true,
+  "productionModified": false,
+  "normalApprovalAttemptsThisContinuation": 1,
+  "repeatedRetryOrBypassAttempted": false,
+  "approvalHistory": "attempts/approval-blocker-20261019-130223956.json",
+  "independentWorkThisContinuation": [
+    "Added hash-bound executed-evidence gate with synthetic-only tests pending",
+    "Candidate runner preserves prior logs and issues receipt only after executed security exit 0",
+    "Deployed-source check now requires exact candidate proof before authentication; not executed",
+    "Runner/checker syntax checks passed"
+  ],
+  "approvalMode": "Ask for approval; normal approved execution succeeded",
+  "focusedRepairTests": {
+    "executed": true,
+    "passed": 15,
+    "failed": 0,
+    "exitCode": 0,
+    "preservedInitialCompilationFailure": "failed-draft-recovery-compile/"
+  }
+}

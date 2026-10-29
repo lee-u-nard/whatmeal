@@ -1,0 +1,1 @@
+/sdcard/stage15-first-failure.png: 1 file pulled, 0 skipped. 9.1 MB/s (39051 bytes in 0.004s)

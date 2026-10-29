@@ -1,0 +1,17 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/saved_plan_recovery_test.dart
+00:00 +0: a delayed meal edit transaction refuses writes after switching away and back
+00:00 +1: saved plan terminal error stays visible while healthy household feed updates; retry and ABA discard old feed
+00:00 +1 -1: saved plan terminal error stays visible while healthy household feed updates; retry and ABA discard old feed [E]
+  Expected: <1>
+    Actual: <2>
+  A listener retry must not invalidate an unrelated draft
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\saved_plan_recovery_test.dart 98:5             main.<fn>
+  
+00:00 +1 -1: saved page exposes terminal error and operative Retry instead of only an empty state
+00:00 +2 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/saved_plan_recovery_test.dart: saved plan terminal error stays visible while healthy household feed updates; retry and ABA discard old feed

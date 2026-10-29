@@ -1,13 +1,19 @@
+import '../../../core/widgets/listener_recovery_notice.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
 import '../data/saved_plans_repository.dart';
 import '../models/saved_meal_plan.dart';
+import '../../profile/data/family_member_repository.dart';
+import '../widgets/saved_plan_actions.dart';
 
 class SavedMealPlansPage extends StatelessWidget {
-  const SavedMealPlansPage({super.key});
+  const SavedMealPlansPage({super.key, this.repository});
+  final SavedPlansRepository? repository;
+  SavedPlansRepository get _repo => repository ?? SavedPlansRepository.instance;
 
   void _confirmDeletePlan(BuildContext context, SavedMealPlan plan) {
+    final session = _repo.sessionVersion;
     showDialog(
       context: context,
       builder: (ctx) {
@@ -30,7 +36,8 @@ class SavedMealPlansPage extends StatelessWidget {
               onPressed: () async {
                 Navigator.pop(ctx);
                 try {
-                  await SavedPlansRepository.instance.deletePlan(plan.id);
+                  await _repo.deletePlan(plan.id,
+                      planPath: plan.sourcePath, expectedSession: session);
                   if (!context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -43,7 +50,8 @@ class SavedMealPlansPage extends StatelessWidget {
                   if (!context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Could not delete plan: $e'),
+                      content:
+                          const Text('Could not delete plan. Please retry.'),
                       backgroundColor: AppColors.danger,
                     ),
                   );
@@ -64,57 +72,101 @@ class SavedMealPlansPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<List<SavedMealPlan>>(
-      valueListenable: SavedPlansRepository.instance,
+      valueListenable: _repo,
       builder: (context, plans, _) {
-        return Scaffold(
-          backgroundColor: AppColors.background,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: AppColors.textPrimary),
-              onPressed: () => context.pop(),
-            ),
-            title: Row(
-              children: [
-                Container(
-                  width: 28,
-                  height: 28,
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Icon(Icons.eco, color: Colors.white, size: 16),
+        if (plans.isEmpty && _repo.error != null) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('Saved Meal Plans')),
+            body: ListenerRecoveryNotice(
+                message: _repo.error!,
+                onRetry: _repo.retry,
+                label: 'Retry Saved Plans'),
+          );
+        }
+        return AnimatedBuilder(
+          animation: plans.isEmpty
+              ? const AlwaysStoppedAnimation(0)
+              : FamilyMemberRepository.instance,
+          builder: (context, _) {
+            final members = plans.isEmpty
+                ? const <dynamic>[]
+                : FamilyMemberRepository.instance.members;
+            return Scaffold(
+              backgroundColor: AppColors.background,
+              appBar: AppBar(
+                actions: [
+                  IconButton(
+                      tooltip: 'Meal History',
+                      icon: const Icon(Icons.history),
+                      onPressed: () => context.push('/meal-history'))
+                ],
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back,
+                      color: AppColors.textPrimary),
+                  onPressed: () => context.pop(),
                 ),
-                const SizedBox(width: 8),
-                const Text(
-                  'Saved Meal Plans',
-                  style: TextStyle(
-                    color: AppColors.primary,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 20,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          body: plans.isEmpty
-              ? _buildEmptyState(context)
-              : ListView(
-                  padding: const EdgeInsets.all(20),
+                title: Row(
                   children: [
-                    const Text(
-                      'Reload and schedule previous generated plans your family loved.',
-                      style: TextStyle(
-                        color: AppColors.textSecondary,
-                        fontSize: 14,
+                    Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child:
+                          const Icon(Icons.eco, color: Colors.white, size: 16),
+                    ),
+                    const SizedBox(width: 8),
+                    const Expanded(
+                      child: Text(
+                        'Saved Meal Plans',
+                        style: TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    for (final plan in plans) ...[
-                      _buildSavedPlanCard(context: context, plan: plan),
-                      const SizedBox(height: 16),
-                    ],
                   ],
                 ),
+              ),
+              body: Column(children: [
+                if (_repo.error != null)
+                  ListenerRecoveryNotice(
+                      message: _repo.error!,
+                      onRetry: _repo.retry,
+                      label: 'Retry Saved Plans'),
+                Expanded(
+                    child: _repo.isLoading && plans.isEmpty
+                        ? const Center(child: CircularProgressIndicator())
+                        : plans.isEmpty
+                            ? (_repo.error == null
+                                ? _buildEmptyState(context)
+                                : const SizedBox.shrink())
+                            : ListView(
+                                padding: const EdgeInsets.all(20),
+                                children: [
+                                  const Text(
+                                    'Reload and schedule previous generated plans your family loved.',
+                                    style: TextStyle(
+                                      color: AppColors.textSecondary,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                  for (final plan in plans) ...[
+                                    _buildSavedPlanCard(
+                                        context: context,
+                                        plan: plan,
+                                        members: members),
+                                    const SizedBox(height: 16),
+                                  ],
+                                ],
+                              )),
+              ]),
+            );
+          },
         );
       },
     );
@@ -169,6 +221,7 @@ class SavedMealPlansPage extends StatelessWidget {
   Widget _buildSavedPlanCard({
     required BuildContext context,
     required SavedMealPlan plan,
+    required List<dynamic> members,
   }) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -253,91 +306,75 @@ class SavedMealPlansPage extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              const Text('For: ',
-                  style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
-              const SizedBox(width: 4),
-              Wrap(
-                spacing: 6,
-                children: plan.familyMembers.map((member) {
-                  return Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: AppColors.background,
-                      borderRadius: BorderRadius.circular(6),
+          Builder(
+            builder: (context) {
+              final resolvedNames = plan.familyMembers
+                  .map((member) {
+                    final byId = members
+                        .where((m) => m.id == member)
+                        .firstOrNull
+                        ?.displayName;
+                    if (byId != null) return byId;
+                    final byName = members
+                        .where((m) =>
+                            m.displayName.toLowerCase() == member.toLowerCase())
+                        .firstOrNull
+                        ?.displayName;
+                    if (byName != null) return byName;
+                    final isRawId =
+                        RegExp(r'^[a-zA-Z0-9_-]{18,}$').hasMatch(member.trim());
+                    if (isRawId) return null;
+                    return member;
+                  })
+                  .whereType<String>()
+                  .toList();
+
+              if (resolvedNames.isEmpty) return const SizedBox.shrink();
+
+              return Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Row(
+                  children: [
+                    const Text('For: ',
+                        style: TextStyle(
+                            color: AppColors.textMuted, fontSize: 12)),
+                    const SizedBox(width: 4),
+                    Wrap(
+                      spacing: 6,
+                      children: resolvedNames
+                          .map((name) => Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: AppColors.background,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Text(
+                                  name,
+                                  style: const TextStyle(
+                                    color: AppColors.textSecondary,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ))
+                          .toList(),
                     ),
-                    child: Text(
-                      member,
-                      style: const TextStyle(
-                        color: AppColors.textSecondary,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 11,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
+                  ],
+                ),
+              );
+            },
           ),
           const SizedBox(height: 12),
           const Divider(color: AppColors.border, height: 1),
           const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton.icon(
-                onPressed: () => _confirmDeletePlan(context, plan),
-                icon: const Icon(Icons.delete_outline,
-                    color: AppColors.danger, size: 16),
-                label: const Text(
-                  'Delete',
-                  style: TextStyle(
-                      color: AppColors.danger,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13),
-                ),
-              ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  final days = plan.meals.isEmpty
-                      ? 7
-                      : plan.meals
-                              .map((m) => m.dayIndex)
-                              .reduce((a, b) => a > b ? a : b) +
-                          1;
-                  context.push(
-                    '/generated-plan',
-                    extra: GeneratedPlanDraft(
-                      meals: plan.meals,
-                      familyMembers: plan.familyMembers,
-                      numberOfDays: days.clamp(1, 7),
-                      startDate: plan.weekStart,
-                      title: plan.title,
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  elevation: 0,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
-                icon: const Icon(Icons.folder_open,
-                    color: Colors.white, size: 14),
-                label: const Text(
-                  'Load Plan',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 13),
-                ),
-              ),
-            ],
+          SavedPlanActions(
+            key: ValueKey('actions:${plan.sourcePath}'),
+            onDelete: () => _confirmDeletePlan(context, plan),
+            onReuse: () => context.push('/generated-plan',
+                extra: GeneratedPlanDraft.fromSaved(plan, reuse: true)),
+            onLoad: () => context.push('/generated-plan',
+                extra: GeneratedPlanDraft.fromSaved(plan)),
           ),
         ],
       ),

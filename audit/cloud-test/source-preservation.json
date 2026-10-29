@@ -1,0 +1,13 @@
+{
+  "original65SuiteFileUnmodified": true,
+  "normalRootRulesSourceUntouched": true,
+  "membershipRoleOwnershipChecksPreserved": true,
+  "strictSchemaAllowsetsPreserved": true,
+  "exactRecipeReplayPassed": true,
+  "candidateSecurityCasesPassed": 71,
+  "testProjectActiveRulesMatchCandidate": true,
+  "originalAndDemoInstalledAPKsUnchanged": true,
+  "protectedWorkspaceFileHashesUnchanged": 8,
+  "productionRulesDeployed": false,
+  "privateAVDBackupWritten": false
+}

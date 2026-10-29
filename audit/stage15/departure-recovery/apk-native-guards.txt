@@ -1,0 +1,8 @@
+
+>         A: http://schemas.android.com/apk/res/android:networkSecurityConfig(0x01010527)=@0x7f0f0001
+          A: http://schemas.android.com/apk/res/android:appComponentFactory(0x0101057a)="androidx.core.app.CoreComponentFactory" (Raw: "androidx.core.app.CoreComponentFactory")
+>             A: http://schemas.android.com/apk/res/android:name(0x01010003)="firebase_messaging_auto_init_enabled" (Raw: "firebase_messaging_auto_init_enabled")
+              A: http://schemas.android.com/apk/res/android:value(0x01010024)=false
+>             A: http://schemas.android.com/apk/res/android:name(0x01010003)="firebase_analytics_collection_enabled" (Raw: "firebase_analytics_collection_enabled")
+              A: http://schemas.android.com/apk/res/android:value(0x01010024)=false
+

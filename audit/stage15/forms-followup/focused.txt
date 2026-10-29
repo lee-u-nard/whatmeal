@@ -1,0 +1,39 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: pantry editor avoids system bars with keyboard 0.0
+00:01 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: grocery editor avoids system bars with keyboard 0.0
+00:01 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: profile editor avoids system bars with keyboard 0.0
+00:01 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: dietary editor avoids system bars with keyboard 0.0
+00:01 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household create avoids bars with keyboard 0.0
+00:01 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household join avoids bars with keyboard 0.0
+00:01 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: pantry editor avoids system bars with keyboard 240.0
+00:02 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: grocery editor avoids system bars with keyboard 240.0
+00:02 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: profile editor avoids system bars with keyboard 240.0
+00:02 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: dietary editor avoids system bars with keyboard 240.0
+00:02 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household create avoids bars with keyboard 240.0
+00:02 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household join avoids bars with keyboard 240.0
+00:04 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/profile_pantry_recovery_test.dart: pantry save retains draft on failure and retries once
+00:05 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/profile_pantry_recovery_test.dart: profile save retains draft on failure and retries once
+00:06 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/profile_pantry_recovery_test.dart: profile age cannot silently default for nonnumeric or out-of-range input
+00:06 +15: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/profile_pantry_recovery_test.dart: pantry edit displays and preserves an existing custom category
+00:06 +16: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/profile_pantry_recovery_test.dart: dietary editor fits narrow enlarged text without overflow
+00:09 +17: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: manual grocery controls fit narrow screen with enlarged text
+00:09 +18: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: blank item shows validation; missing quantity remains unknown
+00:10 +19: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: pending write submits once and failed write retains draft for retry
+00:10 +20: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: editor scrolls at enlarged text with keyboard inset
+00:10 +21: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_editor_test.dart: clear purchased items requires explicit confirmation
+00:13 +22: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: password change preserves literal whitespace
+00:14 +23: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: missing current password prevents any profile write
+00:14 +24: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: failed reauthentication retains draft without changing name
+00:14 +25: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: stale account editor cannot dispatch mutations
+00:14 +26: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: recovery form scrolls above keyboard at narrow enlarged size
+00:14 +27: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: completed password change is not repeated when name save retries
+00:15 +28: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: password change cancellation dispatches no account writes
+00:15 +29: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/account_recovery_test.dart: reset error is sanitized and retains email for successful retry
+00:20 +30: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: dismissed creation sheet cannot pop a new accounts screen on late completion
+00:21 +31: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: index terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:21 +32: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: family terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:21 +33: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: members terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:21 +34: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: delayed invitation result cannot refill token after native-style A B A
+00:21 +35: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: late departure denial cannot start orphan cleanup under another account
+00:21 +36: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: old archive confirmation cannot archive the new accounts household
+00:21 +37: All tests passed!

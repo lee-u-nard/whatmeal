@@ -1,0 +1,9 @@
+{
+  "original65CasesUnchanged": true,
+  "authorizationAndOtherSchemasUnchanged": true,
+  "newSchemaOptimizationExecuted": true,
+  "exactRecipeReplayPassed": true,
+  "candidateSecuritySuiteExecuted": false,
+  "candidateDeployed": false,
+  "protectedWorkspaceFilesUnchanged": 8
+}

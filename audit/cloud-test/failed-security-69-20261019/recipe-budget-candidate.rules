@@ -1,0 +1,402 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signed() { return request.auth != null; }
+    function self(uid) { return signed() && request.auth.uid == uid; }
+    function fp(fid) { return /databases/$(database)/documents/families/$(fid); }
+    function mp(fid, uid) { return /databases/$(database)/documents/families/$(fid)/members/$(uid); }
+    function ip(uid) { return /databases/$(database)/documents/membershipIndex/$(uid); }
+    function vp(token) { return /databases/$(database)/documents/householdInvitations/$(token); }
+    function active(fid) { return get(fp(fid)).data.schemaVersion == 2 && get(fp(fid)).data.state == 'active'; }
+    function member(fid) { return signed() && active(fid) && exists(mp(fid, request.auth.uid)); }
+    function role(fid) { return get(mp(fid, request.auth.uid)).data.role; }
+    function manager(fid) { return member(fid) && role(fid) in ['owner', 'admin']; }
+    function owner(fid) { return signed() && get(fp(fid)).data.schemaVersion == 2 &&
+      get(fp(fid)).data.ownerUid == request.auth.uid && role(fid) == 'owner'; }
+    function writer(fid) { return member(fid) && role(fid) in ['owner', 'admin', 'member']; }
+    function text(v, max) { return v is string && v.size() <= max; }
+    function optionalText(d, key, max) { let v = d.get(key, null); return v == null || (v is string && v.size() <= max); }
+    function optionalTime(d, key) { return d.get(key, null) == null || d[key] is timestamp; }
+    function stringList(d, key, max) { let v = d[key]; return v is list && v.size() <= max && (v.size() == 0 || stringEntries(v)); }
+    // Rules have no loops: short-circuit element checks stop at the list length.
+    // Keep the maximum at 100; large documents also need expression-budget tests.
+    // Round-trip equality proves every value is a string even if join coerces
+    // non-strings. The reserved unit separator is forbidden in input values;
+    // the regex bounds EACH entry, not just the total joined length.
+    function stringEntries(v) {
+      // The sole caller stringList already checked list type and a limit <=100.
+      // Empty lists return before concat/join; avoid repeating these guards.
+      let padded = v.concat(['_']);
+      let joined = padded.join('\u001f');
+      return joined.split('\\x1f') == padded &&
+        joined.matches('[^\\x1f]{0,1000}(\\x1f[^\\x1f]{0,1000})*');
+    }
+    function ingredient(v) {
+      return v.keys().hasOnly(['name','amount']) && v.name.matches('(?s).{0,200}') && v.amount.matches('(?s).{0,100}');
+    }
+    function ingredientEntries(v) { let n = v.size(); return v is list && n <= 100 &&
+      (ingredientBlock0(v,n) && (n <= 10 || (ingredientBlock1(v,n) && (n <= 20 || (ingredientBlock2(v,n) && (n <= 30 || (ingredientBlock3(v,n) && (n <= 40 || (ingredientBlock4(v,n) && (n <= 50 || (ingredientBlock5(v,n) && (n <= 60 || (ingredientBlock6(v,n) && (n <= 70 || (ingredientBlock7(v,n) && (n <= 80 || (ingredientBlock8(v,n) && (n <= 90 || (ingredientBlock9(v,n) && (n <= 100 || true)))))))))))))))))))); }
+    function ingredientBlock0(v,n) { return n >= 10 ? (ingredient(v[0]) && ingredient(v[1]) && ingredient(v[2]) && ingredient(v[3]) && ingredient(v[4]) && ingredient(v[5]) && ingredient(v[6]) && ingredient(v[7]) && ingredient(v[8]) && ingredient(v[9])) : (n <= 0 || (ingredient(v[0]) && (n <= 1 || (ingredient(v[1]) && (n <= 2 || (ingredient(v[2]) && (n <= 3 || (ingredient(v[3]) && (n <= 4 || (ingredient(v[4]) && (n <= 5 || (ingredient(v[5]) && (n <= 6 || (ingredient(v[6]) && (n <= 7 || (ingredient(v[7]) && (n <= 8 || (ingredient(v[8]) && (n <= 9 || (ingredient(v[9]) && true)))))))))))))))))))); }
+    function ingredientBlock1(v,n) { return n >= 20 ? (ingredient(v[10]) && ingredient(v[11]) && ingredient(v[12]) && ingredient(v[13]) && ingredient(v[14]) && ingredient(v[15]) && ingredient(v[16]) && ingredient(v[17]) && ingredient(v[18]) && ingredient(v[19])) : (n <= 10 || (ingredient(v[10]) && (n <= 11 || (ingredient(v[11]) && (n <= 12 || (ingredient(v[12]) && (n <= 13 || (ingredient(v[13]) && (n <= 14 || (ingredient(v[14]) && (n <= 15 || (ingredient(v[15]) && (n <= 16 || (ingredient(v[16]) && (n <= 17 || (ingredient(v[17]) && (n <= 18 || (ingredient(v[18]) && (n <= 19 || (ingredient(v[19]) && true)))))))))))))))))))); }
+    function ingredientBlock2(v,n) { return n >= 30 ? (ingredient(v[20]) && ingredient(v[21]) && ingredient(v[22]) && ingredient(v[23]) && ingredient(v[24]) && ingredient(v[25]) && ingredient(v[26]) && ingredient(v[27]) && ingredient(v[28]) && ingredient(v[29])) : (n <= 20 || (ingredient(v[20]) && (n <= 21 || (ingredient(v[21]) && (n <= 22 || (ingredient(v[22]) && (n <= 23 || (ingredient(v[23]) && (n <= 24 || (ingredient(v[24]) && (n <= 25 || (ingredient(v[25]) && (n <= 26 || (ingredient(v[26]) && (n <= 27 || (ingredient(v[27]) && (n <= 28 || (ingredient(v[28]) && (n <= 29 || (ingredient(v[29]) && true)))))))))))))))))))); }
+    function ingredientBlock3(v,n) { return n >= 40 ? (ingredient(v[30]) && ingredient(v[31]) && ingredient(v[32]) && ingredient(v[33]) && ingredient(v[34]) && ingredient(v[35]) && ingredient(v[36]) && ingredient(v[37]) && ingredient(v[38]) && ingredient(v[39])) : (n <= 30 || (ingredient(v[30]) && (n <= 31 || (ingredient(v[31]) && (n <= 32 || (ingredient(v[32]) && (n <= 33 || (ingredient(v[33]) && (n <= 34 || (ingredient(v[34]) && (n <= 35 || (ingredient(v[35]) && (n <= 36 || (ingredient(v[36]) && (n <= 37 || (ingredient(v[37]) && (n <= 38 || (ingredient(v[38]) && (n <= 39 || (ingredient(v[39]) && true)))))))))))))))))))); }
+    function ingredientBlock4(v,n) { return n >= 50 ? (ingredient(v[40]) && ingredient(v[41]) && ingredient(v[42]) && ingredient(v[43]) && ingredient(v[44]) && ingredient(v[45]) && ingredient(v[46]) && ingredient(v[47]) && ingredient(v[48]) && ingredient(v[49])) : (n <= 40 || (ingredient(v[40]) && (n <= 41 || (ingredient(v[41]) && (n <= 42 || (ingredient(v[42]) && (n <= 43 || (ingredient(v[43]) && (n <= 44 || (ingredient(v[44]) && (n <= 45 || (ingredient(v[45]) && (n <= 46 || (ingredient(v[46]) && (n <= 47 || (ingredient(v[47]) && (n <= 48 || (ingredient(v[48]) && (n <= 49 || (ingredient(v[49]) && true)))))))))))))))))))); }
+    function ingredientBlock5(v,n) { return n >= 60 ? (ingredient(v[50]) && ingredient(v[51]) && ingredient(v[52]) && ingredient(v[53]) && ingredient(v[54]) && ingredient(v[55]) && ingredient(v[56]) && ingredient(v[57]) && ingredient(v[58]) && ingredient(v[59])) : (n <= 50 || (ingredient(v[50]) && (n <= 51 || (ingredient(v[51]) && (n <= 52 || (ingredient(v[52]) && (n <= 53 || (ingredient(v[53]) && (n <= 54 || (ingredient(v[54]) && (n <= 55 || (ingredient(v[55]) && (n <= 56 || (ingredient(v[56]) && (n <= 57 || (ingredient(v[57]) && (n <= 58 || (ingredient(v[58]) && (n <= 59 || (ingredient(v[59]) && true)))))))))))))))))))); }
+    function ingredientBlock6(v,n) { return n >= 70 ? (ingredient(v[60]) && ingredient(v[61]) && ingredient(v[62]) && ingredient(v[63]) && ingredient(v[64]) && ingredient(v[65]) && ingredient(v[66]) && ingredient(v[67]) && ingredient(v[68]) && ingredient(v[69])) : (n <= 60 || (ingredient(v[60]) && (n <= 61 || (ingredient(v[61]) && (n <= 62 || (ingredient(v[62]) && (n <= 63 || (ingredient(v[63]) && (n <= 64 || (ingredient(v[64]) && (n <= 65 || (ingredient(v[65]) && (n <= 66 || (ingredient(v[66]) && (n <= 67 || (ingredient(v[67]) && (n <= 68 || (ingredient(v[68]) && (n <= 69 || (ingredient(v[69]) && true)))))))))))))))))))); }
+    function ingredientBlock7(v,n) { return n >= 80 ? (ingredient(v[70]) && ingredient(v[71]) && ingredient(v[72]) && ingredient(v[73]) && ingredient(v[74]) && ingredient(v[75]) && ingredient(v[76]) && ingredient(v[77]) && ingredient(v[78]) && ingredient(v[79])) : (n <= 70 || (ingredient(v[70]) && (n <= 71 || (ingredient(v[71]) && (n <= 72 || (ingredient(v[72]) && (n <= 73 || (ingredient(v[73]) && (n <= 74 || (ingredient(v[74]) && (n <= 75 || (ingredient(v[75]) && (n <= 76 || (ingredient(v[76]) && (n <= 77 || (ingredient(v[77]) && (n <= 78 || (ingredient(v[78]) && (n <= 79 || (ingredient(v[79]) && true)))))))))))))))))))); }
+    function ingredientBlock8(v,n) { return n >= 90 ? (ingredient(v[80]) && ingredient(v[81]) && ingredient(v[82]) && ingredient(v[83]) && ingredient(v[84]) && ingredient(v[85]) && ingredient(v[86]) && ingredient(v[87]) && ingredient(v[88]) && ingredient(v[89])) : (n <= 80 || (ingredient(v[80]) && (n <= 81 || (ingredient(v[81]) && (n <= 82 || (ingredient(v[82]) && (n <= 83 || (ingredient(v[83]) && (n <= 84 || (ingredient(v[84]) && (n <= 85 || (ingredient(v[85]) && (n <= 86 || (ingredient(v[86]) && (n <= 87 || (ingredient(v[87]) && (n <= 88 || (ingredient(v[88]) && (n <= 89 || (ingredient(v[89]) && true)))))))))))))))))))); }
+    function ingredientBlock9(v,n) { return n >= 100 ? (ingredient(v[90]) && ingredient(v[91]) && ingredient(v[92]) && ingredient(v[93]) && ingredient(v[94]) && ingredient(v[95]) && ingredient(v[96]) && ingredient(v[97]) && ingredient(v[98]) && ingredient(v[99])) : (n <= 90 || (ingredient(v[90]) && (n <= 91 || (ingredient(v[91]) && (n <= 92 || (ingredient(v[92]) && (n <= 93 || (ingredient(v[93]) && (n <= 94 || (ingredient(v[94]) && (n <= 95 || (ingredient(v[95]) && (n <= 96 || (ingredient(v[96]) && (n <= 97 || (ingredient(v[97]) && (n <= 98 || (ingredient(v[98]) && (n <= 99 || (ingredient(v[99]) && true)))))))))))))))))))); }
+    function validFamily(d) {
+      return d.keys().hasAll(['schemaVersion','name','createdBy','ownerUid','state','createdAt','updatedAt']) &&
+        d.keys().hasOnly(['schemaVersion','name','createdBy','ownerUid','state','createdAt','updatedAt']) &&
+        d.schemaVersion == 2 && text(d.name,100) && d.name.size() > 0 &&
+        text(d.createdBy,128) && text(d.ownerUid,128) && d.state in ['active','archived'] &&
+        d.createdAt is timestamp && d.updatedAt == request.time;
+    }
+    function validMember(d, uid) {
+      return d.keys().hasAll(['uid','name','role','joinedAt','invitedBy','invitationId']) &&
+        d.keys().hasOnly(['uid','name','role','joinedAt','invitedBy','invitationId','avatarUrl']) &&
+        d.uid == uid && text(d.name,120) && optionalText(d,'avatarUrl',2048) &&
+        d.role in ['owner','admin','member','viewOnly'] && d.joinedAt is timestamp &&
+        text(d.invitedBy,128) && optionalText(d,'invitationId',32);
+    }
+    function indexAfter(fid, uid) {
+      return getAfter(ip(uid)).data.uid == uid && getAfter(ip(uid)).data.familyId == fid &&
+        getAfter(ip(uid)).data.joinedAt == request.time;
+    }
+    function mayIssue(fid, uid, invitedRole) {
+      return active(fid) && exists(mp(fid,uid)) &&
+        (get(mp(fid,uid)).data.role == 'owner' ||
+        (get(mp(fid,uid)).data.role == 'admin' && invitedRole in ['member','viewOnly']));
+    }
+    function invitationUsable(d) {
+      return signed() && d.state == 'pending' && d.expiresAt > request.time &&
+        (d.recipientUid == null || d.recipientUid == request.auth.uid) &&
+        mayIssue(d.familyId,d.issuedBy,d.role);
+    }
+    function joining(fid, uid, d) {
+      let before = get(vp(d.invitationId)).data;
+      let after = getAfter(vp(d.invitationId)).data;
+      return self(uid) && invitationUsable(before) && before.familyId == fid &&
+        d.role == before.role && d.invitedBy == before.issuedBy &&
+        after.state == 'redeemed' && after.redeemedBy == uid && after.redeemedAt == request.time;
+    }
+    function canRemove(fid, uid) {
+      let household = get(fp(fid)).data;
+      let target = get(mp(fid,uid)).data;
+      return signed() && household.schemaVersion == 2 &&
+        ((self(uid) && (target.role != 'owner' || household.state == 'archived')) ||
+         (member(fid) && uid != request.auth.uid && target.role != 'owner' &&
+          (role(fid) == 'owner' || (role(fid) == 'admin' && target.role in ['member','viewOnly']))));
+    }
+    function transfer(fid) {
+      let offerPath = /databases/$(database)/documents/families/$(fid)/ownershipTransfers/pending;
+      let offer = get(offerPath).data;
+      let household = get(fp(fid)).data;
+      return signed() && active(fid) && offer.fromUid == household.ownerUid &&
+        offer.toUid == request.auth.uid && offer.expiresAt > request.time &&
+        getAfter(fp(fid)).data.ownerUid == offer.toUid &&
+        getAfter(mp(fid,offer.fromUid)).data.role == 'admin' &&
+        getAfter(mp(fid,offer.toUid)).data.role == 'owner' && !existsAfter(offerPath);
+    }
+
+    match /membershipIndex/{uid} {
+      allow get: if self(uid);
+      allow list: if false;
+      allow create: if self(uid) && request.resource.data.keys().hasOnly(['uid','familyId','joinedAt']) &&
+        request.resource.data.uid == uid && text(request.resource.data.familyId,128) &&
+        request.resource.data.joinedAt == request.time &&
+        !exists(mp(request.resource.data.familyId,uid)) &&
+        getAfter(mp(request.resource.data.familyId,uid)).data.uid == uid &&
+        getAfter(mp(request.resource.data.familyId,uid)).data.joinedAt == request.time;
+      allow update: if false;
+      allow delete: if
+        // Normal leave / removal: family doc exists and caller has permission.
+        (canRemove(resource.data.familyId,uid) && !existsAfter(mp(resource.data.familyId,uid))) ||
+        // Orphan-cleanup: family doc no longer exists; user clears their own dangling index entry.
+        (self(uid) && !exists(fp(resource.data.familyId)));
+    }
+    match /householdInvitations/{token} {
+      allow get: if signed() && (invitationUsable(resource.data) || manager(resource.data.familyId));
+      allow list, delete: if false;
+      allow create: if signed() && token.matches('^[A-Za-z0-9_-]{32}$') &&
+        request.resource.data.keys().hasOnly(['familyId','issuedBy','role','createdAt','expiresAt','state','recipientUid','redeemedBy','redeemedAt']) &&
+        request.resource.data.keys().hasAll(['familyId','issuedBy','role','createdAt','expiresAt','state','recipientUid','redeemedBy','redeemedAt']) &&
+        request.resource.data.issuedBy == request.auth.uid &&
+        request.resource.data.role in ['admin','member','viewOnly'] &&
+        mayIssue(request.resource.data.familyId,request.auth.uid,request.resource.data.role) &&
+        request.resource.data.createdAt == request.time &&
+        request.resource.data.expiresAt > request.time &&
+        request.resource.data.expiresAt <= request.time + duration.value(7,'d') &&
+        request.resource.data.state == 'pending' && request.resource.data.redeemedBy == null &&
+        request.resource.data.redeemedAt == null && optionalText(request.resource.data,'recipientUid',128) &&
+        getAfter(/databases/$(database)/documents/families/$(request.resource.data.familyId)/invitationRefs/$(token)).data.issuedBy == request.auth.uid;
+      allow update: if signed() &&
+        ((manager(resource.data.familyId) && resource.data.state == 'pending' &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['state']) &&
+          request.resource.data.state == 'revoked') ||
+         (invitationUsable(resource.data) &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['state','redeemedBy','redeemedAt']) &&
+          request.resource.data.state == 'redeemed' && request.resource.data.redeemedBy == request.auth.uid &&
+          request.resource.data.redeemedAt == request.time &&
+          !exists(mp(resource.data.familyId,request.auth.uid)) &&
+          getAfter(mp(resource.data.familyId,request.auth.uid)).data.invitationId == token &&
+          indexAfter(resource.data.familyId,request.auth.uid)));
+    }
+    match /families/{fid} {
+      allow get: if member(fid) || owner(fid);
+      allow list, delete: if false;
+      allow create: if signed() && validFamily(request.resource.data) &&
+        request.resource.data.createdBy == request.auth.uid && request.resource.data.ownerUid == request.auth.uid &&
+        request.resource.data.state == 'active' && request.resource.data.createdAt == request.time &&
+        !exists(ip(request.auth.uid)) && indexAfter(fid,request.auth.uid) &&
+        getAfter(mp(fid,request.auth.uid)).data.role == 'owner';
+      allow update: if signed() && validFamily(request.resource.data) &&
+        ((manager(fid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','updatedAt'])) ||
+         (owner(fid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['state','updatedAt'])) ||
+         (transfer(fid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ownerUid','updatedAt'])));
+      match /members/{uid} {
+        allow read: if member(fid);
+        allow create: if signed() && validMember(request.resource.data,uid) &&
+          request.resource.data.joinedAt == request.time && !exists(ip(uid)) && indexAfter(fid,uid) &&
+          ((!exists(fp(fid)) && self(uid) && getAfter(fp(fid)).data.ownerUid == uid &&
+             request.resource.data.role == 'owner' && request.resource.data.invitedBy == uid && request.resource.data.invitationId == null) ||
+           joining(fid,uid,request.resource.data));
+        allow update: if signed() && validMember(request.resource.data,uid) &&
+          ((self(uid) && member(fid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','avatarUrl'])) ||
+           (member(fid) && uid != request.auth.uid && resource.data.role != 'owner' &&
+             request.resource.data.role in ['admin','member','viewOnly'] &&
+             (role(fid) == 'owner' || (role(fid) == 'admin' && resource.data.role in ['member','viewOnly'] &&
+                request.resource.data.role in ['member','viewOnly'])) &&
+             request.resource.data.diff(resource.data).affectedKeys().hasOnly(['role'])) ||
+           (transfer(fid) && uid in [get(fp(fid)).data.ownerUid,request.auth.uid] &&
+             request.resource.data.diff(resource.data).affectedKeys().hasOnly(['role'])));
+        allow delete: if
+          // Normal leave / removal: family doc exists and caller has permission.
+          (canRemove(fid,uid) && get(ip(uid)).data.familyId == fid && !existsAfter(ip(uid))) ||
+          // Orphan-cleanup: family doc no longer exists; user removes their own dangling member doc.
+          (self(uid) && !exists(fp(fid)) && !existsAfter(ip(uid)));
+      }
+      match /invitationRefs/{token} {
+        allow read: if manager(fid);
+        allow create: if manager(fid) && request.resource.data.keys().hasOnly(['issuedBy','expiresAt']) &&
+          request.resource.data.issuedBy == request.auth.uid &&
+          getAfter(vp(token)).data.familyId == fid && getAfter(vp(token)).data.issuedBy == request.auth.uid &&
+          getAfter(vp(token)).data.expiresAt == request.resource.data.expiresAt;
+        allow update, delete: if false;
+      }
+      match /ownershipTransfers/{id} {
+        allow read: if member(fid);
+        allow create, update: if id == 'pending' && owner(fid) && active(fid) &&
+          request.resource.data.keys().hasOnly(['fromUid','toUid','createdAt','expiresAt']) &&
+          request.resource.data.fromUid == request.auth.uid && request.resource.data.toUid != request.auth.uid &&
+          exists(mp(fid,request.resource.data.toUid)) && request.resource.data.createdAt == request.time &&
+          request.resource.data.expiresAt > request.time && request.resource.data.expiresAt <= request.time + duration.value(7,'d');
+        allow delete: if owner(fid) || transfer(fid);
+      }
+      match /activity/{eventId} {
+        allow read: if member(fid);
+        allow create: if writer(fid) && validActivity(request.resource.data) &&
+          request.resource.data.actorUid == request.auth.uid && request.resource.data.createdAt == request.time &&
+          (!(request.resource.data.type in ['memberAdded','memberRemoved','memberRoleChanged','familyUpdate']) || manager(fid));
+        allow update, delete: if false;
+      }
+    }
+
+    // Shared data is explicit: no recursive household grant can override membership.
+    match /{scope}/{id}/pantryItems/{item} {
+      allow read: if scopeRead(scope,id);
+      allow create, update: if scopeWrite(scope,id) && validPantry(request.resource.data);
+      allow delete: if scopeWrite(scope,id);
+    }
+    match /{scope}/{id}/familyMembers/{profile} {
+      allow read: if scopeRead(scope,id);
+      allow create, update: if scopeWrite(scope,id) && validProfile(request.resource.data);
+      allow delete: if scopeWrite(scope,id);
+    }
+    match /{scope}/{id}/groceryLists/{listId} {
+      allow read: if scopeRead(scope,id);
+      allow create, update: if scopeWrite(scope,id) && validGroceryList(request.resource.data);
+      allow delete: if scopeWrite(scope,id);
+      match /items/{item} {
+        allow read: if scopeRead(scope,id);
+        allow create, update: if scopeWrite(scope,id) &&
+          existsAfter(/databases/$(database)/documents/$(scope)/$(id)/groceryLists/$(listId)) && validGroceryItem(request.resource.data);
+        allow delete: if scopeWrite(scope,id);
+      }
+    }
+    match /{scope}/{id}/mealPlans/{plan} {
+      allow read: if scopeRead(scope,id);
+      allow create, update: if scopeWrite(scope,id) && validPlan(request.resource.data);
+      allow delete: if scopeWrite(scope,id);
+      match /meals/{meal} {
+        allow read: if scopeRead(scope,id);
+        allow create, update: if scopeWrite(scope,id) &&
+          existsAfter(/databases/$(database)/documents/$(scope)/$(id)/mealPlans/$(plan)) && validMeal(request.resource.data) &&
+          replacementLinks(scope,id,plan,meal,request.resource.data);
+        allow delete: if scopeWrite(scope,id);
+      }
+    }
+    function scopeRead(scope,id) { return (scope == 'users' && self(id)) || (scope == 'families' && member(id)); }
+    function scopeWrite(scope,id) { return (scope == 'users' && self(id)) || (scope == 'families' && writer(id)); }
+    function validPantry(d) {
+      return d.keys().hasOnly(['name','quantity','category','expirationDate','status','addedBy','createdAt']) &&
+        text(d.name,200) && text(d.quantity,100) && text(d.category,100) && d.expirationDate is timestamp &&
+        d.status in ['available','runningLow','used','needed'] && optionalText(d,'addedBy',128) && d.createdAt is timestamp;
+    }
+    function validProfile(d) {
+      return d.keys().hasOnly(['name','relation','age','preferences','restrictions','createdAt']) &&
+        text(d.name,120) && optionalText(d,'relation',100) && d.age is int && d.age >= 0 && d.age <= 130 &&
+        stringList(d,'preferences',100) && stringList(d,'restrictions',100) && d.createdAt is timestamp;
+    }
+    function validGroceryList(d) {
+      return d.keys().hasOnly(['title','mealPlanId','createdAt']) && optionalText(d,'title',200) &&
+        optionalText(d,'mealPlanId',128) && d.createdAt is timestamp;
+    }
+    function validGroceryItem(d) {
+      return d.keys().hasOnly(['name','quantity','category','checked','status','tag','addedBy','mealPlanId','sourceMealPaths']) &&
+        text(d.name,900) && d.name.size() > 0 && text(d.quantity,100) && text(d.category,100) &&
+        d.checked is bool && d.status in ['needed','available','used'] && d.checked == (d.status == 'used') &&
+        optionalText(d,'tag',100) && optionalText(d,'addedBy',128) && optionalText(d,'mealPlanId',128) &&
+        (!('sourceMealPaths' in d) || stringList(d,'sourceMealPaths',100));
+    }
+    function validPlan(d) {
+      return d.keys().hasOnly(['title','startDate','endDate','numberOfDays','mealTypes','cuisinePreferences',
+        'prioritizePantry','selectedMemberIds','estimatedCost','groceryListId','status','createdBy','createdAt','updatedAt']) &&
+        text(d.title,200) && optionalTime(d,'startDate') && optionalTime(d,'endDate') &&
+        d.numberOfDays is int && d.numberOfDays > 0 && d.numberOfDays <= 31 &&
+        stringList(d,'mealTypes',10) && stringList(d,'cuisinePreferences',100) && stringList(d,'selectedMemberIds',100) &&
+        d.prioritizePantry is bool && optionalText(d,'estimatedCost',100) && optionalText(d,'groceryListId',128) &&
+        d.status in ['active','saved','completed','archived','draft'] && optionalText(d,'createdBy',128) &&
+        d.createdAt is timestamp && optionalTime(d,'updatedAt');
+    }
+    // Group the existing nullable type/size checks to avoid per-field helper
+    // calls. Keep String.size semantics exactly, including Unicode input.
+    function mealTextA(d) {
+      let subtitle = d.get('subtitle',null);
+      let imageUrl = d.get('imageUrl',null);
+      let cuisine = d.get('cuisine',null);
+      let mealType = d.get('mealType',null);
+      let prepTime = d.get('prepTime',null);
+      let cookTime = d.get('cookTime',null);
+      let servings = d.get('servings',null);
+      let calories = d.get('calories',null);
+      let protein = d.get('protein',null);
+      return (subtitle == null || (subtitle is string && subtitle.size() <= 1000)) &&
+        (imageUrl == null || (imageUrl is string && imageUrl.size() <= 2048)) &&
+        (cuisine == null || (cuisine is string && cuisine.size() <= 100)) &&
+        (mealType == null || (mealType is string && mealType.size() <= 100)) &&
+        (prepTime == null || (prepTime is string && prepTime.size() <= 100)) &&
+        (cookTime == null || (cookTime is string && cookTime.size() <= 100)) &&
+        (servings == null || (servings is string && servings.size() <= 100)) &&
+        (calories == null || (calories is string && calories.size() <= 100)) &&
+        (protein == null || (protein is string && protein.size() <= 100));
+    }
+    function mealTextB(d) {
+      let carbs = d.get('carbs',null);
+      let fats = d.get('fats',null);
+      let badgeText = d.get('badgeText',null);
+      let reasoning = d.get('reasoning',null);
+      let imageSearchQuery = d.get('imageSearchQuery',null);
+      let youtubeSearchQuery = d.get('youtubeSearchQuery',null);
+      let replacedByMealId = d.get('replacedByMealId',null);
+      let replacedMealId = d.get('replacedMealId',null);
+      return (carbs == null || (carbs is string && carbs.size() <= 100)) &&
+        (fats == null || (fats is string && fats.size() <= 100)) &&
+        (badgeText == null || (badgeText is string && badgeText.size() <= 200)) &&
+        (reasoning == null || (reasoning is string && reasoning.size() <= 4000)) &&
+        (imageSearchQuery == null || (imageSearchQuery is string && imageSearchQuery.size() <= 500)) &&
+        (youtubeSearchQuery == null || (youtubeSearchQuery is string && youtubeSearchQuery.size() <= 500)) &&
+        (replacedByMealId == null || (replacedByMealId is string && replacedByMealId.size() <= 128)) &&
+        (replacedMealId == null || (replacedMealId is string && replacedMealId.size() <= 128));
+    }
+    function validMeal(d) {
+      return d.keys().hasOnly(['title','subtitle','imageUrl','cuisine','mealType','dayIndex','prepTime','cookTime',
+        'servings','calories','protein','carbs','fats','badgeText','ingredients','instructions','availableIngredients',
+        'missingIngredients','tags','reasoning','imageSearchQuery','youtubeSearchQuery','status','accepted',
+        'replacedByMealId','replacedMealId','isFavorite','createdAt']) &&
+        text(d.title,300) && mealTextA(d) && mealTextB(d) &&
+        d.dayIndex is int && d.dayIndex >= 0 && d.dayIndex < 31 &&
+        ingredientEntries(d.ingredients) && stringList(d,'instructions',100) &&
+        stringList(d,'availableIngredients',100) && stringList(d,'missingIngredients',100) && stringList(d,'tags',50) &&
+        d.status in ['pending','accepted','completed','notCompleted','replaced'] &&
+        d.accepted is bool && d.accepted == (d.status == 'accepted') && d.isFavorite is bool &&
+        d.createdAt is timestamp;
+    }
+    function replacementLinks(scope,id,plan,meal,d) {
+
+      return ((d.status == 'replaced') == (d.replacedByMealId != null)) && (d.replacedByMealId == null ||
+          (d.status == 'replaced' && d.replacedByMealId != meal &&
+           getAfter(/databases/$(database)/documents/$(scope)/$(id)/mealPlans/$(plan)/meals/$(d.replacedByMealId)).data.replacedMealId == meal)) &&
+        (d.replacedMealId == null ||
+          (d.replacedMealId != meal && getAfter(/databases/$(database)/documents/$(scope)/$(id)/mealPlans/$(plan)/meals/$(d.replacedMealId)).data.replacedByMealId == meal &&
+           getAfter(/databases/$(database)/documents/$(scope)/$(id)/mealPlans/$(plan)/meals/$(d.replacedMealId)).data.dayIndex == d.dayIndex &&
+           getAfter(/databases/$(database)/documents/$(scope)/$(id)/mealPlans/$(plan)/meals/$(d.replacedMealId)).data.mealType == d.mealType)) &&
+        (resource == null ||
+          (resource.data.get('replacedMealId',null) == d.replacedMealId &&
+           (resource.data.get('replacedByMealId',null) == null || resource.data.replacedByMealId == d.replacedByMealId)));
+    }
+    function validActivity(d) {
+      return d.keys().hasOnly(['actorUid','type','createdAt','relatedPlanId','targetId','includeSelf']) &&
+        text(d.actorUid,128) && d.type in ['mealPlanGenerated','mealPlanSaved','mealPlanDeleted','mealAccepted',
+          'mealCompleted','mealNotCompleted','mealReplaced','pantryItemAdded','pantryItemDeleted','pantryItemUpdated',
+          'groceryListUpdated','groceryItemAdded','groceryItemPurchased','familyUpdate','memberAdded','memberRemoved',
+          'memberRoleChanged','aiProviderAdded','aiProviderRemoved','aiProviderChanged','aiSuccess','general'] &&
+        d.createdAt is timestamp && optionalText(d,'relatedPlanId',128) && optionalText(d,'targetId',128) && d.includeSelf is bool;
+    }
+
+    match /users/{uid} {
+      allow read, delete: if self(uid);
+      allow create, update: if self(uid) && request.resource.data.keys().hasOnly([
+        'uid','email','displayName','photoUrl','familyId','familySpaceId','createdAt','lastLoginAt','updatedAt','fcmToken','fcmTokenUpdatedAt']) &&
+        request.resource.data.get('uid',uid) == uid && optionalText(request.resource.data,'email',320) &&
+        optionalText(request.resource.data,'displayName',120) && optionalText(request.resource.data,'photoUrl',2048) &&
+        optionalText(request.resource.data,'familyId',128) && optionalText(request.resource.data,'familySpaceId',128) &&
+        optionalText(request.resource.data,'fcmToken',4096) && optionalTime(request.resource.data,'createdAt') &&
+        optionalTime(request.resource.data,'lastLoginAt') && optionalTime(request.resource.data,'updatedAt') && optionalTime(request.resource.data,'fcmTokenUpdatedAt');
+      match /notificationReceipts/{event} {
+        allow read, delete: if self(uid);
+        allow create, update: if self(uid) && request.resource.data.keys().hasOnly(['read','dismissed','updatedAt']) &&
+          request.resource.data.read is bool && request.resource.data.dismissed is bool && request.resource.data.updatedAt == request.time;
+      }
+      match /fcmTokens/{token} {
+        allow read, delete: if self(uid);
+        allow create, update: if self(uid) && request.resource.data.keys().hasOnly(['token','platform','updatedAt']) &&
+          text(request.resource.data.token,4096) && text(request.resource.data.platform,30) && request.resource.data.updatedAt == request.time;
+      }
+      match /secrets/{config} {
+        allow read, delete: if self(uid) && config == 'llmConfig';
+        allow create, update: if self(uid) && config == 'llmConfig' &&
+          request.resource.data.keys().hasOnly(['provider','apiKey','model','customEndpoint','isOpenAiCompatible','updatedAt']) &&
+          request.resource.data.provider in ['gemini','openai','anthropic','groq','custom'] &&
+          optionalText(request.resource.data,'apiKey',4096) && optionalText(request.resource.data,'model',200) &&
+          optionalText(request.resource.data,'customEndpoint',2048) && request.resource.data.isOpenAiCompatible is bool &&
+          text(request.resource.data.updatedAt,100);
+      }
+      match /usageCounters/{counter} {
+        allow read: if self(uid);
+        allow create, update: if self(uid) && counter == 'daily' &&
+          request.resource.data.keys().hasOnly(['date','count']) && text(request.resource.data.date,10) &&
+          request.resource.data.count is int && request.resource.data.count >= 0 && request.resource.data.count <= 10;
+      }
+      match /notifications/{notification} {
+        allow read, delete: if self(uid);
+        allow create: if self(uid) && request.resource.data.keys().hasOnly(['title','body','type','createdAt','read',
+          'relatedPlanId','actorName','actorUid','actionType','targetName','targetId','navigationRoute','navigationParameters']) &&
+          text(request.resource.data.title,200) && text(request.resource.data.body,2000) &&
+          text(request.resource.data.type,60) && request.resource.data.read is bool && request.resource.data.createdAt is timestamp &&
+          optionalText(request.resource.data,'relatedPlanId',128) && optionalText(request.resource.data,'actorName',120) &&
+          optionalText(request.resource.data,'actorUid',128) && optionalText(request.resource.data,'actionType',100) &&
+          optionalText(request.resource.data,'targetName',300) && optionalText(request.resource.data,'targetId',128) &&
+          optionalText(request.resource.data,'navigationRoute',200) &&
+          (request.resource.data.get('navigationParameters',null) == null ||
+            (request.resource.data.navigationParameters is map &&
+             request.resource.data.navigationParameters.keys().hasOnly(['planId','mealId']) &&
+             optionalText(request.resource.data.navigationParameters,'planId',128) &&
+             optionalText(request.resource.data.navigationParameters,'mealId',128)));
+        allow update: if self(uid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']) && request.resource.data.read is bool;
+      }
+    }
+    // All other paths are denied. No catch-all write grants.
+  }
+}

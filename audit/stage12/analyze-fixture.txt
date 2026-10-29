@@ -1,0 +1,9 @@
+Analyzing whatmeal...                                           
+
+   info - The imported package 'shared_preferences' isn't a dependency of the importing package. Try adding a dependency for 'shared_preferences' in the 'pubspec.yaml' file - integration_test\stage12_restart_test.dart:1:8 - depend_on_referenced_packages
+  error - Target of URI doesn't exist: 'package:shared_preferences/shared_preferences.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist - integration_test\stage12_restart_test.dart:1:8 - uri_does_not_exist
+  error - Undefined name 'SharedPreferences'. Try correcting the name to one that is defined, or defining the name - integration_test\stage12_restart_test.dart:168:25 - undefined_identifier
+   info - Unnecessary braces in a string interpolation. Try removing the braces - lib\features\pantry\data\pantry_repository.dart:107:27 - unnecessary_brace_in_string_interps
+   info - Unnecessary braces in a string interpolation. Try removing the braces - lib\features\profile\data\family_member_repository.dart:105:27 - unnecessary_brace_in_string_interps
+
+5 issues found. (ran in 3.9s)

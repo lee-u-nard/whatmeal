@@ -1,0 +1,365 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage9\household-integration.apk...             1,523ms
+D/FLTFireContextHolder( 1877): received application context.
+W/.whatmeal.local( 1877): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/.whatmeal.local( 1877): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 1877): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 1877): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 1877): Width is zero. 0,0
+W/HWUI    ( 1877): Unknown dataspace 0
+I/WindowExtensionsImpl( 1877): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 1877): Width is zero. 0,0
+D/FlutterJNI( 1877): Sending viewport metrics to the engine.
+W/HWUI    ( 1877): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 1877): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Gralloc4( 1877): mapper 4.x is not supported
+I/.whatmeal.local( 1877): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 1877): Skipped 44 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 1877): Sending viewport metrics to the engine.
+D/ProfileInstaller( 1877): Installing profile for com.example.whatmeal.local
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:51242/frHBvswh_b0=/
+VMServiceFlutterDriver: Isolate found with number: 7315718493310203
+VMServiceFlutterDriver: Isolate 7315718493310203 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 1877): 00:00 +0: local Android UI registration, verification, household and account switching
+VMServiceFlutterDriver: Connected to Flutter application.
+I/Choreographer( 1877): Skipped 41 frames!  The application may be doing too much work on its main thread.
+I/Choreographer( 1877): Skipped 56 frames!  The application may be doing too much work on its main thread.
+I/Choreographer( 1877): Skipped 71 frames!  The application may be doing too much work on its main thread.
+E/SurfaceSyncGroup( 1877): Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[MainActivity]#1) as ready
+E/SurfaceSyncGroup( 1877): Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[MainActivity]#2) as ready
+D/EGL_emulation( 1877): app_time_stats: avg=1345.58ms min=341.14ms max=2350.02ms count=2
+I/HWUI    ( 1877): Davey! duration=2545ms; Flags=1, FrameTimelineVsyncId=11796, IntendedVsync=114330522250, Vsync=114613855572, InputEventId=0, HandleInputStart=114622423300, AnimationStart=114622436000, PerformTraversalsStart=114622454300, DrawStart=115771638200, FrameDeadline=114347188916, FrameInterval=114622293800, FrameStartTime=16666666, SyncQueued=116494952700, SyncStart=116502865100, IssueDrawCommandsStart=116545320600, SwapBuffers=116767706400, FrameCompleted=116884227200, DequeueBufferDuration=73216900, QueueBufferDuration=14297700, GpuCompleted=116810926900, SwapBuffersCompleted=116884227200, DisplayPresentTime=72904454231359566, CommandSubmissionCompleted=116767706400, 
+D/EGL_emulation( 1877): app_time_stats: avg=250.48ms min=225.45ms max=282.69ms count=4
+W/.whatmeal.local( 1877): Verification of void com.google.firebase.auth.FirebaseAuth.<init>(com.google.firebase.FirebaseApp, com.google.android.gms.internal.firebase-auth-api.zzach, com.google.firebase.auth.internal.zzcb, com.google.firebase.auth.internal.zzcg, com.google.firebase.auth.internal.zzb, com.google.firebase.inject.Provider, com.google.firebase.inject.Provider, java.util.concurrent.Executor, java.util.concurrent.Executor, java.util.concurrent.Executor, java.util.concurrent.Executor) took 819.284ms (220.92 bytecodes/s) (5072B approximate peak alloc)
+W/.whatmeal.local( 1877): Verification of void com.google.firebase.auth.FirebaseAuth.zza(com.google.firebase.FirebaseException, com.google.firebase.auth.PhoneAuthOptions, java.lang.String) took 236.336ms (181.94 bytecodes/s) (3136B approximate peak alloc)
+W/.whatmeal.local( 1877): Verification of com.google.android.gms.tasks.Task com.google.firebase.auth.FirebaseAuth.signInWithCredential(com.google.firebase.auth.AuthCredential) took 209.477ms (572.85 bytecodes/s) (4920B approximate peak alloc)
+W/.whatmeal.local( 1877): Verification of com.google.android.gms.tasks.Task com.google.firebase.auth.FirebaseAuth.signInWithEmailLink(java.lang.String, java.lang.String) took 253.890ms (35.45 bytecodes/s) (2336B approximate peak alloc)
+D/EGL_emulation( 1877): app_time_stats: avg=379.97ms min=300.65ms max=529.15ms count=3
+W/.whatmeal.local( 1877): Verification of com.google.firebase.auth.internal.zzaf com.google.android.gms.internal.firebase-auth-api.zzach.zza(com.google.firebase.FirebaseApp, com.google.android.gms.internal.firebase-auth-api.zzahc) took 334.698ms (334.63 bytecodes/s) (4288B approximate peak alloc)
+W/.whatmeal.local( 1877): Verification of com.google.android.gms.tasks.Task com.google.android.gms.internal.firebase-auth-api.zzach.zza(com.google.firebase.FirebaseApp, java.lang.String, java.lang.String, com.google.firebase.auth.internal.zzl) took 110.232ms (181.44 bytecodes/s) (2760B approximate peak alloc)
+W/.whatmeal.local( 1877): Verification of void com.google.android.gms.internal.firebase-auth-api.zzaef.<clinit>() took 282.185ms (56.70 bytecodes/s) (2456B approximate peak alloc)
+W/.whatmeal.local( 1877): Verification of void com.google.android.gms.internal.firebase-auth-api.zzaef.<init>(com.google.firebase.FirebaseApp, java.util.concurrent.ScheduledExecutorService) took 114.910ms (321.99 bytecodes/s) (3040B approximate peak alloc)
+D/EGL_emulation( 1877): app_time_stats: avg=335.30ms min=257.96ms max=407.59ms count=3
+W/.whatmeal.local( 1877): Verification of int com.google.android.gms.internal.firebase-auth-api.zzaeu.zza(java.lang.String) took 549.846ms (172.78 bytecodes/s) (3904B approximate peak alloc)
+W/.whatmeal.local( 1877): Verification of com.google.android.gms.internal.firebase-auth-api.zzaeu com.google.android.gms.internal.firebase-auth-api.zzaeu.zza() took 145.756ms (226.41 bytecodes/s) (2736B approximate peak alloc)
+D/EGL_emulation( 1877): app_time_stats: avg=1218.52ms min=1218.52ms max=1218.52ms count=1
+D/EGL_emulation( 1877): app_time_stats: avg=268.32ms min=239.11ms max=299.82ms count=4
+D/EGL_emulation( 1877): app_time_stats: avg=257.90ms min=160.08ms max=320.67ms count=4
+D/EGL_emulation( 1877): app_time_stats: avg=320.59ms min=257.68ms max=376.94ms count=3
+D/EGL_emulation( 1877): app_time_stats: avg=333.80ms min=290.02ms max=428.25ms count=4
+D/EGL_emulation( 1877): app_time_stats: avg=305.74ms min=277.78ms max=367.01ms count=4
+D/EGL_emulation( 1877): app_time_stats: avg=369.54ms min=354.89ms max=394.11ms count=3
+W/.whatmeal.local( 1877): Verification of void com.google.android.gms.internal.firebase-auth-api.zzv.<init>(com.google.android.gms.internal.firebase-auth-api.zzab) took 119.737ms (91.87 bytecodes/s) (2464B approximate peak alloc)
+D/EGL_emulation( 1877): app_time_stats: avg=305.73ms min=207.47ms max=401.63ms count=4
+W/.whatmeal.local( 1877): Verification of void com.google.firebase.auth.internal.zzax.zza(android.app.Activity, android.content.BroadcastReceiver) took 115.004ms (147.82 bytecodes/s) (2624B approximate peak alloc)
+D/EGL_emulation( 1877): app_time_stats: avg=482.42ms min=228.69ms max=982.93ms count=4
+D/FlutterJNI( 1877): Sending viewport metrics to the engine.
+I/.whatmeal.local( 1877): Background concurrent mark compact GC freed 2924KB AllocSpace bytes, 7(268KB) LOS objects, 49% free, 3146KB/6292KB, paused 423us,222.584ms total 5.253s
+D/EGL_emulation( 1877): app_time_stats: avg=3596.51ms min=3596.51ms max=3596.51ms count=1
+D/FirebaseAuth( 1877): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1877): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 1877): app_time_stats: avg=1166.89ms min=1166.89ms max=1166.89ms count=1
+D/EGL_emulation( 1877): app_time_stats: avg=348.05ms min=126.99ms max=960.04ms count=5
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=101.84ms min=26.57ms max=155.12ms count=10
+D/EGL_emulation( 1877): app_time_stats: avg=114.94ms min=11.46ms max=220.89ms count=10
+D/EGL_emulation( 1877): app_time_stats: avg=108.46ms min=19.84ms max=229.81ms count=11
+D/EGL_emulation( 1877): app_time_stats: avg=101.62ms min=11.16ms max=245.60ms count=11
+I/FirebaseAuth( 1877): Creating user with owner-1792081927221264@example.test with empty reCAPTCHA token
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1877): tagSocket(140) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1877): app_time_stats: avg=126.36ms min=42.31ms max=224.61ms count=8
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1877): Notifying id token listeners about user ( t0GNOWIERtzKS9ZetEha3BJoDgb8 ).
+D/FirebaseAuth( 1877): Notifying auth state listeners about user ( t0GNOWIERtzKS9ZetEha3BJoDgb8 ).
+D/EGL_emulation( 1877): app_time_stats: avg=230.42ms min=216.05ms max=272.59ms count=5
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/GooglePlayServicesUtil( 1877): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1877): GooglePlayServices not available due to error 9
+W/Firestore( 1877): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1877): tagSocket(6) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1877): app_time_stats: avg=430.42ms min=219.09ms max=922.94ms count=4
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=211.50ms min=57.07ms max=656.13ms count=5
+I/flutter ( 1877): Local UI checkpoint: Owner registered and verified
+D/EGL_emulation( 1877): app_time_stats: avg=136.72ms min=20.39ms max=243.58ms count=8
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=116.27ms min=16.31ms max=221.83ms count=9
+D/EGL_emulation( 1877): app_time_stats: avg=144.04ms min=31.61ms max=218.09ms count=7
+D/EGL_emulation( 1877): app_time_stats: avg=101.45ms min=10.03ms max=248.14ms count=10
+D/EGL_emulation( 1877): app_time_stats: avg=136.64ms min=20.04ms max=485.60ms count=10
+I/flutter ( 1877): Local UI checkpoint: household created
+D/EGL_emulation( 1877): app_time_stats: avg=151.21ms min=98.41ms max=255.40ms count=7
+D/EGL_emulation( 1877): app_time_stats: avg=159.28ms min=73.72ms max=216.03ms count=7
+D/EGL_emulation( 1877): app_time_stats: avg=217.45ms min=212.55ms max=221.28ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=218.67ms min=213.83ms max=225.87ms count=5
+I/flutter ( 1877): Local UI checkpoint: invitation copied
+D/EGL_emulation( 1877): app_time_stats: avg=250.06ms min=135.59ms max=407.92ms count=4
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=126.92ms min=21.71ms max=213.10ms count=9
+D/EGL_emulation( 1877): app_time_stats: avg=126.40ms min=5.59ms max=255.79ms count=8
+D/FirebaseAuth( 1877): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1877): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=179.36ms min=92.37ms max=266.67ms count=6
+W/Firestore( 1877): (25.1.4) [Firestore]: Listen for Query(target=Query(users/t0GNOWIERtzKS9ZetEha3BJoDgb8/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1877): false for 'list' @ L207, cause=null}
+W/Firestore( 1877): (25.1.4) [Firestore]: Listen for Query(target=Query(users/t0GNOWIERtzKS9ZetEha3BJoDgb8/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1877): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=125.39ms min=44.63ms max=220.59ms count=8
+D/EGL_emulation( 1877): app_time_stats: avg=101.87ms min=15.63ms max=258.67ms count=10
+D/EGL_emulation( 1877): app_time_stats: avg=240.31ms min=43.14ms max=1063.56ms count=7
+D/EGL_emulation( 1877): app_time_stats: avg=301.17ms min=2.11ms max=1232.32ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=94.28ms min=5.27ms max=226.99ms count=11
+I/FirebaseAuth( 1877): Creating user with member-1792081951450169@example.test with empty reCAPTCHA token
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1877): tagSocket(140) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1877): app_time_stats: avg=105.63ms min=25.09ms max=230.01ms count=10
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1877): Notifying id token listeners about user ( dzMxgikltEYqMgGE1GcUPeFwPwIU ).
+D/FirebaseAuth( 1877): Notifying auth state listeners about user ( dzMxgikltEYqMgGE1GcUPeFwPwIU ).
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1877): app_time_stats: avg=171.50ms min=34.48ms max=282.19ms count=6
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 1877): app_time_stats: avg=184.40ms min=123.13ms max=413.86ms count=6
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1877): Local UI checkpoint: Member registered and verified
+I/flutter ( 1877): Local UI checkpoint: new account has no household
+D/EGL_emulation( 1877): app_time_stats: avg=100.68ms min=15.29ms max=218.64ms count=10
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=126.89ms min=63.95ms max=203.98ms count=8
+D/EGL_emulation( 1877): app_time_stats: avg=126.28ms min=18.47ms max=225.18ms count=8
+D/EGL_emulation( 1877): app_time_stats: avg=95.62ms min=3.31ms max=258.76ms count=11
+D/EGL_emulation( 1877): app_time_stats: avg=100.24ms min=16.53ms max=217.00ms count=10
+D/EGL_emulation( 1877): app_time_stats: avg=344.96ms min=234.41ms max=515.74ms count=3
+I/flutter ( 1877): Local UI checkpoint: member joined shared household
+D/EGL_emulation( 1877): app_time_stats: avg=125.70ms min=4.06ms max=274.71ms count=8
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=131.20ms min=4.87ms max=240.52ms count=8
+D/FirebaseAuth( 1877): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1877): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=145.46ms min=47.82ms max=224.98ms count=8
+W/Firestore( 1877): (25.1.4) [Firestore]: Listen for Query(target=Query(users/dzMxgikltEYqMgGE1GcUPeFwPwIU/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1877): false for 'list' @ L207, cause=null}
+W/Firestore( 1877): (25.1.4) [Firestore]: Listen for Query(target=Query(users/dzMxgikltEYqMgGE1GcUPeFwPwIU/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1877): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1877): app_time_stats: avg=100.15ms min=29.55ms max=223.65ms count=10
+D/EGL_emulation( 1877): app_time_stats: avg=112.35ms min=24.62ms max=221.22ms count=9
+I/FirebaseAuth( 1877): Logging in as owner-1792081927221264@example.test with empty reCAPTCHA token
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1877): tagSocket(140) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1877): app_time_stats: avg=133.95ms min=18.41ms max=219.33ms count=9
+W/System  ( 1877): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1877): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1877): Notifying id token listeners about user ( t0GNOWIERtzKS9ZetEha3BJoDgb8 ).
+D/FirebaseAuth( 1877): Notifying auth state listeners about user ( t0GNOWIERtzKS9ZetEha3BJoDgb8 ).
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=144.24ms min=20.33ms max=334.12ms count=7
+W/WindowOnBackDispatcher( 1877): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1877): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1877): app_time_stats: avg=126.11ms min=21.18ms max=218.32ms count=8
+D/EGL_emulation( 1877): app_time_stats: avg=152.82ms min=20.40ms max=217.10ms count=7
+D/EGL_emulation( 1877): app_time_stats: avg=113.54ms min=24.67ms max=215.76ms count=9
+D/EGL_emulation( 1877): app_time_stats: avg=103.67ms min=4.11ms max=250.18ms count=11
+I/flutter ( 1877): Local UI checkpoint: owner removed member
+D/EGL_emulation( 1877): app_time_stats: avg=217.83ms min=212.14ms max=225.08ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=215.56ms min=213.23ms max=217.13ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.68ms min=212.71ms max=220.43ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.88ms min=215.49ms max=218.66ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.27ms min=210.96ms max=223.44ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.69ms min=216.03ms max=217.15ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.99ms min=216.09ms max=217.81ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.33ms min=213.90ms max=218.16ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.13ms min=215.32ms max=218.07ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.73ms min=215.90ms max=217.85ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.48ms min=214.86ms max=218.58ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.49ms min=214.87ms max=217.97ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.60ms min=215.35ms max=218.69ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.81ms min=214.00ms max=219.23ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.67ms min=212.39ms max=222.40ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.37ms min=214.10ms max=221.24ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.59ms min=214.76ms max=219.00ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.84ms min=213.92ms max=219.58ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.63ms min=215.62ms max=217.06ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=220.32ms min=214.93ms max=227.77ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=215.24ms min=213.38ms max=219.83ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.70ms min=214.31ms max=218.64ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=226.59ms min=216.18ms max=238.25ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=248.26ms min=210.01ms max=285.58ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=252.96ms min=215.91ms max=274.92ms count=4
+D/EGL_emulation( 1877): app_time_stats: avg=222.49ms min=208.05ms max=233.44ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=216.58ms min=208.65ms max=236.07ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=231.60ms min=199.08ms max=274.44ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=221.36ms min=207.89ms max=243.61ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=283.99ms min=212.43ms max=494.86ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=171.63ms min=12.59ms max=237.40ms count=6
+D/EGL_emulation( 1877): app_time_stats: avg=216.58ms min=208.60ms max=225.97ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=217.20ms min=215.50ms max=219.58ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=222.39ms min=198.04ms max=248.56ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=236.55ms min=215.56ms max=299.65ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=219.95ms min=215.87ms max=230.29ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=297.61ms min=217.23ms max=389.89ms count=3
+D/EGL_emulation( 1877): app_time_stats: avg=150.57ms min=7.77ms max=220.54ms count=7
+D/EGL_emulation( 1877): app_time_stats: avg=223.44ms min=202.56ms max=236.90ms count=5
+D/EGL_emulation( 1877): app_time_stats: avg=227.00ms min=198.49ms max=260.61ms count=5
+I/flutter ( 1877): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 1877): The following TestFailure was thrown running a test:
+I/flutter ( 1877): Timed out waiting for local app state
+I/flutter ( 1877): 
+I/flutter ( 1877): When the exception was thrown, this was the stack:
+I/flutter ( 1877): #0      fail (package:matcher/src/expect/expect.dart:187:31)
+I/flutter ( 1877): #1      main.<anonymous closure>.until (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:43:7)
+I/flutter ( 1877): <asynchronous suspension>
+I/flutter ( 1877): #2      main.<anonymous closure>.tap (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:47:7)
+I/flutter ( 1877): <asynchronous suspension>
+I/flutter ( 1877): #3      main.<anonymous closure>.invite (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:140:7)
+I/flutter ( 1877): <asynchronous suspension>
+I/flutter ( 1877): #4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:208:25)
+I/flutter ( 1877): <asynchronous suspension>
+I/flutter ( 1877): #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 1877): <asynchronous suspension>
+I/flutter ( 1877): #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 1877): <asynchronous suspension>
+I/flutter ( 1877): #7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 1877): <asynchronous suspension>
+I/flutter ( 1877): 
+I/flutter ( 1877): The test description was:
+I/flutter ( 1877):   local Android UI registration, verification, household and account switching
+I/flutter ( 1877): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1877): 02:10 +0: local Android UI registration, verification, household and account switching [E]
+I/flutter ( 1877):   Test failed. See exception logs above.
+I/flutter ( 1877):   The test description was: local Android UI registration, verification, household and account switching
+I/flutter ( 1877):   
+I/flutter ( 1877): 02:10 +0 -1: (tearDownAll)
+I/flutter ( 1877): 02:10 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Timed out waiting for local app state
+
+When the exception was thrown, this was the stack:
+#0      fail (package:matcher/src/expect/expect.dart:187:31)
+#1      main.<anonymous closure>.until (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:43:7)
+<asynchronous suspension>
+#2      main.<anonymous closure>.tap (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:47:7)
+<asynchronous suspension>
+#3      main.<anonymous closure>.invite (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:140:7)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:208:25)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+The test description was:
+  local Android UI registration, verification, household and
+  account switching
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+

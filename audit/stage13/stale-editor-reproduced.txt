@@ -1,0 +1,32 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart
+00:00 +0: an open grocery editor cannot submit its old draft into B or a later A session
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: empty
+  Actual: [Instance of 'MockQueryDocumentSnapshot<Map<String, dynamic>>']
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/grocery_feed_recovery_test.dart:30:37)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/grocery_feed_recovery_test.dart line 30
+The test description was:
+  an open grocery editor cannot submit its old draft into B or a later A session
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: an open grocery editor cannot submit its old draft into B or a later A session [E]
+  Test failed. See exception logs above.
+  The test description was: an open grocery editor cannot submit its old draft into B or a later A session
+  
+00:01 +0 -1: grocery item and parent terminal feeds reopen, publish safe failures, and dispose sources
+00:01 +1 -1: delayed successful or failing A initialization and add cannot attach or write after A B A
+00:01 +2 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: an open grocery editor cannot submit its old draft into B or a later A session

@@ -1,0 +1,12 @@
+{
+  "Screen": "release-notifications",
+  "Action": "Notifications",
+  "VisibleLabels": [
+    "Notifications & Alerts",
+    "Plan Saved\n1h ago\nA household member updated plan saved.",
+    "Meal Completed\n1h ago\nA household member completed a meal.",
+    "Meal Accepted\n1h ago\nA household member accepted a meal.",
+    "Plan Saved\n1h ago\nA household member updated plan saved.",
+    "Plan Saved\n1h ago\nA household member updated plan saved."
+  ]
+}

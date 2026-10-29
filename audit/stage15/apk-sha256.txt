@@ -1,0 +1,5 @@
+
+Algorithm : SHA256
+Hash      : CAEA1B80B01080635732D9AA9B94BFC9A1DEE69D14304BA080F8006849B5385B
+Path      : C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\build\stage15\whatmeal-local-tester.apk
+

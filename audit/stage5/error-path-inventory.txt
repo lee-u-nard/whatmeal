@@ -1,0 +1,84 @@
+lib/core/services/ai/adapters\openai_adapter.dart:168:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services/ai/adapters\openai_adapter.dart:198:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\unsplash_service.dart:156:      final data = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\unsplash_service.dart:177:      debugPrint('[Unsplash] Error "$query": $e');
+lib/core/services\unsplash_service.dart:199:      final data = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\unsplash_service.dart:217:      debugPrint('[MealDB] Error "$query": $e');
+lib/core/services/ai/adapters\groq_adapter.dart:212:              'Day-by-day generation encountered an issue ($e). Trying single compact prompt.',
+lib/core/services/ai/adapters\groq_adapter.dart:326:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services/ai/adapters\groq_adapter.dart:344:    String errorMessage = '';
+lib/core/services/ai/adapters\groq_adapter.dart:347:      final errJson = jsonDecode(response.body);
+lib/core/services/ai/adapters\groq_adapter.dart:352:            errorMessage = errObj['message'].toString();
+lib/core/services/ai/adapters\groq_adapter.dart:357:          errorMessage = errJson['message'].toString();
+lib/core/services/ai/adapters\groq_adapter.dart:363:        (errorMessage.toLowerCase().contains('validate json') ||
+lib/core/services/ai/adapters\groq_adapter.dart:364:            errorMessage.toLowerCase().contains('failed_generation') ||
+lib/core/services/ai/adapters\groq_adapter.dart:369:        errorMessage.isNotEmpty ? errorMessage : 'Failed to validate JSON',
+lib/core/services/ai/adapters\groq_adapter.dart:375:      throw Exception(errorMessage.isNotEmpty
+lib/core/services/ai/adapters\groq_adapter.dart:376:          ? errorMessage
+lib/core/services/ai/adapters\groq_adapter.dart:379:      throw Exception(errorMessage.isNotEmpty
+lib/core/services/ai/adapters\groq_adapter.dart:380:          ? errorMessage
+lib/core/services/ai/adapters\groq_adapter.dart:383:      throw Exception(errorMessage.isNotEmpty
+lib/core/services/ai/adapters\groq_adapter.dart:384:          ? errorMessage
+lib/core/services/ai/adapters\groq_adapter.dart:387:      throw Exception(errorMessage.isNotEmpty
+lib/core/services/ai/adapters\groq_adapter.dart:388:          ? errorMessage
+lib/core/services/ai/adapters\groq_adapter.dart:391:      throw Exception(errorMessage.isNotEmpty
+lib/core/services/ai/adapters\groq_adapter.dart:392:          ? 'Groq error: $errorMessage'
+lib/core/services/ai/adapters\groq_adapter.dart:410:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\llm_service.dart:54:    this.errorMessage,
+lib/core/services\llm_service.dart:62:  final String? errorMessage;
+lib/core/services\llm_service.dart:186:      errorMessage: testResult.errorMessage,
+lib/core/services\notification_service.dart:238:      debugPrint('[FCM] Failed to get token: $e');
+lib/core/services\notification_service.dart:267:      debugPrint('[FCM] Failed to save token: $e');
+lib/core/services\notification_service.dart:296:      onError: (e) => debugPrint('[NotifService] Firestore error: $e'),
+lib/core/services\notification_service.dart:340:      debugPrint('[NotifService] Failed to push notification: $e');
+lib/core/services/ai/adapters\gemini_adapter.dart:233:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services/ai/adapters\gemini_adapter.dart:250:      final detail = _extractApiError(response.body);
+lib/core/services/ai/adapters\gemini_adapter.dart:261:      final detail = _extractApiError(response.body);
+lib/core/services/ai/adapters\gemini_adapter.dart:268:  String? _extractApiError(String body) {
+lib/core/services/ai/adapters\custom_adapter.dart:122:          _content(response.body);
+lib/core/services/ai/adapters\custom_adapter.dart:199:      return _content(response.body);
+lib/core/services/ai/adapters\custom_adapter.dart:222:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/features\profile\widgets\edit_profile_sheet.dart:89:          content: Text('Failed to update profile: $e'),
+lib/core/services/ai/adapters\anthropic_adapter.dart:74:        final bodyStr = response.body.toLowerCase();
+lib/core/services/ai/adapters\anthropic_adapter.dart:165:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/features\ai_settings\data\ai_provider_repository.dart:271:          statusMessage: result.errorMessage ?? 'Validation failed.',
+lib/features\ai_settings\data\ai_provider_repository.dart:278:            result.errorMessage ??
+lib/core/services\ai\adapters\openai_adapter.dart:168:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\ai\adapters\openai_adapter.dart:198:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\ai\adapters\groq_adapter.dart:212:              'Day-by-day generation encountered an issue ($e). Trying single compact prompt.',
+lib/core/services\ai\adapters\groq_adapter.dart:326:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\ai\adapters\groq_adapter.dart:344:    String errorMessage = '';
+lib/core/services\ai\adapters\groq_adapter.dart:347:      final errJson = jsonDecode(response.body);
+lib/core/services\ai\adapters\groq_adapter.dart:352:            errorMessage = errObj['message'].toString();
+lib/core/services\ai\adapters\groq_adapter.dart:357:          errorMessage = errJson['message'].toString();
+lib/core/services\ai\adapters\groq_adapter.dart:363:        (errorMessage.toLowerCase().contains('validate json') ||
+lib/core/services\ai\adapters\groq_adapter.dart:364:            errorMessage.toLowerCase().contains('failed_generation') ||
+lib/core/services\ai\adapters\groq_adapter.dart:369:        errorMessage.isNotEmpty ? errorMessage : 'Failed to validate JSON',
+lib/core/services\ai\adapters\groq_adapter.dart:375:      throw Exception(errorMessage.isNotEmpty
+lib/core/services\ai\adapters\groq_adapter.dart:376:          ? errorMessage
+lib/core/services\ai\adapters\groq_adapter.dart:379:      throw Exception(errorMessage.isNotEmpty
+lib/core/services\ai\adapters\groq_adapter.dart:380:          ? errorMessage
+lib/core/services\ai\adapters\groq_adapter.dart:383:      throw Exception(errorMessage.isNotEmpty
+lib/core/services\ai\adapters\groq_adapter.dart:384:          ? errorMessage
+lib/core/services\ai\adapters\groq_adapter.dart:387:      throw Exception(errorMessage.isNotEmpty
+lib/core/services\ai\adapters\groq_adapter.dart:388:          ? errorMessage
+lib/core/services\ai\adapters\groq_adapter.dart:391:      throw Exception(errorMessage.isNotEmpty
+lib/core/services\ai\adapters\groq_adapter.dart:392:          ? 'Groq error: $errorMessage'
+lib/core/services\ai\adapters\groq_adapter.dart:410:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/features\auth\pages\verify_email_page.dart:66:          content: Text('Error checking verification status: $e'),
+lib/features\auth\pages\verify_email_page.dart:93:          content: Text('Could not send verification email: $e'),
+lib/core/services\ai\adapters\gemini_adapter.dart:233:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\ai\adapters\gemini_adapter.dart:250:      final detail = _extractApiError(response.body);
+lib/core/services\ai\adapters\gemini_adapter.dart:261:      final detail = _extractApiError(response.body);
+lib/core/services\ai\adapters\gemini_adapter.dart:268:  String? _extractApiError(String body) {
+lib/features\meal_plan\data\meal_plan_repository.dart:168:          '[SAVE-DEBUG] meal plan save FAILED uid=$_uid familyId=$_familyId error=$e');
+lib/core/services\ai\adapters\custom_adapter.dart:122:          _content(response.body);
+lib/core/services\ai\adapters\custom_adapter.dart:199:      return _content(response.body);
+lib/core/services\ai\adapters\custom_adapter.dart:222:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/core/services\ai\adapters\anthropic_adapter.dart:74:        final bodyStr = response.body.toLowerCase();
+lib/core/services\ai\adapters\anthropic_adapter.dart:165:      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+lib/features\meal_plan\pages\generated_meal_plan_page.dart:810:          content: Text('Could not replace meal: $e'),
+lib/core/services\ai\ai_models.dart:621:    this.errorMessage,
+lib/core/services\ai\ai_models.dart:626:  final String? errorMessage;
+lib/core/services\ai\ai_models.dart:640:        errorMessage: message,
+lib/features\meal_plan\pages\meal_plan_page.dart:314:      debugPrint('[MealPlan] generate failed: $e');

@@ -1,0 +1,280 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage14\inbox-integration.apk...                1,818ms
+D/FlutterRenderer( 1899): Width is zero. 0,0
+W/HWUI    ( 1899): Unknown dataspace 0
+I/Choreographer( 1899): Skipped 139 frames!  The application may be doing too much work on its main thread.
+I/WindowExtensionsImpl( 1899): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 1899): Width is zero. 0,0
+D/FlutterJNI( 1899): Sending viewport metrics to the engine.
+W/HWUI    ( 1899): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 1899): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Gralloc4( 1899): mapper 4.x is not supported
+I/.whatmeal.local( 1899): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 1899): Skipped 40 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 1899): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:53065/SGzkBYSObZg=/
+VMServiceFlutterDriver: Isolate found with number: 1645764059889427
+VMServiceFlutterDriver: Isolate 1645764059889427 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 1899): 00:00 +0: local Android inbox and settings recovery
+VMServiceFlutterDriver: Connected to Flutter application.
+D/FlutterJNI( 1899): Sending viewport metrics to the engine.
+D/FirebaseAuth( 1899): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1899): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 1899): app_time_stats: avg=368.00ms min=202.83ms max=630.74ms count=5
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=121.21ms min=15.20ms max=260.05ms count=9
+D/ProfileInstaller( 1899): Installing profile for com.example.whatmeal.local
+D/EGL_emulation( 1899): app_time_stats: avg=112.44ms min=11.37ms max=232.61ms count=9
+D/EGL_emulation( 1899): app_time_stats: avg=103.13ms min=28.91ms max=159.71ms count=10
+D/EGL_emulation( 1899): app_time_stats: avg=116.67ms min=12.80ms max=250.01ms count=10
+D/EGL_emulation( 1899): app_time_stats: avg=107.95ms min=17.23ms max=258.15ms count=10
+I/FirebaseAuth( 1899): Creating user with inboxowner-1792187413789575@example.test with empty reCAPTCHA token
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1899): tagSocket(141) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1899): app_time_stats: avg=137.88ms min=25.98ms max=232.62ms count=8
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1899): Notifying id token listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+D/FirebaseAuth( 1899): Notifying auth state listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+W/GooglePlayServicesUtil( 1899): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1899): GooglePlayServices not available due to error 9
+W/Firestore( 1899): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1899): app_time_stats: avg=217.82ms min=216.18ms max=219.53ms count=5
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1899): tagSocket(139) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1899): app_time_stats: avg=700.22ms min=331.93ms max=1068.52ms count=2
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=171.54ms min=55.57ms max=479.22ms count=6
+I/flutter ( 1899): Local UI checkpoint: InboxOwner registered and verified
+D/EGL_emulation( 1899): app_time_stats: avg=111.78ms min=11.22ms max=219.66ms count=9
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=111.80ms min=5.21ms max=238.31ms count=9
+D/FirebaseAuth( 1899): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1899): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=126.57ms min=26.11ms max=219.55ms count=8
+D/EGL_emulation( 1899): app_time_stats: avg=166.59ms min=113.38ms max=217.70ms count=6
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=157.89ms min=18.07ms max=474.36ms count=7
+D/EGL_emulation( 1899): app_time_stats: avg=104.37ms min=12.95ms max=263.47ms count=11
+D/EGL_emulation( 1899): app_time_stats: avg=104.08ms min=10.08ms max=267.13ms count=11
+D/EGL_emulation( 1899): app_time_stats: avg=102.90ms min=10.35ms max=257.90ms count=10
+D/EGL_emulation( 1899): app_time_stats: avg=103.50ms min=8.86ms max=263.58ms count=10
+I/FirebaseAuth( 1899): Creating user with inboxother-1792187428072354@example.test with empty reCAPTCHA token
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1899): tagSocket(141) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1899): Notifying id token listeners about user ( QRXfxCGEUy1UzCekXPsNqFxroTiM ).
+D/FirebaseAuth( 1899): Notifying auth state listeners about user ( QRXfxCGEUy1UzCekXPsNqFxroTiM ).
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1899): app_time_stats: avg=153.10ms min=16.41ms max=289.49ms count=7
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1899): Local UI checkpoint: InboxOther registered and verified
+D/EGL_emulation( 1899): app_time_stats: avg=112.33ms min=17.19ms max=217.65ms count=9
+D/EGL_emulation( 1899): app_time_stats: avg=122.15ms min=25.33ms max=215.93ms count=9
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=111.26ms min=8.52ms max=267.41ms count=9
+D/FirebaseAuth( 1899): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1899): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/QRXfxCGEUy1UzCekXPsNqFxroTiM/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L345, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/QRXfxCGEUy1UzCekXPsNqFxroTiM/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L207, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/QRXfxCGEUy1UzCekXPsNqFxroTiM/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L212, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/QRXfxCGEUy1UzCekXPsNqFxroTiM/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'get' @ L330, cause=null}
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=99.69ms min=9.43ms max=259.66ms count=12
+D/EGL_emulation( 1899): app_time_stats: avg=115.60ms min=15.81ms max=215.17ms count=9
+I/FirebaseAuth( 1899): Logging in as inboxowner-1792187413789575@example.test with empty reCAPTCHA token
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1899): app_time_stats: avg=83.80ms min=10.01ms max=272.34ms count=12
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1899): Notifying id token listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+D/FirebaseAuth( 1899): Notifying auth state listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=171.04ms min=47.59ms max=294.34ms count=6
+W/WindowOnBackDispatcher( 1899): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1899): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1899): app_time_stats: avg=111.64ms min=20.70ms max=226.62ms count=9
+D/EGL_emulation( 1899): app_time_stats: avg=102.21ms min=2.76ms max=231.53ms count=10
+D/EGL_emulation( 1899): app_time_stats: avg=101.32ms min=11.67ms max=267.66ms count=10
+D/EGL_emulation( 1899): app_time_stats: avg=126.73ms min=25.79ms max=355.00ms count=8
+I/flutter ( 1899): Local UI checkpoint: household created through ordinary UI for authorized shared activity
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/stage14-outsider/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L345, cause=null}
+D/EGL_emulation( 1899): app_time_stats: avg=203.58ms min=47.51ms max=397.29ms count=5
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/stage14-outsider/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L345, cause=null}
+D/EGL_emulation( 1899): app_time_stats: avg=122.34ms min=4.63ms max=266.41ms count=9
+I/flutter ( 1899): Local UI checkpoint: personal notification SDK denial recovered through visible Retry without changing session
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(families/stage14-outsider/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): evaluation error at L197:24 for 'list' @ L197, false for 'list' @ L197, cause=null}
+D/EGL_emulation( 1899): app_time_stats: avg=135.30ms min=10.24ms max=230.20ms count=8
+D/EGL_emulation( 1899): app_time_stats: avg=122.15ms min=5.26ms max=265.70ms count=9
+I/flutter ( 1899): Local UI checkpoint: shared SDK denial recovered and UI mark-all persisted personal read and own shared receipt
+D/FirebaseAuth( 1899): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1899): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 1899): Logging in as inboxother-1792187428072354@example.test with empty reCAPTCHA token
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1899): tagSocket(140) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/NEysXgAtbzOikfN2CvwGeWmGbQFS/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L207, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/NEysXgAtbzOikfN2CvwGeWmGbQFS/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L212, cause=null}
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1899): Notifying id token listeners about user ( QRXfxCGEUy1UzCekXPsNqFxroTiM ).
+D/FirebaseAuth( 1899): Notifying auth state listeners about user ( QRXfxCGEUy1UzCekXPsNqFxroTiM ).
+I/flutter ( 1899): Local UI checkpoint: native account switch clears previous inbox and queued routing; stale read rejected
+D/FirebaseAuth( 1899): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1899): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 1899): Logging in as inboxowner-1792187413789575@example.test with empty reCAPTCHA token
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1899): Notifying id token listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+D/FirebaseAuth( 1899): Notifying auth state listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+D/EGL_emulation( 1899): app_time_stats: avg=179.21ms min=10.21ms max=425.07ms count=7
+I/flutter ( 1899): Local UI checkpoint: native A B A restores correct persisted read state while rejecting old session
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/stage14-outsider/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'get' @ L330, cause=null}
+D/EGL_emulation( 1899): app_time_stats: avg=126.72ms min=38.46ms max=221.90ms count=8
+I/flutter ( 1899): Local UI checkpoint: provider settings SDK denial recovered through visible Retry Settings without live AI call
+D/FirebaseAuth( 1899): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1899): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 1899): Logging in as inboxother-1792187428072354@example.test with empty reCAPTCHA token
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1899): Notifying id token listeners about user ( QRXfxCGEUy1UzCekXPsNqFxroTiM ).
+D/FirebaseAuth( 1899): Notifying auth state listeners about user ( QRXfxCGEUy1UzCekXPsNqFxroTiM ).
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UAgUeQLSBTECkgtwSiRv/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L197, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/NEysXgAtbzOikfN2CvwGeWmGbQFS/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L345, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/NEysXgAtbzOikfN2CvwGeWmGbQFS/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L320, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UAgUeQLSBTECkgtwSiRv/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L212, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/NEysXgAtbzOikfN2CvwGeWmGbQFS/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'get' @ L330, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/NEysXgAtbzOikfN2CvwGeWmGbQFS/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L207, cause=null}
+W/Firestore( 1899): (25.1.4) [Firestore]: Listen for Query(target=Query(users/NEysXgAtbzOikfN2CvwGeWmGbQFS/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1899): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1899): app_time_stats: avg=169.95ms min=26.24ms max=300.18ms count=6
+D/FirebaseAuth( 1899): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1899): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 1899): Logging in as inboxowner-1792187413789575@example.test with empty reCAPTCHA token
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1899): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1899): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1899): Notifying id token listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+D/FirebaseAuth( 1899): Notifying auth state listeners about user ( NEysXgAtbzOikfN2CvwGeWmGbQFS ).
+I/flutter ( 1899): Local UI checkpoint: metadata-only settings persisted and remained isolated through native A B A
+I/flutter ( 1899): 00:42 +1: (tearDownAll)
+I/flutter ( 1899): 00:42 +2: All tests passed!
+All tests passed.
+Leaving the application running.

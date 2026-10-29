@@ -1,0 +1,15 @@
+{
+  "completedPhases": [
+    "InboxOwner registered and verified",
+    "InboxOther registered and verified",
+    "household created through ordinary UI for authorized shared activity",
+    "personal notification SDK denial recovered through visible Retry without changing session",
+    "shared SDK denial recovered and UI mark-all persisted personal read and own shared receipt",
+    "native account switch clears previous inbox and queued routing; stale read rejected",
+    "native A B A restores correct persisted read state while rejecting old session",
+    "provider settings SDK denial recovered through visible Retry Settings without live AI call",
+    "metadata-only settings persisted and remained isolated through native A B A"
+  ],
+  "sdkPermissionDeniedObservations": 4,
+  "screenshot": "notification-recovered.png"
+}

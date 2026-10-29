@@ -1,0 +1,11 @@
+{
+  "completedPhases": [
+    "both disposable account configurations saved in memory",
+    "both original demo settings restored exactly; owner signed in"
+  ],
+  "authMethod": "real emulator SDK switching; settings via routed UI",
+  "liveAiCalled": false,
+  "configurationRestored": true,
+  "restorationFailures": 0,
+  "restorationErrors": []
+}

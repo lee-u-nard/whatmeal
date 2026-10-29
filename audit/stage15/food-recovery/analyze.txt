@@ -1,0 +1,6 @@
+Analyzing whatmeal...                                           
+
+  error - The method 'toFirestore' isn't defined for the type 'NewPantryItem'. Try correcting the name to the name of an existing method, or defining a method named 'toFirestore' - integration_test\food_failure_recovery_test.dart:231:58 - undefined_method
+  error - The method 'toFirestore' isn't defined for the type 'NewPantryItem'. Try correcting the name to the name of an existing method, or defining a method named 'toFirestore' - integration_test\food_failure_recovery_test.dart:233:58 - undefined_method
+
+2 issues found. (ran in 54.6s)

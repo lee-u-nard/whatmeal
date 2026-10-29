@@ -1,0 +1,95 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextContainingWidgetFinder:<Found 2 widgets with text containing Check your connection: [
+            Text("The household service is unavailable. Check your connection and retry.", inherit:
+true, color: Color(alpha: 1.0000, red: 0.7765, green: 0.1569, blue: 0.1569, colorSpace:
+ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+            Text("The household service is unavailable. Check your connection and retry.", inherit:
+true, color: Color(alpha: 1.0000, red: 0.7765, green: 0.1569, blue: 0.1569, colorSpace:
+ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+          ]>
+   Which: is too many
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:108:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 108
+The test description was:
+  create failure retains draft and retry commits once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once [E]
+  Test failed. See exception logs above.
+  The test description was: create failure retains draft and retry commits once
+  
+00:01 +0 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+00:01 +1 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create empty and invalid input is visible without dispatch
+00:01 +2 -1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join failure retains draft and retry commits once
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextContainingWidgetFinder:<Found 2 widgets with text containing Check your connection: [
+            Text("The household service is unavailable. Check your connection and retry.", inherit:
+true, color: Color(alpha: 1.0000, red: 0.7765, green: 0.1569, blue: 0.1569, colorSpace:
+ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+            Text("The household service is unavailable. Check your connection and retry.", inherit:
+true, color: Color(alpha: 1.0000, red: 0.7765, green: 0.1569, blue: 0.1569, colorSpace:
+ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+          ]>
+   Which: is too many
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:108:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 108
+The test description was:
+  join failure retains draft and retry commits once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +2 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join failure retains draft and retry commits once [E]
+  Test failed. See exception logs above.
+  The test description was: join failure retains draft and retry commits once
+  
+00:02 +2 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join pending submit is disabled; dismissed failure cannot navigate
+00:02 +3 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join empty and invalid input is visible without dispatch
+00:03 +4 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: dismissed creation sheet cannot pop a new accounts screen on late completion
+00:04 +5 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: index terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:04 +6 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: family terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:04 +7 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: members terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:04 +8 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: delayed invitation result cannot refill token after native-style A B A
+00:04 +9 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: late departure denial cannot start orphan cleanup under another account
+00:04 +10 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: old archive confirmation cannot archive the new accounts household
+00:11 +11 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: pantry editor avoids system bars with keyboard 0.0
+00:12 +12 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: grocery editor avoids system bars with keyboard 0.0
+00:12 +13 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: profile editor avoids system bars with keyboard 0.0
+00:12 +14 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: dietary editor avoids system bars with keyboard 0.0
+00:12 +15 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household create avoids bars with keyboard 0.0
+00:12 +16 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household join avoids bars with keyboard 0.0
+00:12 +17 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: pantry editor avoids system bars with keyboard 240.0
+00:12 +18 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: grocery editor avoids system bars with keyboard 240.0
+00:13 +19 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: profile editor avoids system bars with keyboard 240.0
+00:13 +20 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: dietary editor avoids system bars with keyboard 240.0
+00:13 +21 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household create avoids bars with keyboard 240.0
+00:13 +22 -2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/form_system_insets_test.dart: household join avoids bars with keyboard 240.0
+00:13 +23 -2: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join failure retains draft and retry commits once

@@ -1,0 +1,1 @@
+Correction: run had already completed with exit1 and bounded expectation failure before interruption was sent. See android-fourth.txt/.exit and android-phases-fourth.json; eight checkpoints, not a workflow pass.

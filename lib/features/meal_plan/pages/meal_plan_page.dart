@@ -3,34 +3,50 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/services/llm_service.dart';
-import '../../../core/services/notification_service.dart';
-import '../../../core/models/app_notification.dart';
-import '../../../core/utils/family_permissions.dart';
-import '../../../core/utils/ingredient_matcher.dart';
 import '../../../core/utils/week_calendar.dart';
+import '../../../core/routing/meal_route.dart';
+import '../../../core/utils/family_permissions.dart';
 import '../../auth/data/auth_repository.dart';
 import '../../pantry/data/pantry_repository.dart';
 import '../../grocery/data/grocery_repository.dart';
-import '../../grocery/models/grocery_item.dart';
 import '../../profile/data/family_member_repository.dart';
 import '../../profile/models/family_member.dart';
 import '../../ai_settings/models/ai_provider.dart';
 import '../../ai_settings/data/ai_provider_repository.dart';
 import '../models/saved_meal_plan.dart';
+import '../../../core/services/ai/generation_failure.dart';
+import '../data/generation_inventory.dart';
 import '../data/saved_plans_repository.dart';
 import '../widgets/meal_calendar_workspace.dart';
+import '../widgets/meal_participant_tile.dart';
+import '../../../core/widgets/labeled_action_row.dart';
+import '../../../core/widgets/ai_generation_snack_bar.dart';
 import '../../meal/models/meal.dart';
 
 class MealPlanPage extends StatefulWidget {
-  const MealPlanPage({super.key});
+  const MealPlanPage(
+      {super.key,
+      this.initialDate,
+      this.memberRepository,
+      this.savedPlansRepository});
+  final DateTime? initialDate;
+  final FamilyMemberRepository? memberRepository;
+  final SavedPlansRepository? savedPlansRepository;
 
   @override
   State<MealPlanPage> createState() => _MealPlanPageState();
 }
 
 class _MealPlanPageState extends State<MealPlanPage> {
+  FamilyMemberRepository get _members =>
+      widget.memberRepository ?? FamilyMemberRepository.instance;
+  SavedPlansRepository get _plans =>
+      widget.savedPlansRepository ?? SavedPlansRepository.instance;
+
   /// Toggle between AI Generation and Manual Custom Plan creation.
   bool _isAiMode = true;
+  bool _isGenerating = false;
+  late DateTime _selectedPlanDate;
 
   /// When true, the create/generate form is expanded below the calendar.
   bool _showCreator = false;
@@ -71,14 +87,25 @@ class _MealPlanPageState extends State<MealPlanPage> {
     'African',
   ];
 
-  /// Cuisine selection is OPTIONAL — empty means "any cuisine".
+  /// Leave unset until the user chooses a cuisine for AI generation.
   final _selectedCuisines = <String>{};
 
   @override
   void initState() {
     super.initState();
+    _selectedPlanDate = WeekCalendar.dateOnly(
+        widget.initialDate ?? WeekCalendar.mondayOf(DateTime.now()));
     _customTitleController = TextEditingController(text: 'My Family Meal Plan');
     _budgetController = TextEditingController();
+  }
+
+  @override
+  void didUpdateWidget(covariant MealPlanPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initialDate != null &&
+        widget.initialDate != oldWidget.initialDate) {
+      _selectedPlanDate = WeekCalendar.dateOnly(widget.initialDate!);
+    }
   }
 
   @override
@@ -89,7 +116,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
   }
 
   void _createCustomMealPlan() {
-    final members = FamilyMemberRepository.instance.members;
+    final members = _members.members;
     final selected =
         members.where((m) => _selectedMemberIds.contains(m.id)).toList();
 
@@ -142,17 +169,40 @@ class _MealPlanPageState extends State<MealPlanPage> {
     context.push(
       '/generated-plan',
       extra: GeneratedPlanDraft(
+        isManual: true,
         meals: initialMeals,
         familyMembers: memberNames,
+        selectedMemberIds: selected.map((m) => m.id).toList(),
+        cuisinePreferences: _selectedCuisines.toList(),
         numberOfDays: _selectedDays,
-        startDate: WeekCalendar.mondayOf(DateTime.now()),
+        startDate: _selectedPlanDate,
         title: title,
+        prioritizePantry: _prioritizePantry,
+        sourceSessionVersion: _plans.sessionVersion,
       ),
     );
   }
 
   Future<void> _generateMealPlan() async {
-    final members = FamilyMemberRepository.instance.members;
+    if (_isGenerating) return;
+    if (!FamilyPermissions.canAcceptMeal) {
+      _showError(
+          title: 'View-only access',
+          message: 'Your household role cannot create meal plans.');
+      return;
+    }
+    final repository = _plans;
+    final session = repository.sessionVersion;
+    // Freeze the selection for this request; never replace it with today's week.
+    final planStartDate = _selectedPlanDate;
+    if (_selectedCuisines.isEmpty) {
+      _showError(
+          title: 'Select Cuisine',
+          message:
+              'Choose at least one cuisine before generating recommendations.');
+      return;
+    }
+    final members = _members.members;
     final selected =
         members.where((m) => _selectedMemberIds.contains(m.id)).toList();
 
@@ -181,53 +231,101 @@ class _MealPlanPageState extends State<MealPlanPage> {
       return;
     }
 
-    final aiConfig = AiProviderRepository.instance.value;
+    // Capture the originating workspace before spending generation quota.
+    // Firebase Auth may exist before its account profile has finished loading.
+    final root = repository.workspacePath;
+    if (root == null || AuthRepository.instance.value?.id != uid) {
+      _showError(
+        title: 'Account still loading',
+        message: 'Please wait for your account data to load, then retry.',
+      );
+      return;
+    }
+
+    final GenerationInventory inventory;
+    try {
+      inventory = GenerationInventory.capture(
+        workspacePath: root,
+        pantry: PantryRepository.instance,
+        groceries: GroceryRepository.instance,
+        now: DateTime.now(),
+      );
+    } on GenerationInventoryUnavailable catch (error) {
+      _showError(
+        title: 'Inventory unavailable',
+        message: error.toString(),
+        onRetry: () {
+          PantryRepository.instance.retry();
+          GroceryRepository.instance.retry();
+        },
+      );
+      return;
+    }
+
+    final aiSettings = AiProviderRepository.instance;
+    final settingsError = aiSettings.generationReadinessError;
+    if (settingsError != null) {
+      _showError(
+          title: 'AI settings not ready',
+          message: settingsError,
+          onRetry: aiSettings.retry);
+      return;
+    }
+    final aiConfig = aiSettings.value;
     final providerName = aiConfig.providerType.displayName;
+
+    _isGenerating = true;
+    BuildContext? progressContext;
+    void closeProgress() {
+      final dialog = progressContext;
+      progressContext = null;
+      if (dialog != null && dialog.mounted) Navigator.of(dialog).pop();
+    }
 
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        content: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(
-                width: 48,
-                height: 48,
-                child: CircularProgressIndicator(
-                    color: AppColors.primary, strokeWidth: 3),
+      builder: (ctx) {
+        progressContext = ctx;
+        return PopScope(
+            canPop: false,
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              content: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      width: 48,
+                      height: 48,
+                      child: CircularProgressIndicator(
+                          color: AppColors.primary, strokeWidth: 3),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Generating AI Meal Plan',
+                      style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 16),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Using $providerName for ${selected.map((m) => m.name).join(", ")}…',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: AppColors.textSecondary, fontSize: 12),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 20),
-              const Text(
-                'Generating AI Meal Plan',
-                style: TextStyle(
-                    color: AppColors.textPrimary,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Using $providerName for ${selected.map((m) => m.name).join(", ")}…',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: AppColors.textSecondary, fontSize: 12),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ));
+      },
     );
 
     try {
-      // Gather pantry items
-      final pantryNames = PantryRepository.instance.availableNames;
-
-      // Gather grocery items
-      final groceryNames = GroceryRepository.instance.allItemNames;
-
       // Gather combined restrictions and preferences across selected members
       final restrictions =
           selected.expand((m) => m.restrictions).toSet().toList();
@@ -244,8 +342,8 @@ class _MealPlanPageState extends State<MealPlanPage> {
             mealTypes: _selectedMealTypes.toList(),
             cuisinePreferences: _selectedCuisines.toList(),
             prioritizePantry: _prioritizePantry,
-            pantryItems: pantryNames,
-            groceryItems: groceryNames,
+            pantryItems: inventory.pantryItems,
+            groceryItems: inventory.groceryItems,
             restrictions: restrictions,
             preferences: preferences,
             memberAges: memberAges,
@@ -253,46 +351,43 @@ class _MealPlanPageState extends State<MealPlanPage> {
           );
 
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
 
+      if (session != _plans.sessionVersion) {
+        closeProgress();
+        return;
+      }
       final meals = <GeneratedMeal>[];
       for (var i = 0; i < result.data.length; i++) {
         meals.add(GeneratedMeal.fromCore(result.data[i], fallbackIndex: i));
       }
 
-      // Notify the household that a meal plan is ready
-      NotificationService.instance.notifyHouseholdMembers(
-        title: 'Meal Plan Ready 🍽️',
-        body:
-            'A $_selectedDays-day AI meal plan for ${memberNames.join(", ")} has been generated'
-            '${result.usedFallback ? ' (via Gemini fallback)' : ''}.',
-        type: AppNotificationType.mealPlanGenerated,
-        includeSelf: true,
+      final startDate = planStartDate;
+      final draft = GeneratedPlanDraft(
+        meals: meals,
+        familyMembers: memberNames,
+        selectedMemberIds: selected.map((m) => m.id).toList(),
+        cuisinePreferences: _selectedCuisines.toList(),
+        numberOfDays: _selectedDays,
+        startDate: startDate,
+        title: 'Meal Plan',
+        prioritizePantry: _prioritizePantry,
+        sourceSessionVersion: session,
       );
-
-      if (result.usedFallback && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Your custom AI provider failed — used built-in Gemini instead.',
-            ),
-            backgroundColor: AppColors.warning,
-          ),
-        );
+      closeProgress();
+      if (!mounted || session != repository.sessionVersion) {
+        return;
       }
+      ScaffoldMessenger.of(context).showSnackBar(AiGenerationSnackBar(
+        result: result,
+      ));
 
       context.push(
         '/generated-plan',
-        extra: GeneratedPlanDraft(
-          meals: meals,
-          familyMembers: memberNames,
-          numberOfDays: _selectedDays,
-          startDate: WeekCalendar.mondayOf(DateTime.now()),
-        ),
+        extra: draft,
       );
     } on QuotaExceededException {
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
+      closeProgress();
       _showError(
         title: 'Daily limit reached',
         message: 'Built-in Gemini generations for today are used up. '
@@ -301,24 +396,23 @@ class _MealPlanPageState extends State<MealPlanPage> {
       );
     } on AiProviderException catch (e) {
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
+      closeProgress();
       _showError(
         title: '${e.provider.displayName} Error',
         message: e.toString(),
       );
     } catch (e) {
-      debugPrint('[MealPlan] generate failed: $e');
+      debugPrint('[MealPlan] generate failed: ${e.runtimeType}');
       if (!mounted) return;
-      Navigator.of(context, rootNavigator: true).pop();
-      final message = e is FirebaseAiNotEnabledException
-          ? e.toString()
-          : e.toString().replaceFirst(RegExp(r'^Exception:\s*'), '').trim();
+      closeProgress();
       _showError(
-        title: 'Generation failed',
-        message: message.isNotEmpty
-            ? message
-            : "Couldn't generate a plan right now. Please try again or check AI Settings.",
-      );
+          title: e is AiSetupFailure ? 'AI setup failed' : 'Generation failed',
+          message: e is AiSetupFailure
+              ? e.toString()
+              : GenerationFailure.from(e).toString());
+    } finally {
+      _isGenerating = false;
+      closeProgress();
     }
   }
 
@@ -340,91 +434,14 @@ class _MealPlanPageState extends State<MealPlanPage> {
   }
 
   Future<void> _generateGroceryFromCalendar() async {
-    if (!FamilyPermissions.canGenerateGroceryList) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content:
-              Text(FamilyPermissions.denialMessage('generate a grocery list')),
-          backgroundColor: AppColors.danger,
-        ),
-      );
-      return;
-    }
-
-    final weekMonday = WeekCalendar.mondayOf(DateTime.now());
-    final pantryNames = PantryRepository.instance.availableNames;
-    final groceryNames = GroceryRepository.instance.allItemNames;
-    final newItems = <GroceryItem>[];
-    final seen = <String>{};
-
-    for (final plan in SavedPlansRepository.instance.value) {
-      for (final meal in plan.activeMeals) {
-        if (!(meal.isAccepted || meal.isCompleted)) continue;
-        final date = plan.dateForMeal(meal);
-        if (!WeekCalendar.isInWeek(date, weekMonday)) continue;
-
-        final all = IngredientMatcher.allIngredients(
-          ingredients: meal.ingredients,
-          availableIngredients: meal.availableIngredients,
-          missingIngredients: meal.missingIngredients,
-        );
-        final need = IngredientMatcher.partition(all, pantryNames).needToBuy;
-        for (final ingredient in need) {
-          final key = IngredientMatcher.normalize(ingredient);
-          if (key.isEmpty || !seen.add(key)) continue;
-          if (IngredientMatcher.isInPantry(ingredient, groceryNames)) continue;
-          newItems.add(GroceryItem(
-            name: ingredient,
-            quantity: '1',
-            section: 'OTHER',
-          ));
-        }
-      }
-    }
-
-    if (newItems.isEmpty) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'No missing ingredients for accepted meals this week '
-            '(or pantry already covers them).',
-          ),
-        ),
-      );
-      return;
-    }
-
-    try {
-      final added = await GroceryRepository.instance.addMultipleItems(newItems);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Added $added items to Grocery List'),
-          backgroundColor: AppColors.primary,
-          action: SnackBarAction(
-            label: 'View List',
-            textColor: Colors.white,
-            onPressed: () => context.go('/grocery'),
-          ),
-        ),
-      );
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not update grocery list: $e'),
-          backgroundColor: AppColors.danger,
-        ),
-      );
-    }
+    context.go('/grocery');
   }
 
   void _showError({
     required String title,
     required String message,
     bool canRetry = true,
+    VoidCallback? onRetry,
   }) {
     showDialog(
       context: context,
@@ -455,7 +472,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(ctx);
-                _generateMealPlan();
+                (onRetry ?? _generateMealPlan)();
               },
               style:
                   ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
@@ -471,7 +488,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<List<FamilyMember>>(
-      valueListenable: FamilyMemberRepository.instance,
+      valueListenable: _members,
       builder: (context, members, _) {
         // Initialise selected IDs on first load (select all by default)
         if (_selectedMemberIds.isEmpty && members.isNotEmpty) {
@@ -483,6 +500,12 @@ class _MealPlanPageState extends State<MealPlanPage> {
           children: [
             // ── Meal Calendar (primary workspace) ──────────────────────────
             MealCalendarWorkspace(
+              repository: _plans,
+              selectedDate: _selectedPlanDate,
+              onDateSelected: (date) {
+                setState(() => _selectedPlanDate = date);
+                context.replace(mealCalendarRoute(date));
+              },
               onCreatePlan: () => _openCreator(aiMode: true),
               onGenerateGrocery: _generateGroceryFromCalendar,
             ),
@@ -721,36 +744,10 @@ class _MealPlanPageState extends State<MealPlanPage> {
                           children: members.map((member) {
                             final isChecked =
                                 _selectedMemberIds.contains(member.id);
-                            return CheckboxListTile(
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 4),
-                              visualDensity: VisualDensity.compact,
-                              title: Text(
-                                member.displayName,
-                                style: TextStyle(
-                                  color: isChecked
-                                      ? AppColors.primary
-                                      : AppColors.textPrimary,
-                                  fontWeight: isChecked
-                                      ? FontWeight.w700
-                                      : FontWeight.w500,
-                                  fontSize: 13,
-                                ),
-                              ),
-                              subtitle: member.restrictions.isNotEmpty
-                                  ? Text(
-                                      member.restrictions.take(2).join(', ') +
-                                          (member.restrictions.length > 2
-                                              ? '…'
-                                              : ''),
-                                      style: const TextStyle(
-                                          color: AppColors.danger,
-                                          fontSize: 10),
-                                    )
-                                  : null,
-                              activeColor: AppColors.primary,
-                              checkColor: Colors.white,
-                              value: isChecked,
+                            return MealParticipantTile(
+                              name: member.displayName,
+                              restrictions: member.restrictions,
+                              selected: isChecked,
                               onChanged: (checked) {
                                 setState(() {
                                   if (checked == true) {
@@ -903,34 +900,31 @@ class _MealPlanPageState extends State<MealPlanPage> {
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(color: AppColors.border),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Prioritize Pantry',
-                                  style: TextStyle(
-                                      color: AppColors.textPrimary,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 14),
-                                ),
-                                SizedBox(height: 2),
-                                Text(
-                                  'Use ingredients already available first',
-                                  style: TextStyle(
-                                      color: AppColors.textMuted, fontSize: 11),
-                                ),
-                              ],
-                            ),
-                            Switch(
-                              value: _prioritizePantry,
-                              activeTrackColor: AppColors.primary,
-                              onChanged: (val) =>
-                                  setState(() => _prioritizePantry = val),
-                            ),
-                          ],
+                        child: LabeledActionRow(
+                          label: const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Prioritize Pantry',
+                                style: TextStyle(
+                                    color: AppColors.textPrimary,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14),
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                'Use ingredients already available first',
+                                style: TextStyle(
+                                    color: AppColors.textMuted, fontSize: 11),
+                              ),
+                            ],
+                          ),
+                          action: Switch(
+                            value: _prioritizePantry,
+                            activeTrackColor: AppColors.primary,
+                            onChanged: (val) =>
+                                setState(() => _prioritizePantry = val),
+                          ),
                         ),
                       ),
 
@@ -999,7 +993,7 @@ class _MealPlanPageState extends State<MealPlanPage> {
                       ),
                       const SizedBox(height: 4),
                       const Text(
-                        'Leave all unselected for any cuisine.',
+                        'Choose cuisines before generating AI recommendations.',
                         style:
                             TextStyle(color: AppColors.textMuted, fontSize: 11),
                       ),

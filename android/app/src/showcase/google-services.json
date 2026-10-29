@@ -1,0 +1,22 @@
+{
+  "project_info": {
+    "project_number": "123",
+    "project_id": "demo-whatmeal-showcase"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123:android:abcdef1234567890",
+        "android_client_info": {
+          "package_name": "com.example.whatmeal.showcase"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "demo-api-key"
+        }
+      ]
+    }
+  ],
+  "configuration_version": "1"
+}

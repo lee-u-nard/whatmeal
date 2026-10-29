@@ -1,0 +1,46 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart
+00:00 +0: pantry publishes the new scope atomically during rapid account switches
+00:00 +0 -1: pantry publishes the new scope atomically during rapid account switches [E]
+  Expected: ['users/b']
+    Actual: ['families/home-a']
+     Which: at location [0] is 'families/home-a' instead of 'users/b'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\scoped_feed_recovery_test.dart 30:7            main.<fn>
+  
+00:00 +0 -1: pantry publishes a safe failure before notifying observers
+00:00 +0 -2: pantry publishes a safe failure before notifying observers [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\scoped_feed_recovery_test.dart 56:7            main.<fn>
+  
+00:00 +0 -2: dietary profiles publishes the new scope atomically during rapid account switches
+00:00 +0 -3: dietary profiles publishes the new scope atomically during rapid account switches [E]
+  Expected: ['users/b']
+    Actual: ['families/home-a']
+     Which: at location [0] is 'families/home-a' instead of 'users/b'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\scoped_feed_recovery_test.dart 30:7            main.<fn>
+  
+00:00 +0 -3: dietary profiles publishes a safe failure before notifying observers
+00:00 +0 -4: dietary profiles publishes a safe failure before notifying observers [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\scoped_feed_recovery_test.dart 56:7            main.<fn>
+  
+00:00 +0 -4: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: dietary profiles publishes a safe failure before notifying observers
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: dietary profiles publishes the new scope atomically during rapid account switches
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: pantry publishes a safe failure before notifying observers
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/scoped_feed_recovery_test.dart: pantry publishes the new scope atomically during rapid account switches

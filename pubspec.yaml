@@ -56,6 +56,10 @@ dependencies:
   firebase_messaging: ^15.1.4
   flutter_local_notifications: ^18.0.1
 dev_dependencies:
+  cloud_firestore_platform_interface: ^6.6.12
+  firebase_core_platform_interface: ^6.0.3
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
 
@@ -66,6 +70,9 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.1
+  fake_cloud_firestore: 3.1.0
+  # Read-only private Android VM diagnostics; keep the already resolved version.
+  vm_service: 15.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -117,3 +124,8 @@ flutter_launcher_icons:
   adaptive_icon_foreground: "assets/images/whatmeal_logo.png"
   min_sdk_android: 21
   remove_alpha_ios: true
+
+# Current-version Dart bridge backport; see third_party patch provenance.
+dependency_overrides:
+  cloud_firestore_platform_interface:
+    path: third_party/cloud_firestore_platform_interface

@@ -1,0 +1,27 @@
+java=21.0.10
+nio-pipe=OK
+nio-selector=java.io.IOException: Unable to establish loopback connection
+java.io.IOException: Unable to establish loopback connection
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(Unknown Source)
+	at java.base/sun.nio.ch.PipeImpl$Initializer.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.base/sun.nio.ch.PipeImpl.<init>(Unknown Source)
+	at java.base/sun.nio.ch.WEPollSelectorImpl.<init>(Unknown Source)
+	at java.base/sun.nio.ch.WEPollSelectorProvider.openSelector(Unknown Source)
+	at java.base/java.nio.channels.Selector.open(Unknown Source)
+	at LoopbackProbe.main(LoopbackProbe.java:8)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at jdk.compiler/com.sun.tools.javac.launcher.Main.execute(Unknown Source)
+	at jdk.compiler/com.sun.tools.javac.launcher.Main.run(Unknown Source)
+	at jdk.compiler/com.sun.tools.javac.launcher.Main.main(Unknown Source)
+Caused by: java.net.SocketException: Invalid argument: connect
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(Unknown Source)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(Unknown Source)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(Unknown Source)
+	at java.base/java.nio.channels.SocketChannel.open(Unknown Source)
+	at java.base/sun.nio.ch.PipeImpl$Initializer$LoopbackConnector.run(Unknown Source)
+	... 13 more
+127.0.0.1=OK
+::1=OK

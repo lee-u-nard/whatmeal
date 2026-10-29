@@ -1,0 +1,6 @@
+Analyzing whatmeal...                                           
+
+warning - The '!' will have no effect because the receiver can't be null. Try removing the '!' operator - integration_test\household_departure_recovery_test.dart:183:22 - unnecessary_non_null_assertion
+   info - Missing type annotation. Try adding a type annotation - test\household_departure_recovery_test.dart:13:17 - strict_top_level_inference
+
+2 issues found. (ran in 54.9s)

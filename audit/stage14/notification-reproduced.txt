@@ -1,0 +1,32 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart
+test/notification_recovery_test.dart:25:22: Error: '_' is already declared in this scope.
+    watchShared: (_, _, _) {
+                     ^
+test/notification_recovery_test.dart:25:19: Context: Previous declaration of '_'.
+    watchShared: (_, _, _) {
+                  ^
+test/notification_recovery_test.dart:25:25: Error: '_' is already declared in this scope.
+    watchShared: (_, _, _) {
+                        ^
+test/notification_recovery_test.dart:25:19: Context: Previous declaration of '_'.
+    watchShared: (_, _, _) {
+                  ^
+00:00 +0 -1: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart [E]
+  Failed to load "C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart":
+  Compilation failed for testPath=C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart: test/notification_recovery_test.dart:25:22: Error: '_' is already declared in this scope.
+      watchShared: (_, _, _) {
+                       ^
+  test/notification_recovery_test.dart:25:19: Context: Previous declaration of '_'.
+      watchShared: (_, _, _) {
+                    ^
+  test/notification_recovery_test.dart:25:25: Error: '_' is already declared in this scope.
+      watchShared: (_, _, _) {
+                          ^
+  test/notification_recovery_test.dart:25:19: Context: Previous declaration of '_'.
+      watchShared: (_, _, _) {
+                    ^
+  .
+00:00 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart

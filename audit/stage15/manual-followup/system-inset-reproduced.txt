@@ -1,0 +1,32 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/app_shell_accessibility_test.dart
+00:00 +0: bottom tabs stay above Android system navigation
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value less than or equal to <592>
+  Actual: <630.5>
+   Which: is not a value less than or equal to <592>
+Home must be above the 48px Android navigation inset
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/app_shell_accessibility_test.dart:132:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/app_shell_accessibility_test.dart line 132
+The test description was:
+  bottom tabs stay above Android system navigation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: bottom tabs stay above Android system navigation [E]
+  Test failed. See exception logs above.
+  The test description was: bottom tabs stay above Android system navigation
+  
+00:00 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/app_shell_accessibility_test.dart: bottom tabs stay above Android system navigation

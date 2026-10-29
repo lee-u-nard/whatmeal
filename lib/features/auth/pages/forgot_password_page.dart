@@ -4,7 +4,8 @@ import '../../../core/theme/app_theme.dart';
 import '../data/auth_repository.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({super.key});
+  const ForgotPasswordPage({super.key, this.onSendReset});
+  final Future<void> Function(String email)? onSendReset;
 
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
@@ -22,8 +23,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   Future<void> _sendResetLink() async {
+    if (_isLoading) return;
     final email = _emailController.text.trim();
-    if (!email.contains('@')) {
+    if (!RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$').hasMatch(email)) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Please enter a valid email address.'),
@@ -35,7 +37,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
     setState(() => _isLoading = true);
     try {
-      await AuthRepository.instance.sendPasswordResetEmail(email);
+      await (widget.onSendReset?.call(email) ??
+          AuthRepository.instance.sendPasswordResetEmail(email));
       if (!mounted) return;
       setState(() {
         _sent = true;
@@ -44,8 +47,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _isLoading = false);
-      var msg = e.toString();
-      if (msg.startsWith('Exception: ')) msg = msg.substring(11);
+      const msg = 'Could not send reset email. Please retry.';
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(msg.isNotEmpty ? msg : 'Could not send reset email.'),
@@ -73,7 +75,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ),
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

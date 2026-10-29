@@ -1,3 +1,5 @@
+import '../../../core/widgets/listener_recovery_notice.dart';
+import '../widgets/profile_headings.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
@@ -11,10 +13,13 @@ import '../../ai_settings/models/ai_provider.dart';
 import '../../auth/data/auth_repository.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({super.key, this.authRepository});
+  final AuthRepository? authRepository;
+  AuthRepository get _auth => authRepository ?? AuthRepository.instance;
 
   void _openEditProfileSheet(
       BuildContext context, String currentName, String currentEmail) async {
+    final session = _auth.sessionVersion;
     await showModalBottomSheet<bool>(
       context: context,
       isScrollControlled: true,
@@ -25,12 +30,17 @@ class ProfilePage extends StatelessWidget {
       builder: (_) => EditProfileSheet(
         initialName: currentName,
         initialEmail: currentEmail,
+        onUpdateName: (name) => _auth.updateProfile(displayName: name),
+        onUpdatePassword: (current, next) =>
+            _auth.updatePassword(currentPassword: current, newPassword: next),
+        isSessionCurrent: () => session == _auth.sessionVersion,
       ),
     );
     // Success/error messages are now handled by the sheet itself
   }
 
   void _openAddMemberSheet(BuildContext context) async {
+    final scope = FamilyMemberRepository.instance.scopeVersion;
     final result = await showModalBottomSheet<FamilyMember>(
       context: context,
       isScrollControlled: true,
@@ -38,10 +48,17 @@ class ProfilePage extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (_) => const AddEditFamilyMemberSheet(),
+      builder: (_) => AddEditFamilyMemberSheet(onSave: (member) async {
+        if (scope != FamilyMemberRepository.instance.scopeVersion) {
+          throw StateError('Workspace changed.');
+        }
+        await FamilyMemberRepository.instance.addMember(member);
+      }),
     );
-    if (result != null && context.mounted) {
-      FamilyMemberRepository.instance.addMember(result);
+    if (result != null &&
+        context.mounted &&
+        scope == FamilyMemberRepository.instance.scopeVersion) {
+      if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Added ${result.name} to family profiles!')),
       );
@@ -49,6 +66,7 @@ class ProfilePage extends StatelessWidget {
   }
 
   void _openEditMemberSheet(BuildContext context, FamilyMember member) async {
+    final scope = FamilyMemberRepository.instance.scopeVersion;
     final result = await showModalBottomSheet<FamilyMember>(
       context: context,
       isScrollControlled: true,
@@ -56,10 +74,19 @@ class ProfilePage extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (_) => AddEditFamilyMemberSheet(existingMember: member),
+      builder: (_) => AddEditFamilyMemberSheet(
+          existingMember: member,
+          onSave: (updated) async {
+            if (scope != FamilyMemberRepository.instance.scopeVersion) {
+              throw StateError('Workspace changed.');
+            }
+            await FamilyMemberRepository.instance.updateMember(updated);
+          }),
     );
-    if (result != null && context.mounted) {
-      FamilyMemberRepository.instance.updateMember(result);
+    if (result != null &&
+        context.mounted &&
+        scope == FamilyMemberRepository.instance.scopeVersion) {
+      if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Updated ${result.name}\'s profile.')),
       );
@@ -67,6 +94,7 @@ class ProfilePage extends StatelessWidget {
   }
 
   void _confirmDeleteMember(BuildContext context, FamilyMember member) {
+    final scope = FamilyMemberRepository.instance.scopeVersion;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -81,8 +109,20 @@ class ProfilePage extends StatelessWidget {
                 style: TextStyle(color: AppColors.textSecondary)),
           ),
           ElevatedButton(
-            onPressed: () {
-              FamilyMemberRepository.instance.deleteMember(member.id);
+            onPressed: () async {
+              try {
+                if (scope != FamilyMemberRepository.instance.scopeVersion) {
+                  throw StateError('Workspace changed.');
+                }
+                await FamilyMemberRepository.instance.deleteMember(member.id);
+              } catch (_) {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Profile was not removed. Please retry.')));
+                }
+                return;
+              }
+              if (!context.mounted || !ctx.mounted) return;
               Navigator.pop(ctx);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -110,10 +150,10 @@ class ProfilePage extends StatelessWidget {
           children: [
             // User Header Profile Card (FR-01: Edit Profile)
             ValueListenableBuilder(
-              valueListenable: AuthRepository.instance,
+              valueListenable: _auth,
               builder: (context, user, _) {
-                final userName = user?.name ?? 'David Miller';
-                final userEmail = user?.email ?? 'david.miller@example.com';
+                final userName = user?.name ?? 'User';
+                final userEmail = user?.email ?? '';
 
                 return Container(
                   padding: const EdgeInsets.all(16),
@@ -180,9 +220,20 @@ class ProfilePage extends StatelessWidget {
                                               color: AppColors.textSecondary)),
                                     ),
                                     ElevatedButton(
-                                      onPressed: () {
-                                        AuthRepository.instance.logout();
+                                      onPressed: () async {
                                         Navigator.pop(ctx);
+                                        try {
+                                          await _auth.logout();
+                                        } catch (_) {
+                                          if (context.mounted) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content: Text(
+                                                        'Sign out did not complete. Please retry.')));
+                                          }
+                                          return;
+                                        }
+                                        if (!context.mounted) return;
                                         context.go('/login');
                                       },
                                       style: ElevatedButton.styleFrom(
@@ -210,6 +261,11 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ],
                       ),
+                      if (_auth.profileError != null)
+                        ListenerRecoveryNotice(
+                            message: _auth.profileError!,
+                            onRetry: _auth.retryProfile,
+                            label: 'Retry Account Profile'),
                     ],
                   ),
                 );
@@ -266,28 +322,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Family Members Title Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Family Profiles & Dietary Preferences',
-                  style: TextStyle(
-                    color: AppColors.textPrimary,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16,
-                  ),
-                ),
-                TextButton.icon(
-                  onPressed: () => _openAddMemberSheet(context),
-                  icon:
-                      const Icon(Icons.add, size: 16, color: AppColors.primary),
-                  label: const Text('Add',
-                      style: TextStyle(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w700)),
-                ),
-              ],
-            ),
+            FamilyProfilesHeading(onAdd: () => _openAddMemberSheet(context)),
             const SizedBox(height: 8),
             const Text(
               "Keep track of your family's dynamic food preferences and severe allergy restrictions so our AI can plan safe meals.",
@@ -300,7 +335,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 16),
 
             for (final member in members) ...[
-              _FamilyMemberCard(
+              FamilyMemberCard(
                 member: member,
                 onEdit: () => _openEditMemberSheet(context, member),
                 onDelete: () => _confirmDeleteMember(context, member),
@@ -338,30 +373,11 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      color: color, borderRadius: BorderRadius.circular(10)),
-                  child: Icon(icon, color: iconColor, size: 20),
-                ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                      color: color, borderRadius: BorderRadius.circular(4)),
-                  child: Text(
-                    badgeText,
-                    style: TextStyle(
-                        color: iconColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ],
-            ),
+            ProfileSettingsIdentity(
+                icon: icon,
+                badgeText: badgeText,
+                color: color,
+                iconColor: iconColor),
             const SizedBox(height: 12),
             Text(
               title,
@@ -384,8 +400,9 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class _FamilyMemberCard extends StatelessWidget {
-  const _FamilyMemberCard({
+class FamilyMemberCard extends StatelessWidget {
+  const FamilyMemberCard({
+    super.key,
     required this.member,
     required this.onEdit,
     required this.onDelete,
@@ -411,7 +428,7 @@ class _FamilyMemberCard extends StatelessWidget {
             radius: 24,
             backgroundColor: AppColors.primaryLight,
             child: Text(
-              member.name[0],
+              member.name.isEmpty ? '?' : member.name.characters.first,
               style: const TextStyle(
                 color: AppColors.primary,
                 fontWeight: FontWeight.w800,
@@ -424,8 +441,9 @@ class _FamilyMemberCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Wrap(
+                  spacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     Text(
                       member.displayName,
@@ -436,11 +454,14 @@ class _FamilyMemberCard extends StatelessWidget {
                       ),
                     ),
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          '${member.age} yrs',
-                          style: const TextStyle(
-                              color: AppColors.textMuted, fontSize: 12),
+                        Flexible(
+                          child: Text(
+                            '${member.age} yrs',
+                            style: const TextStyle(
+                                color: AppColors.textMuted, fontSize: 12),
+                          ),
                         ),
                         PopupMenuButton<String>(
                           icon: const Icon(Icons.more_vert,

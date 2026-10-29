@@ -1,0 +1,3 @@
+Formatted lib/features/meal_plan/widgets/plan_saved_snack_bar.dart
+Formatted test/plan_saved_snack_bar_test.dart
+Formatted 3 files (2 changed) in 0.04 seconds.

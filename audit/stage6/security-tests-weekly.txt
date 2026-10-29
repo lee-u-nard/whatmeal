@@ -1,0 +1,6 @@
+i  emulators: Starting emulators: firestore
+i  emulators: Detected demo project ID "demo-whatmeal-audit", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+i  firestore: Change detected, updating rules...
+
+Error: Failed to make request to http://127.0.0.1:8180/emulator/v1/projects/demo-whatmeal-audit:securityRules

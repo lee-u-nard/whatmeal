@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-19T13:02:24.0194599+08:00",
+  "command": "./audit/cloud-test/verify_candidate.ps1 -Check security",
+  "reviewerFailure": "Selected model is at capacity",
+  "executed": false,
+  "exitCode": null,
+  "retryOrBypassAttempted": false,
+  "candidateSha256": "005855D87FE57C80262B22162A5149EFB38D3F60F75B15FFB0F1BB422D2B9F21",
+  "exactReplay": {
+    "executed": true,
+    "exitCode": 0,
+    "atomicHttp": 200,
+    "atomicDocumentsPresent": 2,
+    "evidence": "candidate-replay.txt"
+  },
+  "securityAcceptance": {
+    "enumerated": 71,
+    "executed": 0,
+    "passed": null
+  },
+  "pending": [
+    "71 candidate security acceptance cases",
+    "15 generated-draft and ingredient-roundtrip regressions",
+    "full Flutter suite and analysis",
+    "test-project-only verified rule promotion",
+    "Android live generation save/reopen and outsider denial",
+    "final normal cloud-test APK build/install/runtime"
+  ],
+  "independentExecutedChecks": [
+    "8 synthetic Node credential-scanner tests passed",
+    "prior normal bootstrap fixture-credential scan exit 0",
+    "prior private integration APK negative control rejected with scanner exit 1",
+    "PowerShell syntax checks passed",
+    "8 protected workspace hashes unchanged"
+  ],
+  "candidateDeployed": false,
+  "original65CasesRetained": true,
+  "productionModified": false,
+  "normalApprovalAttemptsThisContinuation": 1,
+  "repeatedRetryOrBypassAttempted": false,
+  "approvalHistory": "attempts/approval-blocker-20261019-130223956.json",
+  "independentWorkThisContinuation": [
+    "Added hash-bound executed-evidence gate with synthetic-only tests pending",
+    "Candidate runner preserves prior logs and issues receipt only after executed security exit 0",
+    "Deployed-source check now requires exact candidate proof before authentication; not executed",
+    "Runner/checker syntax checks passed"
+  ]
+}

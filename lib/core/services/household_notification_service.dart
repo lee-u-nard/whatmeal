@@ -19,7 +19,7 @@ class HouseholdNotificationService {
   final _notificationService = NotificationService.instance;
 
   /// Get the current user's display name for notification messages.
-  Future<String> _getCurrentUserName() async {
+  String _getCurrentUserName() {
     final currentUser = AuthRepository.instance.currentUser;
     if (currentUser == null) return 'Someone';
 
@@ -42,7 +42,7 @@ class HouseholdNotificationService {
     required String planTitle,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     await _notificationService.notifyHouseholdMembers(
       title: 'Meal Plan Created',
@@ -66,7 +66,7 @@ class HouseholdNotificationService {
     required String planTitle,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     await _notificationService.notifyHouseholdMembers(
       title: 'Meal Plan Deleted',
@@ -92,7 +92,7 @@ class HouseholdNotificationService {
     required String targetMemberName,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     await _notificationService.notifyHouseholdMembers(
       title: 'Meal Accepted',
@@ -118,7 +118,7 @@ class HouseholdNotificationService {
     required String mealType,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     await _notificationService.notifyHouseholdMembers(
       title: 'Meal Completed',
@@ -144,7 +144,7 @@ class HouseholdNotificationService {
     required String mealType,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     await _notificationService.notifyHouseholdMembers(
       title: 'Meal Not Completed',
@@ -171,7 +171,7 @@ class HouseholdNotificationService {
     required String mealType,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     await _notificationService.notifyHouseholdMembers(
       title: 'Meal Replaced',
@@ -196,7 +196,7 @@ class HouseholdNotificationService {
     int? itemCount,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     final body = itemCount != null && itemCount > 1
         ? '$actorName $action $itemCount items to the grocery list.'
@@ -221,7 +221,7 @@ class HouseholdNotificationService {
     required String itemName,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     await _notificationService.notifyHouseholdMembers(
       title: 'Pantry Updated',
@@ -246,7 +246,7 @@ class HouseholdNotificationService {
     required String providerName,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     final type = action == 'added'
         ? AppNotificationType.aiProviderAdded
@@ -273,7 +273,7 @@ class HouseholdNotificationService {
     required String memberName,
   }) async {
     final actorUid = AuthRepository.instance.currentUser?.uid;
-    final actorName = await _getCurrentUserName();
+    final actorName = _getCurrentUserName();
 
     final type = action == 'added'
         ? AppNotificationType.memberAdded

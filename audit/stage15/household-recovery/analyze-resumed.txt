@@ -1,0 +1,5 @@
+Analyzing whatmeal...                                           
+
+warning - The class 'DocumentSnapshot' shouldn't be extended, mixed in, or implemented because it's sealed. Try composing instead of inheriting, or refer to the documentation of 'DocumentSnapshot' for more information - test\family_snapshot_authority_test.dart:16:1 - subtype_of_sealed_class
+
+1 issue found. (ran in 51.1s)

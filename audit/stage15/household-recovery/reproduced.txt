@@ -1,0 +1,163 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart
+00:00 +0: create failure retains draft and retry commits once
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TypeWidgetFinder:<Found 0 widgets with type "BottomSheet": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:72:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 72
+The test description was:
+  create failure retains draft and retry commits once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: create failure retains draft and retry commits once [E]
+  Test failed. See exception logs above.
+  The test description was: create failure retains draft and retry commits once
+  
+00:01 +0 -1: create pending submit is disabled; dismissed failure cannot navigate
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: <Closure: () => Future<void>>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:90:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 90
+The test description was:
+  create pending submit is disabled; dismissed failure cannot navigate
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -2: create pending submit is disabled; dismissed failure cannot navigate [E]
+  Test failed. See exception logs above.
+  The test description was: create pending submit is disabled; dismissed failure cannot navigate
+  
+00:01 +0 -2: create empty and invalid input is visible without dispatch
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: at least one matching candidate
+  Actual: _TypeWidgetFinder:<Found 0 widgets with type "FormField<String>": []>
+   Which: means none were found but some were expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:110:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 110
+The test description was:
+  create empty and invalid input is visible without dispatch
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -3: create empty and invalid input is visible without dispatch [E]
+  Test failed. See exception logs above.
+  The test description was: create empty and invalid input is visible without dispatch
+  
+00:01 +0 -3: join failure retains draft and retry commits once
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TypeWidgetFinder:<Found 0 widgets with type "BottomSheet": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:72:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 72
+The test description was:
+  join failure retains draft and retry commits once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -4: join failure retains draft and retry commits once [E]
+  Test failed. See exception logs above.
+  The test description was: join failure retains draft and retry commits once
+  
+00:01 +0 -4: join pending submit is disabled; dismissed failure cannot navigate
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: <Closure: () => Future<void>>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:90:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 90
+The test description was:
+  join pending submit is disabled; dismissed failure cannot navigate
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -5: join pending submit is disabled; dismissed failure cannot navigate [E]
+  Test failed. See exception logs above.
+  The test description was: join pending submit is disabled; dismissed failure cannot navigate
+  
+00:01 +0 -5: join empty and invalid input is visible without dispatch
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: at least one matching candidate
+  Actual: _TypeWidgetFinder:<Found 0 widgets with type "FormField<String>": []>
+   Which: means none were found but some were expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart:110:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_submit_recovery_test.dart line 110
+The test description was:
+  join empty and invalid input is visible without dispatch
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:02 +0 -6: join empty and invalid input is visible without dispatch [E]
+  Test failed. See exception logs above.
+  The test description was: join empty and invalid input is visible without dispatch
+  
+00:02 +0 -6: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create empty and invalid input is visible without dispatch
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create failure retains draft and retry commits once
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: create pending submit is disabled; dismissed failure cannot navigate
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_submit_recovery_test.dart: join empty and invalid input is visible without dispatch
+  ... and 2 more

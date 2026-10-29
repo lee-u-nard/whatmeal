@@ -1,0 +1,17 @@
+{
+  "RecoverySearchRoots": [
+    "WhatMeal workspace and jabez_projects",
+    "C:/Users/ASUS V16/AppData/Local/Temp",
+    "C:/Users/ASUS V16/.cache/firebase"
+  ],
+  "RecognizedExports": 1,
+  "OnlyExportIsDisposableFixture": true,
+  "ExportAccountCount": 5,
+  "NormalAccountPresent": false,
+  "OriginalAuthPortListening": false,
+  "OriginalFirestorePortListening": false,
+  "OriginalBackendRecovered": false,
+  "AccountRecreated": false,
+  "DeviceBackup": "build/private-state-snapshots/20261018-household-interruption/",
+  "SecretsPrinted": false
+}

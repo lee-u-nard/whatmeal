@@ -1,0 +1,5 @@
+java=21.0.10
+nio-pipe=OK
+nio-selector=OK
+127.0.0.1=OK
+::1=OK

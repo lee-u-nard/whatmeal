@@ -1,0 +1,8 @@
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\grocery\pages\grocery_page.dart:52:19 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\grocery\pages\grocery_page.dart:83:15 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\grocery\pages\grocery_page.dart:256:39 - curly_braces_in_flow_control_structures
+   info - The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart'. Try removing the import directive - test\grocery_feed_recovery_test.dart:4:8 - unnecessary_import
+
+4 issues found. (ran in 52.0s)

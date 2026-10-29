@@ -1,0 +1,606 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage10\integration.apk...                        10.1s
+W/.whatmeal.local( 2030): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/.whatmeal.local( 2030): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 2030): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 2030): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 2030): Width is zero. 0,0
+W/HWUI    ( 2030): Unknown dataspace 0
+I/WindowExtensionsImpl( 2030): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 2030): Width is zero. 0,0
+D/FlutterJNI( 2030): Sending viewport metrics to the engine.
+W/HWUI    ( 2030): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 2030): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Gralloc4( 2030): mapper 4.x is not supported
+I/.whatmeal.local( 2030): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 2030): Skipped 37 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 2030): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:57653/0PWzwvg8WCo=/
+VMServiceFlutterDriver: Isolate found with number: 5193282414945943
+VMServiceFlutterDriver: Isolate 5193282414945943 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 2030): 00:00 +0: local Android UI registration, verification, household and account switching
+VMServiceFlutterDriver: Connected to Flutter application.
+D/ProfileInstaller( 2030): Installing profile for com.example.whatmeal.local
+D/FlutterJNI( 2030): Sending viewport metrics to the engine.
+D/EGL_emulation( 2030): app_time_stats: avg=621.84ms min=230.81ms max=1026.38ms count=3
+D/FirebaseAuth( 2030): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2030): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 2030): app_time_stats: avg=204.86ms min=115.73ms max=340.57ms count=6
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=101.74ms min=42.55ms max=169.39ms count=11
+D/EGL_emulation( 2030): app_time_stats: avg=100.38ms min=11.07ms max=243.86ms count=11
+D/EGL_emulation( 2030): app_time_stats: avg=111.62ms min=21.69ms max=231.06ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=96.70ms min=13.18ms max=243.78ms count=11
+I/FirebaseAuth( 2030): Creating user with owner-1792105897634711@example.test with empty reCAPTCHA token
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2030): tagSocket(140) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2030): app_time_stats: avg=133.23ms min=23.68ms max=219.36ms count=9
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2030): Notifying id token listeners about user ( 3AcKYaAMbDjhF3zuVTp5B5bJzZQV ).
+D/FirebaseAuth( 2030): Notifying auth state listeners about user ( 3AcKYaAMbDjhF3zuVTp5B5bJzZQV ).
+W/GooglePlayServicesUtil( 2030): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2030): GooglePlayServices not available due to error 9
+W/Firestore( 2030): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2030): app_time_stats: avg=227.77ms min=213.68ms max=272.89ms count=5
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2030): tagSocket(145) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2030): app_time_stats: avg=506.87ms min=203.73ms max=1033.78ms count=3
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 2030): Local UI checkpoint: Owner registered and verified
+D/EGL_emulation( 2030): app_time_stats: avg=132.16ms min=23.21ms max=252.51ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=111.37ms min=30.65ms max=215.57ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=132.82ms min=10.45ms max=229.18ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=113.21ms min=12.79ms max=231.88ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=101.30ms min=13.76ms max=248.22ms count=10
+I/flutter ( 2030): Local UI checkpoint: household created
+D/EGL_emulation( 2030): app_time_stats: avg=154.80ms min=15.47ms max=471.73ms count=7
+D/EGL_emulation( 2030): app_time_stats: avg=111.23ms min=34.04ms max=217.59ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=216.98ms min=215.03ms max=218.04ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=216.42ms min=215.13ms max=218.68ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=220.03ms min=216.07ms max=231.79ms count=5
+I/flutter ( 2030): Local UI checkpoint: invitation copied
+D/EGL_emulation( 2030): app_time_stats: avg=125.07ms min=21.96ms max=235.46ms count=8
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=112.60ms min=4.74ms max=218.75ms count=9
+D/FirebaseAuth( 2030): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2030): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L330, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L146, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L158, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/ownershipTransfers/pending order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L188, cause=null}
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L320, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L207, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L212, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L207, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 2030): app_time_stats: avg=136.80ms min=37.33ms max=218.24ms count=8
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=111.13ms min=8.03ms max=216.88ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=103.44ms min=12.31ms max=232.71ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=103.10ms min=14.87ms max=246.11ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=103.71ms min=13.76ms max=249.17ms count=10
+I/FirebaseAuth( 2030): Creating user with member-1792105919914203@example.test with empty reCAPTCHA token
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2030): app_time_stats: avg=92.00ms min=8.56ms max=254.67ms count=11
+D/TrafficStats( 2030): tagSocket(141) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2030): Notifying id token listeners about user ( yeDyrg4JwFXer1Dcy0eF6hgBni47 ).
+D/FirebaseAuth( 2030): Notifying auth state listeners about user ( yeDyrg4JwFXer1Dcy0eF6hgBni47 ).
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2030): app_time_stats: avg=260.04ms min=31.70ms max=613.43ms count=6
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 2030): Local UI checkpoint: Member registered and verified
+I/flutter ( 2030): Local UI checkpoint: new account has no household
+D/EGL_emulation( 2030): app_time_stats: avg=123.95ms min=16.71ms max=222.25ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=125.29ms min=11.74ms max=237.91ms count=8
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=114.16ms min=6.38ms max=218.17ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=125.00ms min=17.12ms max=232.93ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=102.36ms min=1.98ms max=238.15ms count=11
+I/.whatmeal.local( 2030): Waiting for a blocking GC ProfileSaver
+I/.whatmeal.local( 2030): IncrementDisableThreadFlip blocked for 7.386ms
+I/.whatmeal.local( 2030): Background concurrent mark compact GC freed 3167KB AllocSpace bytes, 30(1304KB) LOS objects, 49% free, 4732KB/9464KB, paused 100us,1.537ms total 104.792ms
+I/.whatmeal.local( 2030): WaitForGcToComplete blocked ProfileSaver on Background for 52.694ms
+D/EGL_emulation( 2030): app_time_stats: avg=127.17ms min=8.90ms max=384.38ms count=9
+I/flutter ( 2030): Local UI checkpoint: member joined shared household
+D/EGL_emulation( 2030): app_time_stats: avg=128.08ms min=21.73ms max=219.41ms count=8
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=129.11ms min=3.96ms max=249.83ms count=8
+D/FirebaseAuth( 2030): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2030): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L311, cause=null}
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L345, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/yeDyrg4JwFXer1Dcy0eF6hgBni47 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L103, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L330, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L228, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L320, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L146, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L158, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/ownershipTransfers/pending order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L188, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L197, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L207, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L228, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L212, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L207, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 2030): app_time_stats: avg=132.12ms min=20.28ms max=245.96ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=110.03ms min=9.06ms max=236.12ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=105.16ms min=14.86ms max=248.63ms count=10
+I/FirebaseAuth( 2030): Logging in as owner-1792105897634711@example.test with empty reCAPTCHA token
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2030): app_time_stats: avg=200.12ms min=42.08ms max=512.16ms count=5
+D/TrafficStats( 2030): tagSocket(141) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 2030): app_time_stats: avg=186.16ms min=37.69ms max=241.11ms count=6
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2030): Notifying id token listeners about user ( 3AcKYaAMbDjhF3zuVTp5B5bJzZQV ).
+D/FirebaseAuth( 2030): Notifying auth state listeners about user ( 3AcKYaAMbDjhF3zuVTp5B5bJzZQV ).
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=281.35ms min=185.02ms max=406.46ms count=4
+D/EGL_emulation( 2030): app_time_stats: avg=125.69ms min=18.80ms max=200.20ms count=8
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=213.24ms min=79.54ms max=513.04ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=204.50ms min=117.14ms max=318.31ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=112.83ms min=17.50ms max=215.74ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=99.81ms min=7.56ms max=249.08ms count=11
+I/flutter ( 2030): Local UI checkpoint: owner removed member
+D/EGL_emulation( 2030): app_time_stats: avg=103.34ms min=14.44ms max=216.58ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=121.92ms min=35.09ms max=216.45ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=216.80ms min=214.04ms max=218.90ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=217.52ms min=214.23ms max=220.05ms count=5
+I/flutter ( 2030): Local UI checkpoint: invitation copied
+D/EGL_emulation( 2030): app_time_stats: avg=136.61ms min=13.14ms max=249.32ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=122.89ms min=13.79ms max=250.65ms count=9
+D/FirebaseAuth( 2030): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2030): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L207, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=121.75ms min=16.47ms max=215.92ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=103.11ms min=12.11ms max=267.52ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=104.85ms min=15.63ms max=250.76ms count=10
+I/FirebaseAuth( 2030): Logging in as member-1792105919914203@example.test with empty reCAPTCHA token
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2030): tagSocket(140) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2030): Notifying id token listeners about user ( yeDyrg4JwFXer1Dcy0eF6hgBni47 ).
+D/FirebaseAuth( 2030): Notifying auth state listeners about user ( yeDyrg4JwFXer1Dcy0eF6hgBni47 ).
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=145.73ms min=10.87ms max=270.57ms count=7
+D/EGL_emulation( 2030): app_time_stats: avg=111.27ms min=14.88ms max=217.80ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 2030): Local UI checkpoint: removed account has no household access
+D/EGL_emulation( 2030): app_time_stats: avg=132.87ms min=17.68ms max=231.51ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=111.52ms min=8.37ms max=250.87ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=101.19ms min=13.53ms max=247.24ms count=10
+I/flutter ( 2030): Local UI checkpoint: legitimate rejoin
+D/EGL_emulation( 2030): app_time_stats: avg=143.65ms min=9.22ms max=329.58ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=113.00ms min=14.15ms max=247.85ms count=9
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(families/UJ1AmQBL2paZjsodOUaG/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): evaluation error at L158:24 for 'list' @ L158, false for 'list' @ L158, cause=null}
+D/EGL_emulation( 2030): app_time_stats: avg=126.88ms min=32.11ms max=222.08ms count=8
+I/flutter ( 2030): Local UI checkpoint: member departed
+D/EGL_emulation( 2030): app_time_stats: avg=133.26ms min=16.08ms max=216.37ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=117.17ms min=112.10ms max=122.47ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 2030): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2030): Notifying auth state listeners about a sign-out event.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L311, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L345, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/yeDyrg4JwFXer1Dcy0eF6hgBni47 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L103, cause=null}
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L207, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L212, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'get' @ L330, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/yeDyrg4JwFXer1Dcy0eF6hgBni47/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L228, cause=null}
+D/EGL_emulation( 2030): app_time_stats: avg=97.59ms min=9.39ms max=263.17ms count=11
+D/EGL_emulation( 2030): app_time_stats: avg=111.28ms min=11.78ms max=264.26ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=111.64ms min=12.93ms max=249.52ms count=10
+I/FirebaseAuth( 2030): Logging in as owner-1792105897634711@example.test with empty reCAPTCHA token
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2030): tagSocket(135) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2030): app_time_stats: avg=111.58ms min=14.53ms max=249.99ms count=10
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2030): Notifying id token listeners about user ( 3AcKYaAMbDjhF3zuVTp5B5bJzZQV ).
+D/FirebaseAuth( 2030): Notifying auth state listeners about user ( 3AcKYaAMbDjhF3zuVTp5B5bJzZQV ).
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=143.78ms min=15.24ms max=357.68ms count=8
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=121.44ms min=21.57ms max=216.33ms count=10
+I/flutter ( 2030): Local UI checkpoint: owner session restored with one member
+I/flutter ( 2030): Local UI checkpoint: household UI workflow completed
+D/EGL_emulation( 2030): app_time_stats: avg=133.18ms min=15.08ms max=247.98ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=111.08ms min=6.02ms max=229.31ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=101.59ms min=25.72ms max=228.20ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=105.10ms min=23.37ms max=227.94ms count=10
+I/flutter ( 2030): Local UI checkpoint: dietary profile created through UI
+D/EGL_emulation( 2030): app_time_stats: avg=127.20ms min=23.59ms max=228.43ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=66.97ms min=11.46ms max=163.42ms count=16
+D/EGL_emulation( 2030): app_time_stats: avg=76.17ms min=1.86ms max=185.70ms count=12
+D/EGL_emulation( 2030): app_time_stats: avg=67.16ms min=3.71ms max=179.80ms count=13
+D/EGL_emulation( 2030): app_time_stats: avg=98.30ms min=10.98ms max=234.02ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=610.54ms min=138.49ms max=1905.14ms count=4
+D/EGL_emulation( 2030): app_time_stats: avg=142.88ms min=19.69ms max=326.06ms count=7
+D/EGL_emulation( 2030): app_time_stats: avg=127.70ms min=22.50ms max=248.25ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=117.85ms min=12.73ms max=235.24ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=120.18ms min=14.43ms max=242.86ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 2030): Local UI checkpoint: manual plan editor opened
+D/EGL_emulation( 2030): app_time_stats: avg=151.57ms min=45.52ms max=304.01ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=129.70ms min=54.84ms max=185.47ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=424.21ms min=10.33ms max=1519.62ms count=4
+D/EGL_emulation( 2030): app_time_stats: avg=788.69ms min=96.91ms max=1480.47ms count=2
+D/EGL_emulation( 2030): app_time_stats: avg=208.92ms min=7.88ms max=652.94ms count=6
+D/EGL_emulation( 2030): app_time_stats: avg=202.25ms min=63.12ms max=307.47ms count=6
+D/EGL_emulation( 2030): app_time_stats: avg=101.62ms min=8.73ms max=247.28ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=105.40ms min=12.71ms max=221.26ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=123.09ms min=18.05ms max=224.74ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=101.59ms min=11.26ms max=265.45ms count=10
+I/flutter ( 2030): Local UI checkpoint: manual meal plan saved through UI
+D/EGL_emulation( 2030): app_time_stats: avg=154.52ms min=16.29ms max=382.92ms count=7
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=122.21ms min=1.43ms max=217.74ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=133.14ms min=16.56ms max=219.42ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=216.77ms min=215.38ms max=217.98ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=216.20ms min=215.05ms max=217.13ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=216.85ms min=215.35ms max=218.02ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=217.29ms min=214.14ms max=221.00ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=220.31ms min=215.44ms max=225.36ms count=5
+I/flutter ( 2030): Local UI checkpoint: exact saved meal opened and favorited
+D/EGL_emulation( 2030): app_time_stats: avg=231.96ms min=208.00ms max=265.96ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=133.45ms min=33.16ms max=251.19ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=127.60ms min=16.30ms max=216.56ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=240.92ms min=208.99ms max=343.62ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=224.19ms min=115.44ms max=368.91ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=208.35ms min=118.00ms max=316.51ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=380.60ms min=99.18ms max=818.49ms count=3
+D/EGL_emulation( 2030): app_time_stats: avg=147.38ms min=98.84ms max=234.75ms count=7
+D/EGL_emulation( 2030): app_time_stats: avg=99.98ms min=4.10ms max=238.91ms count=12
+D/EGL_emulation( 2030): app_time_stats: avg=137.41ms min=3.90ms max=324.36ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=146.84ms min=1.94ms max=359.78ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=168.85ms min=118.22ms max=238.20ms count=6
+D/EGL_emulation( 2030): app_time_stats: avg=171.25ms min=117.50ms max=216.05ms count=6
+D/EGL_emulation( 2030): app_time_stats: avg=135.15ms min=111.72ms max=214.19ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=172.41ms min=114.20ms max=252.52ms count=6
+D/EGL_emulation( 2030): app_time_stats: avg=173.89ms min=114.61ms max=220.95ms count=7
+D/EGL_emulation( 2030): app_time_stats: avg=159.30ms min=115.02ms max=216.64ms count=7
+D/EGL_emulation( 2030): app_time_stats: avg=111.22ms min=13.45ms max=229.76ms count=9
+I/flutter ( 2030): Local UI checkpoint: completed skipped and accepted status changes persisted
+D/EGL_emulation( 2030): app_time_stats: avg=126.48ms min=3.90ms max=263.15ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=121.68ms min=13.59ms max=233.07ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=111.15ms min=16.66ms max=217.77ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=103.39ms min=13.15ms max=270.41ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=101.22ms min=15.72ms max=247.69ms count=10
+I/flutter ( 2030): Local UI checkpoint: second accepted meal added through UI
+D/EGL_emulation( 2030): app_time_stats: avg=136.48ms min=16.85ms max=328.43ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=111.11ms min=16.67ms max=230.52ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=100.29ms min=8.87ms max=234.86ms count=12
+D/EGL_emulation( 2030): app_time_stats: avg=112.92ms min=10.99ms max=214.85ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=104.70ms min=6.11ms max=254.50ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=93.34ms min=21.74ms max=210.92ms count=11
+D/EGL_emulation( 2030): app_time_stats: avg=129.30ms min=14.94ms max=272.96ms count=8
+I/flutter ( 2030): Local UI checkpoint: pantry quantity unit and expiration saved through UI
+D/EGL_emulation( 2030): app_time_stats: avg=133.18ms min=12.51ms max=309.16ms count=8
+I/flutter ( 2030): Local UI checkpoint: sufficient pantry stock excluded from shopping needs
+D/EGL_emulation( 2030): app_time_stats: avg=132.23ms min=16.19ms max=246.95ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=106.89ms min=14.64ms max=251.03ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=103.51ms min=8.07ms max=234.64ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=108.20ms min=16.27ms max=280.23ms count=11
+I/flutter ( 2030): Local UI checkpoint: pantry edit recalculated exact grocery shortage
+D/EGL_emulation( 2030): app_time_stats: avg=134.97ms min=19.71ms max=237.28ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=123.28ms min=17.70ms max=215.88ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=117.50ms min=18.93ms max=225.24ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=238.35ms min=15.47ms max=1369.73ms count=9
+I/flutter ( 2030): Local UI checkpoint: invitation copied
+D/EGL_emulation( 2030): app_time_stats: avg=278.84ms min=121.02ms max=496.38ms count=4
+D/EGL_emulation( 2030): app_time_stats: avg=119.82ms min=18.75ms max=229.43ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=116.60ms min=18.53ms max=224.09ms count=9
+D/FirebaseAuth( 2030): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2030): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=367.20ms min=112.60ms max=862.11ms count=5
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L207, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L212, cause=null}
+W/Firestore( 2030): (25.1.4) [Firestore]: Listen for Query(target=Query(users/3AcKYaAMbDjhF3zuVTp5B5bJzZQV/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 2030): false for 'list' @ L217, cause=null}
+D/EGL_emulation( 2030): app_time_stats: avg=326.18ms min=59.69ms max=1112.62ms count=6
+D/EGL_emulation( 2030): app_time_stats: avg=111.76ms min=26.79ms max=265.79ms count=9
+I/FirebaseAuth( 2030): Logging in as member-1792105919914203@example.test with empty reCAPTCHA token
+D/EGL_emulation( 2030): app_time_stats: avg=118.93ms min=4.01ms max=337.87ms count=9
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2030): tagSocket(135) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2030): app_time_stats: avg=175.08ms min=25.81ms max=230.43ms count=6
+D/EGL_emulation( 2030): app_time_stats: avg=223.34ms min=208.12ms max=238.45ms count=5
+W/System  ( 2030): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2030): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 2030): app_time_stats: avg=217.78ms min=199.11ms max=235.44ms count=5
+D/FirebaseAuth( 2030): Notifying id token listeners about user ( yeDyrg4JwFXer1Dcy0eF6hgBni47 ).
+D/FirebaseAuth( 2030): Notifying auth state listeners about user ( yeDyrg4JwFXer1Dcy0eF6hgBni47 ).
+I/.whatmeal.local( 2030): Background concurrent mark compact GC freed 4050KB AllocSpace bytes, 10(456KB) LOS objects, 49% free, 4710KB/9420KB, paused 202us,2.073ms total 131.192ms
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=294.69ms min=210.30ms max=464.22ms count=4
+I/flutter ( 2030): Local UI checkpoint: account switch cleared previous meal pantry and grocery data
+D/EGL_emulation( 2030): app_time_stats: avg=126.44ms min=16.85ms max=250.80ms count=8
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=111.19ms min=15.67ms max=247.64ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=122.60ms min=14.89ms max=248.55ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=101.55ms min=12.34ms max=264.64ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=131.23ms min=8.27ms max=323.00ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=133.10ms min=16.71ms max=248.02ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=133.51ms min=11.94ms max=253.10ms count=9
+I/flutter ( 2030): Local UI checkpoint: authorized member received shared pantry and grocery updates
+D/EGL_emulation( 2030): app_time_stats: avg=122.14ms min=24.49ms max=217.85ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=111.23ms min=16.18ms max=217.27ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=122.40ms min=15.50ms max=222.57ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=99.46ms min=12.14ms max=216.60ms count=11
+D/EGL_emulation( 2030): app_time_stats: avg=133.25ms min=109.89ms max=216.62ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=108.90ms min=12.62ms max=266.76ms count=10
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=111.48ms min=8.69ms max=248.42ms count=11
+D/EGL_emulation( 2030): app_time_stats: avg=122.11ms min=13.78ms max=248.76ms count=9
+I/flutter ( 2030): Local UI checkpoint: member meal deletion preserved other meal grocery contribution
+D/EGL_emulation( 2030): app_time_stats: avg=122.76ms min=10.69ms max=265.53ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=97.92ms min=11.27ms max=266.64ms count=11
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=122.29ms min=15.57ms max=218.55ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=98.02ms min=1.89ms max=251.99ms count=12
+D/EGL_emulation( 2030): app_time_stats: avg=100.99ms min=4.60ms max=253.77ms count=10
+D/EGL_emulation( 2030): app_time_stats: avg=133.96ms min=20.03ms max=340.31ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=114.34ms min=16.98ms max=226.77ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=215.88ms min=210.33ms max=219.89ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=216.98ms min=215.29ms max=218.74ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=216.48ms min=215.05ms max=217.84ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=216.21ms min=214.17ms max=217.26ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=217.66ms min=216.42ms max=220.15ms count=5
+D/EGL_emulation( 2030): app_time_stats: avg=121.68ms min=8.35ms max=267.88ms count=9
+D/EGL_emulation( 2030): app_time_stats: avg=133.33ms min=15.19ms max=331.37ms count=8
+D/EGL_emulation( 2030): app_time_stats: avg=104.16ms min=1.95ms max=310.15ms count=12
+I/flutter ( 2030): Local UI checkpoint: reused plan pending acceptance and completion isolated from original
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=133.00ms min=11.50ms max=249.71ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=108.14ms min=3.25ms max=251.58ms count=9
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2030): app_time_stats: avg=111.42ms min=16.61ms max=230.21ms count=10
+W/WindowOnBackDispatcher( 2030): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2030): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 2030): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 2030): The following TestFailure was thrown running a test:
+I/flutter ( 2030): Expected: 'families/UJ1AmQBL2paZjsodOUaG/mealPlans/VAcsUHuvJmslXU5Iuonr'
+I/flutter ( 2030):   Actual: <null>
+I/flutter ( 2030):    Which: not an <Instance of 'String'>
+I/flutter ( 2030): 
+I/flutter ( 2030): When the exception was thrown, this was the stack:
+I/flutter ( 2030): #4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_workflow_test.dart:480:5)
+I/flutter ( 2030): <asynchronous suspension>
+I/flutter ( 2030): #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 2030): <asynchronous suspension>
+I/flutter ( 2030): #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 2030): <asynchronous suspension>
+I/flutter ( 2030): #7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 2030): <asynchronous suspension>
+I/flutter ( 2030): 
+I/flutter ( 2030): This was caught by the test expectation on the following line:
+I/flutter ( 2030):   file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_workflow_test.dart line 480
+I/flutter ( 2030): The test description was:
+I/flutter ( 2030):   local Android UI registration, verification, household and account switching
+I/flutter ( 2030): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 2030): 03:36 +0: local Android UI registration, verification, household and account switching [E]
+I/flutter ( 2030):   Test failed. See exception logs above.
+I/flutter ( 2030):   The test description was: local Android UI registration, verification, household and account switching
+I/flutter ( 2030):   
+I/flutter ( 2030): 03:36 +0 -1: (tearDownAll)
+I/flutter ( 2030): 03:36 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Expected:
+'families/UJ1AmQBL2paZjsodOUaG/mealPlans/VAcsUHuvJmslXU5Iuonr'
+  Actual: <null>
+   Which: not an <Instance of 'String'>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_workflow_test.dart:480:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/stage10_workflow_test.dart line 480
+The test description was:
+  local Android UI registration, verification, household and
+  account switching
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+

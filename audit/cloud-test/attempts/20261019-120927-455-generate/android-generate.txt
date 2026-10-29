@@ -1,0 +1,246 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.78 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (7.0.0 available)
+! cloud_firestore_platform_interface 6.6.12 from path third_party\cloud_firestore_platform_interface (overridden)
+  cloud_firestore_web 4.4.12 (5.7.4 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (5.0.0 available)
+  firebase_app_check 0.3.2+10 (0.5.0 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.5.0+2 available)
+  firebase_app_check_web 0.2.0+14 (0.3.0+2 available)
+  firebase_auth 5.7.0 (7.0.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.1 available)
+  firebase_auth_web 5.15.3 (6.3.1 available)
+  firebase_core 3.15.2 (5.0.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (4.0.0 available)
+  firebase_messaging 15.2.10 (17.0.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.11.0 available)
+  firebase_messaging_web 3.10.10 (4.3.0 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.8 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  vm_service 15.3.0 (15.4.0 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\cloudtest-private\cloudtest-generate.apk...        20.3s
+D/FLTFireContextHolder( 3752): received application context.
+W/tmeal.cloudtest( 3752): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/tmeal.cloudtest( 3752): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/tmeal.cloudtest( 3752): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/tmeal.cloudtest( 3752): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 3752): Width is zero. 0,0
+W/HWUI    ( 3752): Unknown dataspace 0
+D/ProfileInstaller( 3752): Installing profile for com.example.whatmeal.cloudtest
+I/WindowExtensionsImpl( 3752): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 3752): Width is zero. 0,0
+D/FlutterJNI( 3752): Sending viewport metrics to the engine.
+W/HWUI    ( 3752): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 3752): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Gralloc4( 3752): mapper 4.x is not supported
+I/tmeal.cloudtest( 3752): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:59256/[VM-SESSION-REDACTED]/
+VMServiceFlutterDriver: Isolate found with number: 8154786990461227
+I/Choreographer( 3752): Skipped 239 frames!  The application may be doing too much work on its main thread.
+VMServiceFlutterDriver: Isolate 8154786990461227 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+D/FlutterJNI( 3752): Sending viewport metrics to the engine.
+I/tmeal.cloudtest( 3752): Compiler allocated 5417KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 3752): Skipped 45 frames!  The application may be doing too much work on its main thread.
+I/flutter ( 3752): 00:00 +0: cloudtest live UI generation and persisted exact-plan acceptance
+VMServiceFlutterDriver: Connected to Flutter application.
+I/Choreographer( 3752): Skipped 55 frames!  The application may be doing too much work on its main thread.
+I/HWUI    ( 3752): Davey! duration=1037ms; Flags=1, FrameTimelineVsyncId=308985, IntendedVsync=26153030794038, Vsync=26153947460668, InputEventId=0, HandleInputStart=26153961225846, AnimationStart=26153961227962, PerformTraversalsStart=26153961228635, DrawStart=26153967026328, FrameDeadline=26153047460704, FrameInterval=26153959260064, FrameStartTime=16666666, SyncQueued=26153971684120, SyncStart=26153972220318, IssueDrawCommandsStart=26153980873312, SwapBuffers=26154018150464, FrameCompleted=26154069241857, DequeueBufferDuration=7188544, QueueBufferDuration=963932, GpuCompleted=26154061912517, SwapBuffersCompleted=26154069241857, DisplayPresentTime=125627535467023, CommandSubmissionCompleted=26154018150464, 
+D/com.google.firebase.appcheck.debug.internal.DebugAppCheckProvider( 3752): Enter this debug secret into the allow list in the Firebase Console for your project: [UUID-REDACTED]
+D/EGL_emulation( 3752): app_time_stats: avg=450.24ms min=283.79ms max=851.46ms count=4
+D/FlutterJNI( 3752): Sending viewport metrics to the engine.
+W/GooglePlayServicesUtil( 3752): com.example.whatmeal.cloudtest requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3752): GooglePlayServices not available due to error 9
+W/tmeal.cloudtest( 3752): Verification of void com.google.firebase.firestore.remote.AndroidConnectivityMonitor.configureNetworkMonitoring() took 134.539ms (356.77 bytecodes/s) (3880B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of boolean com.google.firebase.firestore.remote.AndroidConnectivityMonitor.isConnected() took 139.460ms (186.43 bytecodes/s) (2824B approximate peak alloc)
+W/Firestore( 3752): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/tmeal.cloudtest( 3752): Verification of javax.net.ssl.KeyManager[] io.grpc.okhttp.OkHttpChannelBuilder.createKeyManager(byte[], byte[]) took 254.021ms (362.17 bytecodes/s) (4592B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of com.google.firebase.firestore.model.MutableDocument com.google.firebase.firestore.local.LocalSerializer.decodeNoDocument(com.google.firebase.firestore.proto.NoDocument, boolean) took 1.842s (17.91 bytecodes/s) (3088B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of io.grpc.okhttp.OkHttpChannelBuilder$SslSocketFactoryResult io.grpc.okhttp.OkHttpChannelBuilder.sslSocketFactoryFrom(io.grpc.ChannelCredentials) took 1.926s (203.00 bytecodes/s) (11480B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of com.google.firebase.firestore.local.OverlayMigrationManager com.google.firebase.firestore.local.SQLitePersistence.getOverlayMigrationManager() took 1.211s (4.95 bytecodes/s) (2296B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of io.grpc.ProxiedSocketAddress io.grpc.internal.ProxyDetectorImpl.detectProxy(java.net.InetSocketAddress) took 1.188s (173.26 bytecodes/s) (6544B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of void com.google.firebase.firestore.local.SQLiteBundleCache.saveNamedQuery(com.google.firebase.firestore.bundle.NamedQuery) took 130.549ms (474.91 bytecodes/s) (3632B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of void com.google.firebase.firestore.local.SQLiteRemoteDocumentCache.<init>(com.google.firebase.firestore.local.SQLitePersistence, com.google.firebase.firestore.local.LocalSerializer) took 119.119ms (67.16 bytecodes/s) (2256B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of com.google.common.base.Joiner com.google.common.base.Joiner.skipNulls() took 235.675ms (25.46 bytecodes/s) (2168B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of void com.google.firebase.firestore.local.SQLiteLruReferenceDelegate.<init>(com.google.firebase.firestore.local.SQLitePersistence, com.google.firebase.firestore.local.LruGarbageCollector$Params) took 188.771ms (90.06 bytecodes/s) (2664B approximate peak alloc)
+W/tmeal.cloudtest( 3752): Verification of boolean com.google.firebase.firestore.local.SQLiteLruReferenceDelegate.isPinned(com.google.firebase.firestore.model.DocumentKey) took 208.074ms (72.09 bytecodes/s) (2440B approximate peak alloc)
+D/EGL_emulation( 3752): app_time_stats: avg=6118.82ms min=6118.82ms max=6118.82ms count=1
+I/tmeal.cloudtest( 3752): Background concurrent mark compact GC freed 3912KB AllocSpace bytes, 21(516KB) LOS objects, 49% free, 4057KB/8115KB, paused 238.491ms,1.076s total 5.940s
+D/FirebaseAuth( 3752): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 3752): Notifying auth state listeners about a sign-out event.
+D/TrafficStats( 3752): tagSocket(148) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 3752): app_time_stats: avg=305.85ms min=186.18ms max=532.72ms count=4
+W/Firestore( 3752): (25.1.4) [Firestore]: Listen for Query(target=Query(users/[TEST-ACCOUNT-REDACTED]/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=Missing or insufficient permissions., cause=null}
+D/EGL_emulation( 3752): app_time_stats: avg=261.40ms min=128.59ms max=550.79ms count=4
+I/FirebaseAuth( 3752): Logging in as [TEST-ACCOUNT-REDACTED]@example.test with empty reCAPTCHA token
+W/System  ( 3752): Ignoring header X-Firebase-Locale because its value was null.
+D/EGL_emulation( 3752): app_time_stats: avg=254.21ms min=140.14ms max=347.83ms count=4
+D/TrafficStats( 3752): tagSocket(153) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 3752): app_time_stats: avg=181.12ms min=61.49ms max=262.82ms count=6
+W/System  ( 3752): Ignoring header X-Firebase-Locale because its value was null.
+D/FirebaseAuth( 3752): Notifying id token listeners about user ([UID-REDACTED]).
+D/FirebaseAuth( 3752): Notifying auth state listeners about user ([UID-REDACTED]).
+I/tmeal.cloudtest( 3752): Background concurrent mark compact GC freed 2646KB AllocSpace bytes, 10(456KB) LOS objects, 49% free, 4832KB/9665KB, paused 136us,1.801ms total 199.084ms
+D/EGL_emulation( 3752): app_time_stats: avg=416.74ms min=232.07ms max=769.88ms count=3
+W/WindowOnBackDispatcher( 3752): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 3752): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 3752): Cloud acceptance checkpoint: owner signed in through normal UI to the approved cloud project
+D/EGL_emulation( 3752): app_time_stats: avg=308.32ms min=169.93ms max=400.40ms count=4
+D/EGL_emulation( 3752): app_time_stats: avg=120.39ms min=29.46ms max=215.24ms count=9
+D/EGL_emulation( 3752): app_time_stats: avg=63.53ms min=18.92ms max=169.02ms count=16
+D/EGL_emulation( 3752): app_time_stats: avg=58.82ms min=13.96ms max=170.76ms count=19
+D/EGL_emulation( 3752): app_time_stats: avg=57.09ms min=10.58ms max=182.93ms count=20
+D/EGL_emulation( 3752): app_time_stats: avg=52.58ms min=14.31ms max=188.88ms count=19
+D/EGL_emulation( 3752): app_time_stats: avg=95.93ms min=10.90ms max=299.72ms count=11
+D/EGL_emulation( 3752): app_time_stats: avg=173.61ms min=88.62ms max=393.83ms count=6
+D/EGL_emulation( 3752): app_time_stats: avg=99.33ms min=15.42ms max=219.75ms count=11
+D/EGL_emulation( 3752): app_time_stats: avg=197.55ms min=109.88ms max=404.58ms count=6
+I/flutter ( 3752): Cloud acceptance checkpoint: normal AI form configured for one participant one day Dinner
+D/EGL_emulation( 3752): app_time_stats: avg=126.01ms min=29.50ms max=252.60ms count=8
+W/WindowOnBackDispatcher( 3752): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 3752): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 3752): [AI][Gemini (Firebase AI)] -> Outgoing request | Endpoint: [SDK endpoint]
+D/EGL_emulation( 3752): app_time_stats: avg=147.22ms min=7.23ms max=410.30ms count=7
+D/EGL_emulation( 3752): app_time_stats: avg=283.73ms min=232.45ms max=389.04ms count=4
+D/EGL_emulation( 3752): app_time_stats: avg=238.67ms min=229.59ms max=264.55ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=229.61ms min=215.88ms max=247.27ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=226.86ms min=217.26ms max=248.16ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=228.75ms min=217.36ms max=246.99ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=232.28ms min=204.28ms max=261.63ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=233.20ms min=218.50ms max=244.87ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=242.03ms min=232.16ms max=262.74ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=232.38ms min=215.21ms max=248.96ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=227.27ms min=217.13ms max=243.64ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=235.22ms min=218.76ms max=260.40ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=226.41ms min=204.65ms max=244.30ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=233.27ms min=208.25ms max=261.03ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=232.76ms min=217.65ms max=247.63ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=234.02ms min=209.31ms max=262.48ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=241.44ms min=219.38ms max=263.65ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=241.04ms min=221.11ms max=259.75ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=232.49ms min=217.98ms max=259.94ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=223.58ms min=216.16ms max=232.42ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=238.80ms min=230.62ms max=250.66ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=223.29ms min=202.34ms max=246.91ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=220.00ms min=216.09ms max=228.50ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=234.88ms min=218.90ms max=246.33ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=230.14ms min=217.02ms max=247.91ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=217.88ms min=205.85ms max=230.73ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=228.96ms min=219.16ms max=244.15ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=241.84ms min=217.00ms max=292.46ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=237.01ms min=220.73ms max=261.89ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=223.07ms min=211.84ms max=236.26ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=232.61ms min=216.40ms max=262.02ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=227.90ms min=205.18ms max=264.52ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=238.69ms min=218.10ms max=265.38ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=233.25ms min=218.51ms max=247.20ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=229.50ms min=216.41ms max=248.06ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=236.52ms min=212.52ms max=255.52ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=230.27ms min=217.99ms max=246.95ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=239.69ms min=232.08ms max=264.29ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=233.42ms min=207.97ms max=274.17ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=235.78ms min=230.20ms max=248.19ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=238.49ms min=231.93ms max=247.76ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=224.27ms min=204.24ms max=245.38ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=231.81ms min=219.11ms max=245.61ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=224.30ms min=218.38ms max=232.95ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=232.44ms min=229.77ms max=234.29ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=226.66ms min=205.17ms max=246.68ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=239.09ms min=230.03ms max=248.75ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=235.72ms min=220.67ms max=247.44ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=225.78ms min=215.73ms max=232.83ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=233.02ms min=216.71ms max=249.41ms count=5
+D/EGL_emulation( 3752): app_time_stats: avg=229.73ms min=218.03ms max=249.28ms count=5
+W/Firestore( 3752): (25.1.4) [WriteStream]: (f046143) Stream closed with status: Status{code=PERMISSION_DENIED, description=Missing or insufficient permissions., cause=null}.
+W/Firestore( 3752): (25.1.4) [Firestore]: Write failed at users/[TEST-ACCOUNT-REDACTED]/mealPlans/QtV5loNulDVlbl1AZMAs: Status{code=PERMISSION_DENIED, description=Missing or insufficient permissions., cause=null}
+I/flutter ( 3752): [MealPlan] generate failed: FirebaseException
+D/EGL_emulation( 3752): app_time_stats: avg=253.29ms min=216.77ms max=339.23ms count=5
+I/flutter ( 3752): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 3752): The following TestFailure was thrown running a test:
+I/flutter ( 3752): The app reported a live generation failure. No retry was submitted.
+I/flutter ( 3752): 
+I/flutter ( 3752): When the exception was thrown, this was the stack:
+I/flutter ( 3752): #0      fail (package:matcher/src/expect/expect.dart:187:31)
+I/flutter ( 3752): #1      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/cloud_generation_persistence_test.dart:252:11)
+I/flutter ( 3752): <asynchronous suspension>
+I/flutter ( 3752): #2      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 3752): <asynchronous suspension>
+I/flutter ( 3752): #3      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 3752): <asynchronous suspension>
+I/flutter ( 3752): #4      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 3752): <asynchronous suspension>
+I/flutter ( 3752): 
+I/flutter ( 3752): The test description was:
+I/flutter ( 3752):   cloudtest live UI generation and persisted exact-plan acceptance
+I/flutter ( 3752): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 3752): 01:35 +0: cloudtest live UI generation and persisted exact-plan acceptance [E]
+I/flutter ( 3752):   Test failed. See exception logs above.
+I/flutter ( 3752):   The test description was: cloudtest live UI generation and persisted exact-plan acceptance
+I/flutter ( 3752):   
+I/flutter ( 3752): 01:35 +0 -1: (tearDownAll)
+I/flutter ( 3752): 01:35 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: cloudtest live UI generation and persisted exact-plan acceptance
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+The app reported a live generation failure. No retry was
+submitted.
+
+When the exception was thrown, this was the stack:
+#0      fail (package:matcher/src/expect/expect.dart:187:31)
+#1      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/cloud_generation_persistence_test.dart:252:11)
+<asynchronous suspension>
+#2      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#3      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+The test description was:
+  cloudtest live UI generation and persisted exact-plan
+  acceptance
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+
+Leaving the application running.

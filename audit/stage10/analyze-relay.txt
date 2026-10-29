@@ -1,0 +1,13 @@
+Analyzing whatmeal...                                           
+
+warning - Unused import: 'package:cloud_firestore/cloud_firestore.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:1:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/meal/pages/meal_detail_page.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:2:8 - unused_import
+warning - Unused import: 'package:whatmeal/core/services/notification_service.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:5:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/profile/data/family_member_repository.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:20:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/meal_plan/data/saved_plans_repository.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:21:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/meal/models/meal.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:22:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/pantry/data/pantry_repository.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:23:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/meal_plan/pages/generated_meal_plan_page.dart'. Try removing the import directive - integration_test\stage10_grocery_recovery_test.dart:26:8 - unused_import
+warning - The declaration 'login' isn't referenced. Try removing the declaration of 'login' - integration_test\stage10_grocery_recovery_test.dart:177:18 - unused_element
+
+9 issues found. (ran in 133.3s)

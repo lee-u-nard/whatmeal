@@ -1,0 +1,26 @@
+{
+  "Screen": "release-grocery",
+  "Action": "Grocery",
+  "VisibleLabels": [
+    "Grocery List",
+    "Notifications",
+    "Open family profiles",
+    "Shared family grocery list — updates sync for household members.",
+    "Needed\nunchecked\nAvailable\ntap chip\nPurchased\ncheckbox ✓",
+    "2 remaining items",
+    "Share List",
+    "Clear Used",
+    "NEEDED FOR MEALS",
+    "rice\n2 cup\n(Meals: 3 cup; pantry: 1 cup)\ncarrot\n2 unit\n(Meals: 2 unit; pantry: 0 unit)",
+    "Needed",
+    "Remove item",
+    "Needed",
+    "Remove item",
+    "Add grocery item",
+    "Home",
+    "Meal Plan",
+    "Pantry",
+    "Grocery",
+    "Profile"
+  ]
+}

@@ -1,0 +1,12 @@
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\data\family_repository.dart:334:11 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\pages\family_space_page.dart:30:9 - curly_braces_in_flow_control_structures
+   info - Don't use 'BuildContext's across async gaps. Try rewriting the code to not use the 'BuildContext', or guard the use with a 'mounted' check - lib\features\family\pages\family_space_page.dart:138:28 - use_build_context_synchronously
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - test\household_final_recovery_test.dart:76:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - test\household_final_recovery_test.dart:79:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - test\household_final_recovery_test.dart:85:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - test\household_final_recovery_test.dart:87:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - test\household_final_recovery_test.dart:89:7 - curly_braces_in_flow_control_structures
+
+8 issues found. (ran in 56.4s)

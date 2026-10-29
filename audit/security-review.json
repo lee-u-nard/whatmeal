@@ -1,0 +1,10 @@
+{
+  "score": 1,
+  "summary": "Critical authorization flaws confirmed by reading both local and deployed Firestore rules. No exploit executed, no production writes, no rules deployed. Client fixes do not secure the database.",
+  "findings": [
+    {"check":"Authority Source", "severity":"critical", "issue":"Authenticated callers can enumerate families and append themselves via request.resource.data.memberUids; ownership fields are mutable.", "recommendation":"Private family reads, non-enumerable invitation capability lookup, validated atomic joins, immutable creator and protected membership changes."},
+    {"check":"Field-Level vs Identity-Level Security", "severity":"critical", "issue":"Recursive family write permission grants every member access to membership roles and all shared writes, bypassing client view-only permissions.", "recommendation":"Non-overlapping membership rules and explicit role enforcement on shared content using existing trusted membership."},
+    {"check":"Business Logic vs Rules", "severity":"major", "issue":"Client household notifications and member removal/deletion write other users' private documents and are denied.", "recommendation":"Shared household events with per-user read receipts and an explicit validated membership/unlink protocol; preserve private user ownership."},
+    {"check":"Update Bypass / Type Safety / Resource Exhaustion", "severity":"moderate", "issue":"No field allowlists, schema validation, or size limits for document creates and updates.", "recommendation":"Validate each supported document schema on both create and update after defining compatibility for existing data."}
+  ]
+}

@@ -1,0 +1,42 @@
+import '../models/saved_meal_plan.dart';
+
+/// Generation has already succeeded here. A persistence failure must preserve
+/// that result for the editor's existing Save Plan action, not request AI again.
+/// A null result means the workspace is missing or changed; nothing may open.
+Future<GeneratedPlanDraft?> persistGeneratedPlanDraft({
+  required GeneratedPlanDraft draft,
+  required int sourceSession,
+  required int Function() currentSession,
+  required String? workspacePath,
+  required Future<String> Function() save,
+}) async {
+  if (workspacePath == null ||
+      workspacePath.isEmpty ||
+      sourceSession != currentSession()) {
+    return null;
+  }
+  String? planId;
+  try {
+    planId = await save();
+  } catch (_) {
+    // The caller reports an unsaved draft. Never expose arbitrary backend error
+    // text or turn a failed write into a false generation failure/success.
+  }
+  if (sourceSession != currentSession()) return null;
+  final saved = planId != null && planId.isNotEmpty;
+  return GeneratedPlanDraft(
+    isManual: draft.isManual,
+    meals: List.unmodifiable(draft.meals),
+    familyMembers: List.unmodifiable(draft.familyMembers),
+    numberOfDays: draft.numberOfDays,
+    startDate: draft.startDate,
+    title: draft.title,
+    planPath: saved ? '$workspacePath/mealPlans/$planId' : null,
+    selectedMemberIds: List.unmodifiable(draft.selectedMemberIds),
+    cuisinePreferences: List.unmodifiable(draft.cuisinePreferences),
+    prioritizePantry: draft.prioritizePantry,
+    initialSaveFailed: !saved,
+    sourceSessionVersion: sourceSession,
+    initialDayIndex: draft.initialDayIndex,
+  );
+}

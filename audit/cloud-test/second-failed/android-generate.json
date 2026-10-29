@@ -1,0 +1,419 @@
+{
+  "phase": "generate",
+  "projectId": "whatmeal-gemini-test-20261019",
+  "completedPhases": [
+    "owner signed in through normal UI to the approved cloud project",
+    "normal AI form configured for one participant one day Dinner"
+  ],
+  "authentication": "normal Android sign-in UI; accounts preverified by test-project admin",
+  "generationButtonTaps": 1,
+  "liveGenerationObserved": false,
+  "generationFailureKind": "permission",
+  "requestedModel": "gemini-3.8-flash",
+  "serverPersistenceVerified": false,
+  "outsiderDenied": false,
+  "firestoreBatchSummaries": [
+    {
+      "originalWriteCount": 2,
+      "capturedWriteCount": 2,
+      "nativeResultCode": "firebase_firestore",
+      "documents": [
+        {
+          "kind": "plan",
+          "operation": "set",
+          "fields": {
+            "type": "map",
+            "fields": {
+              "title": {
+                "type": "string",
+                "length": 9
+              },
+              "startDate": {
+                "type": "timestamp"
+              },
+              "endDate": {
+                "type": "timestamp"
+              },
+              "numberOfDays": {
+                "type": "int"
+              },
+              "mealTypes": {
+                "type": "list",
+                "length": 1,
+                "items": [
+                  {
+                    "type": "string",
+                    "length": 6
+                  }
+                ]
+              },
+              "cuisinePreferences": {
+                "type": "list",
+                "length": 1,
+                "items": [
+                  {
+                    "type": "string",
+                    "length": 8
+                  }
+                ]
+              },
+              "prioritizePantry": {
+                "type": "bool"
+              },
+              "selectedMemberIds": {
+                "type": "list",
+                "length": 1,
+                "items": [
+                  {
+                    "type": "string",
+                    "length": 20
+                  }
+                ]
+              },
+              "estimatedCost": {
+                "type": "null"
+              },
+              "groceryListId": {
+                "type": "null"
+              },
+              "status": {
+                "type": "string",
+                "length": 6
+              },
+              "createdBy": {
+                "type": "string",
+                "length": 34
+              },
+              "createdAt": {
+                "type": "serverTimestamp"
+              }
+            }
+          },
+          "schemaScalars": {
+            "numberOfDays": 1
+          }
+        },
+        {
+          "kind": "meal",
+          "operation": "set",
+          "fields": {
+            "type": "map",
+            "fields": {
+              "title": {
+                "type": "string",
+                "length": 22
+              },
+              "subtitle": {
+                "type": "string",
+                "length": 60
+              },
+              "imageUrl": {
+                "type": "null"
+              },
+              "cuisine": {
+                "type": "string",
+                "length": 8
+              },
+              "mealType": {
+                "type": "string",
+                "length": 6
+              },
+              "dayIndex": {
+                "type": "int"
+              },
+              "prepTime": {
+                "type": "string",
+                "length": 3
+              },
+              "cookTime": {
+                "type": "string",
+                "length": 3
+              },
+              "servings": {
+                "type": "string",
+                "length": 8
+              },
+              "calories": {
+                "type": "string",
+                "length": 15
+              },
+              "protein": {
+                "type": "string",
+                "length": 10
+              },
+              "carbs": {
+                "type": "string",
+                "length": 10
+              },
+              "fats": {
+                "type": "string",
+                "length": 10
+              },
+              "badgeText": {
+                "type": "string",
+                "length": 23
+              },
+              "ingredients": {
+                "type": "list",
+                "length": 10,
+                "items": [
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 31
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 4
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 33
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 9
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 18
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 5
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 23
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 6
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 14
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 8
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 20
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 9
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 18
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 6
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 5
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 6
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 11
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 5
+                      }
+                    }
+                  },
+                  {
+                    "type": "map",
+                    "fields": {
+                      "name": {
+                        "type": "string",
+                        "length": 19
+                      },
+                      "amount": {
+                        "type": "string",
+                        "length": 5
+                      }
+                    }
+                  }
+                ]
+              },
+              "instructions": {
+                "type": "list",
+                "length": 5,
+                "items": [
+                  {
+                    "type": "string",
+                    "length": 103
+                  },
+                  {
+                    "type": "string",
+                    "length": 93
+                  },
+                  {
+                    "type": "string",
+                    "length": 130
+                  },
+                  {
+                    "type": "string",
+                    "length": 75
+                  },
+                  {
+                    "type": "string",
+                    "length": 107
+                  }
+                ]
+              },
+              "availableIngredients": {
+                "type": "list",
+                "length": 0,
+                "items": []
+              },
+              "missingIngredients": {
+                "type": "list",
+                "length": 9,
+                "items": [
+                  {
+                    "type": "string",
+                    "length": 31
+                  },
+                  {
+                    "type": "string",
+                    "length": 16
+                  },
+                  {
+                    "type": "string",
+                    "length": 18
+                  },
+                  {
+                    "type": "string",
+                    "length": 12
+                  },
+                  {
+                    "type": "string",
+                    "length": 6
+                  },
+                  {
+                    "type": "string",
+                    "length": 12
+                  },
+                  {
+                    "type": "string",
+                    "length": 18
+                  },
+                  {
+                    "type": "string",
+                    "length": 11
+                  },
+                  {
+                    "type": "string",
+                    "length": 12
+                  }
+                ]
+              },
+              "tags": {
+                "type": "list",
+                "length": 2,
+                "items": [
+                  {
+                    "type": "string",
+                    "length": 15
+                  },
+                  {
+                    "type": "string",
+                    "length": 15
+                  }
+                ]
+              },
+              "reasoning": {
+                "type": "string",
+                "length": 136
+              },
+              "imageSearchQuery": {
+                "type": "string",
+                "length": 38
+              },
+              "youtubeSearchQuery": {
+                "type": "string",
+                "length": 33
+              },
+              "status": {
+                "type": "string",
+                "length": 7
+              },
+              "accepted": {
+                "type": "bool"
+              },
+              "replacedByMealId": {
+                "type": "null"
+              },
+              "replacedMealId": {
+                "type": "null"
+              },
+              "isFavorite": {
+                "type": "bool"
+              },
+              "createdAt": {
+                "type": "serverTimestamp"
+              }
+            }
+          },
+          "schemaScalars": {
+            "dayIndex": 0
+          }
+        }
+      ]
+    }
+  ]
+}

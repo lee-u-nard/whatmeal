@@ -1,0 +1,4 @@
+i  Found running emulator hub for project demo-whatmeal-audit at http://127.0.0.1:4490
+i  Creating export directory C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\build\household-recovery-private\after-import-before-tests
+i  Exporting data to: C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\build\household-recovery-private\after-import-before-tests
++  Export complete

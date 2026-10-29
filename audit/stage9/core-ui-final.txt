@@ -1,0 +1,1029 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage9\household-integration.apk...             1,811ms
+D/FlutterRenderer( 1847): Width is zero. 0,0
+W/HWUI    ( 1847): Unknown dataspace 0
+I/WindowExtensionsImpl( 1847): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 1847): Width is zero. 0,0
+D/FlutterJNI( 1847): Sending viewport metrics to the engine.
+W/HWUI    ( 1847): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 1847): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/Gralloc4( 1847): mapper 4.x is not supported
+I/.whatmeal.local( 1847): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 1847): Skipped 47 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 1847): Sending viewport metrics to the engine.
+D/ProfileInstaller( 1847): Installing profile for com.example.whatmeal.local
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:52320/uUIA3uM32zo=/
+VMServiceFlutterDriver: Isolate found with number: 6087793498353435
+VMServiceFlutterDriver: Isolate 6087793498353435 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 1847): 00:00 +0: local Android UI registration, verification, household and account switching
+VMServiceFlutterDriver: Connected to Flutter application.
+D/EGL_emulation( 1847): app_time_stats: avg=1122.11ms min=265.71ms max=1978.50ms count=2
+D/FlutterJNI( 1847): Sending viewport metrics to the engine.
+D/EGL_emulation( 1847): app_time_stats: avg=2466.13ms min=2466.13ms max=2466.13ms count=1
+D/FirebaseAuth( 1847): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1847): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 1847): app_time_stats: avg=1280.14ms min=1280.14ms max=1280.14ms count=1
+D/EGL_emulation( 1847): app_time_stats: avg=286.16ms min=135.97ms max=695.48ms count=5
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=148.60ms min=83.15ms max=237.60ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=147.00ms min=57.41ms max=294.50ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=185.30ms min=125.97ms max=234.66ms count=6
+D/EGL_emulation( 1847): app_time_stats: avg=295.25ms min=210.05ms max=344.35ms count=4
+D/EGL_emulation( 1847): app_time_stats: avg=122.40ms min=58.79ms max=220.72ms count=9
+I/.whatmeal.local( 1847): Background concurrent mark compact GC freed 2949KB AllocSpace bytes, 9(372KB) LOS objects, 49% free, 3122KB/6244KB, paused 447us,6.785ms total 104.065ms
+D/EGL_emulation( 1847): app_time_stats: avg=108.00ms min=23.38ms max=225.96ms count=10
+I/FirebaseAuth( 1847): Creating user with owner-1792103400822429@example.test with empty reCAPTCHA token
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1847): tagSocket(139) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1847): app_time_stats: avg=138.00ms min=17.80ms max=220.49ms count=8
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1847): Notifying id token listeners about user ( KkwtaziBnFg6Jn0bdEcZcM8hH5j0 ).
+D/FirebaseAuth( 1847): Notifying auth state listeners about user ( KkwtaziBnFg6Jn0bdEcZcM8hH5j0 ).
+W/GooglePlayServicesUtil( 1847): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1847): GooglePlayServices not available due to error 9
+W/Firestore( 1847): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1847): app_time_stats: avg=239.49ms min=212.54ms max=319.24ms count=5
+D/TrafficStats( 1847): tagSocket(145) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1847): app_time_stats: avg=658.25ms min=397.99ms max=918.51ms count=2
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/.whatmeal.local( 1847): Background concurrent mark compact GC freed 2327KB AllocSpace bytes, 20(848KB) LOS objects, 49% free, 4358KB/8716KB, paused 507us,1.672ms total 152.026ms
+I/flutter ( 1847): Local UI checkpoint: Owner registered and verified
+D/EGL_emulation( 1847): app_time_stats: avg=162.86ms min=40.46ms max=332.86ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=115.14ms min=18.16ms max=213.51ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=134.61ms min=15.44ms max=217.23ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=111.28ms min=22.35ms max=215.34ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=102.20ms min=7.84ms max=233.52ms count=10
+I/flutter ( 1847): Local UI checkpoint: household created
+D/EGL_emulation( 1847): app_time_stats: avg=148.69ms min=12.56ms max=337.65ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=114.62ms min=41.96ms max=221.09ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=219.07ms min=216.08ms max=225.98ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=216.34ms min=212.30ms max=220.84ms count=5
+I/flutter ( 1847): Local UI checkpoint: invitation copied
+D/EGL_emulation( 1847): app_time_stats: avg=224.31ms min=215.88ms max=242.48ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=112.70ms min=14.68ms max=233.15ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 1847): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1847): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L311, cause=null}
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L345, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/KkwtaziBnFg6Jn0bdEcZcM8hH5j0 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L103, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L228, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L330, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L146, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L158, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/ownershipTransfers/pending order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L188, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L197, cause=null}
+D/EGL_emulation( 1847): app_time_stats: avg=111.30ms min=3.03ms max=213.76ms count=9
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L320, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L207, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L228, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L207, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1847): app_time_stats: avg=134.96ms min=42.77ms max=220.00ms count=8
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=102.33ms min=17.28ms max=246.65ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=96.33ms min=9.12ms max=240.42ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=111.91ms min=16.81ms max=251.94ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=98.08ms min=6.81ms max=249.78ms count=11
+I/FirebaseAuth( 1847): Creating user with member-1792103425204689@example.test with empty reCAPTCHA token
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1847): tagSocket(139) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1847): app_time_stats: avg=133.26ms min=16.21ms max=219.00ms count=9
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1847): Notifying id token listeners about user ( 7uL57Zi4YamOiLTujt6FqMIAQKRk ).
+D/FirebaseAuth( 1847): Notifying auth state listeners about user ( 7uL57Zi4YamOiLTujt6FqMIAQKRk ).
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1847): app_time_stats: avg=171.49ms min=115.93ms max=293.99ms count=6
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1847): Local UI checkpoint: Member registered and verified
+I/flutter ( 1847): Local UI checkpoint: new account has no household
+D/EGL_emulation( 1847): app_time_stats: avg=114.61ms min=36.74ms max=217.34ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=101.79ms min=17.51ms max=228.21ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=123.41ms min=9.49ms max=251.04ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=102.19ms min=3.81ms max=254.78ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=126.50ms min=11.19ms max=406.62ms count=11
+I/flutter ( 1847): Local UI checkpoint: member joined shared household
+D/EGL_emulation( 1847): app_time_stats: avg=200.25ms min=118.30ms max=228.86ms count=5
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=100.02ms min=17.36ms max=241.35ms count=12
+D/FirebaseAuth( 1847): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1847): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/7uL57Zi4YamOiLTujt6FqMIAQKRk/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L330, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/7uL57Zi4YamOiLTujt6FqMIAQKRk/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L320, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/7uL57Zi4YamOiLTujt6FqMIAQKRk/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L207, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/7uL57Zi4YamOiLTujt6FqMIAQKRk/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1847): app_time_stats: avg=134.36ms min=23.57ms max=218.74ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=95.47ms min=15.36ms max=247.88ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=102.92ms min=11.05ms max=247.23ms count=10
+I/FirebaseAuth( 1847): Logging in as owner-1792103400822429@example.test with empty reCAPTCHA token
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1847): tagSocket(139) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1847): app_time_stats: avg=125.92ms min=15.93ms max=220.05ms count=8
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1847): Notifying id token listeners about user ( KkwtaziBnFg6Jn0bdEcZcM8hH5j0 ).
+D/FirebaseAuth( 1847): Notifying auth state listeners about user ( KkwtaziBnFg6Jn0bdEcZcM8hH5j0 ).
+I/.whatmeal.local( 1847): Background concurrent mark compact GC freed 4220KB AllocSpace bytes, 28(1264KB) LOS objects, 49% free, 4562KB/9125KB, paused 2.917ms,7.972ms total 30.712ms
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=252.03ms min=218.16ms max=334.14ms count=4
+D/EGL_emulation( 1847): app_time_stats: avg=117.16ms min=12.82ms max=234.17ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=175.83ms min=17.07ms max=529.90ms count=6
+D/EGL_emulation( 1847): app_time_stats: avg=158.14ms min=107.76ms max=218.24ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=105.43ms min=10.90ms max=231.42ms count=11
+I/flutter ( 1847): Local UI checkpoint: owner removed member
+D/EGL_emulation( 1847): app_time_stats: avg=141.40ms min=9.32ms max=354.51ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=91.39ms min=2.41ms max=234.04ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=218.47ms min=4.01ms max=374.88ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=219.54ms min=211.39ms max=233.39ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=223.96ms min=219.61ms max=227.62ms count=5
+I/flutter ( 1847): Local UI checkpoint: invitation copied
+D/EGL_emulation( 1847): app_time_stats: avg=126.16ms min=12.27ms max=220.38ms count=8
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=114.33ms min=7.90ms max=215.43ms count=9
+D/FirebaseAuth( 1847): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1847): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L311, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L345, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/KkwtaziBnFg6Jn0bdEcZcM8hH5j0 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L103, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L228, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L330, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L146, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L158, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/ownershipTransfers/pending order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L188, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L197, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L320, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L207, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L228, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L207, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1847): app_time_stats: avg=124.99ms min=40.41ms max=219.09ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=104.75ms min=10.88ms max=250.79ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=103.49ms min=12.37ms max=252.14ms count=10
+I/FirebaseAuth( 1847): Logging in as member-1792103425204689@example.test with empty reCAPTCHA token
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1847): tagSocket(139) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1847): Notifying id token listeners about user ( 7uL57Zi4YamOiLTujt6FqMIAQKRk ).
+D/FirebaseAuth( 1847): Notifying auth state listeners about user ( 7uL57Zi4YamOiLTujt6FqMIAQKRk ).
+D/EGL_emulation( 1847): app_time_stats: avg=156.53ms min=16.09ms max=318.05ms count=7
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=119.88ms min=3.43ms max=220.87ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1847): Local UI checkpoint: removed account has no household access
+D/EGL_emulation( 1847): app_time_stats: avg=121.85ms min=16.61ms max=235.13ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=122.12ms min=12.30ms max=230.95ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=102.08ms min=5.99ms max=255.67ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=135.25ms min=11.94ms max=338.12ms count=8
+I/flutter ( 1847): Local UI checkpoint: legitimate rejoin
+D/EGL_emulation( 1847): app_time_stats: avg=121.90ms min=4.73ms max=230.33ms count=10
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): evaluation error at L158:24 for 'list' @ L158, false for 'list' @ L158, cause=null}
+D/EGL_emulation( 1847): app_time_stats: avg=125.57ms min=31.51ms max=222.08ms count=8
+I/flutter ( 1847): Local UI checkpoint: member departed
+D/EGL_emulation( 1847): app_time_stats: avg=132.97ms min=14.82ms max=235.33ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=116.75ms min=109.56ms max=123.95ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 1847): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1847): Notifying auth state listeners about a sign-out event.
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=100.47ms min=14.94ms max=250.89ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=112.69ms min=13.25ms max=265.23ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=111.22ms min=18.76ms max=247.55ms count=9
+I/FirebaseAuth( 1847): Logging in as owner-1792103400822429@example.test with empty reCAPTCHA token
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1847): tagSocket(139) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1847): app_time_stats: avg=112.99ms min=12.49ms max=232.37ms count=10
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1847): Notifying id token listeners about user ( KkwtaziBnFg6Jn0bdEcZcM8hH5j0 ).
+D/FirebaseAuth( 1847): Notifying auth state listeners about user ( KkwtaziBnFg6Jn0bdEcZcM8hH5j0 ).
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=215.92ms min=113.99ms max=295.12ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=111.42ms min=14.13ms max=233.87ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1847): Local UI checkpoint: owner session restored with one member
+I/flutter ( 1847): Local UI checkpoint: household UI workflow completed
+D/EGL_emulation( 1847): app_time_stats: avg=135.06ms min=21.48ms max=219.03ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=120.30ms min=14.36ms max=250.61ms count=10
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=95.49ms min=13.41ms max=228.56ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=106.45ms min=13.51ms max=254.21ms count=10
+I/flutter ( 1847): Local UI checkpoint: dietary profile created through UI
+D/EGL_emulation( 1847): app_time_stats: avg=115.88ms min=24.85ms max=229.51ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=85.88ms min=15.01ms max=214.63ms count=13
+D/EGL_emulation( 1847): app_time_stats: avg=69.81ms min=15.32ms max=118.41ms count=15
+D/EGL_emulation( 1847): app_time_stats: avg=58.30ms min=13.35ms max=117.58ms count=18
+D/EGL_emulation( 1847): app_time_stats: avg=87.32ms min=11.49ms max=122.61ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=122.50ms min=14.07ms max=216.98ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=111.48ms min=12.81ms max=218.47ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=99.57ms min=9.42ms max=248.44ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=122.20ms min=15.65ms max=233.93ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1847): Local UI checkpoint: manual plan editor opened
+D/EGL_emulation( 1847): app_time_stats: avg=115.91ms min=20.22ms max=216.03ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=102.47ms min=46.75ms max=216.33ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=114.36ms min=13.38ms max=233.16ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=100.18ms min=15.34ms max=262.21ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=103.20ms min=19.86ms max=215.83ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=124.13ms min=3.25ms max=235.22ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=105.82ms min=12.04ms max=243.67ms count=11
+I/flutter ( 1847): Local UI checkpoint: manual meal plan saved through UI
+D/EGL_emulation( 1847): app_time_stats: avg=141.69ms min=17.46ms max=314.60ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=169.43ms min=112.87ms max=320.75ms count=6
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=117.37ms min=5.63ms max=379.40ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=258.09ms min=214.48ms max=369.61ms count=4
+D/EGL_emulation( 1847): app_time_stats: avg=225.13ms min=205.27ms max=243.54ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=245.17ms min=225.86ms max=286.77ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=242.16ms min=228.73ms max=259.06ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=220.79ms min=206.46ms max=229.53ms count=5
+D/EGL_emulation( 1847): app_time_stats: avg=216.34ms min=215.21ms max=218.09ms count=5
+I/flutter ( 1847): Local UI checkpoint: exact saved meal opened and favorited
+D/EGL_emulation( 1847): app_time_stats: avg=184.86ms min=116.98ms max=219.53ms count=6
+D/EGL_emulation( 1847): app_time_stats: avg=109.90ms min=9.32ms max=335.87ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=168.08ms min=114.69ms max=222.35ms count=6
+D/EGL_emulation( 1847): app_time_stats: avg=173.46ms min=115.47ms max=216.99ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=172.73ms min=117.36ms max=235.21ms count=6
+D/EGL_emulation( 1847): app_time_stats: avg=168.95ms min=106.59ms max=224.64ms count=6
+D/EGL_emulation( 1847): app_time_stats: avg=111.24ms min=10.73ms max=231.98ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=129.11ms min=7.59ms max=308.49ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=104.29ms min=5.02ms max=312.31ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=165.59ms min=114.76ms max=219.20ms count=6
+D/EGL_emulation( 1847): app_time_stats: avg=173.46ms min=113.54ms max=216.66ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=130.42ms min=111.19ms max=213.97ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=172.20ms min=114.10ms max=217.97ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=159.64ms min=114.44ms max=219.44ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=173.53ms min=116.02ms max=216.40ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=145.87ms min=115.86ms max=219.84ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=105.82ms min=10.58ms max=314.72ms count=11
+I/flutter ( 1847): Local UI checkpoint: completed skipped and accepted status changes persisted
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=132.99ms min=15.05ms max=230.73ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=111.49ms min=25.81ms max=218.90ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=101.35ms min=13.57ms max=238.12ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=101.46ms min=15.42ms max=248.37ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=128.66ms min=12.64ms max=345.97ms count=9
+I/flutter ( 1847): Local UI checkpoint: second accepted meal added through UI
+D/EGL_emulation( 1847): app_time_stats: avg=123.40ms min=12.27ms max=248.51ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=98.93ms min=5.91ms max=215.76ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=112.74ms min=14.12ms max=247.15ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=103.18ms min=11.76ms max=221.11ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=111.80ms min=30.23ms max=215.35ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=105.51ms min=15.95ms max=275.45ms count=11
+I/flutter ( 1847): Local UI checkpoint: pantry quantity unit and expiration saved through UI
+D/EGL_emulation( 1847): app_time_stats: avg=132.38ms min=17.60ms max=300.18ms count=8
+I/flutter ( 1847): Local UI checkpoint: sufficient pantry stock excluded from shopping needs
+D/EGL_emulation( 1847): app_time_stats: avg=132.50ms min=19.25ms max=245.90ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=111.27ms min=16.24ms max=248.60ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=98.14ms min=9.72ms max=231.78ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=108.66ms min=10.96ms max=253.87ms count=11
+I/flutter ( 1847): Local UI checkpoint: pantry edit recalculated exact grocery shortage
+D/EGL_emulation( 1847): app_time_stats: avg=133.69ms min=18.51ms max=245.96ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=122.17ms min=13.82ms max=250.71ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=121.99ms min=18.64ms max=217.43ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=111.62ms min=17.14ms max=218.11ms count=9
+I/flutter ( 1847): Local UI checkpoint: invitation copied
+D/EGL_emulation( 1847): app_time_stats: avg=136.60ms min=22.51ms max=234.37ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=122.15ms min=14.76ms max=249.71ms count=9
+D/FirebaseAuth( 1847): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1847): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L311, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L345, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/KkwtaziBnFg6Jn0bdEcZcM8hH5j0 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L103, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L228, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L330, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L146, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/mealPlans/VpQ4vzN3q3kwviVBW303/meals order by dayIndex, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L232, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/members order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L158, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L217, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/ownershipTransfers/pending order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'get' @ L188, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L221, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/activity order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L197, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L320, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L207, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L228, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(families/Y7EpoLbFlLwphqvUnQmS/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/groceryLists order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L217, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L207, cause=null}
+W/Firestore( 1847): (25.1.4) [Firestore]: Listen for Query(target=Query(users/KkwtaziBnFg6Jn0bdEcZcM8hH5j0/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1847): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1847): app_time_stats: avg=142.88ms min=39.18ms max=253.93ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=104.39ms min=14.51ms max=266.76ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=103.19ms min=12.44ms max=243.91ms count=10
+I/FirebaseAuth( 1847): Logging in as member-1792103425204689@example.test with empty reCAPTCHA token
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1847): tagSocket(139) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 1847): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1847): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1847): Notifying id token listeners about user ( 7uL57Zi4YamOiLTujt6FqMIAQKRk ).
+D/FirebaseAuth( 1847): Notifying auth state listeners about user ( 7uL57Zi4YamOiLTujt6FqMIAQKRk ).
+D/EGL_emulation( 1847): app_time_stats: avg=136.18ms min=17.86ms max=229.51ms count=8
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1847): Local UI checkpoint: account switch cleared previous meal pantry and grocery data
+D/EGL_emulation( 1847): app_time_stats: avg=171.29ms min=53.28ms max=297.85ms count=6
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=92.00ms min=8.98ms max=231.70ms count=11
+D/EGL_emulation( 1847): app_time_stats: avg=137.16ms min=14.43ms max=249.76ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=101.28ms min=12.80ms max=266.37ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=131.80ms min=11.99ms max=359.97ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=132.25ms min=13.02ms max=247.31ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=133.71ms min=24.64ms max=219.47ms count=9
+I/flutter ( 1847): Local UI checkpoint: authorized member received shared pantry and grocery updates
+D/EGL_emulation( 1847): app_time_stats: avg=132.96ms min=13.01ms max=232.49ms count=9
+D/EGL_emulation( 1847): app_time_stats: avg=111.40ms min=12.20ms max=219.26ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=118.65ms min=2.66ms max=217.87ms count=9
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=99.96ms min=12.49ms max=222.91ms count=12
+D/EGL_emulation( 1847): app_time_stats: avg=133.47ms min=108.24ms max=217.45ms count=8
+D/EGL_emulation( 1847): app_time_stats: avg=102.30ms min=9.01ms max=248.02ms count=10
+I/.whatmeal.local( 1847): Background concurrent mark compact GC freed 4532KB AllocSpace bytes, 2(104KB) LOS objects, 49% free, 4690KB/9380KB, paused 10.446ms,979us total 49.901ms
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=117.67ms min=15.87ms max=233.74ms count=10
+D/EGL_emulation( 1847): app_time_stats: avg=122.07ms min=18.83ms max=242.97ms count=9
+I/flutter ( 1847): Local UI checkpoint: member meal deletion preserved other meal grocery contribution
+D/EGL_emulation( 1847): app_time_stats: avg=121.87ms min=17.53ms max=248.20ms count=9
+I/flutter ( 1847): ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+I/flutter ( 1847): The following assertion was thrown during layout:
+I/flutter ( 1847): A RenderFlex overflowed by 21 pixels on the right.
+I/flutter ( 1847): 
+I/flutter ( 1847): The overflowing RenderFlex has an orientation of Axis.horizontal.
+I/flutter ( 1847): The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+I/flutter ( 1847): black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+I/flutter ( 1847): Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+I/flutter ( 1847): RenderFlex to fit within the available space instead of being sized to their natural size.
+I/flutter ( 1847): This is considered an error condition because it indicates that there is content that cannot be
+I/flutter ( 1847): seen. If the content is legitimately bigger than the available space, consider clipping it with a
+I/flutter ( 1847): ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+I/flutter ( 1847): like a ListView.
+I/flutter ( 1847): The specific RenderFlex in question is: RenderFlex#4eaf1 DISPOSED OVERFLOWING:
+I/flutter ( 1847):   creator: MultiChildRenderObjectElement#bf4f2(DEFUNCT) ← MultiChildRenderObjectElement#efa1f(DEFUNCT)
+I/flutter ( 1847):     ← SingleChildRenderObjectElement#829c3(DEFUNCT) ← SingleChildRenderObjectElement#9c9f3(DEFUNCT) ←
+I/flutter ( 1847):     StatelessElement#1076d(DEFUNCT) ← SingleChildRenderObjectElement#1a76b(DEFUNCT) ←
+I/flutter ( 1847):     SingleChildRenderObjectElement#7756e(DEFUNCT) ← StatefulElement#6c338(DEFUNCT) ←
+I/flutter ( 1847):     _NotificationElement<KeepAliveNotification>#d0c5c(DEFUNCT) ←
+I/flutter ( 1847):     ParentDataElement<KeepAliveParentDataMixin>#2c5a1(DEFUNCT) ← StatefulElement#3f846(DEFUNCT) ←
+I/flutter ( 1847):     StatelessElement#97290(DEFUNCT) ← ⋯
+I/flutter ( 1847):   parentData: offset=Offset(0.0, 128.0); flex=null; fit=null (can use size)
+I/flutter ( 1847):   constraints: BoxConstraints(0.0<=w<=246.0, 0.0<=h<=Infinity)
+I/flutter ( 1847):   size: Size(246.0, 48.0)
+I/flutter ( 1847):   direction: horizontal
+I/flutter ( 1847):   mainAxisAlignment: spaceBetween
+I/flutter ( 1847):   mainAxisSize: max
+I/flutter ( 1847):   crossAxisAlignment: center
+I/flutter ( 1847):   textDirection: ltr
+I/flutter ( 1847):   verticalDirection: down
+I/flutter ( 1847):   spacing: 0.0
+I/flutter ( 1847): ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+I/flutter ( 1847): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1847): ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+I/flutter ( 1847): The following assertion was thrown during layout:
+I/flutter ( 1847): A RenderFlex overflowed by 21 pixels on the right.
+I/flutter ( 1847): 
+I/flutter ( 1847): The relevant error-causing widget was:
+I/flutter ( 1847):   Row
+I/flutter ( 1847):   Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/meal_plan/pages/saved_meal_plans_page.dart:291:11
+I/flutter ( 1847): 
+I/flutter ( 1847): The overflowing RenderFlex has an orientation of Axis.horizontal.
+I/flutter ( 1847): The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+I/flutter ( 1847): black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+I/flutter ( 1847): Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+I/flutter ( 1847): RenderFlex to fit within the available space instead of being sized to their natural size.
+I/flutter ( 1847): This is considered an error condition because it indicates that there is content that cannot be
+I/flutter ( 1847): seen. If the content is legitimately bigger than the available space, consider clipping it with a
+I/flutter ( 1847): ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+I/flutter ( 1847): like a ListView.
+I/flutter ( 1847): The specific RenderFlex in question is: RenderFlex#176fc relayoutBoundary=up8 OVERFLOWING:
+I/flutter ( 1847):   creator: Row ← Column ← Padding ← DecoratedBox ← Container ← RepaintBoundary ← IndexedSemantics ←
+I/flutter ( 1847):     _SelectionKeepAlive ← NotificationListener<KeepAliveNotification> ← KeepAlive ← AutomaticKeepAlive
+I/flutter ( 1847):     ← KeyedSubtree ← ⋯
+I/flutter ( 1847):   parentData: offset=Offset(0.0, 128.0); flex=null; fit=null (can use size)
+I/flutter ( 1847):   constraints: BoxConstraints(0.0<=w<=246.0, 0.0<=h<=Infinity)
+I/flutter ( 1847):   size: Size(246.0, 48.0)
+I/flutter ( 1847):   direction: horizontal
+I/flutter ( 1847):   mainAxisAlignment: spaceBetween
+I/flutter ( 1847):   mainAxisSize: max
+I/flutter ( 1847):   crossAxisAlignment: center
+I/flutter ( 1847):   textDirection: ltr
+I/flutter ( 1847):   verticalDirection: down
+I/flutter ( 1847):   spacing: 0.0
+I/flutter ( 1847): ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+I/flutter ( 1847): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1847): ══╡ EXCEPTION CAUGHT BY WIDGET INSPECTOR ╞══════════════════════════════════════════════════════════
+I/flutter ( 1847): The following assertion was thrown:
+I/flutter ( 1847): Looking up a deactivated widget's ancestor is unsafe.
+I/flutter ( 1847): At this point the state of the widget's element tree is no longer stable.
+I/flutter ( 1847): To safely refer to a widget's ancestor in its dispose() method, save a reference to the ancestor by
+I/flutter ( 1847): calling dependOnInheritedWidgetOfExactType() in the widget's didChangeDependencies() method.
+I/flutter ( 1847): 
+I/flutter ( 1847): When the exception was thrown, this was the stack:
+I/flutter ( 1847): #0      Element._debugCheckStateIsActiveForAncestorLookup.<anonymous closure> (package:flutter/src/widgets/framework.dart:5049:9)
+I/flutter ( 1847): #1      Element._debugCheckStateIsActiveForAncestorLookup (package:flutter/src/widgets/framework.dart:5063:6)
+I/flutter ( 1847): #2      Element.visitAncestorElements (package:flutter/src/widgets/framework.dart:5174:12)
+I/flutter ( 1847): #3      _describeRelevantUserCode (package:flutter/src/widgets/widget_inspector.dart:4242:13)
+I/flutter ( 1847): #4      _parseDiagnosticsNode (package:flutter/src/widgets/widget_inspector.dart:4161:12)
+I/flutter ( 1847): #5      debugTransformDebugCreator (package:flutter/src/widgets/widget_inspector.dart:4140:21)
+I/flutter ( 1847): #6      _FlutterErrorDetailsNode.builder (package:flutter/src/foundation/assertions.dart:1300:31)
+I/flutter ( 1847): #7      DiagnosticableNode.getProperties (package:flutter/src/foundation/diagnostics.dart:2943:68)
+I/flutter ( 1847): #8      TextTreeRenderer._debugRender (package:flutter/src/foundation/diagnostics.dart:1270:63)
+I/flutter ( 1847): #9      TextTreeRenderer.render (package:flutter/src/foundation/diagnostics.dart:1137:14)
+I/flutter ( 1847): #10     FlutterError.dumpErrorToConsole (package:flutter/src/foundation/assertions.dart:1030:13)
+I/flutter ( 1847): #11     TestWidgetsFlutterBinding._runTest.<anonymous closure> (package:flutter_test/src/binding.dart:1779:24)
+I/flutter ( 1847): #12     FlutterError.reportError (package:flutter/src/foundation/assertions.dart:1193:14)
+I/flutter ( 1847): #13     DebugOverflowIndicatorMixin._reportOverflow (package:flutter/src/rendering/debug_overflow_indicator.dart:259:18)
+I/flutter ( 1847): #14     DebugOverflowIndicatorMixin.paintOverflowIndicator (package:flutter/src/rendering/debug_overflow_indicator.dart:329:7)
+I/flutter ( 1847): #15     RenderFlex.paint.<anonymous closure> (package:flutter/src/rendering/flex.dart:1449:7)
+I/flutter ( 1847): #16     RenderFlex.paint (package:flutter/src/rendering/flex.dart:1457:6)
+I/flutter ( 1847): #17     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #18     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #19     RenderBoxContainerDefaultsMixin.defaultPaint (package:flutter/src/rendering/box.dart:3368:15)
+I/flutter ( 1847): #20     RenderFlex.paint (package:flutter/src/rendering/flex.dart:1402:7)
+I/flutter ( 1847): #21     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #22     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #23     RenderShiftedBox.paint (package:flutter/src/rendering/shifted_box.dart:98:15)
+I/flutter ( 1847): #24     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #25     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #26     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #27     RenderDecoratedBox.paint (package:flutter/src/rendering/proxy_box.dart:2512:11)
+I/flutter ( 1847): #28     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #29     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #30     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #31     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #32     PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #33     PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #34     PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #35     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #36     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #37     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #38     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #39     RenderSliverMultiBoxAdaptor.paint (package:flutter/src/rendering/sliver_multi_box_adaptor.dart:742:17)
+I/flutter ( 1847): #40     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #41     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #42     RenderSliverEdgeInsetsPadding.paint (package:flutter/src/rendering/sliver_padding.dart:270:15)
+I/flutter ( 1847): #43     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #44     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #45     RenderViewportBase._paintContents (package:flutter/src/rendering/viewport.dart:999:17)
+I/flutter ( 1847): #46     RenderViewportBase.paint (package:flutter/src/rendering/viewport.dart:984:7)
+I/flutter ( 1847): #47     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #48     PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #49     PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #50     PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #51     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #52     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #53     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #54     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #55     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #56     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #57     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #58     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #59     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #60     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #61     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #62     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #63     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #64     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #65     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #66     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #67     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #68     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #69     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #70     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #71     RenderCustomPaint.paint (package:flutter/src/rendering/custom_paint.dart:644:11)
+I/flutter ( 1847): #72     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #73     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #74     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #75     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #76     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #77     RenderClipRect.paint (package:flutter/src/rendering/proxy_box.dart:1653:17)
+I/flutter ( 1847): #78     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #79     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #80     RenderBoxContainerDefaultsMixin.defaultPaint (package:flutter/src/rendering/box.dart:3368:15)
+I/flutter ( 1847): #81     RenderCustomMultiChildLayoutBox.paint (package:flutter/src/rendering/custom_layout.dart:422:5)
+I/flutter ( 1847): #82     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #83     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #84     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+W/WindowOnBackDispatcher( 1847): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1847): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1847): app_time_stats: avg=98.23ms min=10.18ms max=266.39ms count=11
+I/flutter ( 1847): #85     _RenderInkFeatures.paint (package:flutter/src/material/material.dart:634:11)
+I/flutter ( 1847): #86     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #87     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #88     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #89     RenderPhysicalModel.paint.<anonymous closure> (package:flutter/src/rendering/proxy_box.dart:2252:15)
+I/flutter ( 1847): #90     PaintingContext.pushClipRRect (package:flutter/src/rendering/object.dart:626:14)
+I/flutter ( 1847): #91     RenderPhysicalModel.paint (package:flutter/src/rendering/proxy_box.dart:2239:21)
+I/flutter ( 1847): #92     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #93     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #94     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #95     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #96     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #97     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #98     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #99     PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #100    PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #101    PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #102    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #103    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #104    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #105    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #106    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #107    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #108    PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #109    PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #110    PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #111    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #112    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #113    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #114    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #115    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #116    RenderOffstage.paint (package:flutter/src/rendering/proxy_box.dart:3943:11)
+I/flutter ( 1847): #117    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #118    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #119    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #120    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #121    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #122    _RenderTheaterMixin.paint (package:flutter/src/widgets/overlay.dart:1159:15)
+I/flutter ( 1847): #123    PaintingContext.pushLayer (package:flutter/src/rendering/object.dart:522:12)
+I/flutter ( 1847): #124    PaintingContext.pushClipRect (package:flutter/src/rendering/object.dart:589:7)
+I/flutter ( 1847): #125    _RenderTheater.paint (package:flutter/src/widgets/overlay.dart:1532:38)
+I/flutter ( 1847): #126    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #127    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #128    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #129    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #130    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #131    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #132    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #133    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #134    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #135    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #136    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #137    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #138    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #139    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #140    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #141    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #142    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #143    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #144    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #145    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #146    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #147    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #148    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #149    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #150    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #151    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #152    RenderView.paint (package:flutter/src/rendering/view.dart:320:15)
+I/flutter ( 1847): #153    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #154    PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #155    PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #156    PipelineOwner.flushPaint (package:flutter/src/rendering/object.dart:1325:31)
+I/flutter ( 1847): #157    PipelineOwner.flushPaint (package:flutter/src/rendering/object.dart:1335:15)
+I/flutter ( 1847): #158    RendererBinding.drawFrame (package:flutter/src/rendering/binding.dart:645:23)
+I/flutter ( 1847): #159    WidgetsBinding.drawFrame (package:flutter/src/widgets/binding.dart:1573:13)
+I/flutter ( 1847): #160    RendererBinding._handlePersistentFrameCallback (package:flutter/src/rendering/binding.dart:509:5)
+I/flutter ( 1847): #161    SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430:15)
+I/flutter ( 1847): #162    SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1345:9)
+I/flutter ( 1847): #163    LiveTestWidgetsFlutterBinding.handleDrawFrame (package:flutter_test/src/binding.dart:2811:13)
+I/flutter ( 1847): #164    SchedulerBinding._handleDrawFrame (package:flutter/src/scheduler/binding.dart:1198:5)
+I/flutter ( 1847): #168    _invoke (dart:ui/hooks.dart:425:10)
+I/flutter ( 1847): #169    PlatformDispatcher._drawFrame (dart:ui/platform_dispatcher.dart:447:5)
+I/flutter ( 1847): #170    _drawFrame (dart:ui/hooks.dart:395:31)
+I/flutter ( 1847): (elided 3 frames from dart:async)
+I/flutter ( 1847): 
+I/flutter ( 1847): This exception was caught while trying to describe the user-relevant code of another error.
+I/flutter ( 1847): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1847): ══╡ EXCEPTION CAUGHT BY WIDGET INSPECTOR ╞══════════════════════════════════════════════════════════
+I/flutter ( 1847): The following assertion was thrown:
+I/flutter ( 1847): Looking up a deactivated widget's ancestor is unsafe.
+I/flutter ( 1847): At this point the state of the widget's element tree is no longer stable.
+I/flutter ( 1847): To safely refer to a widget's ancestor in its dispose() method, save a reference to the ancestor by
+I/flutter ( 1847): calling dependOnInheritedWidgetOfExactType() in the widget's didChangeDependencies() method.
+I/flutter ( 1847): 
+I/flutter ( 1847): When the exception was thrown, this was the stack:
+I/flutter ( 1847): #0      Element._debugCheckStateIsActiveForAncestorLookup.<anonymous closure> (package:flutter/src/widgets/framework.dart:5049:9)
+I/flutter ( 1847): #1      Element._debugCheckStateIsActiveForAncestorLookup (package:flutter/src/widgets/framework.dart:5063:6)
+I/flutter ( 1847): #2      Element.visitAncestorElements (package:flutter/src/widgets/framework.dart:5174:12)
+I/flutter ( 1847): #3      _describeRelevantUserCode (package:flutter/src/widgets/widget_inspector.dart:4242:13)
+I/flutter ( 1847): #4      _parseDiagnosticsNode (package:flutter/src/widgets/widget_inspector.dart:4161:12)
+I/flutter ( 1847): #5      debugTransformDebugCreator (package:flutter/src/widgets/widget_inspector.dart:4140:21)
+I/flutter ( 1847): #6      _FlutterErrorDetailsNode.builder (package:flutter/src/foundation/assertions.dart:1300:31)
+I/flutter ( 1847): #7      DiagnosticableNode.emptyBodyDescription (package:flutter/src/foundation/diagnostics.dart:2939:45)
+I/flutter ( 1847): #8      TextTreeRenderer._debugRender (package:flutter/src/foundation/diagnostics.dart:1307:14)
+I/flutter ( 1847): #9      TextTreeRenderer.render (package:flutter/src/foundation/diagnostics.dart:1137:14)
+I/flutter ( 1847): #10     FlutterError.dumpErrorToConsole (package:flutter/src/foundation/assertions.dart:1030:13)
+I/flutter ( 1847): #11     TestWidgetsFlutterBinding._runTest.<anonymous closure> (package:flutter_test/src/binding.dart:1779:24)
+I/flutter ( 1847): #12     FlutterError.reportError (package:flutter/src/foundation/assertions.dart:1193:14)
+I/flutter ( 1847): #13     DebugOverflowIndicatorMixin._reportOverflow (package:flutter/src/rendering/debug_overflow_indicator.dart:259:18)
+I/flutter ( 1847): #14     DebugOverflowIndicatorMixin.paintOverflowIndicator (package:flutter/src/rendering/debug_overflow_indicator.dart:329:7)
+I/flutter ( 1847): #15     RenderFlex.paint.<anonymous closure> (package:flutter/src/rendering/flex.dart:1449:7)
+I/flutter ( 1847): #16     RenderFlex.paint (package:flutter/src/rendering/flex.dart:1457:6)
+I/flutter ( 1847): #17     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #18     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #19     RenderBoxContainerDefaultsMixin.defaultPaint (package:flutter/src/rendering/box.dart:3368:15)
+I/flutter ( 1847): #20     RenderFlex.paint (package:flutter/src/rendering/flex.dart:1402:7)
+I/flutter ( 1847): #21     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #22     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #23     RenderShiftedBox.paint (package:flutter/src/rendering/shifted_box.dart:98:15)
+I/flutter ( 1847): #24     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #25     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #26     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #27     RenderDecoratedBox.paint (package:flutter/src/rendering/proxy_box.dart:2512:11)
+I/flutter ( 1847): #28     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #29     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #30     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #31     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #32     PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #33     PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #34     PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #35     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #36     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #37     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #38     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #39     RenderSliverMultiBoxAdaptor.paint (package:flutter/src/rendering/sliver_multi_box_adaptor.dart:742:17)
+I/flutter ( 1847): #40     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #41     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #42     RenderSliverEdgeInsetsPadding.paint (package:flutter/src/rendering/sliver_padding.dart:270:15)
+I/flutter ( 1847): #43     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #44     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #45     RenderViewportBase._paintContents (package:flutter/src/rendering/viewport.dart:999:17)
+I/flutter ( 1847): #46     RenderViewportBase.paint (package:flutter/src/rendering/viewport.dart:984:7)
+D/EGL_emulation( 1847): app_time_stats: avg=122.80ms min=10.84ms max=264.26ms count=9
+I/flutter ( 1847): #47     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #48     PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #49     PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #50     PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #51     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #52     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #53     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #54     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #55     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #56     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #57     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #58     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #59     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #60     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #61     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #62     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #63     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #64     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #65     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #66     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #67     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #68     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #69     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #70     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #71     RenderCustomPaint.paint (package:flutter/src/rendering/custom_paint.dart:644:11)
+I/flutter ( 1847): #72     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #73     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #74     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #75     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #76     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #77     RenderClipRect.paint (package:flutter/src/rendering/proxy_box.dart:1653:17)
+I/flutter ( 1847): #78     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #79     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #80     RenderBoxContainerDefaultsMixin.defaultPaint (package:flutter/src/rendering/box.dart:3368:15)
+I/flutter ( 1847): #81     RenderCustomMultiChildLayoutBox.paint (package:flutter/src/rendering/custom_layout.dart:422:5)
+I/flutter ( 1847): #82     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #83     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #84     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #85     _RenderInkFeatures.paint (package:flutter/src/material/material.dart:634:11)
+I/flutter ( 1847): #86     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #87     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #88     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #89     RenderPhysicalModel.paint.<anonymous closure> (package:flutter/src/rendering/proxy_box.dart:2252:15)
+I/flutter ( 1847): #90     PaintingContext.pushClipRRect (package:flutter/src/rendering/object.dart:626:14)
+I/flutter ( 1847): #91     RenderPhysicalModel.paint (package:flutter/src/rendering/proxy_box.dart:2239:21)
+I/flutter ( 1847): #92     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #93     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #94     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #95     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #96     PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #97     RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #98     RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #99     PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #100    PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #101    PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #102    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #103    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #104    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #105    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #106    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #107    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #108    PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #109    PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #110    PaintingContext._compositeChild (package:flutter/src/rendering/object.dart:276:7)
+I/flutter ( 1847): #111    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:257:7)
+I/flutter ( 1847): #112    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #113    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #114    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #115    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #116    RenderOffstage.paint (package:flutter/src/rendering/proxy_box.dart:3943:11)
+I/flutter ( 1847): #117    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #118    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #119    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #120    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #121    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #122    _RenderTheaterMixin.paint (package:flutter/src/widgets/overlay.dart:1159:15)
+I/flutter ( 1847): #123    PaintingContext.pushLayer (package:flutter/src/rendering/object.dart:522:12)
+I/flutter ( 1847): #124    PaintingContext.pushClipRect (package:flutter/src/rendering/object.dart:589:7)
+I/flutter ( 1847): #125    _RenderTheater.paint (package:flutter/src/widgets/overlay.dart:1532:38)
+I/flutter ( 1847): #126    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #127    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #128    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #129    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #130    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #131    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #132    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #133    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #134    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #135    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #136    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #137    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #138    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #139    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #140    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #141    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #142    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #143    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #144    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #145    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #146    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #147    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #148    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #149    RenderProxyBoxMixin.paint (package:flutter/src/rendering/proxy_box.dart:143:13)
+I/flutter ( 1847): #150    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #151    PaintingContext.paintChild (package:flutter/src/rendering/object.dart:265:13)
+I/flutter ( 1847): #152    RenderView.paint (package:flutter/src/rendering/view.dart:320:15)
+I/flutter ( 1847): #153    RenderObject._paintWithContext (package:flutter/src/rendering/object.dart:3568:7)
+I/flutter ( 1847): #154    PaintingContext._repaintCompositedChild (package:flutter/src/rendering/object.dart:180:11)
+I/flutter ( 1847): #155    PaintingContext.repaintCompositedChild (package:flutter/src/rendering/object.dart:125:5)
+I/flutter ( 1847): #156    PipelineOwner.flushPaint (package:flutter/src/rendering/object.dart:1325:31)
+I/flutter ( 1847): #157    PipelineOwner.flushPaint (package:flutter/src/rendering/object.dart:1335:15)
+I/flutter ( 1847): #158    RendererBinding.drawFrame (package:flutter/src/rendering/binding.dart:645:23)
+I/flutter ( 1847): #159    WidgetsBinding.drawFrame (package:flutter/src/widgets/binding.dart:1573:13)
+I/flutter ( 1847): #160    RendererBinding._handlePersistentFrameCallback (package:flutter/src/rendering/binding.dart:509:5)
+I/flutter ( 1847): #161    SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430:15)
+I/flutter ( 1847): #162    SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1345:9)
+I/flutter ( 1847): #163    LiveTestWidgetsFlutterBinding.handleDrawFrame (package:flutter_test/src/binding.dart:2811:13)
+I/flutter ( 1847): #164    SchedulerBinding._handleDrawFrame (package:flutter/src/scheduler/binding.dart:1198:5)
+I/flutter ( 1847): #168    _invoke (dart:ui/hooks.dart:425:10)
+I/flutter ( 1847): #169    PlatformDispatcher._drawFrame (dart:ui/platform_dispatcher.dart:447:5)
+I/flutter ( 1847): #170    _drawFrame (dart:ui/hooks.dart:395:31)
+I/flutter ( 1847): (elided 3 frames from dart:async)
+I/flutter ( 1847): 
+I/flutter ( 1847): This exception was caught while trying to describe the user-relevant code of another error.
+I/flutter ( 1847): ════════════════════════════════════════════════════════════════════════════════════════════════════
+D/EGL_emulation( 1847): app_time_stats: avg=155.21ms min=5.19ms max=389.18ms count=7
+D/EGL_emulation( 1847): app_time_stats: avg=101.61ms min=16.18ms max=248.48ms count=10
+I/flutter ( 1847): Local UI checkpoint: saved plan deletion removed only its grocery provenance
+I/flutter ( 1847): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 1847): The following TestFailure was thrown running a test:
+I/flutter ( 1847): Expected: null
+I/flutter ( 1847):   Actual: 'Multiple exceptions (4) were detected during the running of the current test, and at
+I/flutter ( 1847): least one was unexpected.'
+I/flutter ( 1847): 
+I/flutter ( 1847): When the exception was thrown, this was the stack:
+I/flutter ( 1847): #4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:449:5)
+I/flutter ( 1847): <asynchronous suspension>
+I/flutter ( 1847): #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 1847): <asynchronous suspension>
+I/flutter ( 1847): #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 1847): <asynchronous suspension>
+I/flutter ( 1847): #7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 1847): <asynchronous suspension>
+I/flutter ( 1847): 
+I/flutter ( 1847): This was caught by the test expectation on the following line:
+I/flutter ( 1847):   file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart line 449
+I/flutter ( 1847): The test description was:
+I/flutter ( 1847):   local Android UI registration, verification, household and account switching
+I/flutter ( 1847): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1847): 03:08 +0: local Android UI registration, verification, household and account switching [E]
+I/flutter ( 1847):   Test failed. See exception logs above.
+I/flutter ( 1847):   The test description was: local Android UI registration, verification, household and account switching
+I/flutter ( 1847):   
+I/flutter ( 1847): 03:08 +0 -1: (tearDownAll)
+I/flutter ( 1847): 03:08 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Expected: null
+  Actual: 'Multiple exceptions (4) were detected during the
+running of the current test, and at least one was unexpected.'
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:449:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart line 449
+The test description was:
+  local Android UI registration, verification, household and
+  account switching
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+

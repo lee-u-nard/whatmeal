@@ -1,0 +1,15 @@
+{
+  "phase": "generate",
+  "projectId": "whatmeal-gemini-test-20261019",
+  "completedPhases": [
+    "owner signed in through normal UI to the approved cloud project",
+    "normal AI form configured for one participant one day Dinner"
+  ],
+  "authentication": "normal Android sign-in UI; accounts preverified by test-project admin",
+  "generationButtonTaps": 1,
+  "liveGenerationObserved": false,
+  "generationFailureKind": "permission",
+  "requestedModel": "gemini-3.8-flash",
+  "serverPersistenceVerified": false,
+  "outsiderDenied": false
+}

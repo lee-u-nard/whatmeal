@@ -1,0 +1,1 @@
+adb.exe: device 'emulator-5564' not found

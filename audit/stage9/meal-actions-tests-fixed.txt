@@ -1,0 +1,4 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_card_test.dart
+00:00 +0: accepted meal actions fit narrow card at text scale 1.0
+00:02 +1: accepted meal actions fit narrow card at text scale 2.0
+00:02 +2: All tests passed!

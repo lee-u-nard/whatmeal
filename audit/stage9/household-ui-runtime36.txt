@@ -1,0 +1,336 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.2 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.1 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.1 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.0.2 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.17 available)
+  google_sign_in_ios 5.9.0 (6.3.6 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.6.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.1 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage9\household-integration.apk...             1,173ms
+D/ProfileInstaller( 1881): Installing profile for com.example.whatmeal.local
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:58166/E2CknlkZhwQ=/
+VMServiceFlutterDriver: Isolate found with number: 7854714046771367
+VMServiceFlutterDriver: Isolate 7854714046771367 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 1881): 00:00 +0: local Android UI registration, verification, household and account switching
+I/Choreographer( 1881): Skipped 43 frames!  The application may be doing too much work on its main thread.
+I/Choreographer( 1881): Skipped 60 frames!  The application may be doing too much work on its main thread.
+VMServiceFlutterDriver: Connected to Flutter application.
+I/HWUI    ( 1881): Davey! duration=771ms; Flags=1, FrameTimelineVsyncId=17823, IntendedVsync=77362918704, Vsync=77379585370, InputEventId=0, HandleInputStart=77387894300, AnimationStart=77387907200, PerformTraversalsStart=77387925900, DrawStart=77454691800, FrameDeadline=77379585370, FrameInterval=77387881400, FrameStartTime=16666666, SyncQueued=77539110700, SyncStart=77539964500, IssueDrawCommandsStart=77576148500, SwapBuffers=77994272000, FrameCompleted=78135757900, DequeueBufferDuration=17636100, QueueBufferDuration=8083600, GpuCompleted=78118025500, SwapBuffersCompleted=78135757900, DisplayPresentTime=72904454231359566, CommandSubmissionCompleted=77994272000, 
+D/EGL_emulation( 1881): app_time_stats: avg=351.37ms min=69.34ms max=812.63ms count=3
+D/EGL_emulation( 1881): app_time_stats: avg=283.16ms min=231.94ms max=414.38ms count=4
+D/EGL_emulation( 1881): app_time_stats: avg=260.99ms min=228.24ms max=301.16ms count=4
+D/EGL_emulation( 1881): app_time_stats: avg=218.94ms min=206.43ms max=240.78ms count=5
+D/EGL_emulation( 1881): app_time_stats: avg=227.71ms min=219.56ms max=240.48ms count=5
+D/EGL_emulation( 1881): app_time_stats: avg=503.32ms min=227.97ms max=778.68ms count=2
+W/System  ( 1881): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1881): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1881): tagSocket(137) with statsTag=0xffffffff, statsUid=-1
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+W/GooglePlayServicesUtil( 1881): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1881): GooglePlayServices not available due to error 9
+W/Firestore( 1881): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 1881): tagSocket(149) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1881): app_time_stats: avg=2513.19ms min=2513.19ms max=2513.19ms count=1
+D/FirebaseAuth( 1881): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1881): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 1881): app_time_stats: avg=367.70ms min=112.70ms max=1043.75ms count=5
+W/WindowOnBackDispatcher( 1881): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1881): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1881): app_time_stats: avg=400.68ms min=119.69ms max=570.97ms count=3
+I/ImeTracker( 1881): com.example.whatmeal.local:7609f453: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F....ID 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+I/ImeTracker( 1881): com.example.whatmeal.local:3f59c2a4: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F....ID 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+I/ImeTracker( 1881): com.example.whatmeal.local:702c591d: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F....ID 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+I/ImeTracker( 1881): com.example.whatmeal.local:251795fe: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F....ID 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+I/.whatmeal.local( 1881): Background concurrent mark compact GC freed 2144KB AllocSpace bytes, 7(332KB) LOS objects, 49% free, 4397KB/8794KB, paused 3.279ms,2.433ms total 147.105ms
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): getSelectedText on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): requestCursorUpdates on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+I/ImeTracker( 1881): com.example.whatmeal.local:d83cea88: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+I/ImeTracker( 1881): com.example.whatmeal.local:e753bd6: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/EGL_emulation( 1881): app_time_stats: avg=175.40ms min=32.19ms max=267.73ms count=6
+I/ImeTracker( 1881): com.example.whatmeal.local:5a5411e7: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+I/ImeTracker( 1881): com.example.whatmeal.local:cff2d0d0: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+D/InputMethodManager( 1881): showSoftInput() view=io.flutter.embedding.android.FlutterView{9f38987 VFE...... .F...... 0,0-320,640 #1 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+D/InsetsController( 1881): show(ime(), fromIme=true)
+W/InteractionJankMonitor( 1881): Initializing without READ_DEVICE_CONFIG permission. enabled=true, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=com.example.whatmeal.local
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/EGL_emulation( 1881): app_time_stats: avg=6523.99ms min=1478.24ms max=11569.74ms count=2
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+W/RemoteInputConnectionImpl( 1881): getSelectedText on inactive InputConnection
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+W/RemoteInputConnectionImpl( 1881): requestCursorUpdates on inactive InputConnection
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+I/ImeTracker( 1881): com.example.whatmeal.local:3f59c2a4: onShown
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+D/EGL_emulation( 1881): app_time_stats: avg=155.28ms min=85.04ms max=231.45ms count=7
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+D/InsetsController( 1881): show(ime(), fromIme=true)
+I/ImeTracker( 1881): com.example.whatmeal.local:702c591d: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InsetsController( 1881): show(ime(), fromIme=true)
+I/ImeTracker( 1881): com.example.whatmeal.local:251795fe: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/flutter ( 1881): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 1881): The following assertion was thrown running a test:
+I/flutter ( 1881): Finder specifies a widget that would not receive pointer events.
+I/flutter ( 1881): A call to tap() with finder "Found 1 widget with type "ElevatedButton" that are ancestors of widget
+I/flutter ( 1881): with text "Create Account" (ignoring all but first): [
+I/flutter ( 1881):   ElevatedButton(style: ButtonStyle#f03ec(textStyle: WidgetStatePropertyAll(null), backgroundColor:
+I/flutter ( 1881): WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red:
+I/flutter ( 1881): 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB)}), foregroundColor:
+I/flutter ( 1881): WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red:
+I/flutter ( 1881): 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor:
+I/flutter ( 1881): WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000,
+I/flutter ( 1881): blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000,
+I/flutter ( 1881): green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020,
+I/flutter ( 1881): red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), elevation:
+I/flutter ( 1881): WidgetStateMapper<double>({WidgetState.disabled: 0.0, WidgetState.pressed: 6.0, WidgetState.hovered:
+I/flutter ( 1881): 2.0, WidgetState.focused: 2.0, WidgetState.any: 0.0}), shape:
+I/flutter ( 1881): WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width: 0.0, style: none),
+I/flutter ( 1881): BorderRadius.circular(12.0))), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled:
+I/flutter ( 1881): null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery,
+I/flutter ( 1881): _InheritedTheme, _LocalizationsScope-[GlobalKey#6dc6f], _ScrollableScope], state:
+I/flutter ( 1881): _ButtonStyleState#a0226),
+I/flutter ( 1881): ]" derived an Offset (Offset(160.0, 436.0)) that would not hit test on the specified widget.
+I/flutter ( 1881): Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot
+I/flutter ( 1881): receive pointer events.
+I/flutter ( 1881): The finder corresponds to this RenderBox: RenderSemanticsAnnotations#f00de(creator: Semantics ← ElevatedButton ← SizedBox ← Column ← Padding ← DecoratedBox ← Container ← Column ← _FormScope ← WillPopScope ← Semantics ← Form-[LabeledGlobalKey<FormState>#e3107] ← ⋯, parentData: <none> (can use size), constraints: BoxConstraints(w=230.0, h=50.0), semantics node: SemanticsNode#30, semantic boundary, size: Size(230.0, 50.0))
+I/flutter ( 1881): The hit test result at that offset is: HitTestResult(_RenderInkFeatures#8a00a@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderPhysicalModel#a382a@Offset(160.0, 436.0), RenderSemanticsAnnotations#eed5b@Offset(160.0,
+I/flutter ( 1881): 436.0), RenderRepaintBoundary#47c69@Offset(160.0, 436.0), RenderIgnorePointer#3d84f@Offset(160.0,
+I/flutter ( 1881): 436.0), RenderRepaintBoundary#b6181@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderSemanticsAnnotations#a86fb@Offset(160.0, 436.0), RenderOffstage#56957@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderSemanticsAnnotations#a16e4@Offset(160.0, 436.0), _RenderTheater#11382@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderAbsorbPointer#d5172@Offset(160.0, 436.0), RenderPointerListener#170d3@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderSemanticsAnnotations#b6bc5@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderSemanticsAnnotations#ab054@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderSemanticsAnnotations#d3ccf@Offset(160.0, 436.0), RenderTapRegionSurface#99fed@Offset(160.0,
+I/flutter ( 1881): 436.0), RenderSemanticsAnnotations#88038@Offset(160.0, 436.0),
+I/flutter ( 1881): RenderSemanticsAnnotations#7bec8@Offset(160.0, 436.0),
+I/flutter ( 1881): HitTestEntry<HitTestTarget>#7dee2(_ReusableRenderView#5d852),
+I/flutter ( 1881): HitTestEntry<HitTestTarget>#fceeb(<IntegrationTestWidgetsFlutterBinding>))
+I/flutter ( 1881): If you expected this target not to be able to receive pointer events, pass "warnIfMissed: false" to
+I/flutter ( 1881): "tap()".
+I/flutter ( 1881): To make this error into a non-fatal warning, set WidgetController.hitTestWarningShouldBeFatal to
+I/flutter ( 1881): false.
+I/flutter ( 1881): 
+I/flutter ( 1881): When the exception was thrown, this was the stack:
+I/flutter ( 1881): #0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2133:11)
+I/flutter ( 1881): #1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+I/flutter ( 1881): #2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+I/flutter ( 1881): #3      main.<anonymous closure>.tap (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:43:20)
+I/flutter ( 1881): <asynchronous suspension>
+I/flutter ( 1881): #4      main.<anonymous closure>.register (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:64:7)
+I/flutter ( 1881): <asynchronous suspension>
+I/flutter ( 1881): #5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:150:24)
+I/flutter ( 1881): <asynchronous suspension>
+I/flutter ( 1881): #6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 1881): <asynchronous suspension>
+I/flutter ( 1881): #7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 1881): <asynchronous suspension>
+I/flutter ( 1881): #8      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 1881): <asynchronous suspension>
+I/flutter ( 1881): 
+I/flutter ( 1881): The test description was:
+I/flutter ( 1881):   local Android UI registration, verification, household and account switching
+I/flutter ( 1881): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1881): 00:17 +0: local Android UI registration, verification, household and account switching [E]
+I/flutter ( 1881):   Test failed. See exception logs above.
+I/flutter ( 1881):   The test description was: local Android UI registration, verification, household and account switching
+I/flutter ( 1881):   
+I/flutter ( 1881): 00:17 +0 -1: (tearDownAll)
+I/flutter ( 1881): 00:17 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: local Android UI registration, verification, household and account switching
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following assertion was thrown running a test:
+Finder specifies a widget that would not receive pointer events.
+A call to tap() with finder "Found 1 widget with type
+"ElevatedButton" that are ancestors of widget with text "Create
+Account" (ignoring all but first): [
+  ElevatedButton(style: ButtonStyle#f03ec(textStyle:
+WidgetStatePropertyAll(null), backgroundColor:
+WidgetStateMapper<Color?>({WidgetState.disabled: null,
+WidgetState.any: Color(alpha: 1.0000, red: 0.1804, green: 0.4902,
+blue: 0.1961, colorSpace: ColorSpace.sRGB)}), foregroundColor:
+WidgetStateMapper<Color?>({WidgetState.disabled: null,
+WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000,
+blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor:
+WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha:
+0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace:
+ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red:
+1.0000, green: 1.0000, blue: 1.0000, colorSpace:
+ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red:
+1.0000, green: 1.0000, blue: 1.0000, colorSpace:
+ColorSpace.sRGB)}), elevation:
+WidgetStateMapper<double>({WidgetState.disabled: 0.0,
+WidgetState.pressed: 6.0, WidgetState.hovered: 2.0,
+WidgetState.focused: 2.0, WidgetState.any: 0.0}), shape:
+WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width:
+0.0, style: none), BorderRadius.circular(12.0))), mouseCursor:
+WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null,
+WidgetState.any: null})), dependencies: [IconTheme,
+InheritedCupertinoTheme, MediaQuery, _InheritedTheme,
+_LocalizationsScope-[GlobalKey#6dc6f], _ScrollableScope], state:
+_ButtonStyleState#a0226),
+]" derived an Offset (Offset(160.0, 436.0)) that would not hit
+test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is
+obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#f00de(parentData: <none> (can use size), constraints: BoxConstraints(w=230.0, h=50.0), semantics node: SemanticsNode#30, semantic boundary, size: Size(230.0, 50.0))
+The hit test result at that offset is:
+HitTestResult(_RenderInkFeatures#8a00a@Offset(160.0, 436.0),
+RenderPhysicalModel#a382a@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#eed5b@Offset(160.0, 436.0),
+RenderRepaintBoundary#47c69@Offset(160.0, 436.0),
+RenderIgnorePointer#3d84f@Offset(160.0, 436.0),
+RenderRepaintBoundary#b6181@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#a86fb@Offset(160.0, 436.0),
+RenderOffstage#56957@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#a16e4@Offset(160.0, 436.0),
+_RenderTheater#11382@Offset(160.0, 436.0),
+RenderAbsorbPointer#d5172@Offset(160.0, 436.0),
+RenderPointerListener#170d3@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#b6bc5@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#ab054@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#d3ccf@Offset(160.0, 436.0),
+RenderTapRegionSurface#99fed@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#88038@Offset(160.0, 436.0),
+RenderSemanticsAnnotations#7bec8@Offset(160.0, 436.0),
+HitTestEntry<HitTestTarget>#7dee2(_ReusableRenderView#5d852),
+HitTestEntry<HitTestTarget>#fceeb(<IntegrationTestWidgetsFlutterBinding>))
+If you expected this target not to be able to receive pointer
+events, pass "warnIfMissed: false" to "tap()".
+To make this error into a non-fatal warning, set
+WidgetController.hitTestWarningShouldBeFatal to false.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2133:11)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure>.tap (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:43:20)
+<asynchronous suspension>
+#4      main.<anonymous closure>.register (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:64:7)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/local_workflow_test.dart:150:24)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+The test description was:
+  local Android UI registration, verification, household and
+  account switching
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+
+W/RemoteInputConnectionImpl( 1881): getSelectedText on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): requestCursorUpdates on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+W/RemoteInputConnectionImpl( 1881): getTextBeforeCursor on inactive InputConnection
+D/InsetsController( 1881): show(ime(), fromIme=true)
+I/ImeTracker( 1881): com.example.whatmeal.local:d83cea88: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InsetsController( 1881): show(ime(), fromIme=true)
+I/ImeTracker( 1881): com.example.whatmeal.local:e753bd6: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InputConnectionAdaptor( 1881): The input method toggled cursor monitoring on
+D/FlutterJNI( 1881): Sending viewport metrics to the engine.
+D/InsetsController( 1881): show(ime(), fromIme=true)
+I/ImeTracker( 1881): com.example.whatmeal.local:cff2d0d0: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 80, 19054, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:PREDICTION_ERROR, 19085, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed App frame:UNKNOWN: 24, 19100, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 24, 19100, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:PREDICTION_ERROR, 19115, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:PREDICTION_ERROR, 19130, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed App frame:UNKNOWN: 24, 19145, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 24, 19145, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed App frame:UNKNOWN: 24, 19167, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 24, 19167, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:PREDICTION_ERROR, 19210, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed App frame:UNKNOWN: 88, 19225, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 88, 19225, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:PREDICTION_ERROR, 19232, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 80, 19248, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 80, 19270, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 80, 19278, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+W/FrameTracker( 1881): Missed SF frame:UNKNOWN: 80, 19293, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@com.example.whatmeal.local>
+V/PerfettoTrigger( 1881): Not triggering com.android.telemetry.interaction-jank-monitor-80 - not enough time since last trigger

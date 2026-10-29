@@ -1,0 +1,9 @@
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\models\household_action_error.dart:23:5 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\pages\family_space_page.dart:218:13 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\widgets\household_access_sheet.dart:69:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\widgets\household_access_sheet.dart:76:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\widgets\household_access_sheet.dart:80:7 - curly_braces_in_flow_control_structures
+
+5 issues found. (ran in 57.6s)

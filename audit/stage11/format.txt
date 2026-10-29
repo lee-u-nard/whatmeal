@@ -1,0 +1,3 @@
+Formatted lib\features\pantry\pages\pantry_page.dart
+Formatted lib\features\pantry\widgets\add_pantry_item_sheet.dart
+Formatted 13 files (2 changed) in 0.11 seconds.

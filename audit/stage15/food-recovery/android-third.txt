@@ -1,0 +1,184 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+! cloud_firestore_platform_interface 6.6.12 from path third_party\cloud_firestore_platform_interface (overridden)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  [local-token-redacted] 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  [local-token-redacted] 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+49 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage15\food-recovery\integration.apk...           6.9s
+W/.whatmeal.local( 3648): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/.whatmeal.local( 3648): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 3648): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 3648): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 3648): Width is zero. 0,0
+W/HWUI    ( 3648): Unknown dataspace 0
+I/WindowExtensionsImpl( 3648): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 3648): Width is zero. 0,0
+D/FlutterJNI( 3648): Sending viewport metrics to the engine.
+I/Gralloc4( 3648): mapper 4.x is not supported
+W/HWUI    ( 3648): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 3648): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/.whatmeal.local( 3648): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 3648): Skipped 61 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 3648): Sending viewport metrics to the engine.
+I/.whatmeal.local( 3648): Compiler allocated 5417KB to compile void android.view.ViewRootImpl.performTraversals()
+D/ProfileInstaller( 3648): Installing profile for com.example.whatmeal.local
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:50550/[vm-session-redacted]/
+VMServiceFlutterDriver: Isolate found with number: 4408016971846551
+VMServiceFlutterDriver: Isolate 4408016971846551 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 3648): 00:00 +0: local meal pantry grocery transaction and terminal recovery
+I/Choreographer( 3648): Skipped 32 frames!  The application may be doing too much work on its main thread.
+VMServiceFlutterDriver: Connected to Flutter application.
+W/.whatmeal.local( 3648): Verification of void com.google.android.gms.internal.firebase-auth-api.zzdp.<clinit>() took 127.841ms (312.89 bytecodes/s) (3384B approximate peak alloc)
+D/FirebaseAuth( 3648): Notifying id token listeners about user ([uid-redacted]).
+I/FirebaseApp( 3648): Device unlocked: initializing all Firebase APIs for app food-1792273997108655
+W/Metadata( 3648): Failed to find package android.content.pm.PackageManager$NameNotFoundException: com.google.android.gms
+I/.whatmeal.local( 3648): Background concurrent mark compact GC freed 3761KB AllocSpace bytes, 17(436KB) LOS objects, 49% free, 3486KB/6972KB, paused 146us,18.503ms total 164.345ms
+I/FirebaseAuth( 3648): Creating user with food-owner-1792273997108655@example.test with empty reCAPTCHA token
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 3648): tagSocket(6) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 3648): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 3648): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3648): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3648): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 3648): Notifying id token listeners about user ([uid-redacted]).
+W/GooglePlayServicesUtil( 3648): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3648): GooglePlayServices not available due to error 9
+W/Firestore( 3648): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 3648): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+I/.whatmeal.local( 3648): Background concurrent mark compact GC freed 2296KB AllocSpace bytes, 3(124KB) LOS objects, 49% free, 4724KB/9449KB, paused 2.577ms,1.568ms total 287.584ms
+I/flutter ( 3648): Local food checkpoint: manual saved plan identity and dates persisted with two pending meals
+D/FlutterJNI( 3648): Sending viewport metrics to the engine.
+W/Firestore( 3648): (25.1.4) [WatchStream]: (f17aa1a) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+D/TrafficStats( 3648): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+W/Firestore( 3648): (25.1.4) [WriteStream]: (9a59ac9) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+W/Firestore( 3648): (25.1.4) [WatchStream]: (f17aa1a) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 3648): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3648): GooglePlayServices not available due to error 9
+W/Firestore( 3648): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 3648): tagSocket(145) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 3648): tagSocket(148) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 3648): tagSocket(152) with statsTag=0xffffffff, statsUid=-1
+D/FirebaseAuth( 3648): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 3648): Notifying auth state listeners about a sign-out event.
+I/flutter ( 3648): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 3648): The following TestFailure was thrown running a test:
+I/flutter ( 3648): Expected: contains 'unknown'
+I/flutter ( 3648):   Actual: ['unavailable', 'deadline-exceeded']
+I/flutter ( 3648):    Which: does not contain 'unknown'
+I/flutter ( 3648): 
+I/flutter ( 3648): When the exception was thrown, this was the stack:
+I/flutter ( 3648): #4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart:264:7)
+I/flutter ( 3648): <asynchronous suspension>
+I/flutter ( 3648): #5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 3648): <asynchronous suspension>
+I/flutter ( 3648): #6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 3648): <asynchronous suspension>
+I/flutter ( 3648): #7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 3648): <asynchronous suspension>
+I/flutter ( 3648): 
+I/flutter ( 3648): This was caught by the test expectation on the following line:
+I/flutter ( 3648):   file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart line 264
+I/flutter ( 3648): The test description was:
+I/flutter ( 3648):   local meal pantry grocery transaction and terminal recovery
+I/flutter ( 3648): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 3648): 00:26 +0: local meal pantry grocery transaction and terminal recovery [E]
+I/flutter ( 3648):   Test failed. See exception logs above.
+I/flutter ( 3648):   The test description was: local meal pantry grocery transaction and terminal recovery
+I/flutter ( 3648):   
+I/flutter ( 3648): 00:26 +0 -1: (tearDownAll)
+Failure Details:
+Failure in method: local meal pantry grocery transaction and terminal recovery
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Expected: contains 'unknown'
+  Actual: ['unavailable', 'deadline-exceeded']
+   Which: does not contain 'unknown'
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart:264:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart line 264
+The test description was:
+  local meal pantry grocery transaction and terminal recovery
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+
+I/flutter ( 3648): 00:26 +1 -1: Some tests failed.
+Leaving the application running.

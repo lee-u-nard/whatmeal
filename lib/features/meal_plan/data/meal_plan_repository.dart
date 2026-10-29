@@ -1,4 +1,6 @@
 import 'dart:async';
+import '../../../core/services/meal_replacement_store.dart';
+import '../../../core/services/meal_workflow_store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import '../models/meal_plan.dart';
@@ -18,6 +20,7 @@ class MealPlanRepository extends ChangeNotifier {
   final _firestore = FirebaseFirestore.instance;
   String? _uid;
   String? _familyId;
+  int _scopeVersion = 0;
 
   StreamSubscription? _personalSub;
   StreamSubscription? _familySub;
@@ -57,16 +60,27 @@ class MealPlanRepository extends ChangeNotifier {
       : null;
 
   void _listenToPlans() {
+    final scope = ++_scopeVersion;
+    final family = FamilyRepository.instance.value;
+    _familyId = _uid != null && family?.memberForUid(_uid) != null ? family!.id : null;
     _personalSub?.cancel();
     _familySub?.cancel();
+    _personalPlans = [];
+    _familyPlans = [];
+    _mergePlans();
 
     if (_personalPlansCol != null) {
       _personalSub = _personalPlansCol!
           .orderBy('createdAt', descending: true)
           .snapshots()
           .listen((snapshot) {
+        if (scope != _scopeVersion) return;
         _personalPlans =
             snapshot.docs.map((doc) => MealPlan.fromFirestore(doc)).toList();
+        _mergePlans();
+      }, onError: (Object error) {
+        if (scope != _scopeVersion) return;
+        _personalPlans = [];
         _mergePlans();
       });
     } else {
@@ -79,8 +93,13 @@ class MealPlanRepository extends ChangeNotifier {
           .orderBy('createdAt', descending: true)
           .snapshots()
           .listen((snapshot) {
+        if (scope != _scopeVersion) return;
         _familyPlans =
             snapshot.docs.map((doc) => MealPlan.fromFirestore(doc)).toList();
+        _mergePlans();
+      }, onError: (Object error) {
+        if (scope != _scopeVersion) return;
+        _familyPlans = [];
         _mergePlans();
       });
     } else {
@@ -131,7 +150,7 @@ class MealPlanRepository extends ChangeNotifier {
 
       batch.set(planRef, plan.toFirestore());
       for (final meal in meals) {
-        batch.set(planRef.collection('meals').doc(), meal.toFirestore());
+        batch.set(planRef.collection('meals').doc(meal.id.isEmpty ? null : meal.id), meal.toFirestore());
       }
 
       await batch.commit();
@@ -149,7 +168,7 @@ class MealPlanRepository extends ChangeNotifier {
       return planRef.id;
     } catch (e) {
       debugPrint(
-          '[SAVE-DEBUG] meal plan save FAILED uid=$_uid familyId=$_familyId error=$e');
+          '[SAVE-DEBUG] meal plan save FAILED uid=$_uid familyId=$_familyId error=${e.runtimeType}');
       rethrow;
     }
   }
@@ -212,14 +231,7 @@ class MealPlanRepository extends ChangeNotifier {
   Future<void> updateMealStatus(
       String planId, String mealId, MealStatus status) async {
     final col = _getColForPlan(planId);
-    final batch = _firestore.batch();
-    batch.update(col.doc(planId).collection('meals').doc(mealId), {
-      'status': status.name,
-      'accepted': status == MealStatus.accepted,
-    });
-    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
-        SetOptions(merge: true));
-    await batch.commit();
+    await MealWorkflowStore(_firestore).setStatus(plan: col.doc(planId), mealId: mealId, status: status, actorUid: _uid!);
   }
 
   /// Replace an existing meal with a newly generated meal.
@@ -230,46 +242,20 @@ class MealPlanRepository extends ChangeNotifier {
     Meal newMeal, {
     MealStatus newMealStatus = MealStatus.pending,
   }) async {
-    final col = _getColForPlan(planId);
-    final batch = _firestore.batch();
-
-    // Get old meal for notification
-    final oldMealDoc =
-        await col.doc(planId).collection('meals').doc(oldMealId).get();
-    final oldMealTitle = oldMealDoc.data()?['title'] ?? 'Meal';
-    final mealType = oldMealDoc.data()?['type'] ?? 'Meal';
-
-    // Mark previous meal as replaced
-    final oldDocRef = col.doc(planId).collection('meals').doc(oldMealId);
-    batch.update(oldDocRef, {
-      'status': MealStatus.replaced.name,
-      'accepted': false,
-      'replacedByMealId': newMeal.id,
-    });
-
-    // Add new meal with replacedMealId set
-    final newDocRef = newMeal.id.isNotEmpty
-        ? col.doc(planId).collection('meals').doc(newMeal.id)
-        : col.doc(planId).collection('meals').doc();
-
-    final preparedNewMeal = newMeal.copyWith(
+    final uid = _uid;
+    final familyId = _familyId;
+    final scope = _scopeVersion;
+    final result = await MealReplacementStore(_firestore).replace(
+      plan: _getColForPlan(planId).doc(planId),
+      oldMealId: oldMealId,
+      replacement: newMeal,
       status: newMealStatus,
-      replacedMealId: oldMealId,
+      actorUid: uid,
     );
-    batch.set(newDocRef, preparedNewMeal.toFirestore());
-    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
-        SetOptions(merge: true));
-
-    await batch.commit();
-
-    // Send household notification
-    HouseholdNotificationService.instance.notifyMealReplaced(
-      planId: planId,
-      mealId: newMeal.id,
-      oldMealTitle: oldMealTitle,
-      newMealTitle: newMeal.title,
-      mealType: mealType,
-    );
+    if (_scopeVersion != scope || _uid != uid || _familyId != familyId) {
+      throw StateError('Account or household changed. Reload the plan.');
+    }
+    if (!result.created) return;
   }
 
   /// Toggle a meal's accepted status.
@@ -290,8 +276,7 @@ class MealPlanRepository extends ChangeNotifier {
     batch.update(col.doc(planId).collection('meals').doc(mealId), {
       'isFavorite': isFavorite,
     });
-    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
-        SetOptions(merge: true));
+    batch.update(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()});
     await batch.commit();
   }
 
@@ -303,8 +288,7 @@ class MealPlanRepository extends ChangeNotifier {
       col.doc(planId).collection('meals').doc(mealId),
       meal.toFirestore(),
     );
-    batch.set(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()},
-        SetOptions(merge: true));
+    batch.update(col.doc(planId), {'updatedAt': FieldValue.serverTimestamp()});
     await batch.commit();
   }
 

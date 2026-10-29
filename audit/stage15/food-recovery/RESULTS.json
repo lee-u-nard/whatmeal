@@ -1,0 +1,81 @@
+{
+  "Date": "2026-10-18",
+  "DefectGroupsFixed": 5,
+  "NewRegressionCases": 10,
+  "Flutter": {
+    "Seconds": 173,
+    "Evidence": "flutter-tests-final.txt",
+    "Passed": 294,
+    "Exit": 0
+  },
+  "Analysis": {
+    "Issues": 0,
+    "Seconds": 32.5,
+    "Exit": 0
+  },
+  "Android": {
+    "Scope": "Single AVD, disposable personal account, named native Firebase client, real GroceryPage and pantry editor, injected denied query boundaries and transport gate",
+    "Seconds": 87,
+    "NormalLoginPreserved": true,
+    "FailedEarlierRuns": 4,
+    "WorkflowTests": 1,
+    "Checkpoints": 10,
+    "Exit": 0
+  },
+  "Build": {
+    "Sha256": "D80D00FB8A7D2652B6B2558A84D5CD4059A220B90C7709125C1B8A349F3FB06B",
+    "ProductionRelease": false,
+    "Artifact": "build/stage15/food-recovery/whatmeal-local-tester.apk",
+    "Seconds": 47.9,
+    "Project": "demo-whatmeal-audit",
+    "Package": "com.example.whatmeal.local",
+    "Exit": 0
+  },
+  "Startup": {
+    "AppForeground": true,
+    "HomeVisible": true,
+    "SignInVisible": false,
+    "RetryVisible": false,
+    "SystemAnrVisible": false,
+    "PrimaryAuthListening": false,
+    "PrimaryFirestoreListening": false,
+    "UiReadyWithinBound": true,
+    "DataCleared": false,
+    "Scope": "Standalone local tester startup with former primary backend unavailable; not recovered server-data evidence"
+  },
+  "FixturePreservation": {
+    "BeforeCount": 9,
+    "AfterCount": 14,
+    "AllPreviousDisposableUsersRetained": true,
+    "NormalAccountPresentInFixture": false,
+    "ExportExit": 0
+  },
+  "ProtectedFiles": [
+    {
+      "File": "firestore.rules",
+      "Unchanged": true
+    },
+    {
+      "File": "security_acceptance.mjs",
+      "Unchanged": true
+    },
+    {
+      "File": "AndroidManifest.xml",
+      "Unchanged": true
+    },
+    {
+      "File": "google-services.json",
+      "Unchanged": true
+    },
+    {
+      "File": "main.dart",
+      "Unchanged": true
+    }
+  ],
+  "HistoricalSecurityCases": 65,
+  "SecuritySuiteRerun": false,
+  "ProductionModified": false,
+  "LiveAiPending": true,
+  "NormalServerRecoveryVerified": false,
+  "PrivateBackupModified": false
+}

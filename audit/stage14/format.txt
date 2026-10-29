@@ -1,0 +1,4 @@
+Formatted test/notification_recovery_test.dart
+Formatted integration_test/stage14_inbox_settings_test.dart
+Formatted test_driver/stage14_inbox.dart
+Formatted 5 files (3 changed) in 0.03 seconds.

@@ -1,0 +1,11 @@
+{
+  "AppForeground": true,
+  "HomeVisible": true,
+  "DemoHouseholdVisible": true,
+  "TwoMembersVisible": true,
+  "SystemAnrVisible": false,
+  "OriginalBackendRunning": false,
+  "DemoBackendRunning": true,
+  "DataCleared": false,
+  "Scope": "Separate release demo app after actual backend export/import and cold relaunch"
+}

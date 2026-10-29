@@ -1,0 +1,16 @@
+{
+  "project": "whatmeal-gemini-test-20261019",
+  "aiRequests": 0,
+  "results": [
+    {
+      "case": "atomic-parent-and-meal",
+      "http": 200,
+      "status": "OK"
+    },
+    {
+      "case": "remove-only-probe",
+      "http": 200,
+      "status": "OK"
+    }
+  ]
+}

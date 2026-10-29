@@ -3,10 +3,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import '../models/user_model.dart';
+import '../models/account_action_failure.dart';
+import '../../../core/services/secure_key_store.dart';
+import '../../../core/services/notification_service.dart';
 
 class AuthRepository extends ValueNotifier<UserModel?> {
-  AuthRepository._() : super(null) {
+  AuthRepository({
+    required FirebaseAuth auth,
+    required FirebaseFirestore firestore,
+    Stream<DocumentSnapshot<Map<String, dynamic>>> Function(String)?
+        watchProfile,
+    Future<void> Function()? cleanupNotifications,
+    Future<void> Function(String)? clearKey,
+  })  : _auth = auth,
+        _firestore = firestore,
+        _watchProfile = watchProfile,
+        _cleanupNotifications = cleanupNotifications,
+        _clearKey = clearKey,
+        super(null) {
     _authSubscription = _auth.authStateChanges().listen((fbUser) async {
+      if (_disposed) return;
+      ++_session;
+      ++_profileEpoch;
+      profileError = null;
       if (fbUser == null) {
         value = null;
         _userDocSubscription?.cancel();
@@ -17,6 +36,7 @@ class AuthRepository extends ValueNotifier<UserModel?> {
           notifyListeners();
         }
       } else {
+        if (_uid != fbUser.uid) value = null;
         _uid = fbUser.uid;
         _listenToUserDocument();
         if (isInitializing) {
@@ -29,14 +49,31 @@ class AuthRepository extends ValueNotifier<UserModel?> {
 
   bool isInitializing = true;
 
-  static final instance = AuthRepository._();
+  static final instance = AuthRepository(
+      auth: FirebaseAuth.instance, firestore: FirebaseFirestore.instance);
 
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth;
+  final FirebaseFirestore _firestore;
+  final Stream<DocumentSnapshot<Map<String, dynamic>>> Function(String)?
+      _watchProfile;
+  final Future<void> Function()? _cleanupNotifications;
+  final Future<void> Function(String)? _clearKey;
+  bool _disposed = false;
+  int _profileEpoch = 0;
+  String? profileError;
+  void retryProfile() {
+    if (_disposed || _uid == null) return;
+    profileError = null;
+    _listenToUserDocument();
+    notifyListeners();
+  }
+
   StreamSubscription<User?>? _authSubscription;
   StreamSubscription<DocumentSnapshot>? _userDocSubscription;
   String? _uid;
+  int _session = 0;
 
+  int get sessionVersion => _session;
   bool get isAuthenticated => value != null;
   bool get isEmailVerified => _auth.currentUser?.emailVerified ?? false;
   User? get currentUser => _auth.currentUser;
@@ -45,13 +82,15 @@ class AuthRepository extends ValueNotifier<UserModel?> {
   /// Reload the current Firebase user to refresh verification status.
   Future<void> reloadUser() async {
     final user = _auth.currentUser;
+    final session = _session;
     if (user != null) {
       await user.reload();
+      if (session != _session) return;
       final updated = _auth.currentUser;
       if (updated != null && value != null) {
         value = value!.copyWith(
           isEmailVerified: updated.emailVerified,
-          name: updated.displayName ?? value!.name,
+          name: value!.name,
           email: updated.email ?? value!.email,
         );
         notifyListeners();
@@ -80,12 +119,20 @@ class AuthRepository extends ValueNotifier<UserModel?> {
 
       final fbUser = credential.user!;
       // Ensure the user document is created/updated keyed by the Firebase UID
-      await _firestore.collection('users').doc(fbUser.uid).set({
-        'uid': fbUser.uid,
-        'email': fbUser.email,
-        'displayName': fbUser.displayName ?? email.trim().split('@')[0],
-        'lastLoginAt': FieldValue.serverTimestamp(),
-      }, SetOptions(merge: true));
+      final ref = _firestore.collection('users').doc(fbUser.uid);
+      await _firestore.runTransaction((tx) async {
+        final existing = await tx.get(ref);
+        tx.set(
+            ref,
+            {
+              'uid': fbUser.uid,
+              'email': fbUser.email,
+              if (!existing.exists)
+                'displayName': fbUser.displayName ?? email.trim().split('@')[0],
+              'lastLoginAt': FieldValue.serverTimestamp(),
+            },
+            SetOptions(merge: true));
+      });
     } on FirebaseAuthException catch (e) {
       throw _mapLoginError(email.trim(), e);
     }
@@ -113,7 +160,7 @@ class AuthRepository extends ValueNotifier<UserModel?> {
       try {
         await fbUser.sendEmailVerification();
       } catch (e) {
-        debugPrint('[AuthRepo] Email verification notice: $e');
+        debugPrint('[AuthRepo] Email verification failed (${e.runtimeType})');
       }
 
       // Store user document keyed strictly by UID
@@ -129,21 +176,44 @@ class AuthRepository extends ValueNotifier<UserModel?> {
   }
 
   Future<void> logout() async {
+    final user = _auth.currentUser;
+    final session = _session;
+    await (_cleanupNotifications?.call() ??
+        NotificationService.instance.cleanupOnLogout());
+    if (user != null) {
+      _requireSession(user, session);
+    } else if (_auth.currentUser != null || _session != session) {
+      throw const AccountActionFailure(AccountFailureKind.sessionChanged);
+    }
     await _auth.signOut();
+    if (_auth.currentUser != null) {
+      throw const AccountActionFailure(AccountFailureKind.sessionChanged);
+    }
+    if (user != null) {
+      await (_clearKey?.call(user.uid) ??
+          SecureKeyStore.instance.clearApiKey(user.uid));
+    }
   }
 
   void _listenToUserDocument() {
     _userDocSubscription?.cancel();
     if (_uid == null) return;
-
-    _userDocSubscription = _firestore
-        .collection('users')
-        .doc(_uid)
-        .snapshots()
+    final listeningUid = _uid;
+    final session = _session;
+    final epoch = ++_profileEpoch;
+    _userDocSubscription = (_watchProfile?.call(listeningUid!) ??
+            _firestore.collection('users').doc(listeningUid).snapshots())
         .listen((snapshot) {
       final fbUser = _auth.currentUser;
-      if (fbUser == null) return;
+      if (_disposed ||
+          epoch != _profileEpoch ||
+          session != _session ||
+          fbUser == null ||
+          fbUser.uid != listeningUid) {
+        return;
+      }
 
+      profileError = null;
       if (snapshot.exists) {
         final data = snapshot.data()!;
         value = UserModel(
@@ -163,8 +233,15 @@ class AuthRepository extends ValueNotifier<UserModel?> {
         );
       }
     }, onError: (error) {
-      debugPrint('[AuthRepo] User document listener error: $error');
-      // On error, still provide basic user info from FirebaseAuth
+      if (_disposed ||
+          epoch != _profileEpoch ||
+          session != _session ||
+          _auth.currentUser?.uid != listeningUid) {
+        return;
+      }
+      debugPrint('[AuthRepo] Profile listener failed (${error.runtimeType})');
+      profileError = 'Account profile could not be loaded. Please retry.';
+      // Keep Auth identity usable while exposing failed canonical profile loading.
       final fbUser = _auth.currentUser;
       if (fbUser != null) {
         value = UserModel(
@@ -174,63 +251,74 @@ class AuthRepository extends ValueNotifier<UserModel?> {
           isEmailVerified: fbUser.emailVerified,
         );
       }
-    });
+    }, cancelOnError: true);
   }
 
-  Future<void> updateProfile({
-    required String displayName,
-  }) async {
-    final user = _auth.currentUser;
-    if (user == null) throw Exception('No authenticated user');
-
-    try {
-      // Update Firebase Auth display name
-      await user.updateDisplayName(displayName);
-
-      // Update Firestore document
-      await _firestore.collection('users').doc(user.uid).set({
-        'displayName': displayName,
-        'updatedAt': FieldValue.serverTimestamp(),
-      }, SetOptions(merge: true));
-
-      // The real-time listener will update the UI automatically
-    } on FirebaseAuthException catch (e) {
-      throw _mapAuthError(e);
-    } catch (e) {
-      throw Exception('Failed to update profile: $e');
+  void _requireSession(User user, int session) {
+    if (_disposed ||
+        _session != session ||
+        _auth.currentUser?.uid != user.uid) {
+      throw const AccountActionFailure(AccountFailureKind.sessionChanged);
     }
   }
 
-  Future<void> updatePassword({
-    required String currentPassword,
-    required String newPassword,
-  }) async {
+  Future<void> updateProfile({required String displayName}) async {
     final user = _auth.currentUser;
-    if (user == null) throw Exception('No authenticated user');
-
+    if (user == null) {
+      throw const AccountActionFailure(AccountFailureKind.signedOut);
+    }
+    final session = _session;
+    final name = displayName.trim();
+    if (name.isEmpty || name.length > 120) {
+      throw const AccountActionFailure(AccountFailureKind.invalidName);
+    }
+    var saved = false;
     try {
-      // Reauthenticate with current password
+      _requireSession(user, session);
+      // The profile document is the existing UI authority. Login preserves it.
+      await _firestore.collection('users').doc(user.uid).set({
+        'displayName': name,
+        'updatedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+      saved = true;
+      _requireSession(user, session);
+      await user.updateDisplayName(name);
+      _requireSession(user, session);
+    } on AccountActionFailure {
+      rethrow;
+    } catch (_) {
+      throw AccountActionFailure(saved
+          ? AccountFailureKind.profileSync
+          : AccountFailureKind.unavailable);
+    }
+  }
+
+  Future<void> updatePassword(
+      {required String currentPassword, required String newPassword}) async {
+    final user = _auth.currentUser;
+    if (user == null) {
+      throw const AccountActionFailure(AccountFailureKind.signedOut);
+    }
+    final session = _session;
+    if (user.email == null ||
+        !user.providerData.any((p) => p.providerId == 'password')) {
+      throw const AccountActionFailure(AccountFailureKind.passwordProvider);
+    }
+    try {
+      _requireSession(user, session);
       final credential = EmailAuthProvider.credential(
-        email: user.email!,
-        password: currentPassword,
-      );
+          email: user.email!, password: currentPassword);
       await user.reauthenticateWithCredential(credential);
-
-      // Update password
+      _requireSession(user, session);
       await user.updatePassword(newPassword);
-
-      // Password is NOT stored in Firestore - only in Firebase Auth
+      _requireSession(user, session);
+      // Passwords are handled exclusively by Firebase Auth, never Firestore.
+    } on AccountActionFailure {
+      rethrow;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'wrong-password') {
-        throw Exception('Current password is incorrect');
-      } else if (e.code == 'weak-password') {
-        throw Exception('New password is too weak');
-      } else if (e.code == 'requires-recent-login') {
-        throw Exception('Please log in again before changing your password');
-      }
-      throw _mapAuthError(e);
-    } catch (e) {
-      throw Exception('Failed to update password: $e');
+      throw AccountActionFailure.forCode(e.code);
+    } catch (_) {
+      throw const AccountActionFailure(AccountFailureKind.unavailable);
     }
   }
 
@@ -279,13 +367,15 @@ class AuthRepository extends ValueNotifier<UserModel?> {
       case 'operation-not-allowed':
         return 'Email/password sign-in is not enabled for this project.';
       default:
-        return e.message ??
-            'An authentication error occurred. Please try again.';
+        return 'An authentication error occurred. Please try again.';
     }
   }
 
   @override
   void dispose() {
+    _disposed = true;
+    ++_session;
+    ++_profileEpoch;
     _authSubscription?.cancel();
     _userDocSubscription?.cancel();
     super.dispose();

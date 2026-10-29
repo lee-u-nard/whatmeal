@@ -1,0 +1,3 @@
+warning: in the working copy of 'lib/core/widgets/app_shell.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/ai_settings/pages/ai_settings_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/grocery/pages/grocery_page.dart', LF will be replaced by CRLF the next time Git touches it

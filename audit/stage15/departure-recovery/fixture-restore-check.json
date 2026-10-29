@@ -1,0 +1,9 @@
+{
+  "OnlyDisposableBackend": true,
+  "BeforeAccounts": 5,
+  "RestoredAccounts": 5,
+  "SameAccountIds": true,
+  "NormalAccountPresent": false,
+  "ExportExit": 0,
+  "RestoresOriginalBackend": false
+}

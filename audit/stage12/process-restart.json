@@ -1,0 +1,10 @@
+{
+  "authBackendStillAvailable": true,
+  "sameApkHash": "E068C75D012ED37FD509F93FCF8AFECD50747464B25CE512C3081D7A092F53C6",
+  "processAbsentAfterStop": true,
+  "appDataCleared": false,
+  "dropped": 0,
+  "previousProcessPresent": true,
+  "relayOnline": false,
+  "forceStopExit": 0
+}

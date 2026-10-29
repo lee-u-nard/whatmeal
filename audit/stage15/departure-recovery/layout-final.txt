@@ -1,0 +1,14 @@
+
+┌─────────────────────────────────────────────────────────┐
+│ A new version of Flutter is available!                  │
+│                                                         │
+│ To update to the latest version, run "flutter upgrade". │
+└─────────────────────────────────────────────────────────┘
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart
+00:00 +0: member departure actions fit 320px at text scale 1.0
+00:00 +1: member departure actions fit 320px at text scale 2.0
+00:00 +2: removal has pending feedback, safe failure and ordinary retry
+00:01 +3: departure has pending feedback, safe failure and ordinary retry
+00:01 +4: terminal index unavailable uses household-specific feedback and retry
+00:01 +5: terminal index permission-denied uses household-specific feedback and retry
+00:01 +6: All tests passed!

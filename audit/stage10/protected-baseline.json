@@ -1,0 +1,7 @@
+{
+  "firestore.rules": "db759e4941f8b9c06b097fb7c4fe9f148f7c2adcbb52da6aac9b4ed9e5f7be77",
+  "audit/stage3/security_acceptance.mjs": "bb8d6f91d9be1d08ae9320149000c03e79b9614965726cc7b923d80a7b7e696a",
+  "android/app/src/local/AndroidManifest.xml": "1b78576f7d1666b495c1f5b10f845f6cfc93b5692c0b6050a6225f3a9a760a8d",
+  "android/app/src/local/google-services.json": "57b82fb302b92102f948ac13da114d8ae6657344313bc1a7df13296658e28990",
+  "lib/main.dart": "c0dad37655cefdb53ca54f0b1fc647b943f3b9be983e0b1feede5ef510486b62"
+}

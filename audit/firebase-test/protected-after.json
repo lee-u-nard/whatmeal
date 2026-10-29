@@ -1,0 +1,34 @@
+[
+  {
+    "path": "firebase.json",
+    "unchanged": true
+  },
+  {
+    "path": "firestore.rules",
+    "unchanged": true
+  },
+  {
+    "path": "lib/firebase_options.dart",
+    "unchanged": true
+  },
+  {
+    "path": "android/app/google-services.json",
+    "unchanged": true
+  },
+  {
+    "path": "android/app/src/local/google-services.json",
+    "unchanged": true
+  },
+  {
+    "path": "android/app/src/showcase/google-services.json",
+    "unchanged": true
+  },
+  {
+    "path": "build/private-state-snapshots/20261018-household-interruption/manifest.json",
+    "unchanged": true
+  },
+  {
+    "path": "build/final/whatmeal-demo.apk",
+    "unchanged": true
+  }
+]

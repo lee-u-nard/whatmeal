@@ -1,0 +1,6 @@
+Analyzing whatmeal...                                           
+
+   info - Unnecessary braces in a string interpolation. Try removing the braces - lib\features\pantry\data\pantry_repository.dart:107:27 - unnecessary_brace_in_string_interps
+   info - Unnecessary braces in a string interpolation. Try removing the braces - lib\features\profile\data\family_member_repository.dart:105:27 - unnecessary_brace_in_string_interps
+
+2 issues found. (ran in 47.3s)

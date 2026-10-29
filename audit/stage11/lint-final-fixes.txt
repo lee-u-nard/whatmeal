@@ -1,0 +1,11 @@
+Computing fixes in whatmeal...
+Applying fixes...
+
+integration_test\stage11_recovery_test.dart
+  curly_braces_in_flow_control_structures - 1 fix
+  unnecessary_non_null_assertion - 1 fix
+
+lib\features\profile\widgets\edit_profile_sheet.dart
+  curly_braces_in_flow_control_structures - 1 fix
+
+3 fixes made in 2 files.

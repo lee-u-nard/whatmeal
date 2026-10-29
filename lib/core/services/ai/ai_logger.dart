@@ -13,7 +13,7 @@ class AiLogger {
   }) {
     final sanitizedEndpoint = _sanitizeUrl(endpoint);
     debugPrint(
-        '[AI][$provider] -> Outgoing request | Model: $model | Endpoint: $sanitizedEndpoint');
+        '[AI][$provider] -> Outgoing request | Endpoint: $sanitizedEndpoint');
   }
 
   /// Logs an incoming AI provider response with status and duration.
@@ -24,8 +24,7 @@ class AiLogger {
     int? elapsedMs,
   }) {
     final elapsedStr = elapsedMs != null ? ' in ${elapsedMs}ms' : '';
-    debugPrint(
-        '[AI][$provider] <- Response HTTP $statusCode$elapsedStr | Model: $model');
+    debugPrint('[AI][$provider] <- Response HTTP $statusCode$elapsedStr');
   }
 
   /// Logs an AI provider error safely, stripping any potential keys or sensitive tokens.
@@ -35,9 +34,11 @@ class AiLogger {
     required Object error,
     int? statusCode,
   }) {
-    final cleanMsg = sanitize(error.toString());
+    // Provider/transport errors may echo arbitrary custom credentials. A regex
+    // cannot guarantee redaction, so never log their raw text or response body.
+    final cleanMsg = error.runtimeType.toString();
     final statusStr = statusCode != null ? ' (HTTP $statusCode)' : '';
-    debugPrint('[AI][$provider][ERROR] Model: $model$statusStr | $cleanMsg');
+    debugPrint('[AI][$provider][ERROR] $statusStr | $cleanMsg');
   }
 
   /// Redacts potential API keys, Bearer tokens, and secrets from text.
@@ -70,20 +71,11 @@ class AiLogger {
   static String _sanitizeUrl(String url) {
     try {
       final uri = Uri.parse(url);
-      if (uri.queryParameters.isEmpty) return url;
-      final cleanParams = <String, String>{};
-      uri.queryParameters.forEach((k, v) {
-        if (k.toLowerCase().contains('key') ||
-            k.toLowerCase().contains('token') ||
-            k.toLowerCase().contains('secret')) {
-          cleanParams[k] = '[REDACTED]';
-        } else {
-          cleanParams[k] = v;
-        }
-      });
-      return uri.replace(queryParameters: cleanParams).toString();
+      // User info, path segments, fragments, and arbitrary query names can all
+      // contain credentials. Only the origin is useful diagnostic metadata.
+      return uri.hasAuthority ? uri.origin : '[SDK endpoint]';
     } catch (_) {
-      return sanitize(url);
+      return '[invalid endpoint]';
     }
   }
 }

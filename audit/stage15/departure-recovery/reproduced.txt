@@ -1,0 +1,90 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart
+00:00 +0: removal has pending feedback, safe failure and ordinary retry
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "Updating household. Waiting for
+confirmation…": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_departure_recovery_test.dart:71:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_departure_recovery_test.dart line 71
+The test description was:
+  removal has pending feedback, safe failure and ordinary retry
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: removal has pending feedback, safe failure and ordinary retry [E]
+  Test failed. See exception logs above.
+  The test description was: removal has pending feedback, safe failure and ordinary retry
+  
+00:01 +0 -1: departure has pending feedback, safe failure and ordinary retry
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "Updating household. Waiting for
+confirmation…": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_departure_recovery_test.dart:71:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_departure_recovery_test.dart line 71
+The test description was:
+  departure has pending feedback, safe failure and ordinary retry
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -2: departure has pending feedback, safe failure and ordinary retry [E]
+  Test failed. See exception logs above.
+  The test description was: departure has pending feedback, safe failure and ordinary retry
+  
+00:01 +0 -2: terminal index unavailable uses household-specific feedback and retry
+00:01 +0 -3: terminal index unavailable uses household-specific feedback and retry [E]
+  Expected: 'The household service is unavailable. Check your connection and retry.'
+    Actual: 'A Firebase data operation failed. Your plan may not have been saved. Reload before retrying.'
+     Which: is different.
+            Expected: The househ ...
+              Actual: A Firebase ...
+                      ^
+             Differ at offset 0
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\household_departure_recovery_test.dart 118:7   main.<fn>
+  
+00:01 +0 -3: terminal index permission-denied uses household-specific feedback and retry
+00:01 +0 -4: terminal index permission-denied uses household-specific feedback and retry [E]
+  Expected: 'Household access was denied. Check your membership or invitation and retry.'
+    Actual: 'Firebase denied access to the required data. Check household permissions and the app/rules version.'
+     Which: is different.
+            Expected: Household  ...
+              Actual: Firebase d ...
+                      ^
+             Differ at offset 0
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\household_departure_recovery_test.dart 118:7   main.<fn>
+  
+00:01 +0 -4: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: departure has pending feedback, safe failure and ordinary retry
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: removal has pending feedback, safe failure and ordinary retry
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: terminal index permission-denied uses household-specific feedback and retry
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_departure_recovery_test.dart: terminal index unavailable uses household-specific feedback and retry

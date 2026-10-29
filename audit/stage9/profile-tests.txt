@@ -1,0 +1,4 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/profile_headings_test.dart
+00:00 +0: profile headings fit narrow cards at text scale 1.0
+00:00 +1: profile headings fit narrow cards at text scale 2.0
+00:00 +2: All tests passed!

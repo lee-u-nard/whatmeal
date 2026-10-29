@@ -1,0 +1,12 @@
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage15"
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage15"
+Verified isolated package, demo project and existing tester certificate. SHA-256: 6D9DB86B7F56AC22EC7E7C6C71EADD8EA419A14553DB70E8ED65DBAA2AAD14F9
+Performing Streamed Install
+Success
+Starting: Intent { cmp=com.example.whatmeal.showcase/com.example.whatmeal.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.example.whatmeal.showcase/com.example.whatmeal.MainActivity
+TotalTime: 2704
+WaitTime: 2787
+Complete

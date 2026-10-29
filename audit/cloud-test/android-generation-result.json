@@ -1,0 +1,26 @@
+{
+  "projectId": "whatmeal-gemini-test-20261019",
+  "phase": "generate",
+  "functionalWorkflowsPassed": 1,
+  "checkpointCount": 8,
+  "checkpoints": [
+    "owner signed in through normal UI to the approved cloud project",
+    "normal AI form configured for one participant one day Dinner",
+    "live Firebase AI result reached the genuine editor independently of persistence",
+    "ordinary Save Plan persisted the same generated meal without another AI request",
+    "server reads corroborated exact plan meal identity dates and complete recipe",
+    "saved-plan Load and meal-detail UI retained exact persisted identities",
+    "outsider normal UI excluded owner data and server denied the exact owner plan",
+    "owner session restored with the actual generated plan intact"
+  ],
+  "requestedModel": "gemini-3.8-flash",
+  "generationButtonTaps": 1,
+  "savePlanButtonTaps": 1,
+  "liveGenerationObserved": true,
+  "initialSaveFailed": false,
+  "serverPersistenceVerified": true,
+  "outsiderDenied": true,
+  "sourceReportSha256": "5ea7c364b10fb91c9c6810733e331b76a7556383f51a0e5befe86a4d2de5b16e",
+  "workflowExit": 0,
+  "note": "One real Android workflow; framework teardown is not a second acceptance pass. Disposable preverified accounts; no registration or email-delivery claim."
+}

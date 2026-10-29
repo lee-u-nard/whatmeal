@@ -1,0 +1,628 @@
+{
+  "scope": "Local evidence only; no live AI, native push, simultaneous devices or production certification",
+  "requirements": [
+    {
+      "id": "R001",
+      "feature": "Registration and login",
+      "classification": "Implemented but partially verified",
+      "evidence": "Registration, emulator email verification and returning login passed through Android UI with two accounts",
+      "remaining": "Interrupted registration/profile writes and live email delivery remain unverified"
+    },
+    {
+      "id": "R002",
+      "feature": "Password management",
+      "classification": "Not tested",
+      "evidence": "Source uses Auth; no device exercise",
+      "remaining": "Test reauthentication and provider-specific accounts"
+    },
+    {
+      "id": "R003",
+      "feature": "Email verification and reset",
+      "classification": "Implemented but partially verified",
+      "evidence": "Android UI registration and real demo Auth email action verification reached Home",
+      "remaining": "Exercise expired links, password reset and recovery; no live Firebase certification"
+    },
+    {
+      "id": "R004",
+      "feature": "Logout",
+      "classification": "Implemented but partially verified",
+      "evidence": "Logout confirmation and A/B/A account switching passed through Android UI; household/meal/pantry/grocery state cleared",
+      "remaining": "Rapid switching during delayed network failures remains unverified"
+    },
+    {
+      "id": "R005",
+      "feature": "Profile persistence",
+      "classification": "Implemented but partially verified",
+      "evidence": "Login can rewrite display name from Auth",
+      "remaining": "Resolve authority and failure recovery"
+    },
+    {
+      "id": "R006",
+      "feature": "Account isolation callbacks",
+      "classification": "Implemented but partially verified",
+      "evidence": "Some Auth callbacks lack generation guards",
+      "remaining": "Add delayed old-session error and same-UID reentry tests"
+    },
+    {
+      "id": "R007",
+      "feature": "Safe Auth errors",
+      "classification": "Implemented but partially verified",
+      "evidence": "Raw exception paths remain",
+      "remaining": "Complete redaction review"
+    },
+    {
+      "id": "R008",
+      "feature": "Canonical membership",
+      "classification": "Implemented and verified",
+      "evidence": "Prior 65 security cases and backend workflow passed; Stage 9 actual Android UI passed create/copy/join/remove/rejoin/leave and access revocation",
+      "remaining": "Simultaneous device contention and production migration/cutover remain separate"
+    },
+    {
+      "id": "R009",
+      "feature": "Household bootstrap",
+      "classification": "Implemented and verified",
+      "evidence": "Prior 65 security cases and backend workflow passed; Stage 9 actual Android UI passed create/copy/join/remove/rejoin/leave and access revocation",
+      "remaining": "Simultaneous device contention and production migration/cutover remain separate"
+    },
+    {
+      "id": "R010",
+      "feature": "Owner permissions",
+      "classification": "Implemented and verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R011",
+      "feature": "Admin permissions",
+      "classification": "Implemented and verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R012",
+      "feature": "Member permissions",
+      "classification": "Implemented and verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R013",
+      "feature": "View-only permissions",
+      "classification": "Implemented and verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R014",
+      "feature": "Outsider and anonymous isolation",
+      "classification": "Implemented and verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R015",
+      "feature": "Member removal and leave",
+      "classification": "Implemented and verified",
+      "evidence": "Prior 65 security cases and backend workflow passed; Stage 9 actual Android UI passed create/copy/join/remove/rejoin/leave and access revocation",
+      "remaining": "Simultaneous device contention and production migration/cutover remain separate"
+    },
+    {
+      "id": "R016",
+      "feature": "Ownership transfer",
+      "classification": "Implemented but partially verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R017",
+      "feature": "Archive and restore",
+      "classification": "Implemented but partially verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R018",
+      "feature": "Legacy cutover",
+      "classification": "Implemented but partially verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R019",
+      "feature": "Secure invitations",
+      "classification": "Implemented and verified",
+      "evidence": "Prior 65 security cases and backend workflow passed; Stage 9 actual Android UI passed create/copy/join/remove/rejoin/leave and access revocation",
+      "remaining": "Simultaneous device contention and production migration/cutover remain separate"
+    },
+    {
+      "id": "R020",
+      "feature": "Invitation confidentiality",
+      "classification": "Implemented and verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R021",
+      "feature": "Strict schemas",
+      "classification": "Implemented and verified",
+      "evidence": "Local v2 rules: 65/65 actual emulator acceptance cases passed; see Stage 6 report",
+      "remaining": "Local evidence only; client/device behavior and production migration/cutover remain separate"
+    },
+    {
+      "id": "R022",
+      "feature": "Dependent profile CRUD",
+      "classification": "Implemented but partially verified",
+      "evidence": "Dietary-profile creation passed through Android UI; narrow identity/action layout regressions pass at normal and 2x text",
+      "remaining": "Edit/delete/failure recovery require further device coverage"
+    },
+    {
+      "id": "R023",
+      "feature": "Allergy and dietary context",
+      "classification": "Implemented but partially verified",
+      "evidence": "Generation passes restrictions; replacement context is narrower",
+      "remaining": "Test all selected participants and custom notes"
+    },
+    {
+      "id": "R024",
+      "feature": "Participant identity",
+      "classification": "Implemented but partially verified",
+      "evidence": "Stable participant IDs persisted; selected dietary profile exercised in manual-plan UI; missing-profile regressions pass",
+      "remaining": "Exercise participant edits/deletion and actual provider context on device"
+    },
+    {
+      "id": "R025",
+      "feature": "Unset cuisine",
+      "classification": "Implemented but partially verified",
+      "evidence": "Current nullable draft cuisine and explicit selection covered by local context tests",
+      "remaining": "Verify untouched and changed cuisine controls on device"
+    },
+    {
+      "id": "R026",
+      "feature": "Empty household",
+      "classification": "Implemented but partially verified",
+      "evidence": "Fresh accounts reached the empty household UI, then created or joined a household through ordinary Android controls",
+      "remaining": "Broader empty-data and newly joined dietary-profile states remain unverified"
+    },
+    {
+      "id": "R027",
+      "feature": "Ingredient add and delete",
+      "classification": "Implemented but partially verified",
+      "evidence": "Android UI added and edited household pantry rice; authorized member saw shared data; store regressions pass",
+      "remaining": "Pantry deletion UI, simultaneous devices and offline recovery remain unverified"
+    },
+    {
+      "id": "R028",
+      "feature": "Category edit",
+      "classification": "Not tested",
+      "evidence": "Repaired to await same-document update",
+      "remaining": "Verify Firestore rules and concurrent edits"
+    },
+    {
+      "id": "R029",
+      "feature": "Edit metadata and expiry",
+      "classification": "Implemented but partially verified",
+      "evidence": "Metadata/date-picker regressions pass; Android UI selected expiration and saved quantities/units with shortage recalculation",
+      "remaining": "Exact expiration-value persistence and all expired-item paths remain unverified on device"
+    },
+    {
+      "id": "R030",
+      "feature": "Shared pantry synchronization",
+      "classification": "Implemented but partially verified",
+      "evidence": "Actual Android Firebase SDK/UI showed shared pantry data after account switching/rejoining; historical REST and stream tests pass",
+      "remaining": "Simultaneous two-device listeners and offline recovery remain unverified"
+    },
+    {
+      "id": "R031",
+      "feature": "Availability for AI",
+      "classification": "Implemented but partially verified",
+      "evidence": "Usable pantry context filters available/runningLow and excludes expired/used items; projection regressions pass",
+      "remaining": "Live AI pantry/allergy compliance remains unverified"
+    },
+    {
+      "id": "R032",
+      "feature": "List initialization",
+      "classification": "Implemented but partially verified",
+      "evidence": "Transactional stores have passing local regression tests; relevant schema and role emulator cases pass",
+      "remaining": "Exercise actual client contention and failure recovery; fake Firestore alone does not prove contention"
+    },
+    {
+      "id": "R033",
+      "feature": "Item duplicate prevention",
+      "classification": "Implemented but partially verified",
+      "evidence": "Transactional stores have passing local regression tests; relevant schema and role emulator cases pass",
+      "remaining": "Exercise actual client contention and failure recovery; fake Firestore alone does not prove contention"
+    },
+    {
+      "id": "R034",
+      "feature": "Item editing",
+      "classification": "Implemented but partially verified",
+      "evidence": "Passing Stage 10 Android workflow verified shared manual-item rename/quantity updates, retained edit on outage and successful ordinary retry",
+      "remaining": "Simultaneous devices and rename contention remain unverified"
+    },
+    {
+      "id": "R035",
+      "feature": "Mutation feedback",
+      "classification": "Implemented but partially verified",
+      "evidence": "Android UI passed blank-name validation, duplicate feedback, pending-submit guard, safe write failure with retained draft/retry, and confirmed clearing/deletion",
+      "remaining": "Permanent SDK listener failure recovery remains injected-stream/widget evidence only"
+    },
+    {
+      "id": "R036",
+      "feature": "Check and uncheck",
+      "classification": "Implemented but partially verified",
+      "evidence": "Actual Android UI checked, unchecked and rechecked a shared manual item and observed persisted SDK state",
+      "remaining": "Simultaneous-device contention remains unverified"
+    },
+    {
+      "id": "R037",
+      "feature": "Active list lifecycle",
+      "classification": "Implemented but partially verified",
+      "evidence": "Active parent uses snapshots with scope/epoch guards; Retry reinitializes the listener",
+      "remaining": "Actual parent deletion and terminal stream recovery require device coverage"
+    },
+    {
+      "id": "R038",
+      "feature": "Viewer initialization",
+      "classification": "Implemented but partially verified",
+      "evidence": "Initialization explicitly skips viewOnly members",
+      "remaining": "View-only empty-household UI path remains unverified"
+    },
+    {
+      "id": "R039",
+      "feature": "Generation from meals",
+      "classification": "Implemented but partially verified",
+      "evidence": "Android UI consolidated two meals, excluded sufficient pantry stock, recalculated shortages and preserved remaining meal provenance after deletion",
+      "remaining": "Real provider ingredient formats, concurrent devices and failure recovery remain unverified"
+    },
+    {
+      "id": "R040",
+      "feature": "AI ingredient meaning",
+      "classification": "Implemented but partially verified",
+      "evidence": "Accepted-meal projection and pantry shortage/replacement/deletion behavior pass shared workflow tests",
+      "remaining": "Verify real provider ingredient units and two-device UI behavior"
+    },
+    {
+      "id": "R041",
+      "feature": "Supported provider protocols",
+      "classification": "Blocked by configuration or infrastructure",
+      "evidence": "Custom OpenAI Chat Completions adapter tests pass",
+      "remaining": "Live Gemini, Groq, OpenAI and Anthropic remain unverified"
+    },
+    {
+      "id": "R042",
+      "feature": "Remote provider settings",
+      "classification": "Implemented but partially verified",
+      "evidence": "Remote changes/deletion, pending writes and A-B-A scope tests pass",
+      "remaining": "Real multi-device secure provider-settings synchronization still unverified"
+    },
+    {
+      "id": "R043",
+      "feature": "Pending settings writes",
+      "classification": "Implemented and verified",
+      "evidence": "New tests cover queueing and newer remote snapshot precedence",
+      "remaining": "Real backend contention still unverified"
+    },
+    {
+      "id": "R044",
+      "feature": "Account settings isolation",
+      "classification": "Implemented and verified",
+      "evidence": "Tests cover A to B and A to B to A",
+      "remaining": "Audit LlmService cache refill after old dispatched writes"
+    },
+    {
+      "id": "R045",
+      "feature": "Key removal feedback",
+      "classification": "Implemented and verified",
+      "evidence": "Repository and widget tests include failed removal and retry",
+      "remaining": "Live key validation is separate"
+    },
+    {
+      "id": "R046",
+      "feature": "Settings editor synchronization",
+      "classification": "Implemented and verified",
+      "evidence": "Widget test exercises remote update and logout",
+      "remaining": "No OS-vault migration performed"
+    },
+    {
+      "id": "R047",
+      "feature": "Settings failure recovery",
+      "classification": "Implemented but partially verified",
+      "evidence": "Reproduced missing terminal-listener Retry Settings; guarded resubscription and stale-account callback regression passed with 10 provider-sync cases",
+      "remaining": "Actual terminal SDK listener error and simultaneous devices remain unverified"
+    },
+    {
+      "id": "R048",
+      "feature": "Connected status",
+      "classification": "Implemented but partially verified",
+      "evidence": "Loaded configuration is represented as configured; connection validation is separate; emulator mode refuses live validation",
+      "remaining": "Live credentials and models remain unverified"
+    },
+    {
+      "id": "R049",
+      "feature": "Provider change notifications",
+      "classification": "Implemented and verified",
+      "evidence": "Existing persistence-order and scope regressions verify callback follows successful save",
+      "remaining": "Live cloud behavior remains unverified"
+    },
+    {
+      "id": "R050",
+      "feature": "Secure API key storage",
+      "classification": "Implemented but partially verified",
+      "evidence": "Bundled Gemini/Unsplash literals removed; optional image key uses build configuration; existing owner-only cloud provider key storage unchanged",
+      "remaining": "Owner credential rotation and separate secure-storage migration decision remain; build defines are extractable"
+    },
+    {
+      "id": "R051",
+      "feature": "Error redaction",
+      "classification": "Implemented but partially verified",
+      "evidence": "Generation failures have tested safe categories and redaction; adapter tests pass",
+      "remaining": "Complete all exception-path review and actual isolated provider calls"
+    },
+    {
+      "id": "R052",
+      "feature": "Quota reservation",
+      "classification": "Implemented but partially verified",
+      "evidence": "Transactional stores have passing local regression tests; relevant schema and role emulator cases pass",
+      "remaining": "Exercise actual client contention and failure recovery; fake Firestore alone does not prove contention"
+    },
+    {
+      "id": "R053",
+      "feature": "Output validation",
+      "classification": "Implemented and verified",
+      "evidence": "Parser regression tests pass",
+      "remaining": "Actual nutritional and allergy correctness not guaranteed"
+    },
+    {
+      "id": "R054",
+      "feature": "Provider network failures",
+      "classification": "Implemented but partially verified",
+      "evidence": "Generation failures have tested safe categories and redaction; adapter tests pass",
+      "remaining": "Complete all exception-path review and actual isolated provider calls"
+    },
+    {
+      "id": "R055",
+      "feature": "Manual plan content",
+      "classification": "Implemented but partially verified",
+      "evidence": "Android UI edited and saved a manual meal with ingredients; exact saved plan and one-day dates verified; prior local validation regressions pass",
+      "remaining": "Broader empty-input, nutrition and interrupted-save device cases remain unverified"
+    },
+    {
+      "id": "R056",
+      "feature": "Weekly calendar",
+      "classification": "Implemented but partially verified",
+      "evidence": "Date/model regressions pass; Android UI selected Monday and verified one-day saved dates",
+      "remaining": "Full weekly navigation and date rollover remain unverified"
+    },
+    {
+      "id": "R057",
+      "feature": "AI planning workflow",
+      "classification": "Blocked by configuration or infrastructure",
+      "evidence": "Local persistence/account/stream tests pass; manual Android plan identity/navigation passed",
+      "remaining": "Live AI generation and provider-driven navigation remain pending an approved isolated project"
+    },
+    {
+      "id": "R058",
+      "feature": "Accept and meal statuses",
+      "classification": "Implemented but partially verified",
+      "evidence": "Actual Android UI passed pending, accepted, completed and not-completed transitions and confirmations with persisted SDK updates",
+      "remaining": "Live AI-created meals, concurrent devices and failure recovery remain unverified"
+    },
+    {
+      "id": "R059",
+      "feature": "Replacement concurrency",
+      "classification": "Implemented but partially verified",
+      "evidence": "Transactional stores have passing local regression tests; relevant schema and role emulator cases pass",
+      "remaining": "Exercise actual client contention and failure recovery; fake Firestore alone does not prove contention"
+    },
+    {
+      "id": "R060",
+      "feature": "Replacement context",
+      "classification": "Implemented but partially verified",
+      "evidence": "Explicit plan-path/duplicate-ID/stale-session regressions pass; Android history checkpoint opened the exact reused plan/meal",
+      "remaining": "Actual live AI replacement remains blocked pending approved configuration"
+    },
+    {
+      "id": "R061",
+      "feature": "Repeated save",
+      "classification": "Implemented but partially verified",
+      "evidence": "Android UI saved manual plan and reused it into a distinct plan/meal identity; local persistence regressions pass",
+      "remaining": "Repeated same-plan saves and interrupted writes need device coverage"
+    },
+    {
+      "id": "R062",
+      "feature": "Nested saved-plan synchronization",
+      "classification": "Implemented but partially verified",
+      "evidence": "Actual Android SDK/UI reflected favorites, status changes, nested meal deletion and member access to saved plans",
+      "remaining": "Simultaneous devices, offline/reconnect and listener failure recovery remain unverified"
+    },
+    {
+      "id": "R063",
+      "feature": "Account-safe plan mutations",
+      "classification": "Implemented but partially verified",
+      "evidence": "Duplicate-ID/stale-session regressions pass; Android account switching cleared old data and reused/original plan status remained independent",
+      "remaining": "Delayed network callbacks are covered locally, not verified on device"
+    },
+    {
+      "id": "R064",
+      "feature": "Personal/shared merge identity",
+      "classification": "Implemented but partially verified",
+      "evidence": "Duplicate-ID and explicit-path regressions pass; Android UI opened the correct household plan and independent reused copy",
+      "remaining": "Personal/shared duplicate-ID fixture and history interactions remain unverified on device"
+    },
+    {
+      "id": "R065",
+      "feature": "Plan deletion grocery cleanup",
+      "classification": "Implemented but partially verified",
+      "evidence": "Actual member Android UI deleted one meal preserving another contribution, then deleted copied/original plans with correct grocery provenance cleanup",
+      "remaining": "Real provider ingredient formats, concurrent devices and failure recovery remain unverified"
+    },
+    {
+      "id": "R066",
+      "feature": "Plan deletion notification cleanup",
+      "classification": "Implemented but partially verified",
+      "evidence": "Plan deletion uses exact plan identity and removes nested meals; immutable historical activity is retained, without title-substring cleanup",
+      "remaining": "Deleted-target notification feedback needs dedicated Android verification"
+    },
+    {
+      "id": "R067",
+      "feature": "Today recommendations",
+      "classification": "Implemented but partially verified",
+      "evidence": "Home filters active meals by plan calendar date; local date/projection tests pass",
+      "remaining": "Verify recommendations and date rollover in the visible app"
+    },
+    {
+      "id": "R068",
+      "feature": "Recipe details and images",
+      "classification": "Implemented but partially verified",
+      "evidence": "Exact saved-meal details, favorites and status controls rendered and worked in Android UI",
+      "remaining": "Recipe/image loading and network-failure cases remain unverified"
+    },
+    {
+      "id": "R069",
+      "feature": "Reuse, favorite and history",
+      "classification": "Implemented but partially verified",
+      "evidence": "Stage 9 favorites/reuse passed; Stage 10 checkpoint opened history with exact reused plan path and meal ID before later unrelated failure",
+      "remaining": "Live AI replacement remains unverified"
+    },
+    {
+      "id": "R070",
+      "feature": "Shared activity and private receipts",
+      "classification": "Implemented but partially verified",
+      "evidence": "Stage 10 Android checkpoints verified shared meal activity opens exact plan/meal, private read receipt persists and Mark All Read clears count/badge",
+      "remaining": "All event producers and simultaneous devices remain unverified"
+    },
+    {
+      "id": "R071",
+      "feature": "History, read state and badge",
+      "classification": "Implemented but partially verified",
+      "evidence": "Actual Android history/read/badge checkpoints passed within a subsequently failed workflow; inbox loading/error/retry widget cases pass",
+      "remaining": "Actual terminal SDK listener recovery and native push remain unverified"
+    },
+    {
+      "id": "R072",
+      "feature": "Join-time eligibility",
+      "classification": "Implemented but partially verified",
+      "evidence": "Activity store filters join-time eligibility; prior 65 local security acceptance cases passed",
+      "remaining": "Do not infer join-time confidentiality from client filtering; dedicated enforcement review remains"
+    },
+    {
+      "id": "R073",
+      "feature": "Event reliability",
+      "classification": "Implemented but partially verified",
+      "evidence": "Shared activity/private receipts tested locally and in emulator; pantry mutation/event is atomic",
+      "remaining": "Device badge/read/navigation behavior and all event producers need end-to-end verification"
+    },
+    {
+      "id": "R074",
+      "feature": "In-app notification navigation",
+      "classification": "Implemented but partially verified",
+      "evidence": "Actual in-app shared meal notification opened exact plan path and meal ID; post-await routing checks account session",
+      "remaining": "Native foreground/background/cold-start taps remain unverified"
+    },
+    {
+      "id": "R075",
+      "feature": "Foreground notification tap",
+      "classification": "Blocked by configuration or infrastructure",
+      "evidence": "Guarded target routing and queued notification handling implemented; session-version guard added",
+      "remaining": "Native foreground/background/cold-start and account-switch device tests pending"
+    },
+    {
+      "id": "R076",
+      "feature": "Cold-start navigation",
+      "classification": "Blocked by configuration or infrastructure",
+      "evidence": "Guarded target routing and queued notification handling implemented; session-version guard added",
+      "remaining": "Native foreground/background/cold-start and account-switch device tests pending"
+    },
+    {
+      "id": "R077",
+      "feature": "Payload route validation",
+      "classification": "Implemented and verified",
+      "evidence": "Household meal events carry plan path and meal ID into guarded detail resolution; route tests pass",
+      "remaining": "Device navigation remains unverified"
+    },
+    {
+      "id": "R078",
+      "feature": "Background household delivery",
+      "classification": "Missing",
+      "evidence": "No approved trusted sender architecture",
+      "remaining": "Requires separate product/architecture decision; no paid service introduced"
+    },
+    {
+      "id": "R079",
+      "feature": "Offline and reconnect",
+      "classification": "Implemented but partially verified",
+      "evidence": "Passing Android test dropped real SDK relay connections, retained pending edit, surfaced safe failure, retried after reconnect and saved correct quantity without duplicate",
+      "remaining": "Broader offline operations, app restart while offline and permanent listener errors remain unverified"
+    },
+    {
+      "id": "R080",
+      "feature": "Original design and branding",
+      "classification": "Implemented but partially verified",
+      "evidence": "Original logo/colors rendered in standalone startup screenshot; targeted layouts verified in Android workflow and 2x-text widget cases",
+      "remaining": "Broader screen/accessibility visual regression checks remain unverified"
+    },
+    {
+      "id": "R081",
+      "feature": "Confirmations and interaction states",
+      "classification": "Implemented but partially verified",
+      "evidence": "Stage 9 confirmations retained; Stage 10 Android passed grocery clear cancellation/confirmation and deletion, with default AI settings overflow repaired; 320px/2x widget regressions pass",
+      "remaining": "Broader accessibility and remaining destructive/error states need device coverage"
+    },
+    {
+      "id": "R082",
+      "feature": "Local-only boundary",
+      "classification": "Implemented and verified",
+      "evidence": "Only local files, isolated demo Auth/Firestore and AOSP Android tests used; no production reads/modifications/deployments",
+      "remaining": "Production migration and deployment remain separate approvals"
+    },
+    {
+      "id": "R083",
+      "feature": "App Check and platform configuration",
+      "classification": "Blocked by configuration or infrastructure",
+      "evidence": "Release signing and attestation setup remain pending",
+      "remaining": "Manual console/signing verification without exposing secrets"
+    },
+    {
+      "id": "R084",
+      "feature": "Android release build",
+      "classification": "Implemented but partially verified",
+      "evidence": "Stage 10 local tester built, package/demo/network policy/existing debug signature/SHA-256 verified; installed and cold-started to Sign In without ANR",
+      "remaining": "Production signing/attestation require owner configuration; full grocery workflow used separate debug integration APK"
+    },
+    {
+      "id": "R085",
+      "feature": "Emulator security certification",
+      "classification": "Implemented and verified",
+      "evidence": "Stage 10 unchanged emulator suite rerun: 65/65 passed; initial 64/65 reset-HTTP-499 failure retained",
+      "remaining": "No production deployment or live certification implied"
+    },
+    {
+      "id": "R086",
+      "feature": "iOS and web readiness",
+      "classification": "Not tested",
+      "evidence": "Windows cannot verify iOS; web requires configured site key",
+      "remaining": "Platform-specific build and device checks"
+    },
+    {
+      "id": "R087",
+      "feature": "SDK compatibility",
+      "classification": "Implemented but partially verified",
+      "evidence": "Old Dart minimum with newer API use",
+      "remaining": "Determine and validate actual minimum"
+    },
+    {
+      "id": "R088",
+      "feature": "Complete end-to-end parity",
+      "classification": "Implemented but partially verified",
+      "evidence": "Stage 9 Android core passed 28 checkpoints; Stage 10 focused shared-grocery/recovery workflow passed 13 checkpoints using actual SDKs and sequential demo accounts",
+      "remaining": "Native typing, simultaneous devices, live AI and native push remain unverified"
+    },
+    {
+      "id": "R089",
+      "feature": "Historical status reconciliation",
+      "classification": "Implemented and verified",
+      "evidence": "Stage 10 final Flutter suite 206 passed; analysis clean; Android grocery/recovery 13 checkpoints passed; security 65/65 rerun passed with failed-run evidence retained",
+      "remaining": "Continue bounded updates; the full application is not certified complete"
+    }
+  ]
+}

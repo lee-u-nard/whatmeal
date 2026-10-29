@@ -1,0 +1,254 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  [local-token-redacted] 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  [local-token-redacted] 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage15\household-recovery\integration.apk...         7.9s
+D/FLTFireContextHolder( 2148): received application context.
+W/.whatmeal.local( 2148): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/.whatmeal.local( 2148): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 2148): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 2148): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 2148): Width is zero. 0,0
+W/HWUI    ( 2148): Unknown dataspace 0
+D/ProfileInstaller( 2148): Installing profile for com.example.whatmeal.local
+I/WindowExtensionsImpl( 2148): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 2148): Width is zero. 0,0
+D/FlutterJNI( 2148): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:60463/sKS1ek9mhvQ=/
+I/Gralloc4( 2148): mapper 4.x is not supported
+W/HWUI    ( 2148): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 2148): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+VMServiceFlutterDriver: Isolate found with number: 2679554342662475
+I/Choreographer( 2148): Skipped 88 frames!  The application may be doing too much work on its main thread.
+VMServiceFlutterDriver: Isolate 2679554342662475 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+D/FlutterJNI( 2148): Sending viewport metrics to the engine.
+I/.whatmeal.local( 2148): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/flutter ( 2148): 00:00 +0: disposable local SDK create/join failure recovery preserves normal login
+VMServiceFlutterDriver: Connected to Flutter application.
+I/Choreographer( 2148): Skipped 37 frames!  The application may be doing too much work on its main thread.
+I/.whatmeal.local( 2148): Background concurrent mark compact GC freed 3343KB AllocSpace bytes, 11(220KB) LOS objects, 49% free, 3350KB/6700KB, paused 1.044ms,7.244ms total 621.447ms
+D/FirebaseAuth( 2148): Notifying id token listeners about user ([uid-redacted]).
+I/FirebaseApp( 2148): Device unlocked: initializing all Firebase APIs for app household-recovery-1792259884335045
+W/Metadata( 2148): Failed to find package android.content.pm.PackageManager$NameNotFoundException: com.google.android.gms
+I/FirebaseAuth( 2148): Creating user with recovery-owner-1792259884335045@example.test with empty reCAPTCHA token
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2148): tagSocket(137) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2148): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2148): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2148): Notifying id token listeners about user ([uid-redacted]).
+W/GooglePlayServicesUtil( 2148): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2148): GooglePlayServices not available due to error 9
+W/Firestore( 2148): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 2148): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+D/FlutterJNI( 2148): Sending viewport metrics to the engine.
+I/.whatmeal.local( 2148): Background concurrent mark compact GC freed 1964KB AllocSpace bytes, 23(1036KB) LOS objects, 49% free, 4471KB/8943KB, paused 2.578ms,4.253ms total 182.892ms
+W/WindowOnBackDispatcher( 2148): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2148): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2148): app_time_stats: avg=1312.47ms min=104.83ms max=5513.88ms count=5
+D/TrafficStats( 2148): tagSocket(123) with statsTag=0xffffffff, statsUid=-1
+W/Firestore( 2148): (25.1.4) [WatchStream]: (fdb4c22) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+D/EGL_emulation( 2148): app_time_stats: avg=240.57ms min=120.68ms max=544.02ms count=5
+D/EGL_emulation( 2148): app_time_stats: avg=118.48ms min=48.81ms max=148.52ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=128.49ms min=111.55ms max=146.03ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=120.54ms min=105.18ms max=143.93ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=116.23ms min=104.59ms max=122.99ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=126.40ms min=117.35ms max=139.21ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=125.44ms min=111.85ms max=146.13ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=119.14ms min=107.50ms max=132.15ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=118.00ms min=102.58ms max=134.24ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=118.48ms min=111.20ms max=128.25ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=123.96ms min=103.39ms max=143.38ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=119.97ms min=103.55ms max=136.18ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=117.08ms min=99.16ms max=131.78ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=130.09ms min=114.67ms max=150.80ms count=8
+W/GooglePlayServicesUtil( 2148): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2148): GooglePlayServices not available due to error 9
+W/Firestore( 2148): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/Firestore( 2148): (25.1.4) [WatchStream]: (fdb4c22) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+D/TrafficStats( 2148): tagSocket(149) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 2148): tagSocket(150) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2148): app_time_stats: avg=154.15ms min=89.34ms max=401.79ms count=8
+I/flutter ( 2148): Local recovery safe create feedback: The household service is unavailable. Check your connection and retry.
+I/flutter ( 2148): Local recovery checkpoint: create SDK offline failure retained draft and visible retry
+D/EGL_emulation( 2148): app_time_stats: avg=1487.43ms min=1011.40ms max=1963.46ms count=2
+D/EGL_emulation( 2148): app_time_stats: avg=1030.73ms min=1030.73ms max=1030.73ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1046.67ms min=1046.67ms max=1046.67ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1032.89ms min=1032.89ms max=1032.89ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1031.74ms min=1031.74ms max=1031.74ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1053.46ms min=1053.46ms max=1053.46ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1039.08ms min=1039.08ms max=1039.08ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1025.42ms min=1025.42ms max=1025.42ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1021.10ms min=1021.10ms max=1021.10ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1029.12ms min=1029.12ms max=1029.12ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1029.70ms min=1029.70ms max=1029.70ms count=1
+W/Firestore( 2148): (25.1.4) [WatchStream]: (fdb4c22) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 2148): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2148): GooglePlayServices not available due to error 9
+W/Firestore( 2148): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 2148): tagSocket(164) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2148): app_time_stats: avg=1063.29ms min=1063.29ms max=1063.29ms count=1
+D/TrafficStats( 2148): tagSocket(165) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 2148): tagSocket(171) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2148): app_time_stats: avg=1060.30ms min=1060.30ms max=1060.30ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=155.90ms min=60.70ms max=386.59ms count=7
+D/EGL_emulation( 2148): app_time_stats: avg=223.20ms min=111.93ms max=516.76ms count=6
+I/flutter ( 2148): Local recovery checkpoint: same create draft retried and committed through SDK
+D/FirebaseAuth( 2148): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2148): Notifying auth state listeners about a sign-out event.
+I/FirebaseAuth( 2148): Creating user with [local-token-redacted]@example.test with empty reCAPTCHA token
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 2148): tagSocket(137) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2148): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 2148): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+I/.whatmeal.local( 2148): Background concurrent mark compact GC freed 3210KB AllocSpace bytes, 27(1188KB) LOS objects, 49% free, 4573KB/9147KB, paused 1.497ms,6.386ms total 96.270ms
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 2148): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 2148): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 2148): Notifying id token listeners about user ([uid-redacted]).
+D/EGL_emulation( 2148): app_time_stats: avg=2855.43ms min=2855.43ms max=2855.43ms count=1
+I/flutter ( 2148): Local recovery checkpoint: disposable member account sees no owner household
+W/WindowOnBackDispatcher( 2148): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 2148): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 2148): app_time_stats: avg=100.05ms min=22.38ms max=210.44ms count=11
+I/flutter ( 2148): Local recovery checkpoint: legacy invitation validation retains join editor
+D/EGL_emulation( 2148): app_time_stats: avg=103.14ms min=7.09ms max=214.56ms count=10
+I/flutter ( 2148): Local recovery checkpoint: revoked invitation denied by rules; editor and draft retained
+D/EGL_emulation( 2148): app_time_stats: avg=111.99ms min=31.44ms max=281.15ms count=10
+D/TrafficStats( 2148): tagSocket(164) with statsTag=0xffffffff, statsUid=-1
+W/Firestore( 2148): (25.1.4) [WatchStream]: (fdb4c22) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+D/EGL_emulation( 2148): app_time_stats: avg=137.68ms min=29.85ms max=437.75ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=119.47ms min=108.70ms max=151.86ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=118.35ms min=96.51ms max=136.91ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=120.53ms min=109.11ms max=139.93ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=128.88ms min=96.03ms max=172.17ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=139.09ms min=120.19ms max=166.97ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=129.34ms min=108.02ms max=139.10ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=124.52ms min=106.08ms max=140.50ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=121.86ms min=110.13ms max=132.00ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=116.89ms min=99.55ms max=132.51ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=118.49ms min=108.61ms max=131.35ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=118.78ms min=108.27ms max=134.55ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=123.41ms min=109.95ms max=143.01ms count=9
+D/EGL_emulation( 2148): app_time_stats: avg=125.83ms min=110.85ms max=132.48ms count=8
+W/Firestore( 2148): (25.1.4) [WatchStream]: (fdb4c22) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 2148): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2148): GooglePlayServices not available due to error 9
+W/Firestore( 2148): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 2148): tagSocket(170) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 2148): tagSocket(171) with statsTag=0xffffffff, statsUid=-1
+I/flutter ( 2148): Local recovery checkpoint: join SDK offline failure retained exact invitation draft
+D/EGL_emulation( 2148): app_time_stats: avg=126.84ms min=109.98ms max=140.83ms count=8
+D/EGL_emulation( 2148): app_time_stats: avg=1709.27ms min=1709.27ms max=1709.27ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1039.86ms min=1039.86ms max=1039.86ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1028.72ms min=1028.72ms max=1028.72ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1035.28ms min=1035.28ms max=1035.28ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1034.25ms min=1034.25ms max=1034.25ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1027.57ms min=1027.57ms max=1027.57ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1032.73ms min=1032.73ms max=1032.73ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1034.55ms min=1034.55ms max=1034.55ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1035.57ms min=1035.57ms max=1035.57ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1020.28ms min=1020.28ms max=1020.28ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1026.51ms min=1026.51ms max=1026.51ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1035.18ms min=1035.18ms max=1035.18ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1031.99ms min=1031.99ms max=1031.99ms count=1
+W/GooglePlayServicesUtil( 2148): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 2148): GooglePlayServices not available due to error 9
+W/Firestore( 2148): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/Firestore( 2148): (25.1.4) [WatchStream]: (fdb4c22) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+D/TrafficStats( 2148): tagSocket(172) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 2148): tagSocket(173) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 2148): app_time_stats: avg=1014.78ms min=1014.78ms max=1014.78ms count=1
+D/EGL_emulation( 2148): app_time_stats: avg=1040.17ms min=1040.17ms max=1040.17ms count=1
+I/flutter ( 2148): Local recovery checkpoint: join retry committed once with member role and two total members
+I/flutter ( 2148): Local recovery checkpoint: normal app login unchanged by all secondary-client operations
+D/EGL_emulation( 2148): app_time_stats: avg=26604.38ms min=111.29ms max=56929.23ms count=3
+D/FirebaseAuth( 2148): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 2148): Notifying auth state listeners about a sign-out event.
+I/flutter ( 2148): 01:21 +1: (tearDownAll)
+I/flutter ( 2148): 01:21 +2: All tests passed!
+All tests passed.
+Leaving the application running.

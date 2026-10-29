@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-10-19T20:38:41.0254904+08:00",
+  "scope": "Requested P0 candidate verification, live Gemini persistence and separate cloud-test APK",
+  "status": "complete",
+  "executionApprovalBlocked": false,
+  "approvalMode": "Ask for approval",
+  "securityCases": {
+    "passed": 71,
+    "total": 71,
+    "exitCode": 0,
+    "candidateSha256": "49AA394DC5E125072AA73CB1DCF495CAD9185550D19532BA5037FA03AAC5B999"
+  },
+  "flutter": {
+    "fullPassed": 488,
+    "fullExit": 0,
+    "analysisExit": 0,
+    "analysis": "No issues found",
+    "focusedPassed": 23,
+    "focusedOverlapFullSuite": true
+  },
+  "android": {
+    "generationCheckpoints": 8,
+    "generationExit": 0,
+    "coldReopenCheckpoints": 5,
+    "coldReopenExit": 0,
+    "coldReopenGenerateTaps": 0,
+    "normalStartupPassed": true,
+    "fatalUnhandled": 0,
+    "flutterErrors": 0
+  },
+  "testProject": "whatmeal-gemini-test-20261019",
+  "testProjectRulesDeployed": true,
+  "activeTestRulesMatchVerifiedCandidate": true,
+  "APK": {
+    "Path": "C:\\Users\\ASUS V16\\Desktop\\jabez_projects\\3RD_YEAR_SUBJECTS\\App Dev\\whatmeal\\build\\cloud-test\\whatmeal-cloud-test.apk",
+    "Package": "com.example.whatmeal.cloudtest",
+    "Project": "whatmeal-gemini-test-20261019",
+    "AppId": "1:952163528165:android:e184bb528e406cff95530c",
+    "Debuggable": true,
+    "BuildExit": 0,
+    "SignatureVerified": true,
+    "FixtureCredentialsAbsent": true,
+    "InstallExit": 0,
+    "LaunchCommandExit": 0,
+    "Bytes": 192173953,
+    "SHA256": "C9DCD6A42EE9781C555638E8943BE48DFAC5AB4C9A49A2C8E3D839FB74FF063B",
+    "Entrypoint": "lib/main.dart; no integration credential defines"
+  },
+  "pendingRequestedP0": [],
+  "notVerified": [
+    "Other live AI models/providers",
+    "Native push delivery",
+    "Physical or simultaneous multiple devices",
+    "Production readiness/migration/release signing",
+    "Recovery of the previously missing original local backend export"
+  ],
+  "originalAndLocalDemoPackagesReset": false,
+  "original65SuiteUnmodified": true,
+  "protectedFilesUnchanged": 8,
+  "productionModified": false,
+  "GitHubAccessed": false,
+  "paidServicesOrFunctionsEnabled": false,
+  "appCheckEnforcementWeakened": false,
+  "failureEvidencePreserved": true
+}

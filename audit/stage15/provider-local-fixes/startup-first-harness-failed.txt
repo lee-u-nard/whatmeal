@@ -1,0 +1,1 @@
+Startup harness exited 1 before runtime assertions: this Android dump does not provide mResumedActivity. No application failure or pass was inferred. Replaced the foreground inspection with the observed mCurrentFocus window field.

@@ -1,0 +1,15 @@
+/// Copy to bundled_gemini_keys.dart before running Flutter commands.
+/// Keep real credentials in that ignored local file, never in this template.
+class BundledGeminiKeys {
+  static const List<String> _raw = <String>[];
+
+  static const bundledModel = 'gemini-3.5-flash-lite';
+
+  static List<String> get activeKeys => _raw
+      .map((key) => key.trim())
+      .where((key) => key.isNotEmpty)
+      .toSet()
+      .toList(growable: false);
+
+  static bool get hasKeys => activeKeys.isNotEmpty;
+}

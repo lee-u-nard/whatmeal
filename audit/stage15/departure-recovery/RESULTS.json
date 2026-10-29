@@ -1,0 +1,66 @@
+{
+  "Date": "2026-10-18",
+  "LocalOnly": true,
+  "IssueGroupsFixed": 3,
+  "NewRegressionCases": 6,
+  "FlutterSuite": {
+    "ExitCode": 0,
+    "Passed": 284,
+    "Seconds": 161
+  },
+  "FocusedBeforeLayout": {
+    "ExitCode": 0,
+    "Passed": 31
+  },
+  "FinalDepartureCases": {
+    "ExitCode": 0,
+    "Passed": 6
+  },
+  "Analysis": {
+    "ExitCode": 0,
+    "Issues": 0,
+    "Seconds": 7.7
+  },
+  "Android": {
+    "Workflows": 1,
+    "SimultaneousDevices": false,
+    "ExpectedDepartureErrors": [
+      "permission-denied"
+    ],
+    "Seconds": 84,
+    "ExitCode": 0,
+    "Checkpoints": 10,
+    "NormalCachedLoginPreserved": true
+  },
+  "InitialAndroid": {
+    "CheckpointsBeforeFailure": 4,
+    "ExitCode": 1,
+    "CountedAsWorkflowPass": false
+  },
+  "Tester": {
+    "Bytes": 58059369,
+    "BuildExit": 0,
+    "LaunchExit": 0,
+    "ColdStartupMilliseconds": 4317,
+    "Sha256": "71E01843ED8700461F1A81BFE0C23E8E222C4483DEADCBD7D55DE9DB6CC147C7",
+    "DataCleared": false,
+    "InstallExit": 0,
+    "BuildSeconds": 47.3,
+    "HomeObserved": true,
+    "Path": "build/stage15/departure-recovery/whatmeal-local-tester.apk"
+  },
+  "DisposableExport": {
+    "ExitCode": 0,
+    "FinalAccountCount": 9,
+    "OriginalFixtureAccountsRetained": true,
+    "NormalAccountPresent": false
+  },
+  "OriginalBackendRecovered": false,
+  "NormalAccountReset": false,
+  "ProtectedFilesUnchanged": 5,
+  "HistoricalSecurityPassed": 65,
+  "SecurityResetSuiteRerun": false,
+  "ProductionModified": false,
+  "RulesChanged": false,
+  "LiveAiTested": false
+}

@@ -1,0 +1,6 @@
+i  emulators: Starting emulators: firestore
+i  emulators: Detected demo project ID "demo-whatmeal-cloud-security", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  emulators: Shutting down emulators.
+i  hub: Stopping emulator hub
+
+Error: ../../audit/cloud-test/recipe-budget-candidate.rules is outside of project directory

@@ -1,0 +1,9 @@
+{
+  "project": "whatmeal-gemini-test-20261019",
+  "activeSourceMatchesReviewedRules": true,
+  "comparedAgainst": "audit/cloud-test/recipe-budget-candidate.rules",
+  "candidateSha256": "49AA394DC5E125072AA73CB1DCF495CAD9185550D19532BA5037FA03AAC5B999",
+  "securityPassed": 71,
+  "securityTotal": 71,
+  "sourceSha256": "49aa394dc5e125072aa73cb1dcf495cad9185550d19532ba5037fa03aac5b999"
+}

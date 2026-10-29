@@ -1,0 +1,5 @@
+Analyzing whatmeal...                                           
+
+  error - The getter 'draft' isn't defined for the type '_MealCard'. Try importing the library that defines 'draft', correcting the name to the name of an existing getter, or defining a getter or field named 'draft' - lib\features\meal_plan\pages\generated_meal_plan_page.dart:1378:34 - undefined_getter
+
+1 issue found. (ran in 75.6s)

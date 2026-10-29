@@ -1,0 +1,4 @@
+
+        A: http://schemas.android.com/apk/res/android:minSdkVersion(0x0101020c)=24
+        A: http://schemas.android.com/apk/res/android:targetSdkVersion(0x01010270)=36
+

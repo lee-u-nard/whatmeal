@@ -1,0 +1,10 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_terminal_recovery_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_terminal_recovery_test.dart: Auth terminal profile error is safe; retry reopens without changing account session
+[AuthRepo] Profile listener failed (StateError)
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_terminal_recovery_test.dart: delayed logout cleanup cannot sign out B or a new A session
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/auth_terminal_recovery_test.dart: delayed or failing reauthentication never changes a later session password
+00:01 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/saved_plan_recovery_test.dart: saved plan terminal error stays visible while healthy household feed updates; retry and ABA discard old feed
+00:01 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/saved_plan_recovery_test.dart: saved page exposes terminal error and operative Retry instead of only an empty state
+00:07 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: grocery item and parent terminal feeds reopen, publish safe failures, and dispose sources
+00:08 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart: delayed successful or failing A initialization and add cannot attach or write after A B A
+00:08 +7: All tests passed!

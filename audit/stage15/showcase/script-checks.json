@@ -1,0 +1,66 @@
+[
+  {
+    "File": "build_integration.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "build_tester.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "demo_health.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "final_checks.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "finish_setup.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "install_demo.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "launcher_tests.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "OPEN_DEMO.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "open_verification.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "reopen_check.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "run_android.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "save_demo.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "start_avd.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "start_backend.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "verify_integration.ps1",
+    "ParseErrors": 0
+  },
+  {
+    "File": "verify_tester.ps1",
+    "ParseErrors": 0
+  }
+]

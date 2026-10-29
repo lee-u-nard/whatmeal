@@ -1,0 +1,15 @@
+{
+  "httpStatus": 403,
+  "tokenReceived": false,
+  "errorStatus": "PERMISSION_DENIED",
+  "reasons": [
+    "SERVICE_DISABLED"
+  ],
+  "services": [
+    "firebaseappcheck.googleapis.com"
+  ],
+  "appAttestationRejected": false,
+  "apiKeyRejected": false,
+  "apiDisabled": true,
+  "debugTokenRejected": false
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "Path": "firebase.json",
+    "SHA256": "A243E7A3A80FE8CD840C0BA1589873D88D01F79E4A8F03BBB9366161DE811934"
+  },
+  {
+    "Path": "firestore.rules",
+    "SHA256": "DB759E4941F8B9C06B097FB7C4FE9F148F7C2ADCBB52DA6AAC9B4ED9E5F7BE77"
+  },
+  {
+    "Path": "lib/firebase_options.dart",
+    "SHA256": "2CBB20126C11853FACFC5AA51228EFE26F2B8709320F393C8C6FA418C7CE62F8"
+  },
+  {
+    "Path": "android/app/google-services.json",
+    "SHA256": "1F27D52D415081539496126CC18A54CB72DFCDED5FA4D8FB4C74D67E5E3C9790"
+  },
+  {
+    "Path": "android/app/src/local/google-services.json",
+    "SHA256": "57B82FB302B92102F948AC13DA114D8AE6657344313BC1A7DF13296658E28990"
+  },
+  {
+    "Path": "android/app/src/showcase/google-services.json",
+    "SHA256": "374FE0B527F5AC817EB47BBF51269207071959C639E298D1F5C62A4CAE1439D6"
+  },
+  {
+    "Path": "build/final/whatmeal-demo.apk",
+    "SHA256": "56DDB70183DB9E8D4C6F3A345FAEFCA7A193A7B10AD72BA90E3E142279F693E9"
+  },
+  {
+    "Path": "build/private-state-snapshots/20261018-household-interruption/manifest.json",
+    "SHA256": "AF6F2EBB4D063984FCDB94E2B7B7D85BB01140CEC1256771CA260957F2F0B406"
+  }
+]

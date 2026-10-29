@@ -1,0 +1,19 @@
+{
+  "Package": "com.example.whatmeal.cloudtest",
+  "Project": "whatmeal-gemini-test-20261019",
+  "Device": "emulator-5564",
+  "PID": "2244",
+  "NormalEntrypoint": "lib/main.dart",
+  "ForegroundVerified": true,
+  "HomeVisible": true,
+  "SavedPlansVisible": true,
+  "FatalUnhandledCount": 0,
+  "FlutterErrorLineCount": 0,
+  "Passed": true,
+  "APK_SHA256": "C9DCD6A42EE9781C555638E8943BE48DFAC5AB4C9A49A2C8E3D839FB74FF063B",
+  "EvidenceFolder": "C:\\Users\\ASUS V16\\Desktop\\jabez_projects\\3RD_YEAR_SUBJECTS\\App Dev\\whatmeal\\build\\cloudtest-private\\evidence\\normal-runtime-20261019-123105964",
+  "Screenshot": "C:\\Users\\ASUS V16\\Desktop\\jabez_projects\\3RD_YEAR_SUBJECTS\\App Dev\\whatmeal\\build\\cloudtest-private\\evidence\\normal-runtime-20261019-123105964\\home.png",
+  "NewAIRequest": false,
+  "OriginalOrDemoOpened": false,
+  "CapturedAt": "2026-10-19T20:31:09.9891932+08:00"
+}

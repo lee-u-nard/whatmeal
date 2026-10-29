@@ -1,0 +1,11 @@
+{
+  "httpStatus": 200,
+  "tokenReceived": true,
+  "errorStatus": null,
+  "reasons": [],
+  "services": [],
+  "appAttestationRejected": false,
+  "apiKeyRejected": false,
+  "apiDisabled": false,
+  "debugTokenRejected": false
+}

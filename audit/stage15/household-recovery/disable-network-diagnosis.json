@@ -1,0 +1,5 @@
+{
+  "disposableFixtureOnly": true,
+  "indexExists": true,
+  "transactionCommittedDespiteSdkDisableNetwork": true
+}

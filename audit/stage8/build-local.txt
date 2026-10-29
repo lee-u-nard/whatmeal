@@ -1,0 +1,72 @@
+Running Gradle task 'assembleLocalRelease'...                   
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage8"
+Font asset "CupertinoIcons.ttf" was tree-shaken, reducing it from 257628 to 848 bytes (99.7% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 14520 bytes (99.1% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+Lint found 3 errors. First failure:
+C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\android\app\src\local\res\xml\local_network_security.xml:5: Error: Missing includeSubdomains attribute [NetworkSecurityConfig]
+        <domain>127.0.0.1</domain>
+         ~~~~~~
+
+C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\android\app\src\local\res\xml\local_network_security.xml:5: Error: Missing includeSubdomains attribute [NetworkSecurityConfig]
+        <domain>127.0.0.1</domain>
+         ~~~~~~
+C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\android\app\src\local\res\xml\local_network_security.xml:6: Error: Missing includeSubdomains attribute [NetworkSecurityConfig]
+        <domain>localhost</domain>
+         ~~~~~~
+C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\android\app\src\local\res\xml\local_network_security.xml:7: Error: Missing includeSubdomains attribute [NetworkSecurityConfig]
+        <domain>10.0.2.2</domain>
+         ~~~~~~
+
+   Explanation for issues of type "NetworkSecurityConfig":
+   Ensures that a <network-security-config> file, which is pointed to by an
+   android:networkSecurityConfig attribute in the manifest file, is valid
+
+   https://developer.android.com/preview/features/security-config.html
+
+3 errors
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:lintVitalLocalRelease'.
+> Lint found fatal errors while assembling a release target.
+
+  Fix the issues identified by lint, or create a baseline to see only new errors.
+  To create a baseline, run `gradlew updateLintBaseline` after adding the following to the module's build.gradle file:
+  ```
+  android {
+      lint {
+          baseline = file("lint-baseline.xml")
+      }
+  }
+  ```
+  For more details, see https://developer.android.com/studio/write/lint#snapshot
+
+  C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\android\app\src\local\res\xml\local_network_security.xml:5: Error: Missing includeSubdomains attribute [NetworkSecurityConfig]
+          <domain>127.0.0.1</domain>
+           ~~~~~~
+  C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\android\app\src\local\res\xml\local_network_security.xml:6: Error: Missing includeSubdomains attribute [NetworkSecurityConfig]
+          <domain>localhost</domain>
+           ~~~~~~
+  C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\android\app\src\local\res\xml\local_network_security.xml:7: Error: Missing includeSubdomains attribute [NetworkSecurityConfig]
+          <domain>10.0.2.2</domain>
+           ~~~~~~
+
+     Explanation for issues of type "NetworkSecurityConfig":
+     Ensures that a <network-security-config> file, which is pointed to by an
+     android:networkSecurityConfig attribute in the manifest file, is valid
+
+     https://developer.android.com/preview/features/security-config.html
+
+  3 errors
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 6m 24s
+Running Gradle task 'assembleLocalRelease'...                     388.7s
+Gradle task assembleLocalRelease failed with exit code 1

@@ -1,0 +1,10 @@
+[
+  {
+    "Package": "com.example.whatmeal.local",
+    "SHA256": "d80d00fb8a7d2652b6b2558a84d5cd4059a220b90c7709125c1b8a349f3fb06b"
+  },
+  {
+    "Package": "com.example.whatmeal.showcase",
+    "SHA256": "56ddb70183db9e8d4c6f3a345faefca7a193a7b10ad72ba90e3e142279f693e9"
+  }
+]

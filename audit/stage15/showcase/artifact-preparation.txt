@@ -1,0 +1,1 @@
+Initial copied build script selected app-local-debug.apk after successful showcase build. Strict package verification rejected it before installation or test execution. Corrected both build scripts to select app-showcase output. Actual showcase build exit0,214.3s; no rebuild needed to verify the already compiled showcase artifact.

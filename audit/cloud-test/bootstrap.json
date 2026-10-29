@@ -1,0 +1,7 @@
+{
+  "Package": "com.example.whatmeal.cloudtest",
+  "Project": "whatmeal-gemini-test-20261019",
+  "AppId": "1:952163528165:android:e184bb528e406cff95530c",
+  "InstallExit": 0,
+  "FirstLaunch": "Registration bootstrap only; expected App Check denial until private token registered"
+}

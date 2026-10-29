@@ -1,0 +1,36 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart
+00:00 +0: account reset publishes loading and cleared errors atomically
+00:00 +0 -1: account reset publishes loading and cleared errors atomically [E]
+  Expected: true
+    Actual: <false>
+  B must not observe A failure or a false empty inbox
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\notification_recovery_test.dart 60:5           main.<fn>
+  
+00:00 +0 -1: terminal feeds retry without changing session; healthy feed cannot hide failure
+00:00 +0 -2: terminal feeds retry without changing session; healthy feed cannot hide failure [E]
+  Expected: <1>
+    Actual: <2>
+  Retry is not an account change and must not invalidate navigation
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\notification_recovery_test.dart 75:5           main.<fn>
+  
+00:00 +0 -2: disposal releases account and household feeds
+00:00 +0 -3: disposal releases account and household feeds [E]
+  Expected: <false>
+    Actual: <true>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\notification_recovery_test.dart 96:5           main.<fn>
+  
+00:00 +0 -3: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart: account reset publishes loading and cleared errors atomically
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart: disposal releases account and household feeds
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/notification_recovery_test.dart: terminal feeds retry without changing session; healthy feed cannot hide failure

@@ -1,0 +1,8 @@
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\family\pages\family_space_page.dart:33:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\meal_plan\data\saved_plans_repository.dart:317:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\pantry\data\pantry_store.dart:22:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\pantry\data\pantry_store.dart:24:9 - curly_braces_in_flow_control_structures
+
+4 issues found. (ran in 126.7s)

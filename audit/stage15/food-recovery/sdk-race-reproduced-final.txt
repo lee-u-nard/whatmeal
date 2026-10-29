@@ -1,0 +1,25 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_transaction_race_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: native error during handler failure completes only once with original error
+00:00 +0 -1: native error during handler failure completes only once with original error [E]
+  Bad state: Future already completed
+  dart:async                                                                                          _Completer.completeError
+  package:cloud_firestore_platform_interface/src/method_channel/method_channel_firestore.dart 290:21  MethodChannelFirebaseFirestore.runTransaction.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                                          _CustomZone.registerUnaryCallback
+  package:cloud_firestore_platform_interface/src/method_channel/method_channel_firestore.dart 278:20  MethodChannelFirebaseFirestore.runTransaction.<fn>
+  ===== asynchronous gap ===========================
+  dart:async                                                                                          _ForwardingStream.listen
+  package:cloud_firestore_platform_interface/src/method_channel/method_channel_firestore.dart 252:7   MethodChannelFirebaseFirestore.runTransaction
+  ===== asynchronous gap ===========================
+  dart:async                                                                                          _CustomZone.registerUnaryCallback
+  package:cloud_firestore_platform_interface/src/method_channel/method_channel_firestore.dart 228:34  MethodChannelFirebaseFirestore.runTransaction
+  package:cloud_firestore/src/firestore.dart 289:21                                                   FirebaseFirestore.runTransaction
+  test\firestore_transaction_race_test.dart 71:12                                                     main.<fn>
+  
+00:00 +0 -1: ordinary handler failure is still delivered without suppression
+00:00 +1 -1: (tearDownAll)
+00:00 +1 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_transaction_race_test.dart: native error during handler failure completes only once with original error

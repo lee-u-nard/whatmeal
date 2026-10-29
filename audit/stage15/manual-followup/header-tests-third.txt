@@ -1,0 +1,110 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/app_shell_accessibility_test.dart
+00:00 +0: header actions are named, navigate, and announce unread changes
+SemanticsNode#0
+ │ Rect.fromLTRB(0.0, 0.0, 320.0, 640.0)
+ │
+ └─SemanticsNode#1
+   │ Rect.fromLTRB(0.0, 0.0, 320.0, 640.0)
+   │ textDirection: ltr
+   │ sortKey: OrdinalSortKey#29ae7(order: 0.0)
+   │
+   └─SemanticsNode#2
+     │ Rect.fromLTRB(0.0, 0.0, 320.0, 640.0)
+     │ flags: scopesRoute
+     │
+     ├─SemanticsNode#6
+     │ │ Rect.fromLTRB(0.0, 0.0, 320.0, 56.0)
+     │ │
+     │ ├─SemanticsNode#7
+     │ │   Rect.fromLTRB(16.0, 14.0, 208.0, 42.0)
+     │ │   flags: isHeader, namesRoute
+     │ │   label: "WhatMeal"
+     │ │   textDirection: ltr
+     │ │
+     │ ├─SemanticsNode#8
+     │ │   Rect.fromLTRB(224.0, 4.0, 272.0, 52.0)
+     │ │   actions: focus, tap
+     │ │   flags: isButton, hasEnabledState, isEnabled, isFocusable
+     │ │   traversalParentIdentifier: _OverlayPortalState#82d46
+     │ │   tooltip: "Notifications"
+     │ │   textDirection: ltr
+     │ │
+     │ └─SemanticsNode#9
+     │     Rect.fromLTRB(272.0, 12.0, 304.0, 44.0)
+     │     actions: tap
+     │     flags: isButton
+     │     label: "Open family profiles"
+     │     textDirection: ltr
+     │
+     ├─SemanticsNode#3
+     │ │ Rect.fromLTRB(0.0, 56.0, 320.0, 576.0)
+     │ │ sortKey: OrdinalSortKey#29ae7(order: 0.0)
+     │ │
+     │ └─SemanticsNode#4
+     │   │ Rect.fromLTRB(0.0, 0.0, 320.0, 520.0)
+     │   │ flags: scopesRoute
+     │   │
+     │   └─SemanticsNode#5
+     │       Rect.fromLTRB(0.0, 0.0, 320.0, 520.0)
+     │       label: "Page /home"
+     │       textDirection: ltr
+     │
+     ├─SemanticsNode#10
+     │   Rect.fromLTRB(16.0, 577.0, 73.6, 640.0)
+     │   actions: focus, tap
+     │   flags: isFocusable
+     │   label: "Home"
+     │   textDirection: ltr
+     │
+     ├─SemanticsNode#11
+     │   Rect.fromLTRB(73.6, 577.0, 131.2, 640.0)
+     │   actions: focus, tap
+     │   flags: isFocusable
+     │   label: "Meal Plan"
+     │   textDirection: ltr
+     │
+     ├─SemanticsNode#12
+     │   Rect.fromLTRB(131.2, 577.0, 188.8, 640.0)
+     │   actions: focus, tap
+     │   flags: isFocusable
+     │   label: "Pantry"
+     │   textDirection: ltr
+     │
+     ├─SemanticsNode#13
+     │   Rect.fromLTRB(188.8, 577.0, 246.4, 640.0)
+     │   actions: focus, tap
+     │   flags: isFocusable
+     │   label: "Grocery"
+     │   textDirection: ltr
+     │
+     └─SemanticsNode#14
+         Rect.fromLTRB(246.4, 577.0, 304.0, 640.0)
+         actions: focus, tap
+         flags: isFocusable
+         label: "Profile"
+         textDirection: ltr
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+A SemanticsHandle was active at the end of the test.
+All SemanticsHandle instances must be disposed by calling dispose() on the SemanticsHandle.
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester._verifySemanticsHandlesWereDisposed (package:flutter_test/src/widget_tester.dart:1074:7)
+#1      WidgetTester._endOfTestVerifications (package:flutter_test/src/widget_tester.dart:1063:5)
+#2      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1968:22)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  header actions are named, navigate, and announce unread changes
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -1: header actions are named, navigate, and announce unread changes [E]
+  Test failed. See exception logs above.
+  The test description was: header actions are named, navigate, and announce unread changes
+  
+00:01 +0 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/app_shell_accessibility_test.dart: header actions are named, navigate, and announce unread changes

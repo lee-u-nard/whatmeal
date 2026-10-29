@@ -1,0 +1,15 @@
+{
+  "completedPhases": [
+    "GroceryOwner registered and verified",
+    "invitation copied",
+    "GroceryMember registered and verified",
+    "fresh demo member joined expected shared grocery household",
+    "manual grocery add and normalized duplicate prevention",
+    "manual grocery edit quantity check and uncheck persisted",
+    "verified relay outage retained pending edit and disabled duplicate submit",
+    "visible transaction failure retained draft and ordinary retry requested",
+    "grocery transaction recovered after verified transport reconnect without duplicate",
+    "grocery missing quantity retained and native clipboard sharing verified",
+    "grocery clearing required confirmation and retained unchecked item then delete succeeded"
+  ]
+}

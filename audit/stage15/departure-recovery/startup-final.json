@@ -1,0 +1,12 @@
+{
+  "AppForeground": true,
+  "HomeVisible": true,
+  "SignInVisible": false,
+  "RetryVisible": false,
+  "SystemAnrVisible": false,
+  "PrimaryAuthListening": false,
+  "PrimaryFirestoreListening": false,
+  "UiReadyWithinBound": true,
+  "DataCleared": false,
+  "Scope": "Standalone local tester startup with former primary backend unavailable; not recovered server-data evidence"
+}

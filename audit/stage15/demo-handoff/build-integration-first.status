@@ -1,0 +1,1 @@
+Interrupted build, with observed missing extension import in test harness. No exit file, not a pass. Import corrected; app code unchanged.

@@ -1,0 +1,7 @@
+Starting: Intent { cmp=com.example.whatmeal.aitest/com.example.whatmeal.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.example.whatmeal.aitest/com.example.whatmeal.MainActivity
+TotalTime: 7898
+WaitTime: 7916
+Complete

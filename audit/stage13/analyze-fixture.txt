@@ -1,0 +1,8 @@
+Analyzing whatmeal...                                           
+
+warning - Unused import: 'package:whatmeal/features/profile/models/family_member.dart'. Try removing the import directive - integration_test\stage13_terminal_recovery_test.dart:15:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/profile/data/family_member_repository.dart'. Try removing the import directive - integration_test\stage13_terminal_recovery_test.dart:17:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/pantry/data/pantry_repository.dart'. Try removing the import directive - integration_test\stage13_terminal_recovery_test.dart:18:8 - unused_import
+warning - Unused import: 'package:whatmeal/features/family/data/family_repository.dart'. Try removing the import directive - integration_test\stage13_terminal_recovery_test.dart:32:8 - unused_import
+
+4 issues found. (ran in 43.8s)

@@ -1,0 +1,87 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart
+00:00 +0: index terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:00 +0 -1: index terminal failure publishes a safe unavailable state and retry reopens only current feeds [E]
+  Expected: <true>
+    Actual: <false>
+  Unavailable household must not first appear as a healthy empty household
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\household_final_recovery_test.dart 86:7        main.<fn>
+  
+00:00 +0 -1: family terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:00 +0 -2: family terminal failure publishes a safe unavailable state and retry reopens only current feeds [E]
+  Expected: <true>
+    Actual: <false>
+  Unavailable household must not first appear as a healthy empty household
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\household_final_recovery_test.dart 86:7        main.<fn>
+  
+00:00 +0 -2: members terminal failure publishes a safe unavailable state and retry reopens only current feeds
+00:00 +0 -3: members terminal failure publishes a safe unavailable state and retry reopens only current feeds [E]
+  Expected: <true>
+    Actual: <false>
+  Unavailable household must not first appear as a healthy empty household
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\household_final_recovery_test.dart 86:7        main.<fn>
+  
+00:00 +0 -3: delayed invitation result cannot refill token after native-style A B A
+00:00 +0 -4: delayed invitation result cannot refill token after native-style A B A [E]
+  Expected: null
+    Actual: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\household_final_recovery_test.dart 117:5       main.<fn>
+  
+00:00 +0 -4: late departure denial cannot start orphan cleanup under another account
+00:00 +0 -5: late departure denial cannot start orphan cleanup under another account [E]
+  Expected: <0>
+    Actual: <1>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\household_final_recovery_test.dart 135:5       main.<fn>
+  
+00:00 +0 -5: old archive confirmation cannot archive the new accounts household
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: 'active'
+  Actual: 'archived'
+   Which: is different.
+          Expected: active
+            Actual: archived
+                     ^
+           Differ at offset 1
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_final_recovery_test.dart:160:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/test/household_final_recovery_test.dart line 160
+The test description was:
+  old archive confirmation cannot archive the new accounts household
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -6: old archive confirmation cannot archive the new accounts household [E]
+  Test failed. See exception logs above.
+  The test description was: old archive confirmation cannot archive the new accounts household
+  
+00:01 +0 -6: Some tests failed.
+
+Failing tests:
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: delayed invitation result cannot refill token after native-style A B A
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: family terminal failure publishes a safe unavailable state and retry reopens only current feeds
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: index terminal failure publishes a safe unavailable state and retry reopens only current feeds
+  C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/household_final_recovery_test.dart: late departure denial cannot start orphan cleanup under another account
+  ... and 2 more

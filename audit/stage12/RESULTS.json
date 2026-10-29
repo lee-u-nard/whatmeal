@@ -1,0 +1,92 @@
+{
+  "stage": 12,
+  "scope": "Only local demo-whatmeal-audit; no production/live AI/push/deployment",
+  "fixes": [
+    "Atomic pantry/dietary account-root publication",
+    "Atomic safe listener-error publication",
+    "Owned feed/Auth/household subscription disposal"
+  ],
+  "flutter": {
+    "passed": 225,
+    "exit": 0,
+    "log": "flutter-tests.txt"
+  },
+  "analysis": {
+    "issues": 0,
+    "exit": 0,
+    "log": "flutter-analyze.txt"
+  },
+  "security": {
+    "rerun": false,
+    "priorPassed": 65,
+    "total": 65,
+    "priorLog": "../stage11/security-acceptance-rerun.txt",
+    "protectedFilesUnchanged": true
+  },
+  "android": {
+    "preparation": {
+      "exit": 0,
+      "seconds": 52,
+      "completedPhases": [
+        "RestartOwner registered and verified",
+        "owner household pantry and dietary profile created through UI",
+        "RestartOther registered and verified",
+        "both demo accounts created; owner data and native session ready for process restart"
+      ],
+      "mode": "prepare"
+    },
+    "recovery": {
+      "exit": 0,
+      "seconds": 24,
+      "completedPhases": [
+        "Firestore offline process restart restored Auth household pantry grocery and profile cache through UI",
+        "authorized server read confirmed reconnect after offline restart",
+        "actual SDK terminal permission denials cleared feeds; explicit resubscription restored authorized data",
+        "three rapid native SDK A logout B logout A cycles isolated data and recovered owner UI"
+      ],
+      "mode": "offline-restart"
+    },
+    "initialPreparation": {
+      "exit": 1,
+      "checkpoints": 3,
+      "reason": "Off-screen lazy profile card wait, fixed with ordinary scrolling",
+      "log": "android-prepare.txt"
+    },
+    "processRestart": {
+      "authBackendStillAvailable": true,
+      "sameApkHash": "E068C75D012ED37FD509F93FCF8AFECD50747464B25CE512C3081D7A092F53C6",
+      "processAbsentAfterStop": true,
+      "appDataCleared": false,
+      "dropped": 0,
+      "previousProcessPresent": true,
+      "relayOnline": false,
+      "forceStopExit": 0
+    },
+    "terminalSdkDenials": 2,
+    "rapidSdkCycles": 3,
+    "simultaneousDevices": false,
+    "authAvailableDuringFirestoreOutage": true
+  },
+  "apk": {
+    "path": "build/stage12/whatmeal-local-tester.apk",
+    "sha256": "203BCA4E98C3FE4E022E1BA110DBF6EEC8E74714C940174EAB91ACA83BB311A0",
+    "bytes": 57879145,
+    "package": "com.example.whatmeal.local",
+    "project": "demo-whatmeal-audit",
+    "signing": "Existing debug tester certificate",
+    "buildExit": 0,
+    "verificationExit": 0,
+    "installExit": 0,
+    "coldStartExit": 0,
+    "coldStartMilliseconds": 1141
+  },
+  "limitations": [
+    "Firestore-only outage; Auth reachable",
+    "Terminal SDK recovery uses injected query boundaries and repository Retry, not visible Retry button after natural revocation",
+    "Rapid native SDK transitions sequential; not overlapping UI requests",
+    "Other terminal feeds, full offline/OS reboot, simultaneous devices, live AI, native push and production readiness unverified"
+  ],
+  "productionAccess": false,
+  "productionModified": false,
+  "deployed": false
+}

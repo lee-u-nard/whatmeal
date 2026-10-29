@@ -1,0 +1,15 @@
+{
+  "scanComplete": true,
+  "zipEntriesScanned": 201,
+  "uncompressedBytesScanned": 60793367,
+  "distinctCredentialValuesChecked": 4,
+  "encodingsChecked": 3,
+  "distinctCredentialValuesMatched": 0,
+  "matchingEntries": 0,
+  "matches": 0,
+  "fixtureCredentialsAbsent": true,
+  "passed": true,
+  "fixtureAccountsChecked": 2,
+  "apkBytes": 58223225,
+  "apkSha256": "5D8C0A30006174443C67296AE94C4B2B77B4DF18EC1FB276319F3B4828D9B0C9"
+}

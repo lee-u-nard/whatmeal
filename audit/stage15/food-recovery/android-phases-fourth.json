@@ -1,0 +1,18 @@
+{
+  "phases": [
+    "manual saved plan identity and dates persisted with two pending meals",
+    "offline meal acceptance failed without committing status",
+    "acceptance retry and shared ingredient consolidation produced exact pantry shortage",
+    "real pantry permission denial hid inflated shopping needs and rejected stale purchase",
+    "grocery Retry reopened pantry feed and restored exact shortage",
+    "actual saved-plan and grocery item terminal denials recovered through visible Retry",
+    "pantry editor retained draft after real offline transaction failure without data loss",
+    "pantry retry recalculated shortage and actual grocery checkbox persisted provenance"
+  ],
+  "rpcFailures": [
+    "unavailable",
+    "unavailable"
+  ],
+  "normalLoginPreserved": false,
+  "scope": "Disposable personal account; real Android GroceryPage and pantry editor/native SDK; no live AI"
+}

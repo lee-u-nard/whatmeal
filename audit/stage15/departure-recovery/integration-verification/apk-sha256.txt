@@ -1,0 +1,5 @@
+
+Algorithm : SHA256
+Hash      : 5892A3F9B57728501C2F0D7C3058A75061916015DABB5FAB1FB94AE924EB8B9A
+Path      : C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\build\stage15\departure-recovery\integration.apk
+

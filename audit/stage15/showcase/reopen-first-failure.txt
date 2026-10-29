@@ -1,0 +1,7 @@
+Exception: C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage15\showcase\OPEN_DEMO.ps1:24
+Line |
+  24 |          throw 'The separate demo backend is unavailable or has unexpe …
+     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | The separate demo backend is unavailable or has unexpected ports. Original backend was not started.
+
+

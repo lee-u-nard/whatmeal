@@ -1,0 +1,7 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/grocery_feed_recovery_test.dart
+00:00 +0: failed saved-plan dependency is visible in groceries and Retry reopens both feeds
+00:00 +1: old remove and clear confirmations cannot mutate the newly active grocery list
+00:00 +2: an open grocery editor cannot submit its old draft into B or a later A session
+00:01 +3: grocery item and parent terminal feeds reopen, publish safe failures, and dispose sources
+00:01 +4: delayed successful or failing A initialization and add cannot attach or write after A B A
+00:01 +5: All tests passed!

@@ -1,0 +1,14 @@
+{
+  "Project": "whatmeal-gemini-test-20261019",
+  "Model": "gemini-3.8-flash",
+  "Status": "PASS - LIVE VERIFIED",
+  "VerificationScope": "Separate Android debug harness; real Firebase AI Logic Gemini Developer SDK, structured meal parsing, recipe and synthetic fixture validation; no plan persistence",
+  "AndroidUiAttempts": 2,
+  "FailedBeforeAppCheckApiRepair": 1,
+  "PassedAfterRepair": 1,
+  "AppCheckAttestationProbeHttp": 200,
+  "NoFatalRuntimeError": true,
+  "AccountsOrHouseholdDataUsed": false,
+  "FullAppLiveGenerationAndPersistenceVerified": false,
+  "OtherModelsLiveVerified": false
+}

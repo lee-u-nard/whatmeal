@@ -1,0 +1,13 @@
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/core/widgets/app_shell.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/ai_settings/pages/ai_settings_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/auth/data/auth_repository.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/auth/pages/forgot_password_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/grocery/pages/grocery_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/pantry/data/pantry_repository.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/pantry/pages/pantry_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/pantry/widgets/add_pantry_item_sheet.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/profile/data/family_member_repository.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/profile/pages/profile_page.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/profile/widgets/add_edit_family_member_sheet.dart', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/features/profile/widgets/edit_profile_sheet.dart', LF will be replaced by CRLF the next time Git touches it

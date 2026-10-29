@@ -1,0 +1,17 @@
+# Food recovery commands and evidence
+
+All commands ran from the repository root with the installed Flutter 3.44.5. Flutter builds/tests/analysis were serialized. SDK-dependent commands used the authorized host environment; no global SDK/cache/firewall changes.
+
+- `flutter test test/pantry_grocery_dependency_test.dart --reporter expanded`: pre-fix completed reproduction 0 passed/4 failed in `reproduced-verified.txt/.exit`. Earlier interrupted widget-fixture hangs are retained separately and are not passes.
+- Focused pantry/grocery/scoped/shared-workflow run: `focused-final.txt/.exit`, 18 passed, exit 0. Earlier 14 passed/2 failed test expectation run is preserved.
+- `flutter test test/firestore_transaction_race_test.dart`: deterministic bridge race reproduced 1 passed/1 failed (`sdk-race-reproduced-final.txt`). After the local backport, SDK/pantry batch 8 passed (`sdk-race-final.txt`).
+- `flutter test test/meal_replacement_store_test.dart`: null/missing slot reproduction 5 passed/2 failed (`replacement-reproduced.txt`). Final replacement/meal-identity/SDK/pantry batch 18 passed, exit 0 (`final-regressions.txt`).
+- Baseline complete `flutter test --reporter expanded`: 290 passed, exit 0 (`flutter-tests.txt`), before the final SDK and replacement regressions. Final complete suite and analysis are serialized by `final_checks.ps1`; consult its final exit files.
+- `start_backend.ps1`: existing `firebase.household-recovery.json`, project `demo-whatmeal-audit`, Auth 9199 / Firestore 9180, private disposable import/export only. Private pre-test copy: `build/household-recovery-private/before-food`. Normal 9099/8180 remain stopped.
+- `node audit/stage15/food-recovery/fixture_proxy.cjs`: disposable-only loopback 8183 to 9180, control 8184. Socket interruption/reconnection without payload logging or OS configuration changes.
+- `build_integration.ps1`: `flutter build apk --debug --flavor local --target integration_test/food_failure_recovery_test.dart --target-platform android-x64 --dart-define=WHATMEAL_EMULATOR_HOST=10.0.2.2 --dart-define=WHATMEAL_RECOVERY_AUTH_PORT=9199`. `verify_integration.ps1` checks demo native project, package, existing certificate and network/FCM/analytics safeguards.
+- `run_android.ps1`: `flutter drive --driver=test_driver/food_failure_recovery.dart --target=integration_test/food_failure_recovery_test.dart --use-application-binary=build/stage15/food-recovery/integration.apk --flavor=local -d emulator-5564 --keep-app-running`. Earlier first/second/third/fourth failures are preserved. Fourth run completed exit 1 after 8 checkpoints, 228 seconds, because its condition expected plural beans instead of canonical bean; the interruption was sent after completion. The correction/status note preserves this chronology.
+- `build_tester.ps1`: isolated release-mode `lib/main.dart`, existing local tester signer, process-only JBR/Gradle settings. `verify_tester.ps1` checks actual compiled package, demo configuration, certificate and SHA-256. This is not a production-signed APK.
+- `install_final.ps1`: verifies APK hash and AVD name; `adb install -r`, cold launch and bounded UI observation. No uninstall, account reset, app-data clearing or automatic system-dialog dismissal.
+
+The historical 65 security cases were preserved, not rerun against cached/manual data. Production and live AI were never used. Credentials, emulator action codes and native UID-bearing log fields are redacted; failures/assertions remain visible.

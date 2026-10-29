@@ -5,16 +5,21 @@ import '../ai_provider_adapter.dart';
 import '../ai_models.dart';
 import '../ai_logger.dart';
 import '../ai_json_parser.dart';
+import 'http_response_support.dart';
 
-/// Adapter for self-hosted or third-party custom AI endpoints (e.g. Ollama, LM Studio, vLLM, OpenRouter).
+/// OpenAI Chat Completions wire protocol only. Native Ollama and arbitrary
+/// JSON APIs are not supported; use their compatible endpoint if available.
 class CustomAdapter implements AiProviderAdapter {
   CustomAdapter({
     required this.endpoint,
     this.apiKey,
     String? model,
     this.isOpenAiCompatible = true,
-  }) : model = (model != null && model.isNotEmpty) ? model : 'default';
+    http.Client? client,
+  })  : _transport = AiHttpTransport('Custom', client: client),
+        model = (model != null && model.isNotEmpty) ? model : 'default';
 
+  final AiHttpTransport _transport;
   final String endpoint;
   final String? apiKey;
   @override
@@ -26,12 +31,38 @@ class CustomAdapter implements AiProviderAdapter {
 
   /// Resolves the chat completion endpoint correctly.
   String get completionsUrl {
-    final ep = endpoint.trim();
-    if (!isOpenAiCompatible) return ep;
-    if (ep.endsWith('/chat/completions') || ep.endsWith('chat/completions')) {
-      return ep;
+    final uri = Uri.tryParse(endpoint.trim());
+    if (uri == null ||
+        !['http', 'https'].contains(uri.scheme) ||
+        uri.host.isEmpty ||
+        uri.userInfo.isNotEmpty ||
+        uri.hasFragment) {
+      throw const FormatException(
+          'Enter a valid HTTP/HTTPS endpoint without embedded credentials.');
     }
-    return ep.endsWith('/') ? '${ep}chat/completions' : '$ep/chat/completions';
+    if (!isOpenAiCompatible) return uri.toString();
+    final path = uri.path.replaceFirst(RegExp(r'/+$'), '');
+    return uri
+        .replace(
+            path: path.endsWith('/chat/completions')
+                ? path
+                : '$path/chat/completions')
+        .toString();
+  }
+
+  Future<http.Response> _post(Uri uri,
+          {Map<String, String>? headers,
+          Object? body,
+          Duration timeout = const Duration(seconds: 90)}) =>
+      _transport.post(uri,
+          headers: headers ?? {}, body: body as String, timeout: timeout);
+
+  Future<http.Response> _get(Uri uri, {Map<String, String>? headers}) =>
+      _transport.get(uri,
+          headers: headers ?? {}, timeout: const Duration(seconds: 15));
+
+  String _content(String body) {
+    return completedChatText(body, 'Custom');
   }
 
   Map<String, String> get _headers {
@@ -47,8 +78,10 @@ class CustomAdapter implements AiProviderAdapter {
 
   @override
   Future<TestConnectionResult> testConnection() async {
-    final url = completionsUrl;
-    if (url.isEmpty || !url.startsWith('http')) {
+    final String url;
+    try {
+      url = completionsUrl;
+    } catch (_) {
       return TestConnectionResult.failure(
         status: TestConnectionStatus.invalidEndpoint,
         message: 'Please provide a valid HTTP/HTTPS endpoint URL.',
@@ -59,19 +92,18 @@ class CustomAdapter implements AiProviderAdapter {
     AiLogger.logRequest(provider: 'Custom', endpoint: url, model: model);
 
     try {
-      final response = await http
-          .post(
-            Uri.parse(url),
-            headers: _headers,
-            body: jsonEncode({
-              'model': model,
-              'messages': [
-                {'role': 'user', 'content': 'Hi'}
-              ],
-              'max_tokens': 1,
-            }),
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await _post(
+        Uri.parse(url),
+        timeout: const Duration(seconds: 15),
+        headers: _headers,
+        body: jsonEncode({
+          'model': model,
+          'messages': [
+            {'role': 'user', 'content': 'Hi'}
+          ],
+          'max_tokens': 32,
+        }),
+      ).timeout(const Duration(seconds: 15));
 
       final elapsed = DateTime.now().difference(startTime).inMilliseconds;
       AiLogger.logResponse(
@@ -82,6 +114,14 @@ class CustomAdapter implements AiProviderAdapter {
       );
 
       if (response.statusCode == 200) {
+        try {
+          _content(response.body);
+        } catch (_) {
+          return TestConnectionResult.failure(
+              status: TestConnectionStatus.invalidEndpoint,
+              message:
+                  'Endpoint does not return OpenAI Chat Completions JSON.');
+        }
         return TestConnectionResult.success();
       } else if (response.statusCode == 401 || response.statusCode == 403) {
         return TestConnectionResult.failure(
@@ -93,20 +133,19 @@ class CustomAdapter implements AiProviderAdapter {
         return TestConnectionResult.failure(
           status: TestConnectionStatus.invalidEndpoint,
           message:
-              'Endpoint returned 404 Not Found at $url. Check the base URL and path.',
+              'Endpoint returned 404 Not Found. Check the base URL and path.',
         );
       } else {
-        return TestConnectionResult.failure(
-          status: TestConnectionStatus.providerUnavailable,
-          message: 'Custom endpoint returned HTTP ${response.statusCode}.',
-        );
+        return providerHttpFailure(response, 'Custom').toConnectionResult();
       }
+    } on AiHttpFailure catch (e) {
+      return e.toConnectionResult();
     } catch (e) {
       AiLogger.logError(provider: 'Custom', model: model, error: e);
       return TestConnectionResult.failure(
         status: TestConnectionStatus.networkError,
         message:
-            'Could not connect to custom endpoint. Verify the host is reachable: $e',
+            'Could not connect to custom endpoint. Verify the host is reachable.',
       );
     }
   }
@@ -132,18 +171,16 @@ class CustomAdapter implements AiProviderAdapter {
     final startTime = DateTime.now();
     AiLogger.logRequest(provider: 'Custom', endpoint: url, model: model);
 
-    final response = await http
-        .post(
-          Uri.parse(url),
-          headers: _headers,
-          body: jsonEncode({
-            'model': model,
-            'messages': [
-              {'role': 'user', 'content': prompt}
-            ],
-          }),
-        )
-        .timeout(const Duration(seconds: 90));
+    final response = await _post(
+      Uri.parse(url),
+      headers: _headers,
+      body: jsonEncode({
+        'model': model,
+        'messages': [
+          {'role': 'user', 'content': prompt}
+        ],
+      }),
+    ).timeout(const Duration(seconds: 90));
 
     final elapsed = DateTime.now().difference(startTime).inMilliseconds;
     AiLogger.logResponse(
@@ -154,16 +191,9 @@ class CustomAdapter implements AiProviderAdapter {
     );
 
     if (response.statusCode == 200) {
-      final decoded = jsonDecode(response.body) as Map<String, dynamic>;
-      final text = (decoded['choices'] as List?)?.firstOrNull?['message']
-          ?['content'] as String?;
-      if (text == null || text.trim().isEmpty) {
-        throw Exception('Custom API returned an empty response.');
-      }
-      return text;
+      return _content(response.body);
     } else {
-      throw Exception(
-          'Custom endpoint error (HTTP ${response.statusCode}): ${response.body}');
+      throw providerHttpFailure(response, 'Custom');
     }
   }
 
@@ -173,20 +203,19 @@ class CustomAdapter implements AiProviderAdapter {
     if (!isOpenAiCompatible || endpoint.isEmpty) return [];
     try {
       final uri = Uri.parse(completionsUrl);
-      final segs = uri.pathSegments
-          .where((s) => s != 'chat' && s != 'completions')
-          .toList();
+      final segs = uri.pathSegments.toList();
+      segs.removeRange(segs.length - 2, segs.length);
       segs.add('models');
       final modelsUrl = uri.replace(pathSegments: segs).toString();
 
-      final response = await http
-          .get(
-            Uri.parse(modelsUrl),
-            headers: _headers,
-          )
-          .timeout(const Duration(seconds: 15));
+      final response = await _get(
+        Uri.parse(modelsUrl),
+        headers: _headers,
+      ).timeout(const Duration(seconds: 15));
 
-      if (response.statusCode != 200) return [];
+      if (response.statusCode != 200) {
+        throw providerHttpFailure(response, 'Custom');
+      }
       final decoded = jsonDecode(response.body) as Map<String, dynamic>;
       final data = decoded['data'] as List<dynamic>? ?? [];
       final list = <String>[];
@@ -196,8 +225,11 @@ class CustomAdapter implements AiProviderAdapter {
         }
       }
       return list;
+    } on AiHttpFailure {
+      rethrow;
     } catch (_) {
-      return [];
+      throw const AiHttpFailure(
+          'Custom endpoint returned an invalid model catalogue.');
     }
   }
 }

@@ -1,0 +1,7 @@
+{
+  "completedPhases": [
+    "returning demo member accessed only the expected shared grocery fixture",
+    "manual grocery add and normalized duplicate prevention",
+    "manual grocery edit quantity check and uncheck persisted"
+  ]
+}

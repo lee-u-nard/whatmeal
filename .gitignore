@@ -59,3 +59,20 @@ app.*.map.json
 # Widget Preview related
 .widget_preview/
 
+# Private native configuration for the explicitly approved AI-only test project.
+/android/app/src/aitest/google-services.json
+/android/app/src/cloudtest/google-services.json
+
+# Existing private academic-prototype credentials; keep local and out of Git.
+/lib/core/config/bundled_gemini_keys.dart
+
+# Local secrets and signing files, including outside android/.
+.env
+.env.*
+!.env.example
+!.env.template
+*.jks
+*.keystore
+*.p12
+*.pfx
+

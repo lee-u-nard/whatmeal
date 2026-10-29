@@ -1,0 +1,9 @@
+{
+  "Device": "emulator-5564",
+  "AVD": "whatmeal-stage9-aosp",
+  "BootCompleted": true,
+  "PID": 4608,
+  "WipeData": false,
+  "SnapshotLoadSave": false,
+  "OriginalOrDemoAppOpened": false
+}

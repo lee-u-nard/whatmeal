@@ -1,0 +1,14 @@
+{
+  "accountsAuthenticated": 2,
+  "canonicalRolesVerified": true,
+  "sharedHouseholdMembers": 2,
+  "sameSavedPlanForBothAccounts": true,
+  "savedMeals": 2,
+  "statuses": [
+    "accepted",
+    "pending"
+  ],
+  "pantryStockVerified": true,
+  "ownerReadReceiptsPersisted": true,
+  "scope": "Authenticated local REST server reads; supplements actual routed Android UI evidence"
+}

@@ -1,0 +1,17 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: failed initial write retains generated data; save-only retry persists it
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: obsolete source session prevents the persistence call entirely
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: account/household change discards delayed success
+00:00 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: account/household change discards delayed failure
+00:00 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: A to B to A switching still rejects the old generated draft
+00:00 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_plan_persistence_test.dart: invalid empty persistence identity remains explicitly unsaved
+00:02 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: untouched core/display/core preserves quantities and recipe metadata
+00:02 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: current editor state overrides source while ingredient detail survives
+00:02 +8: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: title-only form submission with identical ingredient text keeps detail
+00:02 +9: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: ingredient edits invalidate source detail and never restore old recipe
+00:02 +10: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: directly changed display list cannot silently restore source ingredient
+00:02 +11: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: manual text recipes retain their existing serialization behavior
+00:02 +12: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: new meal identity retains recipe but gets a fresh creation timestamp
+00:02 +13: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: reusing a saved plan resets identity, time, status and replacement links
+00:02 +14: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/generated_meal_roundtrip_test.dart: accepted retry roundtrip retains grocery quantity and exact provenance
+00:02 +15: All tests passed!

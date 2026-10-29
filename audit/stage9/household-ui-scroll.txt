@@ -1,0 +1,549 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+  cloud_firestore_platform_interface 6.6.12 (8.0.7 available)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  firebase_auth_platform_interface 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  firebase_core_platform_interface 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+50 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage9\household-integration.apk...             1,496ms
+D/FlutterRenderer( 1840): Width is zero. 0,0
+D/FlutterJNI( 1840): Sending viewport metrics to the engine.
+I/Choreographer( 1840): Skipped 113 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 1840): Sending viewport metrics to the engine.
+I/.whatmeal.local( 1840): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:52408/HnxkiIlYPes=/
+VMServiceFlutterDriver: Isolate found with number: 6149253239896779
+VMServiceFlutterDriver: Isolate 6149253239896779 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 1840): 00:00 +0: local Android UI registration, verification, household and account switching
+VMServiceFlutterDriver: Connected to Flutter application.
+D/FlutterJNI( 1840): Sending viewport metrics to the engine.
+D/EGL_emulation( 1840): app_time_stats: avg=840.88ms min=51.06ms max=1630.71ms count=2
+D/FirebaseAuth( 1840): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1840): Notifying auth state listeners about a sign-out event.
+D/EGL_emulation( 1840): app_time_stats: avg=262.23ms min=112.71ms max=701.65ms count=6
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=202.49ms min=50.55ms max=735.16ms count=7
+D/EGL_emulation( 1840): app_time_stats: avg=125.36ms min=8.27ms max=261.91ms count=8
+D/EGL_emulation( 1840): app_time_stats: avg=117.93ms min=44.02ms max=209.99ms count=10
+D/EGL_emulation( 1840): app_time_stats: avg=123.20ms min=31.37ms max=238.16ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=105.95ms min=12.75ms max=238.96ms count=10
+I/FirebaseAuth( 1840): Creating user with owner-1792082493683564@example.test with empty reCAPTCHA token
+D/EGL_emulation( 1840): app_time_stats: avg=147.83ms min=40.68ms max=293.22ms count=7
+W/.whatmeal.local( 1840): Suspending all threads took: 8.922ms
+D/EGL_emulation( 1840): app_time_stats: avg=240.55ms min=232.24ms max=252.95ms count=5
+I/.whatmeal.local( 1840): Background concurrent mark compact GC freed 3033KB AllocSpace bytes, 9(372KB) LOS objects, 49% free, 3198KB/6396KB, paused 22.617ms,47.030ms total 1.547s
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1840): app_time_stats: avg=261.63ms min=222.86ms max=292.93ms count=4
+D/TrafficStats( 1840): tagSocket(142) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1840): app_time_stats: avg=265.77ms min=242.60ms max=304.57ms count=4
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1840): app_time_stats: avg=223.39ms min=208.64ms max=258.59ms count=5
+D/FirebaseAuth( 1840): Notifying id token listeners about user ( gQN3mda8hCCVuWMhyrfuJZbTLCLb ).
+D/FirebaseAuth( 1840): Notifying auth state listeners about user ( gQN3mda8hCCVuWMhyrfuJZbTLCLb ).
+W/GooglePlayServicesUtil( 1840): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 1840): GooglePlayServices not available due to error 9
+W/Firestore( 1840): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1840): tagSocket(148) with statsTag=0xffffffff, statsUid=-1
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1840): app_time_stats: avg=469.57ms min=216.01ms max=1095.43ms count=4
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1840): Local UI checkpoint: Owner registered and verified
+D/EGL_emulation( 1840): app_time_stats: avg=163.87ms min=42.46ms max=261.68ms count=7
+D/EGL_emulation( 1840): app_time_stats: avg=111.63ms min=23.57ms max=216.25ms count=9
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=132.61ms min=8.14ms max=229.92ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=111.59ms min=20.27ms max=218.00ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=102.71ms min=15.89ms max=255.20ms count=10
+I/flutter ( 1840): Local UI checkpoint: household created
+D/EGL_emulation( 1840): app_time_stats: avg=157.57ms min=16.42ms max=353.72ms count=7
+D/EGL_emulation( 1840): app_time_stats: avg=135.38ms min=81.64ms max=225.57ms count=8
+D/EGL_emulation( 1840): app_time_stats: avg=216.37ms min=209.81ms max=221.55ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.42ms min=214.40ms max=220.97ms count=5
+I/flutter ( 1840): Local UI checkpoint: invitation copied
+D/EGL_emulation( 1840): app_time_stats: avg=224.01ms min=215.43ms max=240.59ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=113.08ms min=11.13ms max=232.33ms count=9
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 1840): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1840): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/gQN3mda8hCCVuWMhyrfuJZbTLCLb/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'get' @ L330, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/gQN3mda8hCCVuWMhyrfuJZbTLCLb/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L320, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(families/ecG7PixnNi9J4nvhv3hj/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1840): app_time_stats: avg=132.45ms min=2.68ms max=286.96ms count=8
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/gQN3mda8hCCVuWMhyrfuJZbTLCLb/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L207, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/gQN3mda8hCCVuWMhyrfuJZbTLCLb/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1840): app_time_stats: avg=144.75ms min=58.96ms max=215.90ms count=7
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=102.35ms min=15.39ms max=213.39ms count=10
+D/EGL_emulation( 1840): app_time_stats: avg=100.81ms min=13.34ms max=264.37ms count=12
+D/EGL_emulation( 1840): app_time_stats: avg=105.14ms min=14.95ms max=250.14ms count=11
+D/EGL_emulation( 1840): app_time_stats: avg=98.58ms min=13.25ms max=250.15ms count=11
+I/FirebaseAuth( 1840): Creating user with member-1792082521010331@example.test with empty reCAPTCHA token
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1840): tagSocket(134) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1840): app_time_stats: avg=134.06ms min=14.42ms max=221.75ms count=9
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1840): Notifying id token listeners about user ( RD10qiU55Ry5YINDqTSpuTj5cNV9 ).
+D/FirebaseAuth( 1840): Notifying auth state listeners about user ( RD10qiU55Ry5YINDqTSpuTj5cNV9 ).
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/EGL_emulation( 1840): app_time_stats: avg=563.78ms min=217.68ms max=1218.21ms count=3
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/flutter ( 1840): Local UI checkpoint: Member registered and verified
+I/flutter ( 1840): Local UI checkpoint: new account has no household
+D/EGL_emulation( 1840): app_time_stats: avg=111.90ms min=30.91ms max=214.63ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=122.40ms min=14.44ms max=238.03ms count=9
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=122.10ms min=14.69ms max=233.69ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=111.99ms min=15.15ms max=233.01ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=93.92ms min=19.10ms max=231.00ms count=11
+D/EGL_emulation( 1840): app_time_stats: avg=128.23ms min=13.81ms max=252.05ms count=8
+I/flutter ( 1840): Local UI checkpoint: member joined shared household
+D/EGL_emulation( 1840): app_time_stats: avg=223.11ms min=116.69ms max=335.36ms count=5
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=98.60ms min=4.44ms max=241.35ms count=12
+D/FirebaseAuth( 1840): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1840): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'get' @ L330, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/notificationReceipts order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L320, cause=null}
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L207, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L212, cause=null}
+D/EGL_emulation( 1840): app_time_stats: avg=132.71ms min=43.61ms max=218.12ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=103.00ms min=13.16ms max=249.64ms count=11
+D/EGL_emulation( 1840): app_time_stats: avg=104.57ms min=12.88ms max=247.40ms count=11
+I/FirebaseAuth( 1840): Logging in as owner-1792082493683564@example.test with empty reCAPTCHA token
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1840): tagSocket(134) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1840): Notifying id token listeners about user ( gQN3mda8hCCVuWMhyrfuJZbTLCLb ).
+D/FirebaseAuth( 1840): Notifying auth state listeners about user ( gQN3mda8hCCVuWMhyrfuJZbTLCLb ).
+D/EGL_emulation( 1840): app_time_stats: avg=138.81ms min=22.46ms max=338.33ms count=8
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=129.90ms min=18.39ms max=259.59ms count=8
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=120.94ms min=13.63ms max=216.39ms count=10
+D/EGL_emulation( 1840): app_time_stats: avg=113.23ms min=11.93ms max=216.08ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=122.25ms min=22.07ms max=231.12ms count=9
+I/flutter ( 1840): Local UI checkpoint: owner removed member
+D/EGL_emulation( 1840): app_time_stats: avg=86.25ms min=2.04ms max=219.30ms count=12
+D/EGL_emulation( 1840): app_time_stats: avg=128.46ms min=56.74ms max=214.26ms count=8
+D/EGL_emulation( 1840): app_time_stats: avg=169.53ms min=19.12ms max=218.86ms count=7
+D/EGL_emulation( 1840): app_time_stats: avg=216.14ms min=213.13ms max=218.45ms count=5
+I/flutter ( 1840): Local UI checkpoint: invitation copied
+D/EGL_emulation( 1840): app_time_stats: avg=220.07ms min=214.36ms max=224.18ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=111.17ms min=13.28ms max=231.30ms count=9
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/FirebaseAuth( 1840): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1840): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/gQN3mda8hCCVuWMhyrfuJZbTLCLb/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L207, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/gQN3mda8hCCVuWMhyrfuJZbTLCLb/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L212, cause=null}
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=113.63ms min=21.08ms max=225.37ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=105.27ms min=7.33ms max=263.32ms count=10
+D/EGL_emulation( 1840): app_time_stats: avg=105.12ms min=18.09ms max=211.13ms count=11
+I/FirebaseAuth( 1840): Logging in as member-1792082521010331@example.test with empty reCAPTCHA token
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1840): tagSocket(134) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1840): app_time_stats: avg=113.12ms min=11.78ms max=251.06ms count=10
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1840): Notifying id token listeners about user ( RD10qiU55Ry5YINDqTSpuTj5cNV9 ).
+D/FirebaseAuth( 1840): Notifying auth state listeners about user ( RD10qiU55Ry5YINDqTSpuTj5cNV9 ).
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=143.41ms min=14.14ms max=358.20ms count=8
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=121.56ms min=13.43ms max=234.98ms count=10
+I/flutter ( 1840): Local UI checkpoint: removed account has no household access
+D/EGL_emulation( 1840): app_time_stats: avg=133.18ms min=7.99ms max=236.68ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=104.50ms min=11.93ms max=263.12ms count=11
+D/EGL_emulation( 1840): app_time_stats: avg=144.01ms min=19.64ms max=369.12ms count=8
+I/flutter ( 1840): Local UI checkpoint: legitimate rejoin
+D/EGL_emulation( 1840): app_time_stats: avg=121.70ms min=14.80ms max=247.67ms count=10
+I/flutter ( 1840): Local UI checkpoint: member departed
+D/EGL_emulation( 1840): app_time_stats: avg=134.85ms min=31.36ms max=217.46ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=121.78ms min=2.85ms max=220.95ms count=9
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=100.54ms min=13.00ms max=123.90ms count=10
+D/FirebaseAuth( 1840): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 1840): Notifying auth state listeners about a sign-out event.
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'get' @ L311, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/notifications order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L345, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(membershipIndex/RD10qiU55Ry5YINDqTSpuTj5cNV9 order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'get' @ L103, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/pantryItems order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L207, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/familyMembers order by createdAt, __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L212, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/secrets/llmConfig order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'get' @ L330, cause=null}
+W/Firestore( 1840): (25.1.4) [Firestore]: Listen for Query(target=Query(users/RD10qiU55Ry5YINDqTSpuTj5cNV9/mealPlans order by -createdAt, -__name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 1840): false for 'list' @ L228, cause=null}
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=114.12ms min=15.69ms max=248.50ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=111.82ms min=10.20ms max=251.04ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=110.19ms min=2.86ms max=223.51ms count=10
+I/FirebaseAuth( 1840): Logging in as owner-1792082493683564@example.test with empty reCAPTCHA token
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 1840): tagSocket(129) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 1840): app_time_stats: avg=113.60ms min=12.06ms max=225.35ms count=10
+W/System  ( 1840): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 1840): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 1840): Notifying id token listeners about user ( gQN3mda8hCCVuWMhyrfuJZbTLCLb ).
+D/FirebaseAuth( 1840): Notifying auth state listeners about user ( gQN3mda8hCCVuWMhyrfuJZbTLCLb ).
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=145.81ms min=17.44ms max=390.89ms count=8
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=121.30ms min=16.42ms max=216.83ms count=10
+I/flutter ( 1840): Local UI checkpoint: owner session restored with one member
+I/flutter ( 1840): Local UI checkpoint: household UI workflow completed
+D/EGL_emulation( 1840): app_time_stats: avg=133.40ms min=14.42ms max=247.12ms count=9
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/.whatmeal.local( 1840): Background concurrent mark compact GC freed 4095KB AllocSpace bytes, 10(456KB) LOS objects, 49% free, 4658KB/9316KB, paused 254us,2.766ms total 107.146ms
+D/EGL_emulation( 1840): app_time_stats: avg=115.58ms min=34.27ms max=221.95ms count=9
+D/EGL_emulation( 1840): app_time_stats: avg=104.46ms min=23.67ms max=221.87ms count=10
+D/EGL_emulation( 1840): app_time_stats: avg=104.78ms min=18.55ms max=245.99ms count=10
+I/flutter ( 1840): Local UI checkpoint: dietary profile created through UI
+D/EGL_emulation( 1840): app_time_stats: avg=128.97ms min=21.79ms max=229.04ms count=8
+D/EGL_emulation( 1840): app_time_stats: avg=81.23ms min=3.17ms max=325.95ms count=12
+D/EGL_emulation( 1840): app_time_stats: avg=62.01ms min=4.27ms max=134.30ms count=16
+D/EGL_emulation( 1840): app_time_stats: avg=76.88ms min=2.25ms max=146.15ms count=13
+D/EGL_emulation( 1840): app_time_stats: avg=83.17ms min=2.99ms max=127.85ms count=12
+I/flutter ( 1840): ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+I/flutter ( 1840): The following assertion was thrown during layout:
+I/flutter ( 1840): A RenderFlex overflowed by 24 pixels on the right.
+I/flutter ( 1840): 
+I/flutter ( 1840): The relevant error-causing widget was:
+I/flutter ( 1840):   Row
+I/flutter ( 1840):   Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/profile/pages/profile_page.dart:428:17
+I/flutter ( 1840): 
+I/flutter ( 1840): The overflowing RenderFlex has an orientation of Axis.horizontal.
+I/flutter ( 1840): The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+I/flutter ( 1840): black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+I/flutter ( 1840): Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+I/flutter ( 1840): RenderFlex to fit within the available space instead of being sized to their natural size.
+I/flutter ( 1840): This is considered an error condition because it indicates that there is content that cannot be
+I/flutter ( 1840): seen. If the content is legitimately bigger than the available space, consider clipping it with a
+I/flutter ( 1840): ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+I/flutter ( 1840): like a ListView.
+I/flutter ( 1840): The specific RenderFlex in question is: RenderFlex#507c1 relayoutBoundary=up9 OVERFLOWING:
+I/flutter ( 1840):   creator: Row ← Column ← Expanded ← Row ← Padding ← DecoratedBox ← Container ← _FamilyMemberCard ←
+I/flutter ( 1840):     RepaintBoundary ← IndexedSemantics ← _SelectionKeepAlive ←
+I/flutter ( 1840):     NotificationListener<KeepAliveNotification> ← ⋯
+I/flutter ( 1840):   parentData: offset=Offset(0.0, 0.0); flex=null; fit=null (can use size)
+I/flutter ( 1840):   constraints: BoxConstraints(0.0<=w<=184.0, 0.0<=h<=Infinity)
+I/flutter ( 1840):   size: Size(184.0, 48.0)
+I/flutter ( 1840):   direction: horizontal
+I/flutter ( 1840):   mainAxisAlignment: spaceBetween
+I/flutter ( 1840):   mainAxisSize: max
+I/flutter ( 1840):   crossAxisAlignment: center
+I/flutter ( 1840):   textDirection: ltr
+I/flutter ( 1840):   verticalDirection: down
+I/flutter ( 1840):   spacing: 0.0
+I/flutter ( 1840): ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+I/flutter ( 1840): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1840): ══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+I/flutter ( 1840): The following assertion was thrown:
+I/flutter ( 1840): ListTile background color or ink splashes may be invisible.
+I/flutter ( 1840): The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+I/flutter ( 1840): background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+I/flutter ( 1840): effects.
+I/flutter ( 1840): To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+I/flutter ( 1840): intermediate DecoratedBox.
+I/flutter ( 1840): 
+I/flutter ( 1840): ListTile:
+I/flutter ( 1840):   ListTile(visualDensity: VisualDensity#c7be1(h: -2.0, v: -2.0)(horizontal: -2.0, vertical: -2.0), selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets(4.0, 0.0, 4.0, 0.0), onTap: Closure: () => void from Function '_handleValueChange@1221134056':.)
+I/flutter ( 1840): DecoratedBox:
+I/flutter ( 1840):   DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(14.0)))
+I/flutter ( 1840): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1840): ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+I/flutter ( 1840): The following assertion was thrown during layout:
+I/flutter ( 1840): A RenderFlex overflowed by 1.9 pixels on the right.
+I/flutter ( 1840): 
+I/flutter ( 1840): The relevant error-causing widget was:
+I/flutter ( 1840):   Row
+I/flutter ( 1840):   Row:file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/lib/features/meal_plan/pages/meal_plan_page.dart:873:32
+I/flutter ( 1840): 
+I/flutter ( 1840): The overflowing RenderFlex has an orientation of Axis.horizontal.
+I/flutter ( 1840): The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+I/flutter ( 1840): black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+I/flutter ( 1840): Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+I/flutter ( 1840): RenderFlex to fit within the available space instead of being sized to their natural size.
+I/flutter ( 1840): This is considered an error condition because it indicates that there is content that cannot be
+I/flutter ( 1840): seen. If the content is legitimately bigger than the available space, consider clipping it with a
+I/flutter ( 1840): ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+I/flutter ( 1840): like a ListView.
+I/flutter ( 1840): The specific RenderFlex in question is: RenderFlex#8d9e6 relayoutBoundary=up8 OVERFLOWING:
+I/flutter ( 1840):   needs compositing
+I/flutter ( 1840):   creator: Row ← Padding ← DecoratedBox ← Container ← Column ← KeyedSubtree-[GlobalKey#7dc33] ←
+I/flutter ( 1840):     RepaintBoundary ← IndexedSemantics ← _SelectionKeepAlive ←
+I/flutter ( 1840):     NotificationListener<KeepAliveNotification> ← KeepAlive ← AutomaticKeepAlive ← ⋯
+I/flutter ( 1840):   parentData: offset=Offset(15.0, 15.0) (can use size)
+I/flutter ( 1840):   constraints: BoxConstraints(0.0<=w<=250.0, 0.0<=h<=Infinity)
+I/flutter ( 1840):   size: Size(250.0, 48.0)
+I/flutter ( 1840):   direction: horizontal
+I/flutter ( 1840):   mainAxisAlignment: spaceBetween
+I/flutter ( 1840):   mainAxisSize: max
+I/flutter ( 1840):   crossAxisAlignment: center
+I/flutter ( 1840):   textDirection: ltr
+I/flutter ( 1840):   verticalDirection: down
+I/flutter ( 1840):   spacing: 0.0
+I/flutter ( 1840): ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+I/flutter ( 1840): ════════════════════════════════════════════════════════════════════════════════════════════════════
+D/EGL_emulation( 1840): app_time_stats: avg=385.69ms min=118.24ms max=1091.65ms count=4
+I/flutter ( 1840): ══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+I/flutter ( 1840): The following assertion was thrown:
+I/flutter ( 1840): ListTile background color or ink splashes may be invisible.
+I/flutter ( 1840): The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+I/flutter ( 1840): background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+I/flutter ( 1840): effects.
+I/flutter ( 1840): To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+I/flutter ( 1840): intermediate DecoratedBox.
+I/flutter ( 1840): 
+I/flutter ( 1840): ListTile:
+I/flutter ( 1840):   ListTile(visualDensity: VisualDensity#c7be1(h: -2.0, v: -2.0)(horizontal: -2.0, vertical: -2.0), selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets(4.0, 0.0, 4.0, 0.0), onTap: Closure: () => void from Function '_handleValueChange@1221134056':.)
+I/flutter ( 1840): DecoratedBox:
+I/flutter ( 1840):   DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(14.0)))
+I/flutter ( 1840): ════════════════════════════════════════════════════════════════════════════════════════════════════
+D/EGL_emulation( 1840): app_time_stats: avg=107.37ms min=19.37ms max=207.21ms count=11
+I/flutter ( 1840): ══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+I/flutter ( 1840): The following assertion was thrown:
+I/flutter ( 1840): ListTile background color or ink splashes may be invisible.
+I/flutter ( 1840): The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+I/flutter ( 1840): background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+I/flutter ( 1840): effects.
+I/flutter ( 1840): To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+I/flutter ( 1840): intermediate DecoratedBox.
+I/flutter ( 1840): 
+I/flutter ( 1840): ListTile:
+I/flutter ( 1840):   ListTile(visualDensity: VisualDensity#c7be1(h: -2.0, v: -2.0)(horizontal: -2.0, vertical: -2.0), selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets(4.0, 0.0, 4.0, 0.0), onTap: Closure: () => void from Function '_handleValueChange@1221134056':.)
+I/flutter ( 1840): DecoratedBox:
+I/flutter ( 1840):   DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(14.0)))
+I/flutter ( 1840): ════════════════════════════════════════════════════════════════════════════════════════════════════
+D/EGL_emulation( 1840): app_time_stats: avg=107.65ms min=5.34ms max=217.98ms count=9
+I/flutter ( 1840): ══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+I/flutter ( 1840): The following assertion was thrown:
+I/flutter ( 1840): ListTile background color or ink splashes may be invisible.
+I/flutter ( 1840): The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+I/flutter ( 1840): background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+I/flutter ( 1840): effects.
+I/flutter ( 1840): To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+I/flutter ( 1840): intermediate DecoratedBox.
+I/flutter ( 1840): 
+I/flutter ( 1840): ListTile:
+I/flutter ( 1840):   ListTile(visualDensity: VisualDensity#c7be1(h: -2.0, v: -2.0)(horizontal: -2.0, vertical: -2.0), selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets(4.0, 0.0, 4.0, 0.0), onTap: Closure: () => void from Function '_handleValueChange@1221134056':.)
+I/flutter ( 1840): DecoratedBox:
+I/flutter ( 1840):   DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(14.0)))
+I/flutter ( 1840): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 1840): ══╡ EXCEPTION CAUGHT BY FLUTTER FRAMEWORK ╞═════════════════════════════════════════════════════════
+I/flutter ( 1840): The following assertion was thrown:
+I/flutter ( 1840): ListTile background color or ink splashes may be invisible.
+I/flutter ( 1840): The ListTile is wrapped in a DecoratedBox that has a background color. Because ListTile paints its
+I/flutter ( 1840): background and ink splashes on the nearest Material ancestor, this DecoratedBox will hide those
+I/flutter ( 1840): effects.
+I/flutter ( 1840): To fix this, wrap the ListTile in its own Material widget, or remove the background color from the
+I/flutter ( 1840): intermediate DecoratedBox.
+I/flutter ( 1840): 
+I/flutter ( 1840): ListTile:
+I/flutter ( 1840):   ListTile(visualDensity: VisualDensity#c7be1(h: -2.0, v: -2.0)(horizontal: -2.0, vertical: -2.0), selectedColor: Color(alpha: 1.0000, red: 0.1804, green: 0.4902, blue: 0.1961, colorSpace: ColorSpace.sRGB), contentPadding: EdgeInsets(4.0, 0.0, 4.0, 0.0), onTap: Closure: () => void from Function '_handleValueChange@1221134056':.)
+I/flutter ( 1840): DecoratedBox:
+I/flutter ( 1840):   DecoratedBox(bg: BoxDecoration(color: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), border: Border.all(BorderSide(color: Color(alpha: 1.0000, red: 0.8784, green: 0.9020, blue: 0.8784, colorSpace: ColorSpace.sRGB))), borderRadius: BorderRadius.circular(14.0)))
+I/flutter ( 1840): ════════════════════════════════════════════════════════════════════════════════════════════════════
+D/EGL_emulation( 1840): app_time_stats: avg=100.11ms min=15.82ms max=218.80ms count=10
+W/WindowOnBackDispatcher( 1840): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 1840): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 1840): app_time_stats: avg=141.99ms min=10.75ms max=331.27ms count=7
+D/EGL_emulation( 1840): app_time_stats: avg=66.98ms min=9.69ms max=149.82ms count=16
+D/EGL_emulation( 1840): app_time_stats: avg=59.06ms min=13.31ms max=131.62ms count=18
+D/EGL_emulation( 1840): app_time_stats: avg=69.91ms min=14.82ms max=117.78ms count=15
+D/EGL_emulation( 1840): app_time_stats: avg=70.06ms min=14.75ms max=118.68ms count=15
+D/EGL_emulation( 1840): app_time_stats: avg=69.92ms min=14.84ms max=117.00ms count=15
+D/EGL_emulation( 1840): app_time_stats: avg=58.37ms min=13.30ms max=117.26ms count=18
+D/EGL_emulation( 1840): app_time_stats: avg=69.89ms min=13.27ms max=121.63ms count=15
+D/EGL_emulation( 1840): app_time_stats: avg=69.99ms min=13.93ms max=118.24ms count=15
+D/EGL_emulation( 1840): app_time_stats: avg=70.06ms min=13.56ms max=118.12ms count=15
+D/EGL_emulation( 1840): app_time_stats: avg=58.82ms min=14.53ms max=118.75ms count=17
+D/EGL_emulation( 1840): app_time_stats: avg=69.71ms min=14.65ms max=117.73ms count=16
+D/EGL_emulation( 1840): app_time_stats: avg=103.08ms min=14.37ms max=217.28ms count=11
+D/EGL_emulation( 1840): app_time_stats: avg=216.29ms min=214.90ms max=217.75ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.77ms min=209.28ms max=221.40ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.63ms min=211.50ms max=221.01ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.36ms min=215.45ms max=217.60ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=217.17ms min=214.54ms max=219.31ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.24ms min=214.67ms max=217.23ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.50ms min=216.02ms max=217.19ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.60ms min=215.07ms max=217.21ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=217.07ms min=216.57ms max=217.75ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.40ms min=215.10ms max=217.20ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.98ms min=215.03ms max=219.73ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.06ms min=213.09ms max=220.02ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.79ms min=216.18ms max=217.62ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.70ms min=215.68ms max=217.71ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.56ms min=215.33ms max=217.86ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.52ms min=214.83ms max=219.30ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=217.06ms min=215.83ms max=217.91ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=217.01ms min=213.31ms max=221.20ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.15ms min=215.57ms max=217.20ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.33ms min=215.41ms max=217.17ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=217.00ms min=215.05ms max=219.30ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.55ms min=215.32ms max=218.56ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.58ms min=216.07ms max=216.99ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=217.10ms min=216.21ms max=219.07ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.42ms min=214.63ms max=218.20ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.50ms min=215.14ms max=217.21ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.52ms min=215.71ms max=217.33ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.54ms min=215.70ms max=217.17ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.84ms min=215.83ms max=217.76ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.51ms min=215.56ms max=217.45ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.77ms min=216.44ms max=217.42ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.43ms min=213.62ms max=220.34ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.95ms min=215.11ms max=218.81ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.46ms min=215.41ms max=218.05ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=217.16ms min=215.57ms max=219.52ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.20ms min=213.62ms max=219.36ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.42ms min=215.00ms max=217.96ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.69ms min=216.11ms max=217.81ms count=5
+D/EGL_emulation( 1840): app_time_stats: avg=216.54ms min=211.54ms max=220.86ms count=5
+Unhandled exception:
+DriverError: Failed to fulfill RequestData due to remote error
+Original error: ext.flutter.driver: (112) Service has disappeared
+Original stack trace:
+#0      new _OutstandingRequest (package:vm_service/src/vm_service.dart:278:34)
+#1      VmService._call.<anonymous closure> (package:vm_service/src/vm_service.dart:1960:25)
+#2      VmService._call (package:vm_service/src/vm_service.dart:1972:8)
+#3      VmService.callServiceExtension (package:vm_service/src/vm_service.dart:1911:14)
+#4      VMServiceFlutterDriver.sendCommand (package:flutter_driver/src/driver/vmservice_driver.dart:327:12)
+#5      FlutterDriver.requestData (package:flutter_driver/src/driver/driver.dart:585:13)
+#6      integrationDriver (package:integration_test/integration_test_driver.dart:71:42)
+<asynchronous suspension>
+
+
+#0      VMServiceFlutterDriver.sendCommand (package:flutter_driver/src/driver/vmservice_driver.dart:340:7)
+<asynchronous suspension>
+#1      FlutterDriver.requestData (package:flutter_driver/src/driver/driver.dart:585:7)
+<asynchronous suspension>
+#2      integrationDriver (package:integration_test/integration_test_driver.dart:71:29)
+<asynchronous suspension>
+adb.exe: device offline
+Failed to stop app
+adb uninstall failed: ProcessException: Process exited abnormally with exit code 1:
+adb.exe: device 'emulator-5564' not found
+  Command: C:\Android\Sdk\platform-tools\adb.exe -s emulator-5564 uninstall com.example.whatmeal.local
+Failed to uninstall app

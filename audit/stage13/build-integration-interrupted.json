@@ -1,0 +1,6 @@
+{
+  "reason": "Build wrapper started before analysis finished; interrupted after detection. No build pass or APK claimed.",
+  "childExit": null,
+  "status": "interrupted",
+  "toolExit": 1
+}

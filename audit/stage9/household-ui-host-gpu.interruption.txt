@@ -1,0 +1,1 @@
+Interrupted after more than 5 minutes: app remained on native launch screen; driver extension did not connect. No completed phases. AVD remained connected, no ANR reported.

@@ -1,0 +1,25 @@
+Computing fixes in whatmeal...
+Applying fixes...
+
+lib\core\widgets\app_shell.dart
+  curly_braces_in_flow_control_structures - 1 fix
+
+lib\features\auth\data\auth_repository.dart
+  curly_braces_in_flow_control_structures - 3 fixes
+
+lib\features\pantry\pages\pantry_page.dart
+  curly_braces_in_flow_control_structures - 2 fixes
+
+lib\features\pantry\widgets\add_pantry_item_sheet.dart
+  curly_braces_in_flow_control_structures - 1 fix
+
+lib\features\profile\pages\profile_page.dart
+  curly_braces_in_flow_control_structures - 2 fixes
+
+lib\features\profile\widgets\add_edit_family_member_sheet.dart
+  curly_braces_in_flow_control_structures - 1 fix
+
+lib\features\profile\widgets\edit_profile_sheet.dart
+  curly_braces_in_flow_control_structures - 1 fix
+
+11 fixes made in 7 files.

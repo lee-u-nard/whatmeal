@@ -6,7 +6,10 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
-            "deviceId": "chrome"
+            "deviceId": "chrome",
+            "toolArgs": [
+                "--dart-define=RECAPTCHA_SITE_KEY=6LfPPcstAAAAAABqwVglZEzb0I7zqH8a3RzpQxp9"
+            ]
         },
         {
             "name": "WhatMeal (Windows)",

@@ -1,0 +1,69 @@
+FAIL owner shared read: fixture reset failed
+
+500 !== 200
+
+PASS owner shared write
+PASS admin shared read
+PASS admin shared write
+PASS member shared read
+PASS member shared write
+PASS viewer shared read
+PASS viewer shared write
+PASS outsider shared read
+PASS outsider shared write
+PASS unauthenticated shared read
+PASS unauthenticated shared write
+PASS family and invitation listing denied
+PASS outsider cannot read household or invitation refs
+PASS canonical membership only: legacy pointer/array does not grant access
+PASS atomic initial owner bootstrap
+PASS bootstrap missing index denied
+PASS self-join without capability denied
+PASS index creation alone denied
+PASS owner issues invitation and outsider redeems atomically
+PASS member and viewer cannot issue tokens
+PASS admin limited to member/viewer invitations
+PASS short and excessive-lifetime invitations denied
+PASS revoked invitation cannot be redeemed
+PASS expired invitation cannot be read/redeemed
+PASS recipient binding and invitation-role tampering denied
+PASS consumption without membership/index denied
+PASS single use survives leave: same token cannot rejoin
+PASS concurrent redeemers: exactly one wins
+PASS one user concurrent joins different families: exactly one wins
+PASS owner cannot self-change role
+PASS admin cannot self-change role
+PASS member cannot self-change role
+PASS viewer cannot self-change role
+PASS owner may promote member, admin may not promote member to admin
+PASS creator and direct owner mutation denied
+PASS ownership offer accepted atomically
+PASS owner removes/leaves member
+PASS admin removes/leaves member
+PASS admin removes/leaves owner
+PASS member removes/leaves viewer
+PASS viewer removes/leaves viewer
+PASS member removes/leaves member
+PASS owner removes/leaves owner
+PASS partial removal and private-user cross-write denied
+PASS archive blocks data, member can leave, owner can restore
+PASS hard delete denied even owner
+PASS cross-household reads/writes and private secrets denied
+PASS field injection into membership, household, shared data denied
+PASS activity actor identity immutable and no arbitrary payload
+PASS notification receipts private to viewer; no fan-out writes
+PASS removed member immediately loses shared reads and writes
+PASS demoted invitation issuer loses ability to admit members
+PASS invitation expiry extension and field injection denied
+PASS join races with revocation without half-created membership
+PASS owner can leave archived household; never active last owner
+PASS wrong recipient cannot accept transfer and incomplete transfer denied
+PASS type and oversized string validation
+PASS representative complete recipe and nested schema injection
+PASS replacement requires reciprocal links and immutable successor
+PASS meal grocery receipts retain strict role and schema validation
+PASS normal multi-ingredient recipe and plan save batch fit rule budget
+PASS pantry mutation and activity batch permits members but never viewers
+PASS string list bulk validation rejects coercion and oversized entries
+PASS full 21-meal weekly plan batch respects rule access limits
+64/65 emulator acceptance cases passed

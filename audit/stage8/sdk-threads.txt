@@ -1,0 +1,127 @@
+2026-10-11 14:41:24
+Full thread dump OpenJDK 64-Bit Server VM (21.0.10+-14961533-b1163.108 mixed mode):
+
+Threads class SMR info:
+_java_thread_list=0x00000247054a6e30, length=11, elements={
+0x000002476642f4c0, 0x00000247040787f0, 0x000002470407a5a0, 0x000002470407b000,
+0x00000247040bd920, 0x00000247040be380, 0x00000247040bede0, 0x00000247040bf840,
+0x00000247040d1720, 0x00000247040a0ff0, 0x000002470426d670
+}
+
+"main" #1 [25560] prio=5 os_prio=0 cpu=5718.75ms elapsed=128.66s tid=0x000002476642f4c0 nid=25560 runnable  [0x0000007b428ff000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.nio.ch.FileDispatcherImpl.write0(java.base@21.0.10/Native Method)
+	at sun.nio.ch.FileDispatcherImpl.write(java.base@21.0.10/Unknown Source)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(java.base@21.0.10/Unknown Source)
+	at sun.nio.ch.IOUtil.write(java.base@21.0.10/Unknown Source)
+	at sun.nio.ch.IOUtil.write(java.base@21.0.10/Unknown Source)
+	at sun.nio.ch.FileChannelImpl.write(java.base@21.0.10/Unknown Source)
+	- locked <0x0000000087c4e658> (a java.lang.Object)
+	at sun.nio.ch.ChannelOutputStream.writeFully(java.base@21.0.10/Unknown Source)
+	at sun.nio.ch.ChannelOutputStream.write(java.base@21.0.10/Unknown Source)
+	- locked <0x0000000087d06648> (a sun.nio.ch.ChannelOutputStream)
+	at com.android.sdklib.repository.legacy.LegacyDownloader.downloadFully(LegacyDownloader.java:138)
+	at com.android.repository.api.Downloader.downloadFullyWithCaching(Downloader.java:104)
+	at com.android.repository.impl.installer.BasicInstaller.doPrepare(BasicInstaller.java:75)
+	at com.android.repository.impl.installer.AbstractPackageOperation.prepare(AbstractPackageOperation.java:340)
+	at com.android.sdklib.tool.sdkmanager.SdkPackagesAction.applyPackageOperation(SdkPackagesAction.java:38)
+	at com.android.sdklib.tool.sdkmanager.InstallAction.execute(InstallAction.java:96)
+	at com.android.sdklib.tool.sdkmanager.SdkManagerCli.run(SdkManagerCli.java:104)
+	at com.android.sdklib.tool.sdkmanager.SdkManagerCli.main(SdkManagerCli.java:81)
+	at com.android.sdklib.tool.sdkmanager.SdkManagerCli.main(SdkManagerCli.java:48)
+
+"Common-Cleaner" #9 [4668] daemon prio=8 os_prio=1 cpu=15.62ms elapsed=128.75s tid=0x00000247040787f0 nid=4668 waiting on condition  [0x0000007b430ff000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@21.0.10/Native Method)
+	- parking to wait for  <0x000000008666e1d0> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(java.base@21.0.10/Unknown Source)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@21.0.10/Unknown Source)
+	at java.lang.ref.ReferenceQueue.await(java.base@21.0.10/Unknown Source)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@21.0.10/Unknown Source)
+	at java.lang.ref.ReferenceQueue.remove(java.base@21.0.10/Unknown Source)
+	at jdk.internal.ref.CleanerImpl.run(java.base@21.0.10/Unknown Source)
+	at java.lang.Thread.runWith(java.base@21.0.10/Unknown Source)
+	at java.lang.Thread.run(java.base@21.0.10/Unknown Source)
+	at jdk.internal.misc.InnocuousThread.run(java.base@21.0.10/Unknown Source)
+
+"Reference Handler" #10 [19544] daemon prio=10 os_prio=2 cpu=0.00ms elapsed=128.77s tid=0x000002470407a5a0 nid=19544 waiting on condition  [0x0000007b431ff000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@21.0.10/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@21.0.10/Unknown Source)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@21.0.10/Unknown Source)
+
+"Finalizer" #11 [22352] daemon prio=8 os_prio=1 cpu=15.62ms elapsed=128.79s tid=0x000002470407b000 nid=22352 in Object.wait()  [0x0000007b432ff000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait0(java.base@21.0.10/Native Method)
+	- waiting on <0x000000008666e6f0> (a java.lang.ref.NativeReferenceQueue$Lock)
+	at java.lang.Object.wait(java.base@21.0.10/Unknown Source)
+	at java.lang.Object.wait(java.base@21.0.10/Unknown Source)
+	at java.lang.ref.NativeReferenceQueue.await(java.base@21.0.10/Unknown Source)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@21.0.10/Unknown Source)
+	at java.lang.ref.NativeReferenceQueue.remove(java.base@21.0.10/Unknown Source)
+	- locked <0x000000008666e6f0> (a java.lang.ref.NativeReferenceQueue$Lock)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@21.0.10/Unknown Source)
+
+"Signal Dispatcher" #12 [14376] daemon prio=9 os_prio=2 cpu=0.00ms elapsed=128.80s tid=0x00000247040bd920 nid=14376 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Attach Listener" #13 [20176] daemon prio=5 os_prio=2 cpu=0.00ms elapsed=128.80s tid=0x00000247040be380 nid=20176 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Service Thread" #14 [27992] daemon prio=9 os_prio=0 cpu=0.00ms elapsed=128.80s tid=0x00000247040bede0 nid=27992 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Monitor Deflation Thread" #15 [27308] daemon prio=9 os_prio=0 cpu=0.00ms elapsed=128.80s tid=0x00000247040bf840 nid=27308 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #16 [16188] daemon prio=9 os_prio=2 cpu=2515.62ms elapsed=128.80s tid=0x00000247040d1720 nid=16188 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"C1 CompilerThread0" #19 [7276] daemon prio=9 os_prio=2 cpu=687.50ms elapsed=128.80s tid=0x00000247040a0ff0 nid=7276 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"Notification Thread" #20 [2732] daemon prio=9 os_prio=0 cpu=0.00ms elapsed=128.78s tid=0x000002470426d670 nid=2732 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"G1 Conc#2" os_prio=2 cpu=0.00ms elapsed=127.19s tid=0x00000247052c2830 nid=22404 runnable  
+
+"G1 Conc#1" os_prio=2 cpu=0.00ms elapsed=127.19s tid=0x000002470588d3e0 nid=14900 runnable  
+
+"GC Thread#9" os_prio=2 cpu=15.62ms elapsed=127.48s tid=0x0000024705331330 nid=2128 runnable  
+
+"GC Thread#8" os_prio=2 cpu=0.00ms elapsed=127.48s tid=0x0000024705330f80 nid=2712 runnable  
+
+"GC Thread#7" os_prio=2 cpu=0.00ms elapsed=127.48s tid=0x0000024705330bd0 nid=15784 runnable  
+
+"GC Thread#4" os_prio=2 cpu=0.00ms elapsed=127.98s tid=0x0000024704e508f0 nid=25648 runnable  
+
+"GC Thread#6" os_prio=2 cpu=15.62ms elapsed=127.98s tid=0x0000024704e51050 nid=3168 runnable  
+
+"GC Thread#5" os_prio=2 cpu=15.62ms elapsed=127.98s tid=0x0000024704e50ca0 nid=30292 runnable  
+
+"GC Thread#3" os_prio=2 cpu=0.00ms elapsed=127.98s tid=0x0000024704e50540 nid=27244 runnable  
+
+"GC Thread#2" os_prio=2 cpu=15.62ms elapsed=127.98s tid=0x0000024704e4fd80 nid=29660 runnable  
+
+"GC Thread#1" os_prio=2 cpu=0.00ms elapsed=127.99s tid=0x0000024704bed650 nid=23376 runnable  
+
+"VM Thread" os_prio=2 cpu=0.00ms elapsed=128.84s tid=0x000002470400b090 nid=30916 runnable  
+
+"VM Periodic Task Thread" os_prio=2 cpu=46.88ms elapsed=128.85s tid=0x000002477fe3fc20 nid=4280 waiting on condition  
+
+"G1 Service" os_prio=2 cpu=0.00ms elapsed=128.86s tid=0x000002477fd11c10 nid=27744 runnable  
+
+"G1 Refine#0" os_prio=2 cpu=0.00ms elapsed=128.86s tid=0x000002477fd11090 nid=18280 runnable  
+
+"G1 Conc#0" os_prio=2 cpu=15.62ms elapsed=128.86s tid=0x00000247664b0b50 nid=13004 runnable  
+
+"G1 Main Marker" os_prio=2 cpu=0.00ms elapsed=128.86s tid=0x00000247664b0040 nid=9940 runnable  
+
+"GC Thread#0" os_prio=2 cpu=15.62ms elapsed=128.86s tid=0x0000024766482770 nid=2420 runnable  
+
+JNI global refs: 21, weak refs: 45
+
+JNI global refs memory usage: 835, weak refs: 833
+

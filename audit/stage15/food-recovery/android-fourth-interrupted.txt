@@ -1,0 +1,416 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.59 (1.3.77 available)
+  archive 4.3.0 (4.5.2 available)
+  cel 0.5.6 (0.6.0 available)
+  cli_util 0.4.2 (0.6.0 available)
+  clock 1.1.2 (1.1.3 available)
+  cloud_firestore 5.6.12 (6.10.0 available)
+! cloud_firestore_platform_interface 6.6.12 from path third_party\cloud_firestore_platform_interface (overridden)
+  cloud_firestore_web 4.4.12 (5.7.3 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  cupertino_ui 1.0.2 (1.1.3 available)
+  dbus 0.7.15 (0.8.0 available)
+  equatable 2.1.0 (3.0.0 available)
+  fake_cloud_firestore 3.1.0 (4.3.0 available)
+  fake_firebase_security_rules 0.5.4 (0.6.0 available)
+  firebase_ai 2.3.0 (4.0.0 available)
+  firebase_app_check 0.3.2+10 (0.4.8 available)
+  firebase_app_check_platform_interface 0.1.1+10 (0.4.2+1 available)
+  firebase_app_check_web 0.2.0+14 (0.2.6+1 available)
+  firebase_auth 5.7.0 (6.7.0 available)
+  [local-token-redacted] 7.7.3 (9.1.0 available)
+  firebase_auth_web 5.15.3 (6.3.0 available)
+  firebase_core 3.15.2 (4.15.0 available)
+  [local-token-redacted] 6.0.3 (8.1.1 available)
+  firebase_core_web 2.24.1 (3.12.0 available)
+  firebase_messaging 15.2.10 (16.7.0 available)
+  firebase_messaging_platform_interface 4.6.10 (4.10.0 available)
+  firebase_messaging_web 3.10.10 (4.2.5 available)
+  flutter_local_notifications 18.0.1 (22.3.2 available)
+  flutter_local_notifications_linux 5.0.0 (8.0.2 available)
+  flutter_local_notifications_platform_interface 8.0.0 (12.2.0 available)
+  go_router 18.0.1 (18.1.0 available)
+  google_sign_in 6.3.0 (7.2.0 available)
+  google_sign_in_android 6.2.1 (7.2.18 available)
+  google_sign_in_ios 5.9.0 (6.3.7 available)
+  google_sign_in_platform_interface 2.5.0 (3.1.0 available)
+  google_sign_in_web 0.12.4+4 (1.1.3 available)
+  image 4.10.1 (4.12.0 available)
+  intl 0.20.2 (0.20.3 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  material_ui 1.1.1 (1.7.0 available)
+  meta 1.18.0 (1.19.0 available)
+  petitparser 7.0.2 (7.1.0 available)
+  rx 0.4.0 (0.5.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  timezone 0.10.1 (0.11.2 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  vector_math 2.2.0 (2.4.3 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+49 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Installing build\stage15\food-recovery\integration.apk...           9.1s
+D/FLTFireContextHolder( 3770): received application context.
+W/.whatmeal.local( 3770): Accessing hidden method Landroid/view/accessibility/AccessibilityNodeInfo;->getSourceNodeId()J (unsupported,test-api, reflection, allowed)
+W/.whatmeal.local( 3770): Accessing hidden method Landroid/view/accessibility/AccessibilityRecord;->getSourceNodeId()J (unsupported, reflection, allowed)
+W/.whatmeal.local( 3770): Accessing hidden field Landroid/view/accessibility/AccessibilityNodeInfo;->mChildNodeIds:Landroid/util/LongArray; (unsupported, reflection, allowed)
+W/.whatmeal.local( 3770): Accessing hidden method Landroid/util/LongArray;->get(I)J (unsupported, reflection, allowed)
+D/FlutterRenderer( 3770): Width is zero. 0,0
+W/HWUI    ( 3770): Unknown dataspace 0
+I/WindowExtensionsImpl( 3770): Initializing Window Extensions, vendor API level=6, activity embedding enabled=true
+D/FlutterRenderer( 3770): Width is zero. 0,0
+D/FlutterJNI( 3770): Sending viewport metrics to the engine.
+I/Gralloc4( 3770): mapper 4.x is not supported
+W/HWUI    ( 3770): Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+W/HWUI    ( 3770): Failed to initialize 101010-2 format, error = EGL_SUCCESS
+I/.whatmeal.local( 3770): Compiler allocated 5174KB to compile void android.view.ViewRootImpl.performTraversals()
+I/Choreographer( 3770): Skipped 54 frames!  The application may be doing too much work on its main thread.
+D/FlutterJNI( 3770): Sending viewport metrics to the engine.
+I/.whatmeal.local( 3770): Compiler allocated 5417KB to compile void android.view.ViewRootImpl.performTraversals()
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:50702/[vm-session-redacted]/
+VMServiceFlutterDriver: Isolate found with number: 3044958118941383
+VMServiceFlutterDriver: Isolate 3044958118941383 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 3770): 00:00 +0: local meal pantry grocery transaction and terminal recovery
+VMServiceFlutterDriver: Connected to Flutter application.
+D/ProfileInstaller( 3770): Installing profile for com.example.whatmeal.local
+I/Choreographer( 3770): Skipped 38 frames!  The application may be doing too much work on its main thread.
+D/FirebaseAuth( 3770): Notifying id token listeners about user ([uid-redacted]).
+I/FirebaseApp( 3770): Device unlocked: initializing all Firebase APIs for app food-1792274125344200
+W/Metadata( 3770): Failed to find package android.content.pm.PackageManager$NameNotFoundException: com.google.android.gms
+I/FirebaseAuth( 3770): Creating user with food-owner-1792274125344200@example.test with empty reCAPTCHA token
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/TrafficStats( 3770): tagSocket(6) with statsTag=0xffffffff, statsUid=-1
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 3770): Notifying id token listeners about user ([uid-redacted]).
+D/FirebaseAuth( 3770): Notifying auth state listeners about user ([uid-redacted]).
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+W/System  ( 3770): Ignoring header X-Firebase-Locale because its value was null.
+W/LocalRequestInterceptor( 3770): Error getting App Check token; using placeholder token instead. Error: com.google.firebase.FirebaseException: No AppCheckProvider installed.
+D/FirebaseAuth( 3770): Notifying id token listeners about user ([uid-redacted]).
+W/GooglePlayServicesUtil( 3770): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3770): GooglePlayServices not available due to error 9
+W/Firestore( 3770): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 3770): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+I/flutter ( 3770): Local food checkpoint: manual saved plan identity and dates persisted with two pending meals
+D/FlutterJNI( 3770): Sending viewport metrics to the engine.
+W/Firestore( 3770): (25.1.4) [WatchStream]: (d03894b) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+D/TrafficStats( 3770): tagSocket(147) with statsTag=0xffffffff, statsUid=-1
+W/Firestore( 3770): (25.1.4) [WriteStream]: (86bc64) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+W/Firestore( 3770): (25.1.4) [WatchStream]: (d03894b) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 3770): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3770): GooglePlayServices not available due to error 9
+W/Firestore( 3770): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 3770): tagSocket(144) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 3770): tagSocket(149) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 3770): app_time_stats: avg=12225.54ms min=7303.21ms max=17147.88ms count=2
+D/EGL_emulation( 3770): app_time_stats: avg=1014.63ms min=1014.63ms max=1014.63ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1025.74ms min=1025.74ms max=1025.74ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1025.25ms min=1025.25ms max=1025.25ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1019.79ms min=1019.79ms max=1019.79ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1030.59ms min=1030.59ms max=1030.59ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1045.48ms min=1045.48ms max=1045.48ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1045.83ms min=1045.83ms max=1045.83ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1020.01ms min=1020.01ms max=1020.01ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1019.00ms min=1019.00ms max=1019.00ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1039.51ms min=1039.51ms max=1039.51ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1029.54ms min=1029.54ms max=1029.54ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1028.74ms min=1028.74ms max=1028.74ms count=1
+W/Firestore( 3770): (25.1.4) [WatchStream]: (d03894b) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 3770): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3770): GooglePlayServices not available due to error 9
+W/Firestore( 3770): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/EGL_emulation( 3770): app_time_stats: avg=1033.53ms min=1033.53ms max=1033.53ms count=1
+D/TrafficStats( 3770): tagSocket(154) with statsTag=0xffffffff, statsUid=-1
+D/TrafficStats( 3770): tagSocket(156) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 3770): app_time_stats: avg=1037.73ms min=1037.73ms max=1037.73ms count=1
+I/flutter ( 3770): Local food checkpoint: offline meal acceptance failed without committing status
+I/flutter ( 3770): Local food checkpoint: acceptance retry and shared ingredient consolidation produced exact pantry shortage
+D/EGL_emulation( 3770): app_time_stats: avg=517.71ms min=344.22ms max=691.19ms count=2
+W/Firestore( 3770): (25.1.4) [Firestore]: Listen for Query(target=Query(users/no-food-access-1792274125344200/pantryItems order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 3770): false for 'list' @ L207, cause=null}
+I/flutter ( 3770): Local food checkpoint: real pantry permission denial hid inflated shopping needs and rejected stale purchase
+D/EGL_emulation( 3770): app_time_stats: avg=143.71ms min=32.98ms max=217.55ms count=7
+I/flutter ( 3770): Local food checkpoint: grocery Retry reopened pantry feed and restored exact shortage
+W/Firestore( 3770): (25.1.4) [Firestore]: Listen for Query(target=Query(users/no-food-access-1792274125344200/mealPlans order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 3770): false for 'list' @ L228, cause=null}
+W/Firestore( 3770): (25.1.4) [Firestore]: Listen for Query(target=Query(users/no-food-access-1792274125344200/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 3770): false for 'list' @ L221, cause=null}
+W/Firestore( 3770): (25.1.4) [Firestore]: Listen for Query(target=Query(users/no-food-access-1792274125344200/groceryLists/default/items order by __name__);limitType=LIMIT_TO_FIRST) failed: Status{code=PERMISSION_DENIED, description=
+W/Firestore( 3770): false for 'list' @ L221, cause=null}
+D/EGL_emulation( 3770): app_time_stats: avg=114.08ms min=28.56ms max=275.37ms count=9
+I/flutter ( 3770): Local food checkpoint: actual saved-plan and grocery item terminal denials recovered through visible Retry
+W/WindowOnBackDispatcher( 3770): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 3770): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 3770): app_time_stats: avg=142.72ms min=21.75ms max=353.86ms count=8
+W/Firestore( 3770): (25.1.4) [WatchStream]: (d03894b) Stream closed with status: Status{code=UNAVAILABLE, description=End of stream or IOException, cause=null}.
+D/TrafficStats( 3770): tagSocket(123) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 3770): app_time_stats: avg=285.48ms min=115.17ms max=527.68ms count=4
+D/EGL_emulation( 3770): app_time_stats: avg=111.87ms min=27.51ms max=188.10ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=121.09ms min=109.76ms max=137.05ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=119.65ms min=103.75ms max=139.87ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=118.33ms min=103.23ms max=142.07ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.47ms min=111.58ms max=134.48ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=119.30ms min=103.65ms max=141.74ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=120.35ms min=110.44ms max=132.06ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=122.66ms min=114.53ms max=146.00ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.06ms min=110.97ms max=139.25ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.63ms min=110.42ms max=139.85ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=118.92ms min=110.94ms max=125.69ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=117.19ms min=103.36ms max=126.07ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.03ms min=109.83ms max=140.06ms count=8
+W/GooglePlayServicesUtil( 3770): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3770): GooglePlayServices not available due to error 9
+W/Firestore( 3770): (25.1.4) [WatchStream]: (d03894b) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/Firestore( 3770): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 3770): tagSocket(152) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 3770): app_time_stats: avg=128.53ms min=117.04ms max=160.92ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=1967.61ms min=1967.61ms max=1967.61ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1040.43ms min=1040.43ms max=1040.43ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1012.31ms min=1012.31ms max=1012.31ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1017.25ms min=1017.25ms max=1017.25ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1031.91ms min=1031.91ms max=1031.91ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1017.31ms min=1017.31ms max=1017.31ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1047.08ms min=1047.08ms max=1047.08ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1033.05ms min=1033.05ms max=1033.05ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1021.39ms min=1021.39ms max=1021.39ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1032.88ms min=1032.88ms max=1032.88ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1016.28ms min=1016.28ms max=1016.28ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1025.49ms min=1025.49ms max=1025.49ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1027.95ms min=1027.95ms max=1027.95ms count=1
+W/Firestore( 3770): (25.1.4) [WatchStream]: (d03894b) Stream closed with status: Status{code=UNAVAILABLE, description=Channel shutdownNow invoked, cause=null}.
+W/GooglePlayServicesUtil( 3770): com.example.whatmeal.local requires the Google Play Store, but it is missing.
+E/GooglePlayServicesUtil( 3770): GooglePlayServices not available due to error 9
+W/Firestore( 3770): (25.1.4) [GrpcCallProvider]: Failed to update ssl context: com.google.android.gms.common.GooglePlayServicesNotAvailableException
+D/TrafficStats( 3770): tagSocket(145) with statsTag=0xffffffff, statsUid=-1
+D/EGL_emulation( 3770): app_time_stats: avg=1035.10ms min=1035.10ms max=1035.10ms count=1
+D/EGL_emulation( 3770): app_time_stats: avg=1040.04ms min=1040.04ms max=1040.04ms count=1
+I/flutter ( 3770): Local food checkpoint: pantry editor retained draft after real offline transaction failure without data loss
+D/EGL_emulation( 3770): app_time_stats: avg=114.67ms min=14.15ms max=282.98ms count=9
+I/flutter ( 3770): Local food checkpoint: pantry retry recalculated shortage and actual grocery checkbox persisted provenance
+D/EGL_emulation( 3770): app_time_stats: avg=127.11ms min=21.57ms max=280.73ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=153.99ms min=116.66ms max=201.78ms count=7
+D/EGL_emulation( 3770): app_time_stats: avg=120.34ms min=111.26ms max=131.70ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=120.01ms min=111.50ms max=140.40ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=120.40ms min=107.25ms max=138.66ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.09ms min=110.45ms max=137.49ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.24ms min=116.82ms max=130.67ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.81ms min=110.39ms max=136.95ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=123.18ms min=114.53ms max=133.62ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=122.77ms min=111.62ms max=142.73ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=123.45ms min=107.69ms max=139.09ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=118.04ms min=111.12ms max=132.50ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=122.65ms min=107.90ms max=133.68ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.82ms min=115.52ms max=135.04ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=123.78ms min=115.08ms max=132.42ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.20ms min=110.60ms max=138.00ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.14ms min=116.93ms max=138.71ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.63ms min=113.66ms max=138.48ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=118.84ms min=111.33ms max=131.45ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=126.73ms min=112.18ms max=136.06ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=122.69ms min=116.91ms max=138.19ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=126.67ms min=117.96ms max=132.54ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=128.16ms min=111.34ms max=153.95ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=121.86ms min=112.15ms max=147.81ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.99ms min=117.34ms max=140.36ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=122.83ms min=112.42ms max=136.49ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=127.11ms min=114.32ms max=135.12ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=123.34ms min=115.41ms max=133.23ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=121.23ms min=105.77ms max=131.71ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.24ms min=118.49ms max=139.90ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.99ms min=117.66ms max=132.37ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.70ms min=109.68ms max=152.68ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.94ms min=119.18ms max=131.54ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.78ms min=113.80ms max=137.50ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.50ms min=114.55ms max=135.07ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.73ms min=113.85ms max=133.33ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.80ms min=119.18ms max=131.72ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=126.06ms min=117.98ms max=132.15ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.38ms min=113.27ms max=136.22ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.81ms min=118.65ms max=132.39ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=121.02ms min=111.60ms max=137.98ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.20ms min=114.00ms max=135.39ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.09ms min=114.10ms max=134.74ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.02ms min=117.45ms max=133.08ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=121.41ms min=111.77ms max=132.68ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.24ms min=110.92ms max=138.59ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.08ms min=110.56ms max=138.43ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=123.50ms min=113.67ms max=132.78ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=127.60ms min=114.10ms max=145.50ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.72ms min=107.72ms max=144.29ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.96ms min=113.92ms max=133.80ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=121.57ms min=106.56ms max=130.08ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=122.27ms min=113.22ms max=134.75ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=127.30ms min=117.83ms max=132.33ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=129.42ms min=114.14ms max=138.65ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.03ms min=107.57ms max=148.00ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.02ms min=113.92ms max=134.98ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.15ms min=117.87ms max=131.56ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.81ms min=112.61ms max=144.58ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=126.65ms min=111.15ms max=139.35ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=122.65ms min=117.29ms max=139.79ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=126.68ms min=118.11ms max=132.31ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.01ms min=117.83ms max=132.49ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.75ms min=115.61ms max=133.01ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=120.31ms min=107.65ms max=137.71ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.42ms min=118.05ms max=132.18ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.81ms min=118.11ms max=132.74ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=129.26ms min=116.16ms max=144.38ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.74ms min=107.05ms max=140.07ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.03ms min=116.43ms max=138.59ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=127.46ms min=117.65ms max=139.13ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=123.37ms min=117.64ms max=133.44ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=123.36ms min=110.73ms max=131.45ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=129.45ms min=111.17ms max=153.08ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.68ms min=111.29ms max=152.68ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=128.38ms min=113.28ms max=145.79ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=123.78ms min=112.60ms max=137.74ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.07ms min=107.43ms max=146.44ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=132.40ms min=117.39ms max=145.70ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=122.58ms min=114.48ms max=132.59ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.72ms min=114.15ms max=132.89ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.96ms min=114.97ms max=134.20ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.99ms min=116.87ms max=138.63ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.16ms min=117.02ms max=133.50ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.02ms min=115.82ms max=131.41ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.25ms min=117.30ms max=132.48ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.56ms min=116.40ms max=135.79ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.75ms min=110.86ms max=138.91ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=123.48ms min=110.97ms max=139.64ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=130.26ms min=108.33ms max=146.76ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.57ms min=108.40ms max=140.13ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.19ms min=116.33ms max=133.28ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.63ms min=111.24ms max=138.19ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=132.97ms min=119.49ms max=146.08ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.94ms min=117.54ms max=136.38ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=120.92ms min=111.18ms max=131.28ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.99ms min=110.68ms max=151.19ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=118.79ms min=108.02ms max=130.88ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=120.41ms min=107.17ms max=144.34ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=126.47ms min=118.03ms max=139.23ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.01ms min=109.91ms max=140.18ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.21ms min=117.56ms max=137.09ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=123.96ms min=116.03ms max=131.81ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.11ms min=113.02ms max=138.88ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.78ms min=111.30ms max=141.56ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.98ms min=110.92ms max=151.74ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.02ms min=107.50ms max=139.49ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=120.38ms min=110.74ms max=131.84ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.70ms min=110.04ms max=138.89ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=120.32ms min=107.75ms max=132.25ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=119.82ms min=107.34ms max=139.16ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.99ms min=117.50ms max=140.56ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=129.24ms min=119.50ms max=142.70ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.87ms min=110.72ms max=138.94ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=121.76ms min=111.09ms max=139.31ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=123.41ms min=107.58ms max=136.43ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=123.61ms min=111.92ms max=138.37ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=126.58ms min=118.24ms max=139.74ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=120.33ms min=109.75ms max=140.23ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=131.29ms min=106.54ms max=147.39ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=120.10ms min=110.68ms max=131.22ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.18ms min=110.78ms max=138.56ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.13ms min=113.52ms max=133.32ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.05ms min=114.66ms max=133.97ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.60ms min=110.74ms max=145.53ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.07ms min=112.72ms max=142.40ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.16ms min=117.37ms max=132.57ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.80ms min=111.05ms max=140.17ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.22ms min=110.71ms max=133.20ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=128.99ms min=110.55ms max=147.05ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=125.01ms min=112.71ms max=138.14ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=120.38ms min=109.24ms max=132.30ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=127.33ms min=118.41ms max=137.97ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=126.88ms min=118.14ms max=139.17ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=124.11ms min=111.48ms max=137.66ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=118.50ms min=106.38ms max=125.35ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=131.32ms min=117.80ms max=140.84ms count=8
+D/EGL_emulation( 3770): app_time_stats: avg=122.69ms min=110.40ms max=138.92ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=124.91ms min=117.57ms max=132.75ms count=9
+D/EGL_emulation( 3770): app_time_stats: avg=125.87ms min=107.25ms max=151.20ms count=9
+W/OkHttpClientTransport( 3770): io.grpc.okhttp.OkHttpClientTransport$ClientFrameHandler@a65dca0: Received GOAWAY with ENHANCE_YOUR_CALM. Debug data: too_many_pings
+W/AtomicBackoff( 3770): Increased {0} to {1}
+W/Firestore( 3770): (25.1.4) [WatchStream]: (d03894b) Stream closed with status: Status{code=RESOURCE_EXHAUSTED, description=HTTP/2 error code: ENHANCE_YOUR_CALM (Bandwidth exhausted)
+W/Firestore( 3770): Received Goaway
+W/Firestore( 3770): too_many_pings, cause=null}.
+D/TrafficStats( 3770): tagSocket(145) with statsTag=0xffffffff, statsUid=-1
+D/FirebaseAuth( 3770): Notifying id token listeners about a sign-out event.
+D/FirebaseAuth( 3770): Notifying auth state listeners about a sign-out event.
+I/flutter ( 3770): ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+I/flutter ( 3770): The following TestFailure was thrown running a test:
+I/flutter ( 3770): Expected: true
+I/flutter ( 3770):   Actual: <false>
+I/flutter ( 3770): Bounded local food phase must complete
+I/flutter ( 3770): 
+I/flutter ( 3770): When the exception was thrown, this was the stack:
+I/flutter ( 3770): #4      main.<anonymous closure>.until (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart:72:7)
+I/flutter ( 3770): <asynchronous suspension>
+I/flutter ( 3770): #5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart:376:7)
+I/flutter ( 3770): <asynchronous suspension>
+I/flutter ( 3770): #6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+I/flutter ( 3770): <asynchronous suspension>
+I/flutter ( 3770): #7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+I/flutter ( 3770): <asynchronous suspension>
+I/flutter ( 3770): #8      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+I/flutter ( 3770): <asynchronous suspension>
+I/flutter ( 3770): 
+I/flutter ( 3770): This was caught by the test expectation on the following line:
+I/flutter ( 3770):   file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart line 72
+I/flutter ( 3770): The test description was:
+I/flutter ( 3770):   local meal pantry grocery transaction and terminal recovery
+I/flutter ( 3770): ════════════════════════════════════════════════════════════════════════════════════════════════════
+I/flutter ( 3770): 03:48 +0: local meal pantry grocery transaction and terminal recovery [E]
+I/flutter ( 3770):   Test failed. See exception logs above.
+I/flutter ( 3770):   The test description was: local meal pantry grocery transaction and terminal recovery
+I/flutter ( 3770):   
+I/flutter ( 3770): 03:48 +0 -1: (tearDownAll)
+I/flutter ( 3770): 03:48 +1 -1: Some tests failed.
+Failure Details:
+Failure in method: local meal pantry grocery transaction and terminal recovery
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞═════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+Bounded local food phase must complete
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure>.until (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart:72:7)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart:376:7)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._createTestCompletionHandler.<anonymous closure> (package:flutter_test/src/binding.dart:1706:12)
+<asynchronous suspension>
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/ASUS%20V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App%20Dev/whatmeal/integration_test/food_failure_recovery_test.dart line 72
+The test description was:
+  local meal pantry grocery transaction and terminal recovery
+═════════════════════════════════════════════════════════════════
+
+end of failure 1
+
+
+
+Leaving the application running.

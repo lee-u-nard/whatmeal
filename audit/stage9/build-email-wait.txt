@@ -1,0 +1,4 @@
+Running Gradle task 'assembleLocalDebug'...                     
+Picked up JAVA_TOOL_OPTIONS: -Djdk.net.unixdomain.tmpdir="C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\audit\stage9"
+Running Gradle task 'assembleLocalDebug'...                        80.2s
+√ Built build\app\outputs\flutter-apk\app-local-debug.apk

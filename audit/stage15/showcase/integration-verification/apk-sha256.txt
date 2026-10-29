@@ -1,0 +1,5 @@
+
+Algorithm : SHA256
+Hash      : 3040AD851A147C90ABACD46F24C2CA25259CB2032C51B6C0C34F3DD645095703
+Path      : C:\Users\ASUS V16\Desktop\jabez_projects\3RD_YEAR_SUBJECTS\App Dev\whatmeal\build\stage15\showcase\integration.apk
+

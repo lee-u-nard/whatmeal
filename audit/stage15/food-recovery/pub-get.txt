@@ -1,0 +1,8 @@
+Resolving dependencies...
+Downloading packages...
+! cloud_firestore_platform_interface 6.6.12 from path third_party\cloud_firestore_platform_interface (from transitive dependency to dev dependency) (overridden)
+  firebase_core_platform_interface 6.0.3 (from transitive dependency to dev dependency)
+  meta 1.18.0 (1.18.3 available)
+Changed 2 dependencies!
+1 package has newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.

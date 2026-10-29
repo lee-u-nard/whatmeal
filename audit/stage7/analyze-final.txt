@@ -1,0 +1,9 @@
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\meal_plan\pages\generated_meal_plan_page.dart:969:21 - curly_braces_in_flow_control_structures
+   info - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext - lib\features\meal_plan\pages\generated_meal_plan_page.dart:970:19 - use_build_context_synchronously
+  error - Undefined name 'meal'. Try correcting the name to one that is defined, or defining the name - lib\features\meal_plan\pages\generated_meal_plan_page.dart:970:42 - undefined_identifier
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\meal_plan\pages\generated_meal_plan_page.dart:973:21 - curly_braces_in_flow_control_structures
+   info - Don't use 'BuildContext's across async gaps, guarded by an unrelated 'mounted' check. Guard a 'State.context' use with a 'mounted' check on the State, and other BuildContext use with a 'mounted' check on the BuildContext - lib\features\meal_plan\pages\generated_meal_plan_page.dart:973:42 - use_build_context_synchronously
+
+5 issues found. (ran in 15.4s)

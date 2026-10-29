@@ -1,0 +1,1 @@
+Demo Firestore relay ready on loopback 8181; control 8182.

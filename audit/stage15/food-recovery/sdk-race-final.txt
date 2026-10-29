@@ -1,0 +1,12 @@
+00:00 +0: loading C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_transaction_race_test.dart
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_transaction_race_test.dart: (setUpAll)
+00:00 +0: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_transaction_race_test.dart: native error during handler failure completes only once with original error
+00:00 +1: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_transaction_race_test.dart: ordinary handler failure is still delivered without suppression
+00:00 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/firestore_transaction_race_test.dart: (tearDownAll)
+00:04 +2: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: loading pantry cannot publish an inflated complete shopping requirement
+00:04 +3: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: pantry failure is visible in grocery UI and Retry restores the real shortage
+00:04 +4: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: delayed purchase callback cannot persist an inflated receipt after pantry denial
+00:04 +5: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: obsolete pantry callback cannot recover a terminal feed without Retry
+00:05 +6: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: pantry A B A cannot publish stock from a cancelled account feed
+00:05 +7: C:/Users/ASUS V16/Desktop/jabez_projects/3RD_YEAR_SUBJECTS/App Dev/whatmeal/test/pantry_grocery_dependency_test.dart: delayed delete cannot erase a purchase receipt while pantry stock is unknown
+00:05 +8: All tests passed!

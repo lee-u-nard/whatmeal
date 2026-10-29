@@ -63,7 +63,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error checking verification status: $e'),
+          content: const Text('Verification status could not be checked. Please retry.'),
           backgroundColor: AppColors.danger,
         ),
       );
@@ -90,7 +90,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Could not send verification email: $e'),
+          content: const Text('Verification email could not be sent. Please retry later.'),
           backgroundColor: AppColors.danger,
         ),
       );
@@ -100,7 +100,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   }
 
   Future<void> _handleSignOut() async {
-    await AuthRepository.instance.logout();
+    try { await AuthRepository.instance.logout(); }
+    catch (_) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Sign out did not complete. Please retry.')));
+      return;
+    }
     if (mounted) context.go('/login');
   }
 

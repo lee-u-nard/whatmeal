@@ -1,0 +1,17 @@
+
+┌─────────────────────────────────────────────────────────┐
+│ A new version of Flutter is available!                  │
+│                                                         │
+│ To update to the latest version, run "flutter upgrade". │
+└─────────────────────────────────────────────────────────┘
+Analyzing whatmeal...                                           
+
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\auth\data\auth_repository.dart:184:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\auth\data\auth_repository.dart:190:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\auth\data\auth_repository.dart:235:51 - curly_braces_in_flow_control_structures
+  error - The function can't be unconditionally invoked because it can be 'null'. Try adding a null check ('!') - lib\features\grocery\data\grocery_repository.dart:191:17 - unchecked_use_of_nullable_value
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\grocery\data\grocery_repository.dart:264:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\features\profile\pages\profile_page.dart:223:45 - curly_braces_in_flow_control_structures
+  error - The class 'UserInfo' doesn't have an unnamed constructor. Try using one of the named constructors defined in 'UserInfo' - test\auth_terminal_recovery_test.dart:24:49 - new_with_undefined_constructor_default
+
+7 issues found. (ran in 83.7s)

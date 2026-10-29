@@ -1,0 +1,112 @@
+{
+  "stage": 13,
+  "scope": "Only local demo-whatmeal-audit; no production/live AI/push/deployment",
+  "findings": {
+    "high": 2,
+    "medium": 6,
+    "lowTestInfrastructure": 1,
+    "total": 9,
+    "product": 8
+  },
+  "flutter": {
+    "passed": 237,
+    "exit": 0,
+    "log": "flutter-tests-complete.txt"
+  },
+  "analysis": {
+    "issues": 0,
+    "exit": 0,
+    "log": "analyze-complete.txt"
+  },
+  "security": {
+    "rerun": false,
+    "priorPassed": 65,
+    "total": 65,
+    "priorLog": "../stage11/security-acceptance-rerun.txt",
+    "protectedFilesUnchanged": true
+  },
+  "android": {
+    "exit": 0,
+    "seconds": 47,
+    "combinedWorkflows": 1,
+    "checkpoints": {
+      "completedPhases": [
+        "TerminalOwner registered and verified",
+        "TerminalOther registered and verified",
+        "Auth profile real SDK terminal denial recovered through visible Retry Account Profile",
+        "grocery item real SDK terminal denial recovered through visible Retry",
+        "grocery parent real SDK terminal denial recovered through visible Retry",
+        "open grocery editor rejected an obsolete draft after native A B A without changing stored groceries",
+        "saved-plan parent denial exposes safe Retry and nested denial is surfaced",
+        "nested saved-plan real SDK terminal denial recovered through visible Retry with exact plan identity",
+        "stale saved-plan deletion confirmation rejected after native A B A with original plan intact",
+        "grocery surfaced upstream saved-plan denial and visible Retry restored both feeds without changing account session",
+        "delayed logout cleanup rejected obsolete completion without signing out new native account",
+        "failing delayed grocery initialization and pending add rejected after real native A B A transitions"
+      ],
+      "sdkPermissionDenials": 8
+    },
+    "log": "android-terminal-complete.txt",
+    "permissionObservationsAreNotIndependentCases": true,
+    "initialFailure": {
+      "exit": 1,
+      "completedCheckpoints": 6,
+      "reason": "Disconnected nested watcher test hook; reproduced and fixed",
+      "log": "android-terminal.txt"
+    },
+    "interimPass": {
+      "exit": 0,
+      "completedCheckpoints": 11,
+      "log": "android-terminal-verified.txt"
+    },
+    "simultaneousDevices": false
+  },
+  "apk": {
+    "path": "build/stage13/whatmeal-local-tester.apk",
+    "sha256": "0C5E59E0E7824BC153D7ACAD1C8CEFDCBBBF6DD2BB93D46B90BAE988FF5AFC7C",
+    "bytes": 57895529,
+    "package": "com.example.whatmeal.local",
+    "project": "demo-whatmeal-audit",
+    "signing": "Existing debug tester certificate; not production signing",
+    "buildExit": 0,
+    "buildSeconds": 94.4,
+    "verificationExit": 0,
+    "installExit": 0,
+    "coldStartExit": 0,
+    "coldStartMilliseconds": 2256,
+    "screenshot": "tester-startup.png",
+    "screenshotVisuallyInspected": true,
+    "anr": false
+  },
+  "limitations": [
+    "Injected query boundaries with actual SDK permission denials; controlled delays are not real network outages",
+    "Flutter-simulated typing; native keyboard and live email delivery unverified",
+    "No simultaneous devices, live AI, native push or production readiness certification",
+    "Already dispatched SDK writes cannot be cancelled by client session guards",
+    "Production signing, credential decisions, migration and deployment remain separate owner actions"
+  ],
+  "productionAccess": false,
+  "productionModified": false,
+  "deployed": false,
+  "cleanup": {
+    "dedicatedAvdStopped": true,
+    "localBackendIntentionallyStopped": true,
+    "checkedPorts": [
+      8180,
+      8181,
+      8182,
+      9099,
+      5564,
+      5565
+    ],
+    "listenersRemaining": 0,
+    "evidence": "cleanup-ports.json"
+  },
+  "evidenceChecks": {
+    "uniqueRequirementRows": 89,
+    "protectedFilesUnchanged": 5,
+    "actualExitFilesChecked": 9,
+    "apkHashMatched": true,
+    "diffCheckExit": 0
+  }
+}

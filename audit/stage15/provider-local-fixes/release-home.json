@@ -1,0 +1,20 @@
+{
+  "Action": "Home",
+  "VisibleLabels": [
+    "WhatMeal",
+    "Notifications",
+    "Open family profiles",
+    "Active Family Space: Demo Household (2 members)",
+    "Manage",
+    "Smart Family Planner\nGenerate a customized 5-day meal plan based on your family preferences and expiring pantry items.",
+    "Generate AI Plan",
+    "View Pantry\n1 item in stock",
+    "Saved Plans\n1 plans saved",
+    "Home",
+    "Meal Plan",
+    "Pantry",
+    "Grocery",
+    "Profile"
+  ],
+  "Screen": "release-home"
+}

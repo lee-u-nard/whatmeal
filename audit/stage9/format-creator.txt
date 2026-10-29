@@ -1,0 +1,5 @@
+Formatted lib/core/widgets/labeled_action_row.dart
+Formatted lib/features/meal_plan/widgets/meal_participant_tile.dart
+Formatted lib/features/meal_plan/pages/meal_plan_page.dart
+Formatted test/meal_creator_ui_test.dart
+Formatted 5 files (4 changed) in 0.03 seconds.

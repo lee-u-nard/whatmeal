@@ -1,54 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/config/runtime_environment.dart';
+import '../../../core/config/bundled_gemini_keys.dart';
+import '../../../core/services/ai/model_registry.dart';
 import '../data/ai_provider_repository.dart';
 import '../models/ai_provider.dart';
 
 class AiSettingsPage extends StatefulWidget {
-  const AiSettingsPage({super.key});
+  const AiSettingsPage({super.key, this.repository});
+
+  final AiProviderRepository? repository;
 
   @override
   State<AiSettingsPage> createState() => _AiSettingsPageState();
 }
 
 class _AiSettingsPageState extends State<AiSettingsPage> {
+  AiProviderRepository get _repo =>
+      widget.repository ?? AiProviderRepository.instance;
+  AiProviderType? _lastProvider;
+  String? _lastKey;
+  String? _lastModel;
+  int? _lastSession;
   final _keyController = TextEditingController();
   final _endpointController = TextEditingController();
+  final _modelController = TextEditingController();
   bool _isEditingKey = false;
   bool _showRawKey = false;
 
   @override
   void initState() {
     super.initState();
-    final config = AiProviderRepository.instance.value;
+    final config = _repo.value;
     _endpointController.text = config.customEndpoint ?? '';
+    _lastProvider = config.providerType;
+    _lastKey = config.apiKey;
+    _lastModel = config.selectedModel;
+    _lastSession = _repo.sessionRevision;
+    _modelController.text = _modelText(config.selectedModel);
     // When the provider reverts to Gemini (e.g. after removeKey), clear
     // the local text controllers and exit editing mode automatically.
-    AiProviderRepository.instance.addListener(_onProviderChanged);
+    _repo.addListener(_onProviderChanged);
   }
 
   void _onProviderChanged() {
-    final config = AiProviderRepository.instance.value;
-    // If we've switched to Gemini with no key (the default), clear all local state.
-    if (config.providerType == AiProviderType.gemini &&
-        (config.apiKey == null || config.apiKey!.isEmpty)) {
-      if (_isEditingKey || _keyController.text.isNotEmpty) {
-        setState(() {
-          _isEditingKey = false;
-          _keyController.clear();
-          _endpointController.clear();
-        });
-      }
+    final config = _repo.value;
+    final changedSession = _lastSession != _repo.sessionRevision;
+    if (changedSession ||
+        _lastProvider != config.providerType ||
+        _lastKey != config.apiKey) {
+      _keyController.clear();
+      _showRawKey = false;
+      _isEditingKey = false;
     }
+    _lastProvider = config.providerType;
+    _lastKey = config.apiKey;
+    _lastSession = _repo.sessionRevision;
+    if (changedSession || _lastModel != config.selectedModel) {
+      _modelController.text = _modelText(config.selectedModel);
+    }
+    _lastModel = config.selectedModel;
+    final endpoint = config.customEndpoint ?? '';
+    if (_endpointController.text != endpoint) {
+      _endpointController.text = endpoint;
+    }
+    if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
-    AiProviderRepository.instance.removeListener(_onProviderChanged);
+    _repo.removeListener(_onProviderChanged);
     _keyController.dispose();
     _endpointController.dispose();
+    _modelController.dispose();
     super.dispose();
   }
+
+  String _modelText(String model) =>
+      model == 'custom-model' || model == 'default' ? '' : model;
 
   void _showRemoveKeyDialog() {
     showDialog(
@@ -69,16 +99,19 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                   style: TextStyle(color: AppColors.textSecondary)),
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 Navigator.pop(ctx);
-                AiProviderRepository.instance.removeKey();
+                final session = _repo.sessionRevision;
+                final saved = await _repo.removeKey();
+                if (!mounted || session != _repo.sessionRevision) return;
                 _keyController.clear();
                 _endpointController.clear();
                 setState(() => _isEditingKey = false);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                        'API Key removed. Switched back to default Gemini.'),
+                  SnackBar(
+                    content: Text(saved
+                        ? 'API Key removed. Switched back to default Gemini.'
+                        : 'API key removal was not saved. Please retry.'),
                     backgroundColor: AppColors.primary,
                   ),
                 );
@@ -98,7 +131,7 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<AiProviderConfig>(
-      valueListenable: AiProviderRepository.instance,
+      valueListenable: _repo,
       builder: (context, config, _) {
         return Scaffold(
           backgroundColor: AppColors.background,
@@ -120,12 +153,19 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
             children: [
               const Text(
                 'Configure your preferred AI engine to generate personalized '
-                'family meal plans. You can use the built-in Gemini quota for '
-                'free, or bring your own API key for higher limits.',
+                'family meal plans. You can use the built-in Gemini quota '
+                'when configured, or bring your own provider API key. '
+                'Provider access, limits, and charges depend on your account.',
                 style: TextStyle(
                     color: AppColors.textSecondary, fontSize: 13, height: 1.4),
               ),
               const SizedBox(height: 20),
+              if (config.status == ApiConnectionStatus.failed)
+                TextButton.icon(
+                  onPressed: _repo.isSaving ? null : _repo.retry,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Retry Settings'),
+                ),
 
               // ── Provider Selector ──────────────────────────────────────────
               const Text(
@@ -144,12 +184,11 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
                       onTap: () {
-                        AiProviderRepository.instance.selectProvider(type);
+                        _repo.selectProvider(type);
                         // Sync endpoint field when switching to custom
                         if (type == AiProviderType.custom) {
-                          _endpointController.text = AiProviderRepository
-                                  .instance.value.customEndpoint ??
-                              '';
+                          _endpointController.text =
+                              _repo.value.customEndpoint ?? '';
                         }
                       },
                       borderRadius: BorderRadius.circular(16),
@@ -203,7 +242,7 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                                     type.availableModels.isNotEmpty
                                         ? 'Models: ${type.availableModels.take(2).join(', ')}…'
                                         : (type == AiProviderType.custom
-                                            ? 'Any OpenAI-compatible endpoint'
+                                            ? 'OpenAI Chat Completions JSON; compatibility requires verification'
                                             : 'Default: ${type.defaultModel}'),
                                     style: const TextStyle(
                                         color: AppColors.textMuted,
@@ -237,20 +276,22 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
+                        Expanded(
+                            child: Row(
                           children: [
                             const Icon(Icons.key,
                                 color: AppColors.primary, size: 20),
                             const SizedBox(width: 8),
-                            Text(
+                            Expanded(
+                                child: Text(
                               '${config.providerType.displayName} Key',
                               style: const TextStyle(
                                   color: AppColors.textPrimary,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 15),
-                            ),
+                            )),
                           ],
-                        ),
+                        )),
                         if (config.apiKey != null && !_isEditingKey)
                           IconButton(
                             icon: const Icon(Icons.edit_outlined,
@@ -283,20 +324,30 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                                 Icon(Icons.check_circle_rounded,
                                     color: AppColors.primary, size: 18),
                                 SizedBox(width: 8),
-                                Text(
+                                Expanded(
+                                    child: Text(
                                   'Default WhatMeal AI Provider',
                                   style: TextStyle(
                                     color: AppColors.primary,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w800,
                                   ),
-                                ),
+                                )),
                               ],
                             ),
                             const SizedBox(height: 6),
-                            const Text(
-                              'Gemini is active as your default provider. No API key is needed to generate meals — you get free daily meal-planning generations out-of-the-box!',
-                              style: TextStyle(
+                            Text(
+                              useFirebaseEmulators
+                                  ? 'Live AI is disabled in this isolated local demo. '
+                                      'Use manual planning here, or use the online WhatMeal app for Gemini.'
+                                  : BundledGeminiKeys.hasKeys
+                                      ? 'Gemini uses the configured Google AI Studio credentials through the Gemini Developer API. '
+                                          'No personal API key is required. Access depends on the selected model and the configured projects\' quotas. '
+                                          'Firebase continues to store your account and meal plans.'
+                                      : 'Gemini uses the Gemini Developer API through Firebase AI Logic. '
+                                          'No personal API key is required. Free-tier generation requires '
+                                          'Firebase AI Logic, valid App Check, and available provider quota.',
+                              style: const TextStyle(
                                   color: AppColors.textPrimary,
                                   fontSize: 12,
                                   height: 1.4),
@@ -353,8 +404,7 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                                 borderRadius: BorderRadius.circular(12)),
                           ),
                           onChanged: (val) {
-                            AiProviderRepository.instance
-                                .setCustomEndpoint(val);
+                            _repo.setCustomEndpoint(val);
                           },
                         ),
                         const SizedBox(height: 12),
@@ -395,29 +445,37 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                           children: [
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: () {
-                                  if (_keyController.text.trim().isNotEmpty) {
-                                    AiProviderRepository.instance
-                                        .setApiKey(_keyController.text.trim());
-                                    setState(() => _isEditingKey = false);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text('API key updated!'),
-                                        backgroundColor: AppColors.primary,
-                                      ),
-                                    );
-                                  } else {
-                                    AiProviderRepository.instance.removeKey();
-                                    setState(() => _isEditingKey = false);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                            'API Key cleared. Switched back to default Gemini.'),
-                                        backgroundColor: AppColors.primary,
-                                      ),
-                                    );
-                                  }
-                                },
+                                onPressed: _repo.isSaving
+                                    ? null
+                                    : () async {
+                                        final key = _keyController.text.trim();
+                                        if (key.isEmpty) {
+                                          _showRemoveKeyDialog();
+                                          return;
+                                        }
+                                        final session = _repo.sessionRevision;
+                                        final saved =
+                                            await _repo.setApiKey(key);
+                                        if (!mounted ||
+                                            !context.mounted ||
+                                            session != _repo.sessionRevision) {
+                                          return;
+                                        }
+                                        if (saved) {
+                                          setState(() => _isEditingKey = false);
+                                        }
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(saved
+                                                ? 'API key updated!'
+                                                : 'API key was not saved. Please retry.'),
+                                            backgroundColor: saved
+                                                ? AppColors.primary
+                                                : AppColors.danger,
+                                          ),
+                                        );
+                                      },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primary,
                                   foregroundColor: Colors.white,
@@ -478,215 +536,264 @@ class _AiSettingsPageState extends State<AiSettingsPage> {
                           ),
                         ),
                       ],
+                    ],
 
-                      // Model selector (for providers with a fixed or fetched list)
-                      if (config.providerType != AiProviderType.custom &&
-                          config.providerType.availableModels.isNotEmpty) ...[
-                        const SizedBox(height: 14),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Model',
-                              style: TextStyle(
-                                  color: AppColors.textPrimary,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13),
-                            ),
-                            // "Load from API" button — fetches live model list
-                            // using the user's actual API key so only accessible
-                            // models appear in the dropdown.
-                            if (config.apiKey != null &&
-                                config.apiKey!.isNotEmpty)
-                              TextButton.icon(
-                                onPressed:
-                                    config.status == ApiConnectionStatus.testing
-                                        ? null
-                                        : () => AiProviderRepository.instance
-                                            .fetchModels(),
-                                style: TextButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  minimumSize: const Size(0, 0),
-                                  tapTargetSize:
-                                      MaterialTapTargetSize.shrinkWrap,
-                                ),
-                                icon:
-                                    config.status == ApiConnectionStatus.testing
-                                        ? const SizedBox(
-                                            width: 12,
-                                            height: 12,
-                                            child: CircularProgressIndicator(
-                                                strokeWidth: 1.5),
-                                          )
-                                        : const Icon(Icons.refresh,
-                                            size: 14, color: AppColors.primary),
-                                label: Text(
-                                  config.fetchedModels != null
-                                      ? 'Reload Models'
-                                      : 'Load from API',
-                                  style: const TextStyle(
-                                      color: AppColors.primary,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w700),
-                                ),
+                    // Model selector (for providers with a fixed or fetched list)
+                    if (config.providerType != AiProviderType.custom &&
+                        config.providerType.availableModels.isNotEmpty) ...[
+                      const SizedBox(height: 14),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Model',
+                            style: TextStyle(
+                                color: AppColors.textPrimary,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 13),
+                          ),
+                          // "Load from API" button — fetches live model list
+                          // using the user's actual API key so only accessible
+                          // models appear in the dropdown.
+                          if (config.apiKey != null &&
+                              config.apiKey!.isNotEmpty)
+                            TextButton.icon(
+                              onPressed: config.status ==
+                                          ApiConnectionStatus.testing ||
+                                      _repo.isSaving
+                                  ? null
+                                  : () => _repo.fetchModels(),
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                minimumSize: const Size(0, 0),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               ),
-                          ],
+                              icon: config.status == ApiConnectionStatus.testing
+                                  ? const SizedBox(
+                                      width: 12,
+                                      height: 12,
+                                      child: CircularProgressIndicator(
+                                          strokeWidth: 1.5),
+                                    )
+                                  : const Icon(Icons.refresh,
+                                      size: 14, color: AppColors.primary),
+                              label: Text(
+                                config.fetchedModels != null
+                                    ? 'Reload Models'
+                                    : 'Load from API',
+                                style: const TextStyle(
+                                    color: AppColors.primary,
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      DropdownButtonFormField<String>(
+                        key: ValueKey('model:${_repo.sessionRevision}:'
+                            '${config.providerType.name}:${config.selectedModel}:'
+                            '${config.effectiveModels.join(',')}'),
+                        initialValue: config.selectedModel,
+                        isExpanded: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 12),
+                          helperText: config.fetchedModels != null
+                              ? (config.fetchedModels!
+                                      .contains(config.selectedModel)
+                                  ? 'Discovered list — model access and meal generation still require verification'
+                                  : 'Saved model is absent from the discovered list. It has not been changed automatically.')
+                              : 'Suggested models — availability depends on the provider and your account',
+                          helperMaxLines: 4,
+                          helperStyle: const TextStyle(
+                              fontSize: 10, color: AppColors.textMuted),
                         ),
-                        const SizedBox(height: 6),
-                        DropdownButtonFormField<String>(
-                          initialValue: config.effectiveModels
-                                  .contains(config.selectedModel)
-                              ? config.selectedModel
-                              : config.effectiveModels.first,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 12),
-                            helperText: config.fetchedModels != null
-                                ? 'Live list — ${config.fetchedModels!.length} model(s) available on your account'
-                                : 'Static list — tap "Load from API" to see your account\'s actual models',
-                            helperStyle: const TextStyle(
-                                fontSize: 10, color: AppColors.textMuted),
-                          ),
-                          items: config.effectiveModels
-                              .map((m) => DropdownMenuItem(
-                                    value: m,
-                                    child: Text(m,
-                                        style: const TextStyle(fontSize: 13)),
-                                  ))
-                              .toList(),
-                          onChanged: (model) {
-                            if (model != null) {
-                              AiProviderRepository.instance.updateModel(model);
-                            }
-                          },
+                        items: <String>{
+                          config.selectedModel,
+                          ...config.effectiveModels
+                        }
+                            .map((m) => DropdownMenuItem(
+                                  value: m,
+                                  enabled: AiModelRegistry.find(
+                                              config.providerType.toLlmProvider,
+                                              m)
+                                          ?.selectable ??
+                                      true,
+                                  child: Text(
+                                      AiModelRegistry.label(
+                                          config.providerType.toLlmProvider, m),
+                                      style: const TextStyle(fontSize: 13),
+                                      overflow: TextOverflow.ellipsis),
+                                ))
+                            .toList(),
+                        onChanged: (model) {
+                          if (model != null) {
+                            _repo.updateModel(model);
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        AiModelRegistry.note(config.providerType.toLlmProvider,
+                            config.selectedModel),
+                        style: const TextStyle(
+                            fontSize: 11, color: AppColors.textMuted),
+                      ),
+                    ],
+                    // Custom model name text field
+                    if (config.providerType == AiProviderType.custom) ...[
+                      const SizedBox(height: 14),
+                      const Text(
+                        'Model Name',
+                        style: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13),
+                      ),
+                      const SizedBox(height: 6),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'e.g. mistral-7b-instruct',
+                          labelText: 'Model',
+                          helperText: 'Press Enter to save the exact model ID.',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12)),
                         ),
-                      ],
-                      // Custom model name text field
-                      if (config.providerType == AiProviderType.custom) ...[
-                        const SizedBox(height: 14),
-                        const Text(
-                          'Model Name',
-                          style: TextStyle(
-                              color: AppColors.textPrimary,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13),
-                        ),
-                        const SizedBox(height: 6),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'e.g. mistral-7b-instruct',
-                            labelText: 'Model',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                          ),
-                          controller: TextEditingController(
-                              text: config.selectedModel == 'custom-model' ||
-                                      config.selectedModel == 'default'
-                                  ? ''
-                                  : config.selectedModel),
-                          onSubmitted: (val) {
-                            if (val.trim().isNotEmpty) {
-                              AiProviderRepository.instance
-                                  .updateModel(val.trim());
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 8),
-                        SwitchListTile.adaptive(
+                        controller: _modelController,
+                        onSubmitted: (val) {
+                          if (val.trim().isNotEmpty) {
+                            _repo.updateModel(val.trim());
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 8),
+                      Material(
+                        color: AppColors.cardSurface,
+                        child: SwitchListTile.adaptive(
                           contentPadding: EdgeInsets.zero,
                           title: const Text(
-                            'OpenAI-compatible Protocol',
+                            'Append /chat/completions to URL',
                             style: TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.textPrimary),
                           ),
                           subtitle: const Text(
-                            'Sends requests to /chat/completions using standard chat format',
+                            'On: base URL. Off: exact URL. Both require OpenAI Chat Completions JSON.',
                             style: TextStyle(
                                 fontSize: 11, color: AppColors.textMuted),
                           ),
                           value: config.isOpenAiCompatible,
                           onChanged: (val) {
-                            AiProviderRepository.instance
-                                .setOpenAiCompatible(val);
+                            _repo.setOpenAiCompatible(val);
                           },
                         ),
-                      ],
+                      ),
                     ],
-
                     const SizedBox(height: 16),
                     const Divider(color: AppColors.border, height: 1),
                     const SizedBox(height: 16),
 
                     // Connection Status & Test Button
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 10,
-                                    height: 10,
-                                    decoration: BoxDecoration(
-                                      color: _statusColor(config.status),
-                                      shape: BoxShape.circle,
-                                    ),
+                    LayoutBuilder(
+                        builder: (context, constraints) => Wrap(
+                              spacing: 12,
+                              runSpacing: 12,
+                              children: [
+                                SizedBox(
+                                  width: constraints.maxWidth < 360
+                                      ? constraints.maxWidth
+                                      : constraints.maxWidth - 180,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 10,
+                                            height: 10,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  _statusColor(config.status),
+                                              shape: BoxShape.circle,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Expanded(
+                                              child: Text(
+                                            _statusLabel(config.status),
+                                            style: TextStyle(
+                                              color:
+                                                  _statusColor(config.status),
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 13,
+                                            ),
+                                          )),
+                                        ],
+                                      ),
+                                      if (config.statusMessage != null) ...[
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          config.statusMessage!,
+                                          style: const TextStyle(
+                                              color: AppColors.textMuted,
+                                              fontSize: 11),
+                                        ),
+                                      ],
+                                    ],
                                   ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    _statusLabel(config.status),
-                                    style: TextStyle(
-                                      color: _statusColor(config.status),
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: 13,
-                                    ),
+                                ),
+                                OutlinedButton.icon(
+                                  onPressed: config.status ==
+                                              ApiConnectionStatus.testing ||
+                                          _repo.isSaving
+                                      ? null
+                                      : () async {
+                                          final session = _repo.sessionRevision;
+                                          if (config.providerType ==
+                                                  AiProviderType.custom &&
+                                              _modelController.text.trim() !=
+                                                  config.selectedModel) {
+                                            final saved =
+                                                await _repo.updateModel(
+                                                    _modelController.text);
+                                            if (!saved ||
+                                                session !=
+                                                    _repo.sessionRevision) {
+                                              return;
+                                            }
+                                          }
+                                          await _repo.testConnection();
+                                        },
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: AppColors.primary,
+                                    side: const BorderSide(
+                                        color: AppColors.primary),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                   ),
-                                ],
-                              ),
-                              if (config.statusMessage != null) ...[
-                                const SizedBox(height: 2),
-                                Text(
-                                  config.statusMessage!,
-                                  style: const TextStyle(
-                                      color: AppColors.textMuted, fontSize: 11),
+                                  icon: config.status ==
+                                          ApiConnectionStatus.testing
+                                      ? const SizedBox(
+                                          width: 14,
+                                          height: 14,
+                                          child: CircularProgressIndicator(
+                                              strokeWidth: 2),
+                                        )
+                                      : const Icon(Icons.sync, size: 16),
+                                  label: const Text('Test Connection',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 12)),
                                 ),
                               ],
-                            ],
-                          ),
-                        ),
-                        OutlinedButton.icon(
-                          onPressed:
-                              config.status == ApiConnectionStatus.testing
-                                  ? null
-                                  : () => AiProviderRepository.instance
-                                      .testConnection(),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: AppColors.primary,
-                            side: const BorderSide(color: AppColors.primary),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          icon: config.status == ApiConnectionStatus.testing
-                              ? const SizedBox(
-                                  width: 14,
-                                  height: 14,
-                                  child:
-                                      CircularProgressIndicator(strokeWidth: 2),
-                                )
-                              : const Icon(Icons.sync, size: 16),
-                          label: const Text('Test Connection',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 12)),
-                        ),
-                      ],
-                    ),
+                            )),
 
                     // Key creation link
                     if (config.providerType.toLlmProvider.keyCreationUrl !=

@@ -1,0 +1,3 @@
+Formatted integration_test/local_workflow_test.dart
+Formatted test/generated_meal_card_test.dart
+Formatted 3 files (2 changed) in 0.07 seconds.

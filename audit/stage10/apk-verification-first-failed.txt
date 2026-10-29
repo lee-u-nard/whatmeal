@@ -1,0 +1,1 @@
+Verification script terminated at identity assertion: Select-String positional binding interpreted the package pattern as a drive path. Tool execution exit 1; package inspection itself exited 0. No installation occurred.

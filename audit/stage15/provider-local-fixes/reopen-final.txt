@@ -1,0 +1,10 @@
+Verified isolated package, demo project and existing tester certificate. SHA-256: 56DDB70183DB9E8D4C6F3A345FAEFCA7A193A7B10AD72BA90E3E142279F693E9
+Performing Streamed Install
+Success
+Starting: Intent { cmp=com.example.whatmeal.showcase/com.example.whatmeal.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.example.whatmeal.showcase/com.example.whatmeal.MainActivity
+TotalTime: 1468
+WaitTime: 1472
+Complete

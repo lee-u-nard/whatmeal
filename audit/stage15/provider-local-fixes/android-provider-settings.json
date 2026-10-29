@@ -1,0 +1,16 @@
+{
+  "completedPhases": [
+    "both disposable account configurations saved in memory",
+    "explicit Gemini model persisted and reopened through Android UI",
+    "Gemini connection action reported local-only policy without live AI",
+    "member Groq missing-key configuration never claimed a connection",
+    "confirmed provider removal restored the default Gemini configuration",
+    "owner model survived independent member edits and account switching",
+    "both original demo settings restored exactly; owner signed in"
+  ],
+  "authMethod": "real emulator SDK switching; settings via routed UI",
+  "liveAiCalled": false,
+  "configurationRestored": true,
+  "restorationFailures": 0,
+  "restorationErrors": []
+}
